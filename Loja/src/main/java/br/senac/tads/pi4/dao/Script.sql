@@ -34,7 +34,14 @@ create table Cliente (
     cpfCliente VARCHAR(14) NOT NULL UNIQUE,
     emailCliente VARCHAR(50) NOT NULL,
     telefoneCliente VARCHAR(15) NOT NULL,
-    senha VARCHAR(50) NOT NULL -- Tamanho pode causar erro na hora de criptografar
+    senha VARCHAR(50) NOT NULL, -- O tamanho da VARCHAR deve ser no mínimo 32 caracteres (Hashes md5 possuem 32 caracteres). Menos do que isso, provavelmente vai dar erro.
+    cep VARCHAR(9) NOT NULL,
+    rua VARCHAR(50) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(50),
+    bairro VARCHAR(50),
+    municipio VARCHAR(50),
+    uf VARCHAR(2)
 );
 
 create table Funcionario (
@@ -44,7 +51,7 @@ create table Funcionario (
   sobrenomeFuncionario VARCHAR(50) NOT NULL,
   dataNasc DATE NOT NULL,
   cpfFuncionario VARCHAR(14) NOT NULL UNIQUE,
-  emailFuncionario VARCHAR(50) NOT NULL,
+  emailFuncionario VARCHAR(50) NOT NULL UNIQUE,
   telefoneFuncionario VARCHAR(15) NOT NULL,
   estadoFuncionario VARCHAR(50),
   cidadeFuncionario VARCHAR(50),
@@ -120,14 +127,14 @@ INSERT INTO FILIAL (nomeFilial, estadoFilial) VALUES ('FILIAL PORTO ALEGRE', 'RS
 INSERT INTO Produto (nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, CADASTRADOPOR, DATACADASTRO, disponivel, idFilial) VALUES ('Pro2dut66', 29891, 'Bolsa',  5, 'nada', 589, 'Administrador', '2017-06-03 23:16:48.113', true, 2);
 
 
-CREATE TABLE Enderecos (
+CREATE TABLE Endereco (
    idCliente INT NOT NULL,
-   rua VARCHAR(50) NOT NULL,
    cep VARCHAR(9) NOT NULL,
+   rua VARCHAR(50) NOT NULL,
+   numero INT NOT NULL,
    complemento VARCHAR(50),
-   numeroCasa INT NOT NULL,
    bairro VARCHAR(50),
    municipio VARCHAR(50),
-   uf VARCHAR(50),
+   uf VARCHAR(2),
    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );

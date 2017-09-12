@@ -6,12 +6,15 @@
 package br.senac.tads.pi4.ResultServlets;
 
 import br.senac.tads.pi4.dao.ClienteDAO;
+import br.senac.tads.pi4.dao.EnderecoDAO;
 import br.senac.tads.pi4.models.Cliente;
+import br.senac.tads.pi4.models.Endereco;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,7 +58,6 @@ public class CadastrarCliServlet02 extends HttpServlet {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
 
-        
         // Dados pessoais
         String nome = request.getParameter("nome");
         nome = nome.trim(); // Corta os espaços e garante que um campo em branco não seja cadastrado
@@ -74,25 +76,27 @@ public class CadastrarCliServlet02 extends HttpServlet {
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
-        
-        
+
         // Endereços
         String cep = request.getParameter("cep");
-//        int numero = Integer.parseInt(request.getParameter("numero"));
+        String rua = request.getParameter("rua");
+        int numero = Integer.parseInt(request.getParameter("numero"));
         String complemento = request.getParameter("complemento");
         String bairro = request.getParameter("bairro");
         String municipio = request.getParameter("municipio");
         String uf = request.getParameter("uf");
-        
-        
-        
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
-            Cliente novo = new Cliente(nome, sobrenome, dataNasc, cpf, email, telefone, md5(senha)); // Md5 gera senha criptografada 
+            Cliente novo = new Cliente(nome, sobrenome, dataNasc, cpf, email, telefone, md5(senha), cep, rua, numero,
+            complemento, bairro, municipio, uf);
+
+//            Endereco end = new Endereco(cep, rua, numero, complemento, bairro, municipio, uf); fail
 
             ClienteDAO dao = new ClienteDAO();
+//            EnderecoDAO daoEnd = new EnderecoDAO(); fail
             dao.incluirComTransacao(novo);
+//            daoEnd.incluirComTransacao(end); fail
 
 //            request.setAttribute("cliente", "Cliente: ''" + nome + "'' foi cadastrado com sucesso!!");
 //            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastrarCliente.jsp").forward(request, response);
@@ -105,6 +109,7 @@ public class CadastrarCliServlet02 extends HttpServlet {
         }
     }
 
+    // Md5 gera senha criptografada 
     public static String md5(String senha) {
         String sen = "";
         MessageDigest md = null;

@@ -467,9 +467,7 @@
                                     <label for="password">Senha</label>
                                     <input type="password" class="form-control" name="senha" id="password">
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Registrar</button>
-                                </div>
+
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -480,14 +478,14 @@
 
                                 <hr>
 
-                                <div class="form-group">
-                                    <label for="name">Identificação: </label>
-                                    <select name="" class="formstyle selects" id="identificacao" tabindex="8">
-                                        <option value="Casa">Casa</option>
-                                        <option value="Trabalho">Trabalho</option>
-                                        <option value="Outro">Outro</option>
-                                    </select>
-                                </div>
+                                <!--                                <div class="form-group">
+                                                                    <label for="name">Identificação: </label>
+                                                                    <select name="" class="formstyle selects" id="identificacao" tabindex="8">
+                                                                        <option value="Casa">Casa</option>
+                                                                        <option value="Trabalho">Trabalho</option>
+                                                                        <option value="Outro">Outro</option>
+                                                                    </select>
+                                                                </div>-->
                                 <div class="form-group">
                                     <label for="name">CEP: </label>
                                     <input type="text" class="form-control" name="cep" id="name">
@@ -506,18 +504,22 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Bairro: </label>
-                                    <input type="text" disabled class="form-control" name="bairro" id="password">
+                                    <input type="text" class="form-control" name="bairro" id="password">
                                 </div>
                                 <div class="form-group">
                                     <label for="municipio">Municipio: </label>
-                                    <input type="text" disabled class="form-control" name="municipio" id="password">
+                                    <input type="text" class="form-control" name="municipio" id="password">
                                 </div>
                                 <div class="form-group">
                                     <label for="text">UF: </label>
-                                    <input type="text" disabled class="form-control" name="uf" id="password">
+                                    <input type="text" class="form-control" maxlength="2" name="uf" id="password">
                                 </div>
                             </div>
                         </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Registrar</button>
+                        </div>
+                        <br>
                     </form>
 
                     <!--                    <div class="col-md-6">

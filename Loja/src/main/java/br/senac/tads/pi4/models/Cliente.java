@@ -22,6 +22,13 @@ public class Cliente {
     private String email;
     private String telefone;
     private String senha;
+    private String cep;
+    private String rua;
+    private int numeroCasa;
+    private String complemento;
+    private String bairro;
+    private String municipio;
+    private String uf;
 
     public Cliente() {
 
@@ -58,6 +65,26 @@ public class Cliente {
         this.telefone = telefone;
         this.senha = senha;
     }
+    
+    // Construtor com endereço
+
+    public Cliente(String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String senha, String cep, String rua, int numeroCasa, String complemento, String bairro, String municipio, String uf) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.dataNasc = dataNasc;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.cep = cep;
+        this.rua = rua;
+        this.numeroCasa = numeroCasa;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.municipio = municipio;
+        this.uf = uf;
+    }
+    
 
     public int getId() {
         return id;
@@ -122,5 +149,63 @@ public class Cliente {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public int getNumeroCasa() {
+        return numeroCasa;
+    }
+
+    public void setNumeroCasa(int numeroCasa) {
+        this.numeroCasa = numeroCasa;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+    
+    
 
 }
