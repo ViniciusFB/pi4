@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ProjetoX
  */
-@WebServlet(name = "registro", urlPatterns = {"/Registro"})
+@WebServlet(name = "registro", urlPatterns = {"/registro"})
 public class RegistroServlet extends HttpServlet {
 
     /**
@@ -38,7 +38,7 @@ public class RegistroServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession(); 
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.getRequestDispatcher("WEB-INF/jsp/registro.jsp").forward(request, response);
+        request.getRequestDispatcher("registro.jsp").forward(request, response);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class RegistroServlet extends HttpServlet {
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         
         //Comando que ira chamar a JSP passada no parametro
-        request.getRequestDispatcher("WEB-INF/jsp/registro.jsp").forward(request, response);
+        request.getRequestDispatcher("registro.jsp").forward(request, response);
     }
 
     @Override

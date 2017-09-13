@@ -61,7 +61,7 @@
                         </li>
 <!--                        <li><a href="/Loja/Registro">Registro</a>
                         </li>-->
-                        <li><a href="/Loja/Registro">Cadastro</a>
+                        <li><a href="registro.jsp">Cadastro</a>
                         </li>
                         <li><a href="contact.html">Contato</a>
                         </li>

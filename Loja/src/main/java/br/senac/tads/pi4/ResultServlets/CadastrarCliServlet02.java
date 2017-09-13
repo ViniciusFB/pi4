@@ -6,15 +6,12 @@
 package br.senac.tads.pi4.ResultServlets;
 
 import br.senac.tads.pi4.dao.ClienteDAO;
-import br.senac.tads.pi4.dao.EnderecoDAO;
 import br.senac.tads.pi4.models.Cliente;
-import br.senac.tads.pi4.models.Endereco;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
-import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ProjetoX
  */
-@WebServlet(name = "CadastrarCliServlet02", urlPatterns = {"/CadastrarCliServlet02"})
+@WebServlet(name = "CadastrarCliServlet02", urlPatterns = {"/cadastrado"})
 public class CadastrarCliServlet02 extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +36,7 @@ public class CadastrarCliServlet02 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher
-                = request.getRequestDispatcher("WEB-INF/jsp/registro.jsp");
+                = request.getRequestDispatcher("WEB-INF/jsp/cadastroRealizado.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -100,7 +97,7 @@ public class CadastrarCliServlet02 extends HttpServlet {
 
 //            request.setAttribute("cliente", "Cliente: ''" + nome + "'' foi cadastrado com sucesso!!");
 //            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastrarCliente.jsp").forward(request, response);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/registro.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastroRealizado.jsp").forward(request, response);
         } else {
             // Tem erro no preenchimento dos dados.
             // Reapresenta o formulário para o usuário indicando os erros.

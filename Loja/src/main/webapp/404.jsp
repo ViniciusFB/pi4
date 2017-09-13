@@ -1,12 +1,15 @@
 <%-- 
-    Document   : index
-    Created on : 05/09/2017, 02:54:09
+    Document   : 404
+    Created on : 13/09/2017, 03:27:10
     Author     : Vinicius Ferreira Batista
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@page contentType="text/html" pageEncoding="UTF-8"
+        isErrorPage="true"%> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
     <head>
 
         <meta charset="utf-8">
@@ -18,7 +21,7 @@
         <meta name="keywords" content="">
 
         <title>
-            VIP e-Commerce
+            Obaju : e-commerce template
         </title>
 
         <meta name="keywords" content="">
@@ -43,99 +46,26 @@
         <link rel="shortcut icon" href="favicon.png">
 
 
-        <!-- Adicionando JQuery -->
-        <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-
-        <!-- Adicionando Javascript -->
-        <script type="text/javascript" >
-
-            $(document).ready(function () {
-
-                function limpa_formulário_cep() {
-                    // Limpa valores do formulário de cep.
-                    $("#rua").val("");
-                    $("#bairro").val("");
-                    $("#cidade").val("");
-                    $("#uf").val("");
-                }
-
-                //Quando o campo cep perde o foco.
-                $("#cep").on('input', function () {
-
-                    //Nova variável "cep" somente com dígitos.
-                    var cep = $(this).val().replace(/\D/g, '');
-
-                    //Verifica se campo cep possui valor informado.
-                    if (cep != "") {
-
-                        //Expressão regular para validar o CEP.
-                        var validacep = /^[0-9]{8}$/;
-
-                        //Valida o formato do CEP.
-                        if (validacep.test(cep)) {
-
-                            //Preenche os campos com "..." enquanto consulta webservice.
-                            $("#rua").val("...");
-                            $("#bairro").val("...");
-                            $("#cidade").val("...");
-                            $("#uf").val("...");
-
-                            //Consulta o webservice viacep.com.br/
-                            $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-
-                                if (!("erro" in dados)) {
-                                    //Atualiza os campos com os valores da consulta.
-                                    $("#rua").val(dados.logradouro);
-                                    $("#bairro").val(dados.bairro);
-                                    $("#cidade").val(dados.localidade);
-                                    $("#uf").val(dados.uf);
-                                } //end if.
-                                else {
-                                    //CEP pesquisado não foi encontrado.
-                                    limpa_formulário_cep();
-                                    alert("CEP não encontrado.");
-                                }
-                            });
-                        } //end if.
-                        else {
-                            //cep é inválido.
-                            limpa_formulário_cep();
-//                            alert("Formato de CEP inválido.");
-                        }
-                    } //end if.
-                    else {
-                        //cep sem valor, limpa formulário.
-                        limpa_formulário_cep();
-                    }
-                });
-            });
-
-        </script>
-
 
     </head>
 
     <body>
-
         <!-- *** TOPBAR ***
      _________________________________________________________ -->
         <div id="top">
             <div class="container">
                 <div class="col-md-6 offer" data-animate="fadeInDown">
-                    <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Oferta da semana</a>  <a href="#">Compras acima de R$500,00 receberão 5% de desconto!</a>
-                </div>
-                <div class="col-md-6 offer" data-animate="fadeInDown">
-                    <p>Usuário logado: ${usuario}</p>
+                    <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
                 </div>
                 <div class="col-md-6" data-animate="fadeInDown">
                     <ul class="menu">
                         <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                         </li>
-                        <li><a href="register.html">Registre-se</a>
+                        <li><a href="register.html">Register</a>
                         </li>
-                        <li><a href="contact.html">Contato</a>
+                        <li><a href="contact.html">Contact</a>
                         </li>
-                        <li><a href="#">Visto recentemente</a>
+                        <li><a href="#">Recently viewed</a>
                         </li>
                     </ul>
                 </div>
@@ -163,7 +93,7 @@
 
                             </form>
 
-                            <p class="text-center text-muted">Ainda não se registrou?</p>
+                            <p class="text-center text-muted">Not registered yet?</p>
                             <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
 
                         </div>
@@ -182,9 +112,9 @@
             <div class="container">
                 <div class="navbar-header">
 
-                    <a class="navbar-brand home" href="index.jsp" data-animate-hover="bounce">
-                        <img src="img/vip.png" alt="Vip logo" class="hidden-xs">
-                        <img src="img/logo-small.png" alt="Vip logo" class="visible-xs"><span class="sr-only">Vip - Pagina Inicial</span>
+                    <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+                        <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
+                        <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
                     </a>
                     <div class="navbar-buttons">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -196,7 +126,7 @@
                             <i class="fa fa-search"></i>
                         </button>
                         <a class="btn btn-default navbar-toggle" href="basket.html">
-                            <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 itens no carrinho</span>
+                            <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
                         </a>
                     </div>
                 </div>
@@ -205,10 +135,10 @@
                 <div class="navbar-collapse collapse" id="navigation">
 
                     <ul class="nav navbar-nav navbar-left">
-                        <li class="active"><a href="index.html">Início</a>
+                        <li class="active"><a href="index.html">Home</a>
                         </li>
                         <li class="dropdown yamm-fw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Homens <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Men <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <div class="yamm-content">
@@ -284,7 +214,7 @@
                         </li>
 
                         <li class="dropdown yamm-fw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Mulheres <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Ladies <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <div class="yamm-content">
@@ -480,8 +410,6 @@
 
         <!-- *** NAVBAR END *** -->
 
-
-
         <div id="all">
 
             <div id="content">
@@ -490,137 +418,37 @@
                     <div class="col-md-12">
 
                         <ul class="breadcrumb">
-                            <li><a href="index.jsp">Home</a>
+                            <li><a href="#">Home</a>
                             </li>
-                            <li>Nova conta / Registre-se</li>
+                            <li>Página não encontrada</li>
                         </ul>
 
+
+                        <div class="row" id="error-page">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div class="box">
+
+                                    <p class="text-center">
+                                        <img src="img/vip.png" alt="Vip logo">
+                                    </p>
+
+                                    <h3>Desculpe, a página solicitada não foi encontrada.</h3>
+                                    <h4 class="text-muted">Error 404 - Page not found</h4>
+
+                                    <p class="buttons"><a href="/Loja" class="btn btn-primary"><i class="fa fa-home"></i> Voltar para a página inicial</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-
-
-                    <form action="CadastrarCliServlet02" method="post">
-
-                        <div class="col-md-6">
-                            <div class="box">
-                                <h1>Nova conta</h1>
-
-                                <p class="lead">Ainda não é um cliente registrado?</p>
-
-                                <hr>
-
-                                <div class="form-group">
-                                    <label for="name">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Sobrenome</label>
-                                    <input type="text" class="form-control" name="sobrenome" id="sobrenome">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Data de Nascimento</label>
-                                    <input type="date" class="form-control" name="dataNasc" id="dataNasc">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">CPF</label>
-                                    <input type="text" class="form-control" name="cpf" id="cpf">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" id="telefone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Senha</label>
-                                    <input type="password" class="form-control" name="senha" id="password">
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="box">
-                                <h1>Endereço</h1>
-
-                                <p class="lead">Ainda não é um cliente registrado?</p>
-
-                                <hr>
-
-                                <!--                                <div class="form-group">
-                                                                    <label for="name">Identificação: </label>
-                                                                    <select name="" class="formstyle selects" id="identificacao" tabindex="8">
-                                                                        <option value="Casa">Casa</option>
-                                                                        <option value="Trabalho">Trabalho</option>
-                                                                        <option value="Outro">Outro</option>
-                                                                    </select>
-                                                                </div>-->
-                                <div class="form-group">
-                                    <label for="cep">CEP: </label>
-                                    <input type="text" class="form-control" maxlength="9" name="cep" id="cep">
-                                </div>
-                                <div class="form-group">
-                                    <label for="rua">Rua: </label>
-                                    <input type="text" readonly="true" class="form-control" name="rua" id="rua">
-                                </div>
-                                <div class="form-group">
-                                    <label for="bairro">Bairro: </label>
-                                    <input type="text" readonly="true" class="form-control" name="bairro" id="bairro">
-                                </div>
-                                <div class="form-group">
-                                    <label for="cidade">Cidade: </label>
-                                    <input type="text" readonly="true" class="form-control" name="cidade" id="cidade">
-                                </div>
-                                <div class="form-group">
-                                    <label for="uf">UF: </label>
-                                    <input type="text" readonly="true" class="form-control" maxlength="2" name="uf" id="uf">
-                                </div>
-                                <div class="form-group">
-                                    <label for="numero">Número: </label>
-                                    <input type="text" class="form-control" name="numero" id="numero">
-                                </div>
-                                <div class="form-group">
-                                    <label for="complemento">Complemento: </label>
-                                    <input type="text" class="form-control" name="complemento" id="complemento">
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Registrar</button>
-                        </div>
-                        <br>
-                    </form>
-
-                    <!--                    <div class="col-md-6">
-                                            <div class="box">
-                                                <h1>Login</h1>
-                    
-                                                <p class="lead">Já é um cliente?</p>
-                    
-                                                <hr>
-                    
-                                                <form action="login" method="post">
-                                                    <div class="form-group">
-                                                        <label for="email">Email</label>
-                                                        <input type="text" class="form-control" id="email" name="usuario">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="password">Senha</label>
-                                                        <input type="password" class="form-control" id="password" name="senha">
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>-->
-
-
+                    <!-- /.col-md-9 -->
                 </div>
                 <!-- /.container -->
             </div>
             <!-- /#content -->
+
 
             <!-- *** FOOTER ***
      _________________________________________________________ -->
@@ -628,27 +456,27 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-sm-6">
-                            <h4>Páginas</h4>
+                            <h4>Pages</h4>
 
                             <ul>
-                                <li><a href="text.html">Sobre nós</a>
+                                <li><a href="text.html">About us</a>
                                 </li>
-                                <li><a href="text.html">Termos e condições</a>
+                                <li><a href="text.html">Terms and conditions</a>
                                 </li>
                                 <li><a href="faq.html">FAQ</a>
                                 </li>
-                                <li><a href="contact.html">Contate-nos</a>
+                                <li><a href="contact.html">Contact us</a>
                                 </li>
                             </ul>
 
                             <hr>
 
-                            <h4>Sessão do usuário</h4>
+                            <h4>User section</h4>
 
                             <ul>
                                 <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                                 </li>
-                                <li><a href="register.html">Registro</a>
+                                <li><a href="register.html">Regiter</a>
                                 </li>
                             </ul>
 
@@ -691,7 +519,7 @@
 
                         <div class="col-md-3 col-sm-6">
 
-                            <h4>Onde nos encontrar</h4>
+                            <h4>Where to find us</h4>
 
                             <p><strong>Obaju Ltd.</strong>
                                 <br>13/25 New Avenue
@@ -702,7 +530,7 @@
                                 <strong>Great Britain</strong>
                             </p>
 
-                            <a href="contact.html">Vá para a página de contato</a>
+                            <a href="contact.html">Go to contact page</a>
 
                             <hr class="hidden-md hidden-lg">
 
@@ -713,7 +541,7 @@
 
                         <div class="col-md-3 col-sm-6">
 
-                            <h4>Receba as novidades</h4>
+                            <h4>Get the news</h4>
 
                             <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 
@@ -780,6 +608,7 @@
 
 
 
+
         </div>
         <!-- /#all -->
 
@@ -798,5 +627,8 @@
         <script src="js/front.js"></script>
 
 
+
+
     </body>
+
 </html>
