@@ -48,71 +48,6 @@
         <!-- Adicionando JQuery -->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="js/cep.js" type="text/javascript"></script>
-        <!-- Adicionando Javascript -->
-        <script type="text/javascript" >
-
-            $(document).ready(function () {
-
-                function limpa_formulário_cep() {
-                    // Limpa valores do formulário de cep.
-                    $("#rua").val("");
-                    $("#bairro").val("");
-                    $("#cidade").val("");
-                    $("#uf").val("");
-                }
-
-                //Quando o campo cep é alterado
-                $("#cep").on('input', function () {
-
-                    //Nova variável "cep" somente com dígitos.
-                    var cep = $(this).val().replace(/\D/g, '');
-
-                    //Verifica se campo cep possui valor informado.
-                    if (cep != "") {
-
-                        //Expressão regular para validar o CEP.
-                        var validacep = /^[0-9]{8}$/;
-
-                        //Valida o formato do CEP.
-                        if (validacep.test(cep)) {
-
-                            //Preenche os campos com "..." enquanto consulta webservice.
-                            $("#rua").val("...");
-                            $("#bairro").val("...");
-                            $("#cidade").val("...");
-                            $("#uf").val("...");
-                            
-                            //Consulta o webservice viacep.com.br/
-                            $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-
-                                if (!("erro" in dados)) {
-                                    //Atualiza os campos com os valores da consulta.
-                                    $("#rua").val(dados.logradouro);
-                                    $("#bairro").val(dados.bairro);
-                                    $("#cidade").val(dados.localidade);
-                                    $("#uf").val(dados.uf);
-                                } //end if.
-                                else {
-                                    //CEP pesquisado não foi encontrado.
-                                    limpa_formulário_cep();
-                                    alert("CEP não encontrado.");
-                                }
-                            });
-                        } //end if.
-                        else {
-                            //cep é inválido.
-                            limpa_formulário_cep();
-//                            alert("Formato de CEP inválido.");
-                        }
-                    } //end if.
-                    else {
-                        //cep sem valor, limpa formulário.
-                        limpa_formulário_cep();
-                    }
-                });
-            });
-
-        </script>
 
 
     </head>
@@ -127,7 +62,7 @@
                     <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Oferta da semana</a>  <a href="#">Compras acima de R$500,00 receberão 5% de desconto!</a>
                 </div>
                 <div class="col-md-6 offer" data-animate="fadeInDown">
-                    <p>Usuário logado: ${usuario}</p>
+                    <!--<p>Usuário logado: ${usuario}</p>-->
                 </div>
                 <div class="col-md-6" data-animate="fadeInDown">
                     <ul class="menu">
@@ -549,7 +484,7 @@
                             <div class="box">
                                 <h1>Endereço</h1>
 
-                                <p class="lead">Ainda não é um cliente registrado?</p>
+                                <p class="lead">Você poderá adicionar novos endereços de entrega após se registrar</p>
 
                                 <hr>
 
