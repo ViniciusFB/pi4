@@ -139,7 +139,7 @@ public class ClienteDAO extends ConexaoBD {
 
         String sql = "INSERT INTO Cliente "
                 + "(nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, senha, cep, "
-                + "rua, numero, complemento, bairro, municipio, uf) "
+                + "rua, numero, complemento, bairro, cidade, uf) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -159,7 +159,7 @@ public class ClienteDAO extends ConexaoBD {
             stmt.setInt(10, cliente.getNumeroCasa());
             stmt.setString(11, cliente.getComplemento());
             stmt.setString(12, cliente.getBairro());
-            stmt.setString(13, cliente.getMunicipio());
+            stmt.setString(13, cliente.getCidade());
             stmt.setString(14, cliente.getUf());
 
             stmt.executeUpdate();

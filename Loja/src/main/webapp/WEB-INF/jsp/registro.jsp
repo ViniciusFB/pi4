@@ -43,6 +43,75 @@
         <link rel="shortcut icon" href="favicon.png">
 
 
+        <!-- Adicionando JQuery -->
+        <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+
+        <!-- Adicionando Javascript -->
+        <script type="text/javascript" >
+
+            $(document).ready(function () {
+
+                function limpa_formulário_cep() {
+                    // Limpa valores do formulário de cep.
+                    $("#rua").val("");
+                    $("#bairro").val("");
+                    $("#cidade").val("");
+                    $("#uf").val("");
+                }
+
+                //Quando o campo cep perde o foco.
+                $("#cep").on('input', function () {
+
+                    //Nova variável "cep" somente com dígitos.
+                    var cep = $(this).val().replace(/\D/g, '');
+
+                    //Verifica se campo cep possui valor informado.
+                    if (cep != "") {
+
+                        //Expressão regular para validar o CEP.
+                        var validacep = /^[0-9]{8}$/;
+
+                        //Valida o formato do CEP.
+                        if (validacep.test(cep)) {
+
+                            //Preenche os campos com "..." enquanto consulta webservice.
+                            $("#rua").val("...");
+                            $("#bairro").val("...");
+                            $("#cidade").val("...");
+                            $("#uf").val("...");
+
+                            //Consulta o webservice viacep.com.br/
+                            $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                                if (!("erro" in dados)) {
+                                    //Atualiza os campos com os valores da consulta.
+                                    $("#rua").val(dados.logradouro);
+                                    $("#bairro").val(dados.bairro);
+                                    $("#cidade").val(dados.localidade);
+                                    $("#uf").val(dados.uf);
+                                } //end if.
+                                else {
+                                    //CEP pesquisado não foi encontrado.
+                                    limpa_formulário_cep();
+                                    alert("CEP não encontrado.");
+                                }
+                            });
+                        } //end if.
+                        else {
+                            //cep é inválido.
+                            limpa_formulário_cep();
+//                            alert("Formato de CEP inválido.");
+                        }
+                    } //end if.
+                    else {
+                        //cep sem valor, limpa formulário.
+                        limpa_formulário_cep();
+                    }
+                });
+            });
+
+        </script>
+
 
     </head>
 
@@ -487,33 +556,34 @@
                                                                     </select>
                                                                 </div>-->
                                 <div class="form-group">
-                                    <label for="name">CEP: </label>
-                                    <input type="text" class="form-control" name="cep" id="name">
+                                    <label for="cep">CEP: </label>
+                                    <input type="text" class="form-control" maxlength="9" name="cep" id="cep">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Rua: </label>
-                                    <input type="text" class="form-control" name="rua" id="name">
+                                    <label for="rua">Rua: </label>
+                                    <input type="text" readonly="true" class="form-control" name="rua" id="rua">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Número: </label>
-                                    <input type="text" class="form-control" name="numero" id="email">
+                                    <label for="bairro">Bairro: </label>
+                                    <input type="text" readonly="true" class="form-control" name="bairro" id="bairro">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Complemento: </label>
-                                    <input type="text" class="form-control" name="complemento" id="password">
+                                    <label for="cidade">Cidade: </label>
+                                    <input type="text" readonly="true" class="form-control" name="cidade" id="cidade">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Bairro: </label>
-                                    <input type="text" class="form-control" name="bairro" id="password">
+                                    <label for="uf">UF: </label>
+                                    <input type="text" readonly="true" class="form-control" maxlength="2" name="uf" id="uf">
                                 </div>
                                 <div class="form-group">
-                                    <label for="municipio">Municipio: </label>
-                                    <input type="text" class="form-control" name="municipio" id="password">
+                                    <label for="numero">Número: </label>
+                                    <input type="text" class="form-control" name="numero" id="numero">
                                 </div>
                                 <div class="form-group">
-                                    <label for="text">UF: </label>
-                                    <input type="text" class="form-control" maxlength="2" name="uf" id="password">
+                                    <label for="complemento">Complemento: </label>
+                                    <input type="text" class="form-control" name="complemento" id="complemento">
                                 </div>
+
                             </div>
                         </div>
                         <div class="text-center">

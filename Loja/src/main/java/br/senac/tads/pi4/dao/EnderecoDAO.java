@@ -41,7 +41,7 @@ public class EnderecoDAO extends ConexaoBD {
             stmt.setInt(3, endereco.getNumeroCasa());
             stmt.setString(4, endereco.getComplemento());
             stmt.setString(5, endereco.getBairro());
-            stmt.setString(6, endereco.getMunicipio());
+            stmt.setString(6, endereco.getCidade());
             stmt.setString(7, endereco.getUf());
 
             stmt.executeUpdate();

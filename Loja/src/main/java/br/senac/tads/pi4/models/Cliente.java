@@ -27,7 +27,7 @@ public class Cliente {
     private int numeroCasa;
     private String complemento;
     private String bairro;
-    private String municipio;
+    private String cidade;
     private String uf;
 
     public Cliente() {
@@ -81,7 +81,7 @@ public class Cliente {
         this.numeroCasa = numeroCasa;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.municipio = municipio;
+        this.cidade = municipio;
         this.uf = uf;
     }
     
@@ -190,12 +190,12 @@ public class Cliente {
         this.bairro = bairro;
     }
 
-    public String getMunicipio() {
-        return municipio;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getUf() {

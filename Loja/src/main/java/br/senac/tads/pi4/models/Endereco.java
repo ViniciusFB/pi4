@@ -17,7 +17,7 @@ public class Endereco {
     private int numeroCasa;
     private String complemento;
     private String bairro;
-    private String municipio;
+    private String cidade;
     private String uf;
 
     public Endereco() {
@@ -31,7 +31,7 @@ public class Endereco {
         this.numeroCasa = endereco.numeroCasa;
         this.complemento = endereco.complemento;
         this.bairro = endereco.bairro;
-        this.municipio = endereco.municipio;
+        this.cidade = endereco.cidade;
         this.uf = endereco.uf;
     }
 
@@ -42,7 +42,7 @@ public class Endereco {
         this.numeroCasa = numeroCasa;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.municipio = municipio;
+        this.cidade = municipio;
         this.uf = uf;
     }
 
@@ -52,7 +52,7 @@ public class Endereco {
         this.numeroCasa = numeroCasa;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.municipio = municipio;
+        this.cidade = municipio;
         this.uf = uf;
     }
 
@@ -104,12 +104,12 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getMunicipio() {
-        return municipio;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getUf() {

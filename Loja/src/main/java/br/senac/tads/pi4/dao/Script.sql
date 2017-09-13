@@ -40,7 +40,7 @@ create table Cliente (
     numero INT NOT NULL,
     complemento VARCHAR(50),
     bairro VARCHAR(50),
-    municipio VARCHAR(50),
+    cidade VARCHAR(50),
     uf VARCHAR(2)
 );
 
@@ -134,7 +134,7 @@ CREATE TABLE Endereco (
    numero INT NOT NULL,
    complemento VARCHAR(50),
    bairro VARCHAR(50),
-   municipio VARCHAR(50),
+   cidade VARCHAR(50),
    uf VARCHAR(2),
    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );

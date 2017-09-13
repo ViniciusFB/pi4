@@ -83,13 +83,13 @@ public class CadastrarCliServlet02 extends HttpServlet {
         int numero = Integer.parseInt(request.getParameter("numero"));
         String complemento = request.getParameter("complemento");
         String bairro = request.getParameter("bairro");
-        String municipio = request.getParameter("municipio");
+        String cidade = request.getParameter("cidade");
         String uf = request.getParameter("uf");
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
             Cliente novo = new Cliente(nome, sobrenome, dataNasc, cpf, email, telefone, md5(senha), cep, rua, numero,
-            complemento, bairro, municipio, uf);
+            complemento, bairro, cidade, uf);
 
 //            Endereco end = new Endereco(cep, rua, numero, complemento, bairro, municipio, uf); fail
 
