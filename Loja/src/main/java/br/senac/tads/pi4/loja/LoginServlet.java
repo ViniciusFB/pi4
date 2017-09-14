@@ -100,7 +100,7 @@ public class LoginServlet extends HttpServlet {
         if (senha == null) {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/erroLogin.jsp").forward(request, response);
         } else if (senha.equals(senhaDigitada)) { // Compara a senha no banco com a senha digitada no campo (ambas criptografadas)
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/usuario.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/erroLogin.jsp").forward(request, response);
         }
