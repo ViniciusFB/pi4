@@ -1,1 +1,20 @@
 /** Your theme modifications here **/
+#btns {
+    text-align: center;
+        margin-top: 50px;
+
+}
+
+#btn1, #btn2 {
+    display: inline-block;
+}
+
+#acn {
+     padding: 50px;
+    height: 350px;
+    /*width: 500px;*/
+}
+
+#acn > h3 {
+    text-align: center;
+}
