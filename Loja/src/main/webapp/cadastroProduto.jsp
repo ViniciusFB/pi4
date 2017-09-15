@@ -49,7 +49,7 @@
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="js/consultaCep.js" type="text/javascript"></script>
         <script src="js/readURL.js" type="text/javascript"></script>
-
+        <script src="js/mostrarImagem.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -481,8 +481,9 @@
 
                                 <div class="form-group">
                                     <label for="imagem">Imagem: </label>
-                                    <input type='file' accept="image/*" id="imgInp" /><br>
-                                    <img id="img" name="imagem" src="#" alt="Imagem do produto" size="10" width="350" height="350" />
+                                    <input type="url" name="imglink" id="imglink"  placeholder="Insert image URL here" />
+                                    <section id="imagem" class="imagemm"></section>
+
                                 </div>
 
 

@@ -65,24 +65,25 @@ public class UploadServlet extends HttpServlet {
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String descricao = request.getParameter("descricao");
         double valor = Double.parseDouble(request.getParameter("valor"));
+        String imagem = request.getParameter("imglink");
 
-        InputStream inputStream = null;
+//        InputStream inputStream = null;
 
         // obtains the upload file part in this multipart request
-        Part filePart = request.getPart("imagem");
-        if (filePart != null) {
-            // debug messages
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
+//        Part filePart = request.getPart("imagem");
+//        if (filePart != null) {
+//            // debug messages
+//            System.out.println(filePart.getName());
+//            System.out.println(filePart.getSize());
+//            System.out.println(filePart.getContentType());
+//
+//            // obtains input stream of the upload file
+//            inputStream = filePart.getInputStream();
+//        }
+//
+//        String message = null; // message will be sent back to client
 
-            // obtains input stream of the upload file
-            inputStream = filePart.getInputStream();
-        }
-
-        String message = null; // message will be sent back to client
-
-        Produto novo = new Produto(nome, codigo, categorias, quantidade, descricao, valor, inputStream);
+        Produto novo = new Produto(nome, codigo, categorias, quantidade, descricao, valor, imagem);
 
         ProdutoDAO dao = new ProdutoDAO();
 

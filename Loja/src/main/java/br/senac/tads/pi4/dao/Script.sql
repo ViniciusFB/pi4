@@ -17,7 +17,7 @@ create table Produto(
     quantidade INT NOT NULL,
     descricao VARCHAR(255),
     valorProduto DOUBLE NOT NULL,
-    imagem blob
+    imagem varchar(2083)
 --     cadastradoPor VARCHAR(50) NOT NULL,
 --     dataCadastro TIMESTAMP NOT NULL,
 --     disponivel BOOLEAN NOT NULL,

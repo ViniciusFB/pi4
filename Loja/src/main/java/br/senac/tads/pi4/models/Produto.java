@@ -5,9 +5,6 @@
  */
 package br.senac.tads.pi4.models;
 
-import java.io.InputStream;
-import javax.servlet.http.Part;
-
 /**
  *
  * @author vinicius.fbatista1
@@ -21,9 +18,8 @@ public class Produto {
     private int quantidade;
     private String descricao;
     private double valor;
-    private Part imagem;
-    private InputStream imagem2;
-    
+    private String imagem;
+
     public Produto() {
 
     }
@@ -39,7 +35,7 @@ public class Produto {
         this.imagem = produto.imagem;
     }
 
-    public Produto(int id, String nome, int codigo, String categorias, int quantidade, String descricao, double valor, Part imagem) {
+    public Produto(int id, String nome, int codigo, String categorias, int quantidade, String descricao, double valor, String imagem) {
         this.id = id;
         this.nome = nome;
         this.codigo = codigo;
@@ -50,7 +46,7 @@ public class Produto {
         this.imagem = imagem;
     }
 
-    public Produto(String nome, int codigo, String categorias, int quantidade, String descricao, double valor, Part imagem) {
+    public Produto(String nome, int codigo, String categorias, int quantidade, String descricao, double valor, String imagem) {
         this.nome = nome;
         this.codigo = codigo;
         this.categorias = categorias;
@@ -58,15 +54,6 @@ public class Produto {
         this.descricao = descricao;
         this.valor = valor;
         this.imagem = imagem;
-    }
-    public Produto(String nome, int codigo, String categorias, int quantidade, String descricao, double valor, InputStream imagem2) {
-        this.nome = nome;
-        this.codigo = codigo;
-        this.categorias = categorias;
-        this.quantidade = quantidade;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.imagem2 = imagem2;
     }
 
     public int getId() {
@@ -125,22 +112,12 @@ public class Produto {
         this.valor = valor;
     }
 
-    public Part getImagem() {
+    public String getImagem() {
         return imagem;
     }
 
-    public void setImagem(Part imagem) {
+    public void setImagem(String imagem) {
         this.imagem = imagem;
     }
 
-    public InputStream getImagem2() {
-        return imagem2;
-    }
-
-    public void setImagem2(InputStream imagem2) {
-        this.imagem2 = imagem2;
-    }
-
-    
-    
 }

@@ -80,14 +80,13 @@ public class ProdutoDAO extends ConexaoBD {
 
     }
 
-    public List<Cliente> listar() {
+    public List<Produto> listar() {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente "
-                + "FROM Cliente ";
+        String sql = "SELECT * FROM Produto";
 
-        List<Cliente> lista = new ArrayList<>();
+        List<Produto> lista = new ArrayList<>();
         try {
             conn = obterConexao();
             stmt = conn.createStatement();
@@ -95,17 +94,18 @@ public class ProdutoDAO extends ConexaoBD {
 
             //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
             while (resultados.next()) {
-                int id = resultados.getInt("idCliente");
-                String nome = resultados.getString("nomeCliente");
-                String sobrenome = resultados.getString("sobrenomeCliente");
-                Date dataNasc = resultados.getDate("dataNasc");
-                String cpf = resultados.getString("cpfCliente");
-                String email = resultados.getString("emailCliente");
-                String telefone = resultados.getString("telefoneCliente");
-                String senha = resultados.getString("senha");
-                Cliente cliente = new Cliente(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha);
+                int id = resultados.getInt("idProduto");
+                String nome = resultados.getString("nomeProduto");
+                int codigo = resultados.getInt("codigo");
+                String categorias = resultados.getString("categorias");
+                int quantidade = resultados.getInt("quantidade");
+                String descricao = resultados.getString("descricao");
+                double valor = resultados.getDouble("valorProduto");
+                String imagem = resultados.getString("imagem");
 
-                lista.add(cliente);
+                Produto produto = new Produto(id, nome, codigo, categorias, quantidade, descricao, valor, imagem);
+
+                lista.add(produto);
             }
 
         } catch (SQLException ex) {
@@ -153,7 +153,7 @@ public class ProdutoDAO extends ConexaoBD {
             stmt.setInt(4, produto.getQuantidade());
             stmt.setString(5, produto.getDescricao());
             stmt.setDouble(6, produto.getValor());
-            stmt.setBlob(7, produto.getImagem2());
+            stmt.setString(7, produto.getImagem());
             stmt.executeUpdate();
 
             // ResultSet para recuperar o ID gerado automaticamente no banco de dados.
@@ -263,7 +263,7 @@ public class ProdutoDAO extends ConexaoBD {
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-             stmt.setString(1, cliente.getNome());
+            stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getSobrenome());
             stmt.setDate(3, cliente.getDataNasc());
             stmt.setString(4, cliente.getCpf());
