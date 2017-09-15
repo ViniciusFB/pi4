@@ -34,7 +34,7 @@
         <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">-->
 
         <!-- theme stylesheet -->
-        <link href="css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+        <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
         <!-- your stylesheet with modifications -->
         <link href="css/custom.css" rel="stylesheet">
@@ -48,7 +48,7 @@
         <!-- Adicionando JQuery -->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="js/consultaCep.js" type="text/javascript"></script>
-
+        <script src="js/readURL.js" type="text/javascript"></script>
 
     </head>
 
@@ -434,7 +434,7 @@
                     </div>
 
 
-                    <form action="cadastrado" method="post" id="formCadastro">
+                    <form action="fileUpload" method="post" id="formCadastro" enctype="multipart/form-data">
 
                         <div class="col-md-6">
                             <div class="box">
@@ -449,80 +449,42 @@
                                     <input type="text" class="form-control" name="nome" id="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Sobrenome</label>
-                                    <input type="text" class="form-control" name="sobrenome" id="sobrenome">
+                                    <label for="codigo">Código</label>
+                                    <input type="text" class="form-control" name="codigo">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Data de Nascimento</label>
-                                    <input type="date" class="form-control" name="dataNasc" id="dataNasc">
+                                    <label for="quantidade">Quantidade</label>
+                                    <input type="number" class="form-control" name="quantidade">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">CPF</label>
-                                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)">
+                                    <label for="valor">Valor</label>
+                                    <input type="text" class="form-control" name="valor" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" maxlength="15" id="telefone">
+                                    <label for="categorias">Categorias</label>
+                                    <input type="text" class="form-control" name="categorias">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Senha</label>
-                                    <input type="password" class="form-control" name="senha" id="password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Confirme a senha</label>
-                                    <input type="password" class="form-control" name="confirmarSenha" id="confirmarSenha">
+                                    <label for="name">Descrição</label>
+                                    <input type="text" class="form-control" name="descricao">
                                 </div>
 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="box">
-                                <h1>Endereço</h1>
+                                <h1>Imagem</h1>
 
-                                <p class="lead">Você poderá adicionar novos endereços de entrega após se registrar</p>
+                                <p class="lead">Adicione imagens para o produto</p>
 
                                 <hr>
 
-                                <!--                                <div class="form-group">
-                                                                    <label for="name">Identificação: </label>
-                                                                    <select name="" class="formstyle selects" id="identificacao" tabindex="8">
-                                                                        <option value="Casa">Casa</option>
-                                                                        <option value="Trabalho">Trabalho</option>
-                                                                        <option value="Outro">Outro</option>
-                                                                    </select>
-                                                                </div>-->
                                 <div class="form-group">
-                                    <label for="cep">CEP: </label>
-                                    <input type="text" class="form-control" maxlength="9" name="cep" id="cep" onkeypress="javascript: mascara(this, cep_mask)">
+                                    <label for="imagem">Imagem: </label>
+                                    <input type='file' accept="image/*" id="imgInp" /><br>
+                                    <img id="img" name="imagem" src="#" alt="Imagem do produto" size="10" width="350" height="350" />
                                 </div>
-                                <div class="form-group">
-                                    <label for="rua">Rua: </label>
-                                    <input type="text" readonly="true" class="form-control" name="rua" id="rua">
-                                </div>
-                                <div class="form-group">
-                                    <label for="bairro">Bairro: </label>
-                                    <input type="text" readonly="true" class="form-control" name="bairro" id="bairro">
-                                </div>
-                                <div class="form-group">
-                                    <label for="cidade">Cidade: </label>
-                                    <input type="text" readonly="true" class="form-control" name="cidade" id="cidade">
-                                </div>
-                                <div class="form-group">
-                                    <label for="uf">UF: </label>
-                                    <input type="text" readonly="true" class="form-control" maxlength="2" name="uf" id="uf">
-                                </div>
-                                <div class="form-group">
-                                    <label for="numero">Número: </label>
-                                    <input type="text" class="form-control" name="numero" id="numero">
-                                </div>
-                                <div class="form-group">
-                                    <label for="complemento">Complemento: </label>
-                                    <input type="text" class="form-control" name="complemento" id="complemento">
-                                </div>
+
 
                             </div>
                         </div>

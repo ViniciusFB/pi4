@@ -4,6 +4,7 @@
     Author     : Vinicius Ferreira Batista
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
         <meta name="keywords" content="">
 
         <title>
-            Obaju : e-commerce template
+            VIP e-Commerce
         </title>
 
         <meta name="keywords" content="">
@@ -32,22 +33,28 @@
         <link href="css/animate.min.css" rel="stylesheet">
         <link href="css/owl.carousel.css" rel="stylesheet">
         <link href="css/owl.theme.css" rel="stylesheet">
+        <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">-->
 
         <!-- theme stylesheet -->
-        <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+        <link href="css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
 
         <!-- your stylesheet with modifications -->
         <link href="css/custom.css" rel="stylesheet">
 
         <script src="js/respond.min.js"></script>
-
+        <script src="js/cpf.js" type="text/javascript"></script>
+        <script src="js/telefone.js" type="text/javascript"></script>
         <link rel="shortcut icon" href="favicon.png">
 
+
+        <!-- Adicionando JQuery -->
+        <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
 
     </head>
 
     <body>
+
         <!-- *** TOPBAR ***
      _________________________________________________________ -->
         <div id="top" style="z-index: 10; position: relative;">
@@ -105,309 +112,46 @@
                 <!-- /.yamm-content -->
             </div>
         </div>
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="Login">Login do Cliente</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="login" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-modal" placeholder="e-mail" name="usuario">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password-modal" placeholder="senha" name="senha">
+                            </div>
+
+                            <p class="text-center">
+                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Entrar</button>
+                            </p>
+
+                        </form>
+
+                        <p class="text-center text-muted">Não registrado ainda?</p>
+                        <p class="text-center text-muted"><a href="register.html"><strong>Registre-se Agora</strong></a>! É fácil e rápido, menos de um minuto!</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--</div>-->
+
         <!-- *** TOP BAR END *** -->
 
         <!-- *** NAVBAR ***
      _________________________________________________________ -->
 
-        <div class="navbar navbar-default yamm" role="navigation" id="navbar">
-            <div class="container">
-                <div class="navbar-header">
+        <jsp:include page="cabecalho.jsp" />
 
-                    <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                        <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-                        <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
-                    </a>
-                    <div class="navbar-buttons">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
-                            <span class="sr-only">Toggle navigation</span>
-                            <i class="fa fa-align-justify"></i>
-                        </button>
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
-                            <span class="sr-only">Toggle search</span>
-                            <i class="fa fa-search"></i>
-                        </button>
-                        <a class="btn btn-default navbar-toggle" href="basket.html">
-                            <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
-                        </a>
-                    </div>
-                </div>
-                <!--/.navbar-header -->
-
-                <div class="navbar-collapse collapse" id="navigation">
-
-                    <ul class="nav navbar-nav navbar-left">
-                        <li class="active"><a href="index.html">Home</a>
-                        </li>
-                        <li class="dropdown yamm-fw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Men <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="yamm-content">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <h5>Clothing</h5>
-                                                <ul>
-                                                    <li><a href="category.html">T-shirts</a>
-                                                    </li>
-                                                    <li><a href="category.html">Shirts</a>
-                                                    </li>
-                                                    <li><a href="category.html">Pants</a>
-                                                    </li>
-                                                    <li><a href="category.html">Accessories</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h5>Shoes</h5>
-                                                <ul>
-                                                    <li><a href="category.html">Trainers</a>
-                                                    </li>
-                                                    <li><a href="category.html">Sandals</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                    <li><a href="category.html">Casual</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h5>Accessories</h5>
-                                                <ul>
-                                                    <li><a href="category.html">Trainers</a>
-                                                    </li>
-                                                    <li><a href="category.html">Sandals</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                    <li><a href="category.html">Casual</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                    <li><a href="category.html">Casual</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h5>Featured</h5>
-                                                <ul>
-                                                    <li><a href="category.html">Trainers</a>
-                                                    </li>
-                                                    <li><a href="category.html">Sandals</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                </ul>
-                                                <h5>Looks and trends</h5>
-                                                <ul>
-                                                    <li><a href="category.html">Trainers</a>
-                                                    </li>
-                                                    <li><a href="category.html">Sandals</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.yamm-content -->
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown yamm-fw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Ladies <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="yamm-content">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <h5>Clothing</h5>
-                                                <ul>
-                                                    <li><a href="category.html">T-shirts</a>
-                                                    </li>
-                                                    <li><a href="category.html">Shirts</a>
-                                                    </li>
-                                                    <li><a href="category.html">Pants</a>
-                                                    </li>
-                                                    <li><a href="category.html">Accessories</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h5>Shoes</h5>
-                                                <ul>
-                                                    <li><a href="category.html">Trainers</a>
-                                                    </li>
-                                                    <li><a href="category.html">Sandals</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                    <li><a href="category.html">Casual</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h5>Accessories</h5>
-                                                <ul>
-                                                    <li><a href="category.html">Trainers</a>
-                                                    </li>
-                                                    <li><a href="category.html">Sandals</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                    <li><a href="category.html">Casual</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                    <li><a href="category.html">Casual</a>
-                                                    </li>
-                                                </ul>
-                                                <h5>Looks and trends</h5>
-                                                <ul>
-                                                    <li><a href="category.html">Trainers</a>
-                                                    </li>
-                                                    <li><a href="category.html">Sandals</a>
-                                                    </li>
-                                                    <li><a href="category.html">Hiking shoes</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="banner">
-                                                    <a href="#">
-                                                        <img src="img/banner.jpg" class="img img-responsive" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="banner">
-                                                    <a href="#">
-                                                        <img src="img/banner2.jpg" class="img img-responsive" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.yamm-content -->
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown yamm-fw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="yamm-content">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <h5>Shop</h5>
-                                                <ul>
-                                                    <li><a href="index.html">Homepage</a>
-                                                    </li>
-                                                    <li><a href="category.html">Category - sidebar left</a>
-                                                    </li>
-                                                    <li><a href="category-right.html">Category - sidebar right</a>
-                                                    </li>
-                                                    <li><a href="category-full.html">Category - full width</a>
-                                                    </li>
-                                                    <li><a href="detail.html">Product detail</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h5>User</h5>
-                                                <ul>
-                                                    <li><a href="register.html">Register / login</a>
-                                                    </li>
-                                                    <li><a href="customer-orders.html">Orders history</a>
-                                                    </li>
-                                                    <li><a href="customer-order.html">Order history detail</a>
-                                                    </li>
-                                                    <li><a href="customer-wishlist.html">Wishlist</a>
-                                                    </li>
-                                                    <li><a href="customer-account.html">Customer account / change password</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h5>Order process</h5>
-                                                <ul>
-                                                    <li><a href="basket.html">Shopping cart</a>
-                                                    </li>
-                                                    <li><a href="checkout1.html">Checkout - step 1</a>
-                                                    </li>
-                                                    <li><a href="checkout2.html">Checkout - step 2</a>
-                                                    </li>
-                                                    <li><a href="checkout3.html">Checkout - step 3</a>
-                                                    </li>
-                                                    <li><a href="checkout4.html">Checkout - step 4</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h5>Pages and blog</h5>
-                                                <ul>
-                                                    <li><a href="blog.html">Blog listing</a>
-                                                    </li>
-                                                    <li><a href="post.html">Blog Post</a>
-                                                    </li>
-                                                    <li><a href="faq.html">FAQ</a>
-                                                    </li>
-                                                    <li><a href="text.html">Text page</a>
-                                                    </li>
-                                                    <li><a href="text-right.html">Text page - right sidebar</a>
-                                                    </li>
-                                                    <li><a href="404.html">404 page</a>
-                                                    </li>
-                                                    <li><a href="contact.html">Contact</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.yamm-content -->
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                </div>
-                <!--/.nav-collapse -->
-
-                <div class="navbar-buttons">
-
-                    <div class="navbar-collapse collapse right" id="basket-overview">
-                        <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
-                    </div>
-                    <!--/.nav-collapse -->
-
-                    <div class="navbar-collapse collapse right" id="search-not-mobile">
-                        <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
-                            <span class="sr-only">Toggle search</span>
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-
-                </div>
-
-                <div class="collapse clearfix" id="search">
-
-                    <form class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="input-group-btn">
-
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-
-                            </span>
-                        </div>
-                    </form>
-
-                </div>
-                <!--/.nav-collapse -->
-
-            </div>
-            <!-- /.container -->
-        </div>
         <!-- /#navbar -->
 
         <!-- *** NAVBAR END *** -->
@@ -462,17 +206,17 @@
 
                     <div class="col-md-9">
                         <div class="box">
-                            <h1>My account</h1>
-                            <p class="lead">Change your personal details or your password here.</p>
-                            <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                            <h1>Minha conta</h1>
+                            <p class="lead">${mensagem}</p>
+                            <p class="text-muted">Aqui você pode mudar seus dados pessoas ou senha.</p>
 
-                            <h3>Change password</h3>
+                            <h3>Mudar a senha</h3>
 
                             <form>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="password_old">Old password</label>
+                                            <label for="senhaAntiga">Senha atual</label>
                                             <input type="password" class="form-control" id="password_old">
                                         </div>
                                     </div>
@@ -480,39 +224,41 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="password_1">New password</label>
-                                            <input type="password" class="form-control" id="password_1">
+                                            <label for="senhaNova">Nova senha</label>
+                                            <input type="password" class="form-control" name="senha" id="password">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="password_2">Retype new password</label>
-                                            <input type="password" class="form-control" id="password_2">
+                                            <label for="confirmarSenha">Confirme a nova senha</label>
+                                            <input type="password" class="form-control" name="confirmarSenha" id="confirmarSenha">
+
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.row -->
 
                                 <div class="col-sm-12 text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save new password</button>
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar nova senha</button>
                                 </div>
                             </form>
 
                             <hr>
 
-                            <h3>Personal details</h3>
-                            <form>
+                            <h3>Dados pessoais</h3>
+                            <form action="DadosAlterados" method="post">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="firstname">Firstname</label>
-                                            <input type="text" class="form-control" id="firstname">
+                                            <label for="firstname">Nome</label>
+                                            <input type="text" class="form-control" name="nome" value="${nome}" id="firstname">
+                                            <input type="hidden" class="form-control" name="idCliente" value="${idCliente}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="lastname">Lastname</label>
-                                            <input type="text" class="form-control" id="lastname">
+                                            <label for="lastname">Sobrenome</label>
+                                            <input type="text" class="form-control" name="sobrenome" value="${sobrenome}" id="sobrenome">
                                         </div>
                                     </div>
                                 </div>
@@ -521,61 +267,104 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="company">Company</label>
-                                            <input type="text" class="form-control" id="company">
+                                            <label for="dataNasc">Data de Nascimento</label>
+                                            <input type="date" class="form-control" name="dataNasc" value="${dataNasc}" id="dataNasc">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="street">Street</label>
-                                            <input type="text" class="form-control" id="street">
+                                            <label for="cpf">CPF</label>
+                                            <input type="text" class="form-control" name="cpf" value="${cpf}" id="cpf">
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- /.row -->
 
                                 <div class="row">
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="city">Company</label>
-                                            <input type="text" class="form-control" id="city">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="zip">ZIP</label>
-                                            <input type="text" class="form-control" id="zip">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="state">State</label>
-                                            <select class="form-control" id="state"></select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="country">Country</label>
-                                            <select class="form-control" id="country"></select>
-                                        </div>
-                                    </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="phone">Telephone</label>
-                                            <input type="text" class="form-control" id="phone">
+                                            <label for="phone">Telefone</label>
+                                            <input type="text" class="form-control" name="telefone" value="${telefone}" id="telefone">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" class="form-control" id="email">
+                                            <input type="text" class="form-control" value="${email}" name="email" id="email">
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-center">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar alterações</button>
 
                                     </div>
+                                </div>
+                            </form>
+
+                            <h3>Endereço</h3>
+                            <form action="EnderecoServlet01" method="post">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="cep">CEP: </label>
+                                            <input type="text" class="form-control" maxlength="9" name="cep" id="cep" onkeypress="javascript: mascara(this, cep_mask)">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="rua">Rua: </label>
+                                            <input type="text" readonly class="form-control" name="rua" id="rua">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="bairro">Bairro: </label>
+                                            <input type="text" readonly class="form-control" name="bairro" id="bairro">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="cidade">Cidade: </label>
+                                            <input type="text" readonly class="form-control" name="cidade" id="cidade">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="uf">UF: </label>
+                                            <input type="text" readonly class="form-control" maxlength="2" name="uf" id="uf">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="numero">Número: </label>
+                                            <input type="text" class="form-control" name="numero" id="numero">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="complemento">Complemento: </label>
+                                            <input type="text" class="form-control" name="complemento" id="complemento">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <br><button id="addEnd"> Clique para adicionar um <span style="font-weight: bold">NOVO</span> endereço</button> 
+                                        </div>
+                                    </div>
+
+                                    <!--                                   A parte de adicionar novo endereço será movida para a tela de vendas quando estiver pronta.-->
+
                                 </div>
                             </form>
                         </div>
@@ -762,6 +551,8 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
 
+        <script src="js/bootstrapValidator.js" type="text/javascript"></script>
+        <script src="js/validar.js" type="text/javascript"></script>
 
 
     </body>

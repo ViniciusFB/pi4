@@ -1,7 +1,7 @@
 /** Your theme modifications here **/
 #btns {
     text-align: center;
-        margin-top: 50px;
+    margin-top: 50px;
 
 }
 
@@ -10,11 +10,26 @@
 }
 
 #acn {
-     padding: 50px;
+    padding: 50px;
     height: 350px;
     /*width: 500px;*/
 }
 
 #acn > h3 {
     text-align: center;
+}
+
+
+#addEnd {
+    background:none!important;
+    border:none; 
+    padding:0!important;
+
+    /*optional*/
+    font-family:arial,sans-serif; /*input has OS specific font-family*/
+    color:#069;
+    cursor:pointer;
+}
+#addEnd:hover{
+    text-decoration:underline;
 }

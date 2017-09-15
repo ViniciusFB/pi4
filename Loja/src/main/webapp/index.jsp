@@ -33,7 +33,7 @@
         <link href="css/owl.theme.css" rel="stylesheet">
 
         <!-- theme stylesheet -->
-        <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+        <link href="css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
 
         <!-- your stylesheet with modifications -->
         <link href="css/custom.css" rel="stylesheet">
@@ -65,11 +65,12 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
                                         <span style="margin-right: 5px; color: white;" class="glyphicon glyphicon-user"></span>
                                         <c:out value="${sessionScope.usuario}"/><b style="margin-left: 5px" class="caret"></b></a>
+                                        <input type="hidden" name="idCliente" value="${idCliente}">
                                     <ul class="dropdown-menu">
                                         <li>
                                             <div  class="yamm-content">
                                                 <ul>
-                                                    <a style="color: #555555" href="customer-account.html">Minha conta</a>
+                                                    <a style="color: #555555" href="usuario">Minha conta</a>
                                                     <a style="color: #555555" href="logout">Logout</a>
 
                                                 </ul>
@@ -136,7 +137,7 @@
             </div>
         </div>
 
-    </div>
+    <!--</div>-->
 
     <!-- *** TOP BAR END *** -->
 

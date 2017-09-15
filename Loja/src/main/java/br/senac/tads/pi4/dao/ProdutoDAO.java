@@ -6,7 +6,7 @@
 package br.senac.tads.pi4.dao;
 
 import br.senac.tads.pi4.models.Cliente;
-import br.senac.tads.pi4.models.Endereco;
+import br.senac.tads.pi4.models.Produto;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -22,9 +22,9 @@ import java.util.logging.Logger;
  *
  * @author vinicius.fbatista1
  */
-public class ClienteDAO extends ConexaoBD {
+public class ProdutoDAO extends ConexaoBD {
 
-    public Cliente obterCliente(int idCliente) {
+    public Cliente obterCliente(int idProduto) {
         PreparedStatement stmt = null;
         Connection conn = null;
         Cliente c = null;
@@ -32,13 +32,13 @@ public class ClienteDAO extends ConexaoBD {
 //        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, estadoCliente, cidadeCliente, enderecoCliente, "
 //                + "generoCliente "
 //                + "FROM Cliente WHERE idCliente = ?";
-        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, senha, cep, rua, numero, complemento, bairro, cidade, uf "
+        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, senha "
                 + "FROM Cliente WHERE idCliente = ?";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, idCliente);
+            stmt.setInt(1, idProduto);
             ResultSet resultados = stmt.executeQuery();
 
             while (resultados.next()) {
@@ -50,20 +50,13 @@ public class ClienteDAO extends ConexaoBD {
                 String email = resultados.getString("emailCliente");
                 String telefone = resultados.getString("telefoneCliente");
                 String senha = resultados.getString("senha");
-                String cep = resultados.getString("cep");
-                String rua = resultados.getString("rua");
-                int numero = resultados.getInt("numero");
-                String complemento = resultados.getString("complemento");
-                String bairro = resultados.getString("bairro");
-                String cidade = resultados.getString("cidade");
-                String uf = resultados.getString("uf");
-                c = new Cliente(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha, cep, rua, numero, complemento, bairro, cidade, uf);
+                c = new Cliente(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha);
                 break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -72,14 +65,14 @@ public class ClienteDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -116,9 +109,9 @@ public class ClienteDAO extends ConexaoBD {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -127,49 +120,40 @@ public class ClienteDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         return lista;
     }
 
-    public void incluirComTransacao(Cliente cliente) {
+    public void incluirComTransacao(Produto produto) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "INSERT INTO Cliente "
-                + "(nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, senha, cep, "
-                + "rua, numero, complemento, bairro, cidade, uf) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Produto "
+                + "(nomeProduto, codigo, categorias, quantidade, descricao, valorProduto, imagem) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = obterConexao();
 
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, cliente.getNome());
-            stmt.setString(2, cliente.getSobrenome());
-            stmt.setDate(3, cliente.getDataNasc());
-            stmt.setString(4, cliente.getCpf());
-            stmt.setString(5, cliente.getEmail());
-            stmt.setString(6, cliente.getTelefone());
-            stmt.setString(7, cliente.getSenha());
-            stmt.setString(8, cliente.getCep());
-            stmt.setString(9, cliente.getRua());
-            stmt.setInt(10, cliente.getNumeroCasa());
-            stmt.setString(11, cliente.getComplemento());
-            stmt.setString(12, cliente.getBairro());
-            stmt.setString(13, cliente.getCidade());
-            stmt.setString(14, cliente.getUf());
-
+            stmt.setString(1, produto.getNome());
+            stmt.setInt(2, produto.getCodigo());
+            stmt.setString(3, produto.getCategorias());
+            stmt.setInt(4, produto.getQuantidade());
+            stmt.setString(5, produto.getDescricao());
+            stmt.setDouble(6, produto.getValor());
+            stmt.setBlob(7, produto.getImagem2());
             stmt.executeUpdate();
 
             // ResultSet para recuperar o ID gerado automaticamente no banco de dados.
@@ -177,7 +161,7 @@ public class ClienteDAO extends ConexaoBD {
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
                 int idNovo = generatedKeys.getInt(1);
-                cliente.setId(idNovo);
+                produto.setId(idNovo);
                 System.out.println("***** ID NOVO CADASTRADO: " + String.valueOf(idNovo));
 
                 // Executar próximos INSERTs USANDO O ID novo.
@@ -190,9 +174,9 @@ public class ClienteDAO extends ConexaoBD {
                     conn.rollback();
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex1);
             }
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             try {
                 // Caso ocorra algum erro, tenta desfazer todas as ações realizadas no BD.
@@ -200,22 +184,22 @@ public class ClienteDAO extends ConexaoBD {
                     conn.rollback();
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex1);
             }
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -246,22 +230,22 @@ public class ClienteDAO extends ConexaoBD {
             //System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -274,39 +258,40 @@ public class ClienteDAO extends ConexaoBD {
 
 //        String sql = "UPDATE Cliente SET nomeCliente=?, sobrenomeCliente=?, dataNasc=?, cpfCliente=?, emailCliente=?, "
 //                + "telefoneCliente=?, estadoCliente=?, cidadeCliente=?, enderecoCliente=? WHERE (idCliente=?)";
-        String sql = "UPDATE Cliente SET nomeCliente=?, sobrenomeCliente=?, dataNasc=?, cpfCliente=?, emailCliente=?, telefoneCliente=? WHERE (idCliente=?)";
+        String sql = "UPDATE Cliente SET nomeCliente=?, sobrenomeCliente=?, dataNasc=?, cpf=?, emailCliente=?, telefoneCliente=?, senha WHERE (idCliente=?)";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, cliente.getNome());
+             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getSobrenome());
             stmt.setDate(3, cliente.getDataNasc());
             stmt.setString(4, cliente.getCpf());
             stmt.setString(5, cliente.getEmail());
             stmt.setString(6, cliente.getTelefone());
-            stmt.setInt(7, cliente.getId());
+            stmt.setString(7, cliente.getSenha());
+            stmt.setInt(8, cliente.getId());
 
             stmt.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -329,22 +314,22 @@ public class ClienteDAO extends ConexaoBD {
             stmt.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -376,56 +361,18 @@ public class ClienteDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         return nome;
-    }
-    public int selecionaIdByEmailSenha(String email, String senha) throws SQLException {
-        int id = 0;
-        ResultSet resultSet;
-        String sql = null;
-        PreparedStatement stmt = null;
-        Connection conn = null;
-        try {
-            conn = obterConexao();
-            sql = "SELECT idCliente FROM Cliente WHERE Cliente.emailCliente = '" + email
-                    + "' and Cliente.senha = '" + senha + "'";
-            stmt = conn.prepareStatement(sql);
-
-            resultSet = stmt.executeQuery();
-            resultSet.next();
-            id = resultSet.getInt(1);
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            // Código colocado aqui para garantir que a conexão com o banco
-            // seja sempre fechada, independentemente se executado com sucesso
-            // ou erro.
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return id;
     }
 
     public Cliente obterClientePorEmail(String email) {
@@ -455,9 +402,9 @@ public class ClienteDAO extends ConexaoBD {
                 break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -466,14 +413,14 @@ public class ClienteDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -508,81 +455,17 @@ public class ClienteDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         return senha;
-    }
-
-    public void adicionarEndereco(Endereco endereco) {
-        PreparedStatement stmt = null;
-        Connection conn = null;
-        Cliente cliente = null;
-
-        String sql = "INSERT INTO Endereco "
-                + "(idCliente, cep, rua, numero, complemento, bairro, cidade, uf) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try {
-            conn = obterConexao();
-
-            conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
-            stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, endereco.getIdCliente());
-            stmt.setString(2, endereco.getCep());
-            stmt.setString(3, endereco.getRua());
-            stmt.setInt(4, endereco.getNumeroCasa());
-            stmt.setString(5, endereco.getComplemento());
-            stmt.setString(6, endereco.getBairro());
-            stmt.setString(7, endereco.getCidade());
-            stmt.setString(8, endereco.getUf());
-
-            stmt.executeUpdate();
-
-            conn.commit();
-        } catch (SQLException ex) {
-            try {
-                // Caso ocorra algum erro, tenta desfazer todas as ações realizadas no BD.
-                if (conn != null & !conn.isClosed()) {
-                    conn.rollback();
-                }
-            } catch (SQLException ex1) {
-                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            try {
-                // Caso ocorra algum erro, tenta desfazer todas as ações realizadas no BD.
-                if (conn != null & !conn.isClosed()) {
-                    conn.rollback();
-                }
-            } catch (SQLException ex1) {
-                Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
     }
 }

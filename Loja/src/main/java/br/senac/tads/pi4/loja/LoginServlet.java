@@ -93,10 +93,11 @@ public class LoginServlet extends HttpServlet {
         String senhaDigitada = this.md5(request.getParameter("senha")); // Criptografa a senha que foi digitada no campo
         try {
             sessao.setAttribute("usuario", dao.selecionaNomeByEmailSenha(request.getParameter("usuario"), senha));
+            sessao.setAttribute("idCliente", dao.selecionaIdByEmailSenha(request.getParameter("usuario"), senha));
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         if (senha == null) {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/erroLogin.jsp").forward(request, response);
         } else if (senha.equals(senhaDigitada)) { // Compara a senha no banco com a senha digitada no campo (ambas criptografadas)

@@ -13,15 +13,16 @@ create table Produto(
  CONSTRAINT PK_Produto PRIMARY KEY,
     nomeProduto VARCHAR(50) NOT NULL,
     codigo INT NOT NULL UNIQUE,
-    tipoProduto VARCHAR(50) NOT NULL,
+    categorias VARCHAR(50) NOT NULL,
     quantidade INT NOT NULL,
     descricao VARCHAR(255),
     valorProduto DOUBLE NOT NULL,
-    cadastradoPor VARCHAR(50) NOT NULL,
-    dataCadastro TIMESTAMP NOT NULL,
-    disponivel BOOLEAN NOT NULL,
-    idFilial INT NOT NULL,
-    FOREIGN KEY (idFilial) REFERENCES Filial (idFilial)
+    imagem blob
+--     cadastradoPor VARCHAR(50) NOT NULL,
+--     dataCadastro TIMESTAMP NOT NULL,
+--     disponivel BOOLEAN NOT NULL,
+--     idFilial INT NOT NULL,
+--     FOREIGN KEY (idFilial) REFERENCES Filial (idFilial)
   
 );
 

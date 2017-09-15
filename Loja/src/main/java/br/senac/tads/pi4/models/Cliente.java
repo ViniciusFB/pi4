@@ -65,8 +65,25 @@ public class Cliente {
         this.telefone = telefone;
         this.senha = senha;
     }
-    
+
     // Construtor com endereço
+    public Cliente(int id, String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String senha, String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.dataNasc = dataNasc;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.cep = cep;
+        this.rua = rua;
+        this.numeroCasa = numeroCasa;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+    }
 
     public Cliente(String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String senha, String cep, String rua, int numeroCasa, String complemento, String bairro, String municipio, String uf) {
         this.nome = nome;
@@ -84,7 +101,16 @@ public class Cliente {
         this.cidade = municipio;
         this.uf = uf;
     }
-    
+
+    public Cliente(String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, int id) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.dataNasc = dataNasc;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -205,7 +231,5 @@ public class Cliente {
     public void setUf(String uf) {
         this.uf = uf;
     }
-    
-    
 
 }
