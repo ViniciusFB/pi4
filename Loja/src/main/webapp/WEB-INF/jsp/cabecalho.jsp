@@ -6,9 +6,9 @@
     <div class="container">
         <div class="navbar-header">
 
-            <a class="navbar-brand home" href="index.jsp" data-animate-hover="bounce">
-                <img src="img/vip.png" alt="Obaju logo" class="hidden-xs">
-                <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+            <a class="navbar-brand home" href="index" data-animate-hover="bounce">
+                <img src="img/vip.png" alt="logo" class="hidden-xs">
+                <img src="img/vip.png" alt="logo" class="visible-xs img-responsive"><span class="sr-only">VIP - Vá para a página inicial</span>
             </a>
             <div class="navbar-buttons">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -185,80 +185,8 @@
                 </li>
 
                 <li class="dropdown yamm-fw">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Outros <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <div class="yamm-content">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5>Shop</h5>
-                                        <ul>
-                                            <li><a href="index.html">Homepage</a>
-                                            </li>
-                                            <li><a href="category.html">Category - sidebar left</a>
-                                            </li>
-                                            <li><a href="category-right.html">Category - sidebar right</a>
-                                            </li>
-                                            <li><a href="category-full.html">Category - full width</a>
-                                            </li>
-                                            <li><a href="detail.html">Product detail</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>User</h5>
-                                        <ul>
-                                            <li><a href="/Loja/Registro">Register / login</a>
-                                            </li>
-                                            <li><a href="customer-orders.html">Orders history</a>
-                                            </li>
-                                            <li><a href="customer-order.html">Order history detail</a>
-                                            </li>
-                                            <li><a href="customer-wishlist.html">Wishlist</a>
-                                            </li>
-                                            <li><a href="customer-account.html">Customer account / change password</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Order process</h5>
-                                        <ul>
-                                            <li><a href="basket.html">Shopping cart</a>
-                                            </li>
-                                            <li><a href="checkout1.html">Checkout - step 1</a>
-                                            </li>
-                                            <li><a href="checkout2.html">Checkout - step 2</a>
-                                            </li>
-                                            <li><a href="checkout3.html">Checkout - step 3</a>
-                                            </li>
-                                            <li><a href="checkout4.html">Checkout - step 4</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Pages and blog</h5>
-                                        <ul>
-                                            <li><a href="blog.html">Blog listing</a>
-                                            </li>
-                                            <li><a href="post.html">Blog Post</a>
-                                            </li>
-                                            <li><a href="faq.html">FAQ</a>
-                                            </li>
-                                            <li><a href="text.html">Text page</a>
-                                            </li>
-                                            <li><a href="text-right.html">Text page - right sidebar</a>
-                                            </li>
-                                            <li><a href="404.html">404 page</a>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.yamm-content -->
-                        </li>
-                    </ul>
+                    <a href="produtos" class="dropdown-toggle" data-hover="dropdown" data-delay="200">Produtos</a>
+
                 </li>
             </ul>
 

@@ -24,10 +24,10 @@ import java.util.logging.Logger;
  */
 public class ProdutoDAO extends ConexaoBD {
 
-    public Cliente obterCliente(int idProduto) {
+    public Produto obterProduto(int idProduto) {
         PreparedStatement stmt = null;
         Connection conn = null;
-        Cliente c = null;
+        Produto p = null;
 
 //        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, estadoCliente, cidadeCliente, enderecoCliente, "
 //                + "generoCliente "
@@ -42,15 +42,15 @@ public class ProdutoDAO extends ConexaoBD {
             ResultSet resultados = stmt.executeQuery();
 
             while (resultados.next()) {
-                int id = resultados.getInt("idCliente");
-                String nome = resultados.getString("nomeCliente");
-                String sobrenome = resultados.getString("sobrenomeCliente");
-                Date dataNasc = resultados.getDate("dataNasc");
-                String cpf = resultados.getString("cpfCliente");
-                String email = resultados.getString("emailCliente");
-                String telefone = resultados.getString("telefoneCliente");
-                String senha = resultados.getString("senha");
-                c = new Cliente(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha);
+                int id = resultados.getInt("idProduto");
+                String nome = resultados.getString("nomeProduto");
+                int codigo = resultados.getInt("codigo");
+                String categorias = resultados.getString("categorias");
+                int quantidade = resultados.getInt("quantidade");
+                String descricao = resultados.getString("descricao");
+                double valor = resultados.getDouble("valorProduto");
+                String imagem = resultados.getString("imagem");
+                p = new Produto(id, nome, codigo, categorias, quantidade, descricao, valor, imagem);
                 break;
             }
         } catch (SQLException ex) {
@@ -76,7 +76,61 @@ public class ProdutoDAO extends ConexaoBD {
                 }
             }
         }
-        return c;
+        return p;
+
+    }
+    public Produto obterProdutoByCod(int codigo) {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        Produto p = null;
+
+//        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, estadoCliente, cidadeCliente, enderecoCliente, "
+//                + "generoCliente "
+//                + "FROM Cliente WHERE idCliente = ?";
+        String sql = "SELECT * FROM Produto WHERE codigo = ?";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, codigo);
+            ResultSet resultados = stmt.executeQuery();
+
+            while (resultados.next()) {
+                int id = resultados.getInt("idProduto");
+                String nome = resultados.getString("nomeProduto");
+                int codigoProduto = resultados.getInt("codigo");
+                String categorias = resultados.getString("categorias");
+                int quantidade = resultados.getInt("quantidade");
+                String descricao = resultados.getString("descricao");
+                double valor = resultados.getDouble("valorProduto");
+                String imagem = resultados.getString("imagem");
+                p = new Produto(id, nome, codigoProduto, categorias, quantidade, descricao, valor, imagem);
+                break;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return p;
 
     }
 

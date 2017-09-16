@@ -18,7 +18,7 @@
         <meta name="keywords" content="">
 
         <title>
-            Vip Modas : e-commerce template
+            Vip Modas e-Commerce
         </title>
 
         <meta name="keywords" content="">
@@ -244,22 +244,25 @@
                                         <div class="flip-container">
                                             <div class="flipper">
                                                 <div class="front">
-                                                    <a href="detail.html">
+                                                    <!--<form action="get?nome=${produto.codigo}"-->
+
+                                                    <a href="detalhes?c=${produto.codigo}">
+                                                        <img src="${produto.imagem}" alt="" class="img-responsive">
+                                                    </a>
+                                                    <!--</form>-->
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detalhes?c=${produto.codigo}">
                                                         <img src="${produto.imagem}" alt="" class="img-responsive">
                                                     </a>
                                                 </div>
-                                                <!--                                                <div class="back">
-                                                                                                    <a href="detail.html">
-                                                                                                        <img src="img/product1_2.jpg" alt="" class="img-responsive">
-                                                                                                    </a>
-                                                                                                </div>-->
                                             </div>
                                         </div>
-                                        <a href="detail.html" class="invisible">
+                                        <a href="detalhes?c=${produto.codigo}" class="invisible">
                                             <img src="${produto.imagem}" alt="" class="img-responsive">
                                         </a>
                                         <div class="text">
-                                            <h3><a href="detail.html">${produto.nome}</a></h3>
+                                            <h3><a href="detalhes?c=${produto.codigo}">${produto.nome}</a></h3>
                                             <p class="price">R$ ${produto.valor}</p>
                                         </div>
                                         <!-- /.text -->
@@ -288,19 +291,8 @@
 
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
-            <div id="copyright">
-                <div class="container">
-                    <div class="col-md-6">
-                        <p class="pull-left">© 2015 todos os direitos reservados - VipModas.</p>
+            <jsp:include page="WEB-INF/jsp/rodape.jsp" />
 
-                    </div>
-                    <div class="col-md-6">
-                        <p class="pull-right">Desenvolvimento <a href="https://vldDesign.com">vlpDesign.com</a>
-                            <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
-                        </p>
-                    </div>
-                </div>
-            </div>
             <!-- *** COPYRIGHT END *** -->
 
 
