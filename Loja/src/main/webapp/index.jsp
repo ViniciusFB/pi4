@@ -248,11 +248,11 @@
                                                         <img src="${produto.imagem}" alt="" class="img-responsive">
                                                     </a>
                                                 </div>
-<!--                                                <div class="back">
-                                                    <a href="detail.html">
-                                                        <img src="img/product1_2.jpg" alt="" class="img-responsive">
-                                                    </a>
-                                                </div>-->
+                                                <!--                                                <div class="back">
+                                                                                                    <a href="detail.html">
+                                                                                                        <img src="img/product1_2.jpg" alt="" class="img-responsive">
+                                                                                                    </a>
+                                                                                                </div>-->
                                             </div>
                                         </div>
                                         <a href="detail.html" class="invisible">
@@ -280,162 +280,10 @@
                     <!-- /.container -->
 
                 </div>
-                <!-- /#hot -->
 
-                <!-- *** HOT END *** -->
-
-                <!-- *** GET INSPIRED ***
-     _________________________________________________________ -->
-                <div class="container" data-animate="fadeInUpBig">
-                    <div class="col-md-12">
-                        <div class="box slideshow">
-                            <h3>Inspire-se</h3>
-                            <div id="get-inspired" class="owl-carousel owl-theme">
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="img/getinspired1.jpg" alt="Get inspired" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="img/getinspired2.jpg" alt="Get inspired" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="#">
-                                        <img src="img/getinspired3.jpg" alt="Get inspired" class="img-responsive">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- *** GET INSPIRED END *** -->
-
-                <!-- *** BLOG HOMEPAGE ***
-     _________________________________________________________ -->
-                <!-- /.container -->
-
-                <!-- *** BLOG HOMEPAGE END *** -->
 
 
             </div>
-            <!-- /#content -->
-
-            <!-- *** FOOTER ***
-     _________________________________________________________ -->
-            <div id="footer" data-animate="fadeInUp">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <h4>Páginas</h4>
-
-                            <ul>
-                                <li><a href="text.html">Sobre Nós</a>
-                                </li>
-                                <li><a href="text.html">Termos e Condições</a>
-                                </li>
-                                <li><a href="faq.html">Perguntas Frequentes</a>
-                                </li>
-                                <li><a href="contact.html">Contato</a>
-                                </li>
-                            </ul>
-
-                            <hr>
-
-                            <h4>Sessão do Usuário</h4>
-
-                            <ul>
-                                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                                </li>
-                                <li><a href="register.html">Registro</a>
-                                </li>
-                            </ul>
-
-                            <hr class="hidden-md hidden-lg hidden-sm">
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-                        <div class="col-md-3 col-sm-6">
-
-                            <h4>Principais Categorias</h4>
-
-                            <h5>Homem</h5>
-
-                            <ul>
-                                <li><a href="category.html">Camisas</a>
-                                </li>
-                                <li><a href="category.html">Camisetas</a>
-                                </li>
-                                <li><a href="category.html">Accessórios</a>
-                                </li>
-                            </ul>
-
-                            <h5>Mulher</h5>
-                            <ul>
-                                <li><a href="category.html">Camisas</a>
-                                </li>
-                                <li><a href="category.html">Camisetas</a>
-                                </li>
-                                <li><a href="category.html">Sapatos</a>
-                                </li>
-                                <li><a href="category.html">Accessorios</a>
-                                </li>
-                            </ul>
-
-                            <hr class="hidden-md hidden-lg">
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-                        <div class="col-md-3 col-sm-6">
-
-                            <h4>Onde nos encontrar</h4>
-
-                            <p><strong>Vip Modas.</strong>
-                                <br>Rua dos Sentenários, 25
-                                <br>São Paulo
-                                <br>SP
-                                <br>
-                                <strong>Brasil</strong>
-                            </p>
-
-                            <a href="contact.html">Ir para página de Contato</a>
-
-                            <hr class="hidden-md hidden-lg">
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-
-
-                        <div class="col-md-3 col-sm-6">
-
-                            <h4>Manter Contato</h4>
-
-                            <p class="social">
-                                <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
-                                <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
-                                <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
-                            </p>
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-                    </div>
-                    <!-- /.row -->
-
-                </div>
-                <!-- /.container -->
-            </div>
-            <!-- /#footer -->
-
-            <!-- *** FOOTER END *** -->
-
-
 
 
             <!-- *** COPYRIGHT ***

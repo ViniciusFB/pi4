@@ -33,3 +33,15 @@
 #addEnd:hover{
     text-decoration:underline;
 }
+
+#imagemProd {
+    display: block;
+    margin: 0 auto;   
+
+}
+
+/*
+.tamanhoImg {
+  width: 178px;
+  height: 312.59px;
+}*/
