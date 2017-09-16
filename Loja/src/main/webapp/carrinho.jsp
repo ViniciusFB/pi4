@@ -1,3 +1,5 @@
+<%@page import="br.senac.tads.pi4.models.ItemDeCompra"%>
+<%@page import="br.senac.tads.pi4.models.CarrinhoDeCompra"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -171,41 +173,32 @@
                                         <th colspan="2">Total</th>
                                     </tr>
                                 </thead>
+                                <%
+                                    //recupera os produtos do carrinho da sessao
+                                    CarrinhoDeCompra carrinho = (CarrinhoDeCompra) session.getAttribute("carrinho");
+                                    for (ItemDeCompra item : carrinho.getItens()) {
+                                %>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <a href="#">
-                                                <img src="img/detailsquare.jpg" alt="White Blouse Armani">
+                                                <img src="<%=item.getProduto().getImagem()%>" alt="White Blouse Armani">
                                             </a>
                                         </td>
-                                        <td><a href="#">White Blouse Armani</a>
-                                        </td>
-                                        <td>
-                                            <input type="number" value="2" class="form-control">
-                                        </td>
-                                        <td>$123.00</td>
-                                        <td>$0.00</td>
-                                        <td>$246.00</td>
-                                        <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#">
-                                                <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                            </a>
-                                        </td>
-                                        <td><a href="#">Black Blouse Armani</a>
+                                        <td><a href="#"><%=item.getProduto().getNome()%></a>
                                         </td>
                                         <td>
                                             <input type="number" value="1" class="form-control">
                                         </td>
-                                        <td>$200.00</td>
+                                        <td><%=item.getProduto().getValor()%></td>
                                         <td>$0.00</td>
-                                        <td>$200.00</td>
-                                        <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                                        <td><%=item.getTotal()%></td>
+                                        <td><a href="carrinho?acao=removeProduto&idProduto=<%=item.getProduto().getId()%>"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
+                                    <%
+                                        }
+                                    %>
                                 </tbody>
                                 <tfoot>
                                     <tr>

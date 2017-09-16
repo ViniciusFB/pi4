@@ -340,9 +340,10 @@
                                     <p class="goToDescription"><a href="#details" class="scroll-to">Ver os detalhes do produto</a>
                                     </p>
                                     <p class="price">R$ ${valorProduto}</p>
-
+                                    
                                     <p class="text-center buttons">
-                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a> 
+                                        <!--<a href="ControleCarrinho?acao=addProduto&idProduto=${produto.id}&idCliente=${idCliente}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a>--> 
+                                        <a href="carrinho?acao=addProduto&idProduto=${idProduto}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a> 
                                     </p>
 
 
@@ -351,9 +352,9 @@
                                 <div class="row" id="thumbs">
                                     <div class="col-xs-4">
                                         <!--imagem com resolução maior-->
-                                        <a href="img/notAvaiable.jpg" class="thumb"> 
+                                        <a href="${imagem}" class="thumb"> 
                                             <!--imagem da thumb-->
-                                            <img src="img/noImage.jpg" alt="" class="img-responsive">
+                                            <img src="${imagem}" alt="" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="col-xs-4">

@@ -60,6 +60,7 @@ public class DetalheServlet extends HttpServlet {
         request.setAttribute("valorProduto", produto.getValor());
         request.setAttribute("descricao", produto.getDescricao());
         request.setAttribute("imagem", produto.getImagem());
+        request.setAttribute("idProduto", produto.getId());
         
         request.getRequestDispatcher("/detalhes.jsp").forward(request, response);
 
