@@ -1,9 +1,7 @@
 package br.senac.tads.pi4.loja;
 
-import br.senac.tads.pi4.dao.ClienteDAO;
 import br.senac.tads.pi4.dao.ProdutoDAO;
 import br.senac.tads.pi4.models.CarrinhoDeCompra;
-import br.senac.tads.pi4.models.Cliente;
 import br.senac.tads.pi4.models.ItemDeCompra;
 import br.senac.tads.pi4.models.Produto;
 import java.io.IOException;
@@ -31,6 +29,9 @@ public class ControleCarrinho extends HttpServlet {
 //
 //        }
 //        HttpSession sessao = request.getSession();
+
+
+      
 
         try {
             String acao = request.getParameter("acao");

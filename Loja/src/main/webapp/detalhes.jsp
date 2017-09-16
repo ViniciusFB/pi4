@@ -336,16 +336,18 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="box">
-                                    <h1 class="text-center">${nomeProduto}</h1>
-                                    <p class="goToDescription"><a href="#details" class="scroll-to">Ver os detalhes do produto</a>
-                                    </p>
-                                    <p class="price">R$ ${valorProduto}</p>
-                                    
-                                    <p class="text-center buttons">
-                                        <!--<a href="ControleCarrinho?acao=addProduto&idProduto=${produto.id}&idCliente=${idCliente}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a>--> 
-                                        <a href="carrinho?acao=addProduto&idProduto=${idProduto}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a> 
-                                    </p>
+                                    <form action="carrinho" method="post">
+                                        <h1 class="text-center">${nomeProduto}</h1>
+                                        <p class="goToDescription"><a href="#details" class="scroll-to">Ver os detalhes do produto</a>
+                                        </p>
+                                        <p class="price">R$ ${valorProduto}</p>
 
+                                        <p class="text-center buttons">
+                                            <!--<a href="ControleCarrinho?acao=addProduto&idProduto=${produto.id}&idCliente=${idCliente}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a>--> 
+                                           <input type="hidden" name="idProduto" value="${idProduto}">
+                                            <button type="submit" name="acao" value="addProduto" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button> 
+                                        </p>
+                                    </form>
 
                                 </div>
 

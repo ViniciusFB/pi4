@@ -13,11 +13,14 @@ public class ItemDeCompra {
 
     private Integer id;
     private Produto produto;
+    private String nome;
+    private double valor;
     private int quantidade;
     private String imagem;
     private double total;
 
     public Integer getId() {
+        this.id = this.produto.getId();
         return id;
     }
 
@@ -34,6 +37,7 @@ public class ItemDeCompra {
     }
 
     public int getQuantidade() {
+        this.quantidade = this.produto.getQuantidade();
         return quantidade;
     }
 
@@ -47,13 +51,30 @@ public class ItemDeCompra {
     }
 
     public String getImagem() {
+        this.imagem = this.produto.getImagem();
         return imagem;
     }
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
-    
-    
+
+    public String getNome() {
+        this.nome= this.produto.getNome();
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getValor() {
+        this.valor = this.produto.getValor();
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
 
 }

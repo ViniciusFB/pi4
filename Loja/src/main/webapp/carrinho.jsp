@@ -1,4 +1,3 @@
-<%@page import="br.senac.tads.pi4.models.ItemDeCompra"%>
 <%@page import="br.senac.tads.pi4.models.CarrinhoDeCompra"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -173,32 +172,29 @@
                                         <th colspan="2">Total</th>
                                     </tr>
                                 </thead>
-                                <%
-                                    //recupera os produtos do carrinho da sessao
-                                    CarrinhoDeCompra carrinho = (CarrinhoDeCompra) session.getAttribute("carrinho");
-                                    for (ItemDeCompra item : carrinho.getItens()) {
-                                %>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="#">
-                                                <img src="<%=item.getProduto().getImagem()%>" alt="White Blouse Armani">
-                                            </a>
-                                        </td>
-                                        <td><a href="#"><%=item.getProduto().getNome()%></a>
-                                        </td>
-                                        <td>
-                                            <input type="number" value="1" class="form-control">
-                                        </td>
-                                        <td><%=item.getProduto().getValor()%></td>
-                                        <td>$0.00</td>
-                                        <td><%=item.getTotal()%></td>
-                                        <td><a href="carrinho?acao=removeProduto&idProduto=<%=item.getProduto().getId()%>"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <%
-                                        }
-                                    %>
+                            
+
+                                <c:forEach items="${carrinho.itens}" var="item">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <img src="${item.imagem}" alt="White Blouse Armani">
+                                                </a>
+                                            </td>
+                                            <td><a href="#">${item.nome}</a>
+                                            </td>
+                                            <td>
+                                                <input type="number" value="1" class="form-control">
+                                            </td>
+                                            <td>${item.valor}</td>
+                                            <td>$0.00</td>
+                                            <td>${item.total}</td>
+                                            <td><a href="carrinho?acao=removeProduto&idProduto=${item.id}"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
                                 </tbody>
                                 <tfoot>
                                     <tr>
