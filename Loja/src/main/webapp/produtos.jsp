@@ -366,11 +366,11 @@
                                         </a>
                                         <div class="text">
                                             <h3><a href="detalhes?c=${produto.codigo}">${produto.nome}</a></h3>
-                                            <p class="price">${produto.valor}</p>
+                                            <p class="price">R$ ${produto.valor}</p>
                                             <p class="buttons">
                                                 <a href="detalhes?c=${produto.codigo}" class="btn btn-default">Ver detalhes</a>
                                                 <input type="hidden" name="idProduto" class="idProd" value="${produto.id}">
-                                                <a type="#" value="${produto.id}" class="addCarinho btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a> 
+                                                <a type="#" value="${produto.id}" class="addCarrinho btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a> 
                                             </p>
                                         </div>
                                         <!-- /.text -->

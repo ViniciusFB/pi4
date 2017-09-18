@@ -35,24 +35,24 @@ public class Endereco {
         this.uf = endereco.uf;
     }
 
-    public Endereco(int idCliente, String cep, String rua, int numeroCasa, String complemento, String bairro, String municipio, String uf) {
+    public Endereco(int idCliente, String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
         this.idCliente = idCliente;
         this.cep = cep;
         this.rua = rua;
         this.numeroCasa = numeroCasa;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.cidade = municipio;
+        this.cidade = cidade;
         this.uf = uf;
     }
 
-    public Endereco(String cep, String rua, int numeroCasa, String complemento, String bairro, String municipio, String uf) {
+    public Endereco(String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
         this.cep = cep;
         this.rua = rua;
         this.numeroCasa = numeroCasa;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.cidade = municipio;
+        this.cidade = cidade;
         this.uf = uf;
     }
 

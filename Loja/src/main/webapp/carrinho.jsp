@@ -157,7 +157,7 @@
                     <div class="box">
 
                         <!--<form method="post" action="confirmarCadastro.jsp">-->
-
+                        <input type="hidden" class="form-control" name="idCliente" value="${idCliente}">
                         <h1>Carrinho de Compras</h1>
                         <p class="text-muted">Você possui atualmente <span>${numItens}</span> itens no seu carrrinho</p>
                         <div class="table-responsive">
@@ -186,12 +186,12 @@
                                                 <td><a href="detalhes?c=${item.codigo}">${item.nome}</a>
                                                 </td>
                                                 <td id="iQtd" style="width: 5px">
-                                                    <input type="hidden" id="qtd" value="${item.quantidade}" min="1" max="${item.quantidadeEstoque}" style="width: 70px" name="quantidade" class="form-control qtd">
+                                                    <input type="hidden" id="qtd" value="${item.quantidade}" min="1" max="${item.quantidadeEstoque}" style="width: 70px" name="quantidade" class="qtd form-control">
                                                     ${item.quantidade}
                                                 </td>
                                                 <td>
-                                                    <a id="btnAdd" href="carrinho?acao=addProduto&idProduto=${item.id}"><i class="fa fa-plus"></i></a>
-                                                    <a id="btnRem" href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
+                                                    <a class="btnAdd" href="carrinho?acao=addProduto&idProduto=${item.id}"><i class="fa fa-plus"></i></a>
+                                                    <a class="btnRem" href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
                                                 </td>
                                                 <td>R$ ${item.valor}</td> <input type="hidden" name="valorUni" id="valorUni" class="valorUni" value="${item.valor}">
 
@@ -227,7 +227,7 @@
                                     <c:when test="${not empty sessionScope.usuario}">
                                         <!--                                            <a href="checkout1.html" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
                                                                                     </a>-->
-                                        <form method="post" action="checkout1.html">
+                                        <form method="post" action="checkout1">
                                             <button type="submit" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
                                             </button>
                                         </form>
@@ -443,9 +443,9 @@
                                             });
 
                                             $(document).ready(function () {
-                                                var qtd = $("#qtd");
-                                                var btnAdd = $("#btnAdd");
-                                                var btnRem = $("#btnRem");
+                                                var qtd = $(".qtd");
+                                                var btnAdd = $(".btnAdd");
+                                                var btnRem = $(".btnRem");
 
                                                 if (qtd.val() == qtd.attr("max")) {
                                                     btnAdd.css("display", "none")

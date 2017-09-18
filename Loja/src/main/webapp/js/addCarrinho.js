@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $(".addCarinho").click(function (id) {
+    $(".addCarrinho").click(function (id) {
         id = $(this).attr("value");
 
         var url = "carrinho?acao=addProduto&idProduto=" + id;
@@ -8,7 +8,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: url,
-            data: $(".addCarinho").serialize(),
+            data: $(".addCarrinho").serialize(),
             success: function ()
             {
                 alert("Produto adicionado ao carrinho");

@@ -5,10 +5,9 @@
  */
 package br.senac.tads.pi4.dao;
 
-import br.senac.tads.pi4.models.Cliente;
 import br.senac.tads.pi4.models.Endereco;
+import br.senac.tads.pi4.models.Produto;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,9 +22,7 @@ import java.util.logging.Logger;
  * @author Vinicius Ferreira Batista
  */
 public class EnderecoDAO extends ConexaoBD {
-    
-    Cliente cliente;
-    
+
     public void incluirComTransacao(Endereco endereco) {
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -50,7 +47,6 @@ public class EnderecoDAO extends ConexaoBD {
 
             stmt.executeUpdate();
 
-           
             conn.commit();
         } catch (SQLException ex) {
             try {
@@ -89,11 +85,10 @@ public class EnderecoDAO extends ConexaoBD {
             }
         }
     }
-    
+
     public List<Endereco> listar(int idC) {
         Statement stmt = null;
         Connection conn = null;
-        
 
         String sql = "SELECT * FROM Endereco WHERE idCliente= " + idC;
 
@@ -143,4 +138,59 @@ public class EnderecoDAO extends ConexaoBD {
         }
         return lista;
     }
+
+    public Endereco obterEnderecoIdCliCep(int idCliente, String cep) throws SQLException {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        Endereco e = null;
+
+        String sql = "SELECT idCliente, cep, rua, numero, complemento, bairro, cidade, uf"
+                + " FROM Endereco WHERE idCliente = ? AND cep = ?";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idCliente);
+            stmt.setString(2, cep);
+            ResultSet resultados = stmt.executeQuery();
+
+            while (resultados.next()) {
+                int idCli = resultados.getInt("idCliente");
+                String cepCli = resultados.getString("cep");
+                String rua = resultados.getString("rua");
+                int numero = resultados.getInt("numero");
+                String complemento = resultados.getString("complemento");
+                String bairro = resultados.getString("bairro");
+                String cidade = resultados.getString("cidade");
+                String uf = resultados.getString("uf");
+                e = new Endereco(idCli, cepCli, rua, numero, complemento, bairro, cidade, uf);
+                break;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return e;
+
+    }
+
 }
