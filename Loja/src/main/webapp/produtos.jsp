@@ -369,7 +369,8 @@
                                             <p class="price">${produto.valor}</p>
                                             <p class="buttons">
                                                 <a href="detalhes?c=${produto.codigo}" class="btn btn-default">Ver detalhes</a>
-                                                <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar ao carrinho</a>
+                                                <input type="hidden" name="idProduto" class="idProd" value="${produto.id}">
+                                                <a type="#" value="${produto.id}" class="addCarinho btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a> 
                                             </p>
                                         </div>
                                         <!-- /.text -->
@@ -448,11 +449,7 @@
         <script src="js/bootstrap-hover-dropdown.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
-
-
-
-
-
+        <script src="js/addCarrinho.js"></script>
 
     </body>
 

@@ -12,10 +12,12 @@ package br.senac.tads.pi4.models;
 public class ItemDeCompra {
 
     private Integer id;
+    private Integer codigo;
     private Produto produto;
     private String nome;
     private double valor;
     private int quantidade;
+    private int quantidadeEstoque;
     private String imagem;
     private double total;
 
@@ -37,7 +39,6 @@ public class ItemDeCompra {
     }
 
     public int getQuantidade() {
-        this.quantidade = this.produto.getQuantidade();
         return quantidade;
     }
 
@@ -60,7 +61,7 @@ public class ItemDeCompra {
     }
 
     public String getNome() {
-        this.nome= this.produto.getNome();
+        this.nome = this.produto.getNome();
         return nome;
     }
 
@@ -76,5 +77,24 @@ public class ItemDeCompra {
     public void setValor(double valor) {
         this.valor = valor;
     }
+
+    public int getQuantidadeEstoque() {
+        this.quantidadeEstoque = this.produto.getQuantidade();
+        return quantidadeEstoque;
+    }
+
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public Integer getCodigo() {
+        this.codigo = this.produto.getCodigo();
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+    
 
 }

@@ -359,7 +359,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <div class="form-group">
-                                            <br><button id="addEnd"> Clique para adicionar um <span style="font-weight: bold">NOVO</span> endereço</button> 
+                                            <br><button class="btnHref" id="addEnd"> Clique para adicionar um <span style="font-weight: bold">NOVO</span> endereço</button> 
                                         </div>
                                     </div>
 

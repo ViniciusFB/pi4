@@ -29,7 +29,7 @@
         <div class="navbar-collapse collapse" id="navigation">
 
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="index.html">Inicio</a>
+                <li class="active"><a href="index">Inicio</a>
                 </li>
                 <li class="dropdown yamm-fw">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Homem <b class="caret"></b></a>
@@ -196,7 +196,7 @@
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="carrinho.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 itens no carrinho</span></a>
+                <a href="carrinho.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">${numItens} itens no carrinho</span></a>
             </div>
             <!--/.nav-collapse -->
 

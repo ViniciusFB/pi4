@@ -300,6 +300,9 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
 
-
+        <!--<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>-->
+        <script src="js/bootstrapValidator.js" type="text/javascript"></script>
+        <script src="js/validar.js" type="text/javascript"></script>
+        
     </body>
 </html>

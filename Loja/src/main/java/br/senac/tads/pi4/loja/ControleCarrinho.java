@@ -30,9 +30,6 @@ public class ControleCarrinho extends HttpServlet {
 //        }
 //        HttpSession sessao = request.getSession();
 
-
-      
-
         try {
             String acao = request.getParameter("acao");
 
@@ -61,7 +58,18 @@ public class ControleCarrinho extends HttpServlet {
                     for (ItemDeCompra item : carrinho.getItens()) {
                         if (item.getProduto().getId() == idProduto) {
                             //incrementa a quantidade
-                            item.setQuantidade(item.getQuantidade() + 1);
+                            Produto produto = new Produto();
+                            item.setQuantidadeEstoque(produto.getQuantidade());
+                            int qtdeEstoque = item.getQuantidadeEstoque();
+                            int qtd = item.getQuantidade();
+
+                            if (qtd != qtdeEstoque) {
+
+                                item.setQuantidade(qtd + 1);
+
+                            } else {
+//                                sessao.setAttribute("mensagem", "O estoque para esse produto está esgotado");
+                            }
                             existe = true;
                         }
                     }
@@ -76,10 +84,42 @@ public class ControleCarrinho extends HttpServlet {
                     novoItem.setQuantidade(1);
                     //adiciona novo item
                     carrinho.addNovoItem(novoItem);
+                    System.out.println("CARRINHO: " + carrinho.getItens().size());
+                    sessao.setAttribute("numItens", carrinho.getItens().size());
                 }
                 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
             }//fim addProduto
+            if (acao.equals("delUnidade")) {
+                //recupera o id do produto que deve ser add no carrinho
+                int idProduto = Integer.parseInt(request.getParameter("idProduto"));
+                //flag para controle de inserção de novos produtos no carrinho
+                boolean existe = false;
+                //recupera a sessão pertencente ao request
+                HttpSession sessao = request.getSession();
+                //recupera um carrinho de produtos da sessão
+                //se não exite um carrinho na sessão o valor será igual a null
+                CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
+                request.setAttribute("usuario", sessao.getAttribute("usuario"));
+                request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+
+                //verifica se o produto existe no carrinho
+                if (carrinho.getItens() != null) {
+                    for (ItemDeCompra item : carrinho.getItens()) {
+                        if (item.getProduto().getId() == idProduto) {
+                            //incrementa a quantidade
+                            item.setQuantidade(item.getQuantidade() - 1);
+                            existe = true;
+                        }
+                    }
+                }
+                //se não existe o item ou produto, cria um novo
+                if (existe == false) {
+                    System.out.println("Não existe nenhum produto no carrinho");
+                }
+                //carrega a pagina do carrinho de compras
+                request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
+            }//fim delUnidade
             else if (acao.equals("removeProduto")) {
                 //recupera a sessão pertencente ao request
                 HttpSession sessao = request.getSession();
@@ -92,6 +132,8 @@ public class ControleCarrinho extends HttpServlet {
                 prodRemove.setId(idProduto);
                 itemRemove.setProduto(prodRemove);
                 carrinho.removerItem(itemRemove);
+                System.out.println("CARRINHO: " + carrinho.getItens().size());
+                request.setAttribute("numItens", carrinho.getItens().size());
 
 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
@@ -111,7 +153,7 @@ public class ControleCarrinho extends HttpServlet {
             }
         } catch (Exception erro) {
             request.setAttribute("erro", erro);
-            System.out.println("ERRO: "+erro);
+            System.out.println("ERRO: " + erro);
             request.getRequestDispatcher("/404.jsp").forward(request, response);
         }
     }

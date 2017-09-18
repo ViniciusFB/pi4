@@ -36,7 +36,6 @@
         <link href="css/custom.css" rel="stylesheet">
 
         <script src="js/respond.min.js"></script>
-
         <link rel="shortcut icon" href="favicon.png">
 
 
@@ -160,49 +159,59 @@
                         <!--<form method="post" action="confirmarCadastro.jsp">-->
 
                         <h1>Carrinho de Compras</h1>
-                        <p class="text-muted">Você possui atualmente <span>X</span> itens no seu carrrinho</p>
+                        <p class="text-muted">Você possui atualmente <span>${numItens}</span> itens no seu carrrinho</p>
                         <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Produto</th>
-                                        <th>Quantidade</th>
-                                        <th>Preço Unitário</th>
-                                        <th>Desconto</th>
-                                        <th colspan="2">Total</th>
-                                    </tr>
-                                </thead>
-                            
+                            <form method="post" action="carrinho">
 
-                                <c:forEach items="${carrinho.itens}" var="item">
-                                    <tbody>
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <img src="${item.imagem}" alt="White Blouse Armani">
-                                                </a>
-                                            </td>
-                                            <td><a href="#">${item.nome}</a>
-                                            </td>
-                                            <td>
-                                                <input type="number" value="1" class="form-control">
-                                            </td>
-                                            <td>${item.valor}</td>
-                                            <td>$0.00</td>
-                                            <td>${item.total}</td>
-                                            <td><a href="carrinho?acao=removeProduto&idProduto=${item.id}"><i class="fa fa-trash-o"></i></a>
-                                            </td>
+                                            <th colspan="2">Produto</th>
+                                            <th colspan="2">Quantidade</th>
+                                            <th>Preço Unitário</th>
+                                            <!--<th>Desconto</th>-->
+                                            <th colspan="2">Total</th>
                                         </tr>
+                                    </thead>
+
+
+                                    <c:forEach items="${carrinho.itens}" var="item">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <a href="detalhes?c=${item.codigo}">
+                                                        <img src="${item.imagem}" alt="White Blouse Armani">
+                                                    </a>
+                                                </td>
+                                                <td><a href="detalhes?c=${item.codigo}">${item.nome}</a>
+                                                </td>
+                                                <td id="iQtd" style="width: 5px">
+                                                    <input type="hidden" id="qtd" value="${item.quantidade}" min="1" max="${item.quantidadeEstoque}" style="width: 70px" name="quantidade" class="form-control qtd">
+                                                    ${item.quantidade}
+                                                </td>
+                                                <td>
+                                                    <a href="carrinho?acao=addProduto&idProduto=${item.id}"><i class="fa fa-plus"></i></a>
+                                                    <a href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
+                                                </td>
+                                                <td>R$ ${item.valor}</td> <input type="hidden" name="valorUni" id="valorUni" class="valorUni" value="${item.valor}">
+
+                                        <td class="vTotal" id="vTotal">${item.total}</td> <input type="hidden" name="valorTotal" id="valorTotal">
+                                        <td><a href="carrinho?acao=removeProduto&idProduto=${item.id}" id="refreshA" onclick="return onclickFunction(${item.id})"><i class="fa fa-trash-o"></i></a>
+                                            <!--<td><button type="submit" name="acao" id="addEnd" value="removeProduto"><i class="fa fa-trash-o"></i></button>-->
+                                        </td>
+                                        </tr>
+                                        </tbody>
 
                                     </c:forEach>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="5">Total</th>
-                                        <th colspan="2">$446.00</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="5">Total</th>
+                                            <th colspan="2">R$446.00</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>            
+                            </form>
+
 
                         </div>
                         <!-- /.table-responsive -->
@@ -418,7 +427,40 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/front.js"></script>
 
+    <!--    <script>
+            function maxLengthCheck(object) {
+                if (object.value.length > object.maxLength)
+                    object.value = object.value.slice(0, object.maxLength)
+            }
+    
+     
+    
+        </script>-->
 
+    <script>
+                                            $("[type='number']").keypress(function (evt) {
+                                                evt.preventDefault();
+                                            });
+
+                                            $(document).ready(function () {
+                                                var qtd = $("#qtd");
+                                                var btnAdd = $("#btnAdd");
+                                                var btnRem = $("#btnRem");
+
+                                                if (qtd.val() == qtd.attr("max")) {
+                                                    btnAdd.css("display", "none")
+                                                }
+                                                if (qtd.val() == qtd.attr("min")) {
+                                                    btnRem.css("display", "none")
+                                                }
+
+                                            })
+
+
+//s
+
+
+    </script>
 
 </body>
 
