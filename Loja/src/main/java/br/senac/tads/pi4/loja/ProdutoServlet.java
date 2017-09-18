@@ -8,6 +8,8 @@ package br.senac.tads.pi4.loja;
 import br.senac.tads.pi4.dao.ProdutoDAO;
 import br.senac.tads.pi4.models.Produto;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +45,8 @@ public class ProdutoServlet extends HttpServlet {
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
 
         Produto produto = null;
-            ProdutoDAO dao = new ProdutoDAO();
+
+        ProdutoDAO dao = new ProdutoDAO();
 
         request.setAttribute("listaProd", dao.listar());
         //Comando que ira chamar a JSP passada no parametro
@@ -65,8 +68,32 @@ public class ProdutoServlet extends HttpServlet {
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
 
+        
+        List<Produto> produtos;
+        ProdutoDAO dao = new ProdutoDAO();
+
+        try {
+            String acao = request.getParameter("acao");
+            if (acao.equals("pesquisarProduto")) {
+                String nome = request.getParameter("nomeProduto");
+                if (nome != null) {
+                    produtos = dao.pesquisarProduto(nome);
+                    request.setAttribute("listaProd", produtos);
+                } else if (nome == null) {
+                    request.setAttribute("listaProd", dao.listar());
+                }
+
+            } else if (acao.equals(null) || acao == null) {
+                request.setAttribute("listaProd", dao.listar());
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.getMessage();
+        }
+
         //Comando que ira chamar a JSP passada no parametro
         request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+        //Comando que ira chamar a JSP passada no parametro
     }
 
     @Override

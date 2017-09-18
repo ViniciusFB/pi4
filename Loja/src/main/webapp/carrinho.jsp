@@ -146,7 +146,7 @@
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="/Loja">Início</a>
+                        <li><a href="index">Início</a>
                         </li>
                         <li>Carrinho de Compras</li>
                     </ul>
@@ -190,12 +190,12 @@
                                                     ${item.quantidade}
                                                 </td>
                                                 <td>
-                                                    <a href="carrinho?acao=addProduto&idProduto=${item.id}"><i class="fa fa-plus"></i></a>
-                                                    <a href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
+                                                    <a id="btnAdd" href="carrinho?acao=addProduto&idProduto=${item.id}"><i class="fa fa-plus"></i></a>
+                                                    <a id="btnRem" href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
                                                 </td>
                                                 <td>R$ ${item.valor}</td> <input type="hidden" name="valorUni" id="valorUni" class="valorUni" value="${item.valor}">
 
-                                        <td class="vTotal" id="vTotal">${item.total}</td> <input type="hidden" name="valorTotal" id="valorTotal">
+                                        <td class="vTotal" id="vTotal">R$ ${item.total}</td> <input type="hidden" name="valorTotal" id="valorTotal">
                                         <td><a href="carrinho?acao=removeProduto&idProduto=${item.id}" id="refreshA" onclick="return onclickFunction(${item.id})"><i class="fa fa-trash-o"></i></a>
                                             <!--<td><button type="submit" name="acao" id="addEnd" value="removeProduto"><i class="fa fa-trash-o"></i></button>-->
                                         </td>

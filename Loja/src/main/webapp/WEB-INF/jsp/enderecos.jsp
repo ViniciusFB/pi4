@@ -211,7 +211,7 @@
                                         <!--<label for="enderecos">Endereço X</label>-->
                                         <!--<input type="radio">-->
                                         <c:forEach items="${listaEnderecos}" var="endereco">
-                                            <input type="radio" nome="endereco" id="endereco" value="${endereco.rua}"><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span>
+                                            <input type="radio" name="endereco" id="endereco" value="${endereco.rua}"><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span>
                                         </c:forEach>
                                     </div>
                                 </div>

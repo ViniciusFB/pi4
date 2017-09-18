@@ -562,4 +562,54 @@ public class ProdutoDAO extends ConexaoBD {
         }
         return produto;
     }
+
+    public List<Produto> pesquisarProduto(String nome) throws SQLException, ClassNotFoundException {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        String sql = "SELECT idProduto, nomeProduto, codigo, categorias, quantidade, descricao, valorProduto, imagem "
+                + "FROM Produto WHERE UPPER(nomeProduto) LIKE UPPER(?) ";
+
+        List<Produto> lista = new ArrayList<>();
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + nome + "%");
+
+            ResultSet resultados = stmt.executeQuery();
+
+            while (resultados.next()) {
+
+                int id = resultados.getInt("idProduto");
+                String nomeP = resultados.getString("nomeProduto");
+                int codigo = resultados.getInt("codigo");
+                String categorias = resultados.getString("categorias");
+                int quantidade = resultados.getInt("quantidade");
+                String descricao = resultados.getString("descricao");
+                double valor = resultados.getDouble("valorProduto");
+                String imagem = resultados.getString("imagem");
+
+                lista.add(new Produto(id, nomeP, codigo, categorias, quantidade, descricao, valor, imagem));
+            }
+        } catch (SQLException | NumberFormatException e) {
+            System.out.println(e);
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return lista;
+    }
 }
