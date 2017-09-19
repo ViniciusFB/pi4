@@ -24,7 +24,9 @@
 package br.senac.tads.pi4.loja;
 
 import br.senac.tads.pi4.dao.ClienteDAO;
+import br.senac.tads.pi4.dao.ProdutoDAO;
 import br.senac.tads.pi4.models.Cliente;
+import br.senac.tads.pi4.models.Produto;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -75,16 +77,18 @@ public class LoginServlet extends HttpServlet {
         Cliente cliente = null;
         ClienteDAO dao = new ClienteDAO();
         String usuario = request.getParameter("usuario");
+        Produto produto = null;
+        ProdutoDAO daoProd = new ProdutoDAO();
 
         try {
             cliente = new Cliente((Cliente) dao.obterClientePorEmail(usuario));
 
         } catch (NullPointerException | NumberFormatException e) {
             System.out.println(e);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/erroLogin.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
         }
 
-            String senha = null;
+        String senha = null;
         try {
             senha = dao.selecionaHashSenha(request.getParameter("usuario")); // Pega a senha criptografada no banco
         } catch (SQLException ex) {
@@ -94,16 +98,17 @@ public class LoginServlet extends HttpServlet {
         try {
             sessao.setAttribute("usuario", dao.selecionaNomeByEmailSenha(request.getParameter("usuario"), senha));
             sessao.setAttribute("idCliente", dao.selecionaIdByEmailSenha(request.getParameter("usuario"), senha));
+            request.setAttribute("listaProdutos", daoProd.listar());
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         if (senha == null) {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/erroLogin.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
         } else if (senha.equals(senhaDigitada)) { // Compara a senha no banco com a senha digitada no campo (ambas criptografadas)
             this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } else {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/erroLogin.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
         }
 
     }

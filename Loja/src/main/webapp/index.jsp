@@ -80,20 +80,11 @@
                                     </ul>
                                 </li>
 
-                                <li><a href="contact.html">Contato</a>
-                                </li>
-                                <li><a href="#">Visto Recentemente</a>
-                                </li>
-
                             </c:when>
                             <c:otherwise>
                                 <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                                 </li>
                                 <li><a href="registro.jsp">Cadastro</a>
-                                </li>
-                                <li><a href="contact.html">Contato</a>
-                                </li>
-                                <li><a href="#">Visto Recentemente</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -178,46 +169,7 @@
 
                 <!-- *** ADVANTAGES HOMEPAGE ***
      _________________________________________________________ -->
-                <div id="advantages">
 
-                    <div class="container">
-                        <div class="same-height-row">
-                            <div class="col-sm-4">
-                                <div class="box same-height clickable">
-                                    <div class="icon"><i class="fa fa-heart"></i>
-                                    </div>
-
-                                    <h3><a href="#">Nossos clientes em primeiro lugar</a></h3>
-                                    <p>Somos conhecidos por oferecer o melhor serviço</p>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="box same-height clickable">
-                                    <div class="icon"><i class="fa fa-tags"></i>
-                                    </div>
-
-                                    <h3><a href="#">Melhores Preços</a></h3>
-                                    <p>Os melhores preços do mercado, não deixe de conferir.</p>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="box same-height clickable">
-                                    <div class="icon"><i class="fa fa-thumbs-up"></i>
-                                    </div>
-
-                                    <h3><a href="#">100% de Satisfação Garantida</a></h3>
-                                    <p>3 meses de garantia.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.row -->
-
-                    </div>
-                    <!-- /.container -->
-
-                </div>
                 <!-- /#advantages -->
 
                 <!-- *** ADVANTAGES END *** -->
@@ -229,7 +181,7 @@
                     <div class="box">
                         <div class="container">
                             <div class="col-md-12">
-                                <h2>Novidades</h2>
+                                <h2>Produtos</h2>
                             </div>
                         </div>
                     </div>
@@ -244,12 +196,10 @@
                                         <div class="flip-container">
                                             <div class="flipper">
                                                 <div class="front">
-                                                    <!--<form action="get?nome=${produto.codigo}"-->
 
                                                     <a href="detalhes?c=${produto.codigo}">
                                                         <img src="${produto.imagem}" alt="" class="img-responsive">
                                                     </a>
-                                                    <!--</form>-->
                                                 </div>
                                                 <div class="back">
                                                     <a href="detalhes?c=${produto.codigo}">
@@ -265,9 +215,7 @@
                                             <h3><a href="detalhes?c=${produto.codigo}">${produto.nome}</a></h3>
                                             <p class="price">R$ ${produto.valor}</p>
                                         </div>
-                                        <!-- /.text -->
                                     </div>
-                                    <!-- /.product -->
                                 </div>
 
                             </c:forEach>
