@@ -51,71 +51,8 @@
     </head>
 
     <body>
-        <!-- *** TOPBAR ***
-     _________________________________________________________ -->
-        <div id="top" style="z-index: 10; position: relative;">
-            <div class="container">
-                <div class="col-md-6 offer" data-animate="fadeInDown">
 
-                </div>
-                <div class="col-md-6" data-animate="fadeInDown">
-                    <ul class="menu">
-
-
-                        <c:choose>
-                            <c:when test="${not empty sessionScope.usuario}">
-                                <li class="dropdown yamm-fw">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
-                                        <span style="margin-right: 5px; color: white;" class="glyphicon glyphicon-user"></span>
-                                        <c:out value="${sessionScope.usuario}"/><b style="margin-left: 5px" class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <div  class="yamm-content">
-                                                <ul>
-                                                    <a style="color: #555555" href="customer-account.html">Minha conta</a>
-                                                    <a style="color: #555555" href="logout">Logout</a>
-
-                                                </ul>
-
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="contact.html">Contato</a>
-                                </li>
-                                <li><a href="#">Visto Recentemente</a>
-                                </li>
-
-                            </c:when>
-                            <c:otherwise>
-                                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                                </li>
-                                <li><a href="registro.jsp">Cadastro</a>
-                                </li>
-                                <li><a href="contact.html">Contato</a>
-                                </li>
-                                <li><a href="#">Visto Recentemente</a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-
-
-
-
-                    </ul> 
-                </div>
-                <!-- /.yamm-content -->
-            </div>
-        </div>
-        <!-- *** TOP BAR END *** -->
-
-        <!-- *** NAVBAR ***
-     _________________________________________________________ -->
         <jsp:include page="WEB-INF/jsp/cabecalho.jsp"/>
-        <!-- /#navbar -->
-
-        <!-- *** NAVBAR END *** -->
 
         <div id="all">
 
@@ -154,31 +91,13 @@
                 </div>
                 <!-- /.container -->
             </div>
+<!--            <br> &nbsp; <br><br>&nbsp;
             <br> &nbsp; <br><br>&nbsp;
-            <br> &nbsp; <br><br>&nbsp;
-            <br> &nbsp; <br><br>&nbsp;
-            
-            <!-- /#content -->
+            <br> &nbsp; <br><br>&nbsp;-->
 
-
-            <!-- *** FOOTER ***
-     _________________________________________________________ -->
-            <!-- /#footer -->
-
-            <!-- *** FOOTER END *** -->
-
-
-
-
-            <!-- *** COPYRIGHT ***
-     _________________________________________________________ -->
-            <jsp:include page="WEB-INF/jsp/rodape.jsp"/>
-
-            <!-- *** COPYRIGHT END *** -->
+            <%--<jsp:include page="WEB-INF/jsp/rodape.jsp"/>--%>
 
         </div>
-        <!-- /#all -->
-
         <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
         <script src="js/jquery-1.11.0.min.js"></script>

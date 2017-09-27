@@ -292,7 +292,7 @@
 
                                     <tr class="total">
                                         <td>Total</td>
-                                        <th>$456.00</th>
+                                        <th>R$456.00</th>
                                     </tr>
                                 </tbody>
                             </table>

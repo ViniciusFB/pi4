@@ -48,100 +48,7 @@
 
     <body>
 
-        <!-- *** TOPBAR ***
-     _________________________________________________________ -->
-        <div id="top" style="z-index: 10; position: relative;">
-            <div class="container">
-                <div class="col-md-6 offer" data-animate="fadeInDown">
-
-                </div>
-                <div class="col-md-6" data-animate="fadeInDown">
-                    <ul class="menu">
-
-
-                        <c:choose>
-                            <c:when test="${not empty sessionScope.usuario}">
-                                <li class="dropdown yamm-fw">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
-                                        <span style="margin-right: 5px; color: white;" class="glyphicon glyphicon-user"></span>
-                                        <c:out value="${sessionScope.usuario}"/><b style="margin-left: 5px" class="caret"></b></a>
-                                    <input type="hidden" name="idCliente" value="${idCliente}">
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <div  class="yamm-content">
-                                                <ul>
-                                                    <a style="color: #555555" href="usuario">Minha conta</a>
-                                                    <a style="color: #555555" href="logout">Logout</a>
-
-                                                </ul>
-
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                            </c:when>
-                            <c:otherwise>
-                                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                                </li>
-                                <li><a href="registro.jsp">Cadastro</a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-
-
-
-
-                    </ul> 
-                </div>
-                <!-- /.yamm-content -->
-            </div>
-        </div>
-        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="Login">Login do Cliente</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="login" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="email-modal" placeholder="e-mail" name="usuario">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password-modal" placeholder="senha" name="senha">
-                            </div>
-
-                            <p class="text-center">
-                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Entrar</button>
-                            </p>
-
-                        </form>
-
-                        <p class="text-center text-muted">Não registrado ainda?</p>
-                        <p class="text-center text-muted"><a href="register.html"><strong>Registre-se Agora</strong></a>! É fácil e rápido, menos de um minuto!</p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--</div>-->
-
-        <!-- *** TOP BAR END *** -->
-
-        <!-- *** NAVBAR ***
-     _________________________________________________________ -->
-
         <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
-
-        <!-- /#navbar -->
-
-        <!-- *** NAVBAR END *** -->
-
-
 
         <div id="all">
 
@@ -151,16 +58,16 @@
                     <div class="col-md-12">
                         <div id="main-slider">
                             <div class="item">
-                                <img src="img/imagemxx.jpg" alt="" class="img-responsive">
+                                <img src="img/imagemxx.jpg" alt="Imagem 1" class="img-responsive">
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="img/acessorios13.png" alt="">
+                                <img class="img-responsive" src="img/acessorios13.png" alt="Imagem 2">
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="img/acessorios2.jpg" alt="">
+                                <img class="img-responsive" src="img/acessorios2.jpg" alt="Imagem 3">
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="img/acessorios4.jpg" alt="">
+                                <img class="img-responsive" src="img/acessorios4.jpg" alt="Imagem 4">
                             </div>
                         </div>
                         <!-- /#main-slider -->
@@ -198,18 +105,18 @@
                                                 <div class="front">
 
                                                     <a href="detalhes?c=${produto.codigo}">
-                                                        <img src="${produto.imagem}" alt="" class="img-responsive">
+                                                        <img src="${produto.imagem}" alt="Imagem Produto" class="img-responsive">
                                                     </a>
                                                 </div>
                                                 <div class="back">
                                                     <a href="detalhes?c=${produto.codigo}">
-                                                        <img src="${produto.imagem}" alt="" class="img-responsive">
+                                                        <img src="${produto.imagem}" alt="Imagem Produto" class="img-responsive">
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <a href="detalhes?c=${produto.codigo}" class="invisible">
-                                            <img src="${produto.imagem}" alt="" class="img-responsive">
+                                            <img src="${produto.imagem}" alt="Imagem Produto" class="img-responsive">
                                         </a>
                                         <div class="text">
                                             <h3><a href="detalhes?c=${produto.codigo}">${produto.nome}</a></h3>
