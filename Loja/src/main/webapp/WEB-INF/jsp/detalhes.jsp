@@ -47,7 +47,7 @@
 
     <body>
         
-        <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
+        <jsp:include page="cabecalho.jsp" />
 
         <div id="all">
 
@@ -187,7 +187,7 @@
 
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
-            <jsp:include page="WEB-INF/jsp/rodape.jsp" />
+            <jsp:include page="rodape.jsp" />
 
             <!-- *** COPYRIGHT END *** -->
 

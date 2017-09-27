@@ -8,30 +8,20 @@ package br.senac.tads.pi4.loja;
 import br.senac.tads.pi4.dao.ProdutoDAO;
 import br.senac.tads.pi4.models.Produto;
 import java.io.IOException;
-import java.io.InputStream;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 /**
  *
  * @author Vinicius Ferreira Batista
  */
-@WebServlet("/fileUpload")
-@MultipartConfig(maxFileSize = 16177215) // upload file up to 16MB
-public class UploadServlet extends HttpServlet {
+@WebServlet("/CadastrarProduto")
+public class CadastrarProdutoServlet extends HttpServlet {
 
-    private static final long serialVersionUID = -1623656324694499109L;
-//    private Connection conn;
-
-//    public UploadServlet() {
-//        conn = DbUtil.getConnection();
-//    }
     /**
      *
      * @param request
@@ -67,29 +57,15 @@ public class UploadServlet extends HttpServlet {
         double valor = Double.parseDouble(request.getParameter("valor"));
         String imagem = request.getParameter("imglink");
 
-//        InputStream inputStream = null;
-
-        // obtains the upload file part in this multipart request
-//        Part filePart = request.getPart("imagem");
-//        if (filePart != null) {
-//            // debug messages
-//            System.out.println(filePart.getName());
-//            System.out.println(filePart.getSize());
-//            System.out.println(filePart.getContentType());
-//
-//            // obtains input stream of the upload file
-//            inputStream = filePart.getInputStream();
-//        }
-//
-//        String message = null; // message will be sent back to client
-
         Produto novo = new Produto(nome, codigo, categorias, quantidade, descricao, valor, imagem);
 
         ProdutoDAO dao = new ProdutoDAO();
 
         dao.incluirComTransacao(novo);
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastroRealizado.jsp").forward(request, response);
+        request.setAttribute("mensagem", "Produto " +nome+ " inserido no estoque com sucesso" );
+        
+        this.getServletContext().getRequestDispatcher("/cadastroProduto.jsp").forward(request, response);
 
     }
 }

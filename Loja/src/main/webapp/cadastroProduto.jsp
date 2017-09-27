@@ -73,13 +73,14 @@
                     </div>
 
 
-                    <form action="fileUpload" method="post" id="formCadastro" enctype="multipart/form-data">
+                    <form action="CadastrarProduto" method="post" id="formCadastro">
 
                         <div class="col-md-6">
                             <div class="box">
-                                <h1>Nova conta</h1>
+                                <h1>Novo Produto</h1>
 
-                                <p class="lead">Ainda não é um cliente registrado?</p>
+                                <p class="lead">Insira um novo produto no estoque</p>
+                                <span style="font-weight: bold">${mensagem}</span>
 
                                 <hr>
 
@@ -105,7 +106,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Descrição</label>
-                                    <input type="text" class="form-control" name="descricao">
+                                    <!--<input type="text" class="form-control" name="descricao">-->
+                                    <textarea name="descricao" class="form-control" rows="4" maxlength="255"></textarea>
                                 </div>
 
                             </div>

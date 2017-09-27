@@ -84,7 +84,7 @@ public class ControleCarrinho extends HttpServlet {
                     novoItem.setQuantidade(1);
                     //adiciona novo item
                     carrinho.addNovoItem(novoItem);
-                    System.out.println("CARRINHO: " + carrinho.getItens().size());
+//                    System.out.println("CARRINHO: " + carrinho.getItens().size());
                     sessao.setAttribute("numItens", carrinho.getItens().size());
                 }
                 //carrega a pagina do carrinho de compras

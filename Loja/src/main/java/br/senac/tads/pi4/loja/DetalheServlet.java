@@ -63,7 +63,7 @@ public class DetalheServlet extends HttpServlet {
         request.setAttribute("categorias", produto.getCategorias());
         request.setAttribute("idProduto", produto.getId());
         
-        request.getRequestDispatcher("/detalhes.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/detalhes.jsp").forward(request, response);
 
     }
 
@@ -73,9 +73,6 @@ public class DetalheServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
-
-        //Comando que ira chamar a JSP passada no parametro
-        request.getRequestDispatcher("WEB-INF/jsp/usuario.jsp").forward(request, response);
     }
 
     @Override
