@@ -45,6 +45,18 @@ create table Cliente (
     uf VARCHAR(2)
 );
 
+CREATE TABLE Endereco (
+   idCliente INT NOT NULL,
+   cep VARCHAR(9) NOT NULL,
+   rua VARCHAR(50) NOT NULL,
+   numero INT NOT NULL,
+   complemento VARCHAR(50),
+   bairro VARCHAR(50),
+   cidade VARCHAR(50),
+   uf VARCHAR(2),
+   FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
+
 create table Funcionario (
   idFuncionario INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
  CONSTRAINT PK_Funcionario PRIMARY KEY,
@@ -128,14 +140,3 @@ INSERT INTO FILIAL (nomeFilial, estadoFilial) VALUES ('FILIAL PORTO ALEGRE', 'RS
 INSERT INTO Produto (nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, CADASTRADOPOR, DATACADASTRO, disponivel, idFilial) VALUES ('Pro2dut66', 29891, 'Bolsa',  5, 'nada', 589, 'Administrador', '2017-06-03 23:16:48.113', true, 2);
 
 
-CREATE TABLE Endereco (
-   idCliente INT NOT NULL,
-   cep VARCHAR(9) NOT NULL,
-   rua VARCHAR(50) NOT NULL,
-   numero INT NOT NULL,
-   complemento VARCHAR(50),
-   bairro VARCHAR(50),
-   cidade VARCHAR(50),
-   uf VARCHAR(2),
-   FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
-);

@@ -82,30 +82,36 @@
                                 <p class="lead">Ainda não é um cliente registrado?</p>
 
                                 <hr>
-
+                                <div class="form-group">
+                                    <input type="radio" name="tipo" id="tipo" value="fisica"><label for="tipo"> &nbsp;
+                                        Pessoa Física</label>
+                                    &nbsp;
+                                    &nbsp;
+                                    <input type="radio" name="tipo" id="tipo" value="juridica"><label for="tipo">&nbsp; Pessoa Jurídica</label>
+                                </div>
                                 <div class="form-group">
                                     <label for="name">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="name">
+                                    <input type="text" class="form-control" name="nome" id="name" placeholder="Digite seu primeiro nome">
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Sobrenome</label>
-                                    <input type="text" class="form-control" name="sobrenome" id="sobrenome">
+                                    <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Digite seu sobrenome">
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Data de Nascimento</label>
                                     <input type="date" class="form-control" name="dataNasc" id="dataNasc">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">CPF</label>
-                                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)">
+                                    <label for="name">CPF/CNPJ</label>
+                                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)" placeholder="000.000.000-00">
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" maxlength="15" id="telefone">
+                                    <input type="text" class="form-control" name="telefone" maxlength="15" id="telefone" placeholder="(00) 00000-0000">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="exemplo@email.com">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Senha</label>
@@ -204,6 +210,6 @@
         <!--<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>-->
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/validar.js" type="text/javascript"></script>
-        
+
     </body>
 </html>

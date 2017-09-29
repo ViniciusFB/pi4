@@ -135,7 +135,7 @@ _________________________________________________________ -->
             <form class="navbar-form" role="search" action="produtos" method="post" id="formBusca">
                 <div class="navbar-collapse collapse right" id="search-not-mobile">
                     <div class="input-group">
-                        <input type="text" name="nomeProduto" class="form-control navbar-btn" placeholder="Pesquise um produto...">
+                        <input type="text" name="nomeProduto"  style="width: 235px" class="form-control navbar-btn" placeholder="Pesquise um produto...">
                         <span class="input-group-btn">
 
                             <button type="submit" name="acao" value="pesquisarProduto" class="btn btn-primary navbar-btn"><i class="fa fa-search"></i></button>

@@ -58,7 +58,7 @@ h1 {
     display: inline-block;
 }
 #top ul.menu > li a {
-    color: #eeeeee;
+    color: #fff;
 }
 #top ul.menu > li + li:before {
     content: "|\00a0";
@@ -116,8 +116,9 @@ h1 {
     margin-bottom: 10px;
 }
 .navbar ul.nav > li > a {
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: bold;
+    font-size: 16px;
 }
 .navbar #search {
     clear: both;
@@ -944,6 +945,7 @@ h1 {
 }
 #copyright p {
     margin: 0;
+    color: #fff;
 }
 @media (max-width: 991px) {
     #copyright p {

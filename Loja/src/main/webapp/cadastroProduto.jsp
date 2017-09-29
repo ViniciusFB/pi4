@@ -86,27 +86,38 @@
 
                                 <div class="form-group">
                                     <label for="name">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="name">
+                                    <input type="text" class="form-control" name="nome" id="name" placeholder="Digite o nome do produto">
                                 </div>
                                 <div class="form-group">
                                     <label for="codigo">Código</label>
-                                    <input type="text" class="form-control" name="codigo">
+                                    <input type="text" class="form-control" name="codigo" placeholder="Digite o codigo do produto">
                                 </div>
                                 <div class="form-group">
                                     <label for="quantidade">Quantidade</label>
-                                    <input type="number" class="form-control" name="quantidade">
+                                    <input type="number" class="form-control" name="quantidade" placeholder="Informe a quantidade do produto">
                                 </div>
                                 <div class="form-group">
                                     <label for="valor">Valor</label>
-                                    <input type="text" class="form-control" name="valor" type="text">
+                                    <input type="text" class="form-control" name="valor" type="text" placeholder="Informe o valor do produto">
                                 </div>
                                 <div class="form-group">
-                                    <label for="categorias">Categorias</label>
-                                    <input type="text" class="form-control" name="categorias">
+                                    <label for="categorias"> Categoria</label>
+                                    <select name="categorias" class="form-control">
+                                        <option value="" disabled selected>Selecione uma categoria...</option>
+                                        <option value="Bolsa">Bolsa</option>
+                                        <option value="Mochila">Mochila</option>
+                                        <option value="Oculos">Oculos</option>
+                                        <option value="Relogio">Relogio</option>
+                                        <option value="Bone">Bone</option>
+                                        <option value="Touca">Touca</option>
+                                        <option value="Pulseira">Pulseira</option>
+                                        <option value="Brinco">Brinco</option>
+                                        <option value="Cinto">Cinto</option>
+                                        <option value="Carteira">Carteira</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Descrição</label>
-                                    <!--<input type="text" class="form-control" name="descricao">-->
                                     <textarea name="descricao" class="form-control" rows="4" maxlength="255"></textarea>
                                 </div>
 
