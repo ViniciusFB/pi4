@@ -17,12 +17,12 @@
         <meta name="robots" content="all,follow">
         <meta name="googlebot" content="index,follow,snippet,archive">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Obaju e-commerce template">
-        <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+        <meta name="description" content="DVL e-Commerce">
+        <meta name="author" content="DVL Developers">
         <meta name="keywords" content="">
 
         <title>
-            VIP e-Commerce
+            VIP Modas e-Commerce
         </title>
 
         <meta name="keywords" content="">
@@ -91,9 +91,9 @@
                 </div>
                 <!-- /.container -->
             </div>
-<!--            <br> &nbsp; <br><br>&nbsp;
-            <br> &nbsp; <br><br>&nbsp;
-            <br> &nbsp; <br><br>&nbsp;-->
+            <!--            <br> &nbsp; <br><br>&nbsp;
+                        <br> &nbsp; <br><br>&nbsp;
+                        <br> &nbsp; <br><br>&nbsp;-->
 
             <%--<jsp:include page="WEB-INF/jsp/rodape.jsp"/>--%>
 

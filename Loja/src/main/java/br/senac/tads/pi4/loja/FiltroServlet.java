@@ -57,7 +57,8 @@ public class FiltroServlet extends HttpServlet {
         }
 
         //Comando que ira chamar a JSP passada no parametro
-        request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+//        request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/filtroProdutos.jsp").forward(request, response);
 
     }
 
@@ -86,7 +87,8 @@ public class FiltroServlet extends HttpServlet {
         }
 
         //Comando que ira chamar a JSP passada no parametro
-        request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+//        request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/filtroProdutos.jsp").forward(request, response);
     }
 
     @Override

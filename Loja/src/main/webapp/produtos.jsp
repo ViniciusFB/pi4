@@ -14,12 +14,12 @@
         <meta name="robots" content="all,follow">
         <meta name="googlebot" content="index,follow,snippet,archive">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Obaju e-commerce template">
-        <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+        <meta name="description" content="DVL e-Commerce">
+        <meta name="author" content="DVL Developers">
         <meta name="keywords" content="">
 
         <title>
-            Vip Modas e-Commerce
+            VIP Modas e-Commerce
         </title>
 
         <meta name="keywords" content="">
@@ -145,10 +145,7 @@
                             </div>
                         </div>
 
-                        <div style="background-color: #c4e3f3; font-weight: bold; width: 100%; margin-bottom: 35px; text-align: center">${mensagem}</div>
-
-
-                        <div class="row products">
+                        <div class="row products" id="produtos1">
 
 
                             <c:forEach items="${listaProd}" var="produto">
@@ -220,17 +217,6 @@
             </div>
             <!-- /#content -->
 
-
-            <!-- *** FOOTER ***
-     _________________________________________________________ -->
-
-            <!-- /#footer -->
-
-            <!-- *** FOOTER END *** -->
-
-
-
-
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
 
@@ -239,12 +225,8 @@
             <!-- *** COPYRIGHT END *** -->
 
 
-
         </div>
         <!-- /#all -->
-
-
-
 
         <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
@@ -257,34 +239,8 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
         <script src="js/addCarrinho.js"></script>
+        <script src="js/filtroCategoria.js"></script>
 
-        <script>
-            $(document).ready(function () {
-
-                $(".categorias").click(function () {
-                    var form = $(this).closest("form");
-                    var categoria = $(this).text();
-                    $("#category").attr("value", categoria);
-                    form.submit();
-
-
-//                    var url = "filtrar?category=" + teste;
-
-//                    $.ajax({
-//                        type: "POST",
-//                        url: url,
-//                        data: $(".tCategoria").serialize(),
-//                        success: function ()
-//                        {
-//                            alert("Categoria filtrada");
-//                        }
-//                    });
-
-//                    return false;
-                });
-
-            });
-        </script>
 
     </body>
 

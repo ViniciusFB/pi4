@@ -1,0 +1,41 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<div style="background-color: #c4e3f3; font-weight: bold; width: 100%; margin-bottom: 35px; text-align: center">${mensagem}</div>
+
+<c:forEach items="${listaProd}" var="produto">
+    <div class="col-md-4 col-sm-6">
+        <div class="product">
+            <div class="flip-container">
+                <div class="flipper">
+                    <div class="front">
+                        <a href="detalhes?c=${produto.codigo}">
+                            <img src="${produto.imagem}" alt="" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="back">
+                        <a href="detalhes?c=${produto.codigo}">
+                            <img src="${produto.imagem}" alt="" class="img-responsive">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a href="detalhes?c=${produto.codigo}" class="invisible">
+                <img src="${produto.imagem}" alt="" class="img-responsive">
+            </a>
+            <div class="text">
+                <h3><a href="detalhes?c=${produto.codigo}">${produto.nome}</a></h3>
+                <p class="price">R$ ${produto.valor}</p>
+                <p class="buttons">
+                    <a href="detalhes?c=${produto.codigo}" class="btn btn-default">Ver detalhes</a>
+                    <input type="hidden" name="idProduto" class="idProd" value="${produto.id}">
+                    <a type="#" value="${produto.id}" class="addCarrinho btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a> 
+                </p>
+            </div>
+            <!-- /.text -->
+        </div>
+        <!-- /.product -->
+    </div>
+</c:forEach>
+
+
+<script src="js/addCarrinho.js"></script>

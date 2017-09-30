@@ -95,18 +95,18 @@ public class LoginServlet extends HttpServlet {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         String senhaDigitada = this.md5(request.getParameter("senha")); // Criptografa a senha que foi digitada no campo
-        try {
-            sessao.setAttribute("usuario", dao.selecionaNomeByEmailSenha(request.getParameter("usuario"), senha));
-            sessao.setAttribute("idCliente", dao.selecionaIdByEmailSenha(request.getParameter("usuario"), senha));
-            request.setAttribute("listaProdutos", daoProd.listar());
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         if (senha == null) {
             this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
         } else if (senha.equals(senhaDigitada)) { // Compara a senha no banco com a senha digitada no campo (ambas criptografadas)
-            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            try {
+                sessao.setAttribute("usuario", dao.selecionaNomeByEmailSenha(request.getParameter("usuario"), senha));
+                sessao.setAttribute("idCliente", dao.selecionaIdByEmailSenha(request.getParameter("usuario"), senha));
+
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.getServletContext().getRequestDispatcher("/index").forward(request, response);
         } else {
             this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
         }

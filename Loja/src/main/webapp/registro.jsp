@@ -14,12 +14,12 @@
         <meta name="robots" content="all,follow">
         <meta name="googlebot" content="index,follow,snippet,archive">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Obaju e-commerce template">
-        <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+        <meta name="description" content="DVL e-Commerce">
+        <meta name="author" content="DVL Developers">
         <meta name="keywords" content="">
 
         <title>
-            VIP e-Commerce
+            VIP Modas e-Commerce
         </title>
 
         <meta name="keywords" content="">
@@ -132,14 +132,6 @@
 
                                 <hr>
 
-                                <!--                                <div class="form-group">
-                                                                    <label for="name">Identificação: </label>
-                                                                    <select name="" class="formstyle selects" id="identificacao" tabindex="8">
-                                                                        <option value="Casa">Casa</option>
-                                                                        <option value="Trabalho">Trabalho</option>
-                                                                        <option value="Outro">Outro</option>
-                                                                    </select>
-                                                                </div>-->
                                 <div class="form-group">
                                     <label for="cep">CEP: </label>
                                     <input type="text" class="form-control" maxlength="9" name="cep" id="cep" onkeypress="javascript: mascara(this, cep_mask)">
@@ -188,12 +180,8 @@
 
             <!-- *** COPYRIGHT END *** -->
 
-
-
         </div>
         <!-- /#all -->
-
-
 
 
         <!-- *** SCRIPTS TO INCLUDE ***

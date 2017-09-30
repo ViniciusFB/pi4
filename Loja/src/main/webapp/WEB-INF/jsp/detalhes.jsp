@@ -14,12 +14,12 @@
         <meta name="robots" content="all,follow">
         <meta name="googlebot" content="index,follow,snippet,archive">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Obaju e-commerce template">
-        <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+        <meta name="description" content="DVL e-Commerce">
+        <meta name="author" content="DVL Developers">
         <meta name="keywords" content="">
 
         <title>
-            Vip Modas e-Commerce
+            VIP Modas e-Commerce
         </title>
 
         <meta name="keywords" content="">
@@ -46,7 +46,7 @@
     </head>
 
     <body>
-        
+
         <jsp:include page="cabecalho.jsp" />
 
         <div id="all">
@@ -174,30 +174,14 @@
             </div>
             <!-- /#content -->
 
-
-            <!-- *** FOOTER ***
-     _________________________________________________________ -->
-
-            <!-- /#footer -->
-
-            <!-- *** FOOTER END *** -->
-
-
-
-
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
             <jsp:include page="rodape.jsp" />
 
             <!-- *** COPYRIGHT END *** -->
 
-
-
         </div>
         <!-- /#all -->
-
-
-
 
         <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
@@ -209,11 +193,6 @@
         <script src="js/bootstrap-hover-dropdown.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
-
-
-
-
-
 
     </body>
 

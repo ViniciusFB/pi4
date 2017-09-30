@@ -21,7 +21,7 @@
         <meta name="keywords" content="">
 
         <title>
-            Vip e-Commerce
+            VIP Modas e-Commerce
         </title>
 
         <meta name="keywords" content="">
@@ -51,69 +51,69 @@
 
     <body>
 
-    <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
+        <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
 
-    <div id="all">
+        <div id="all">
 
-        <div id="content">
-            <div class="container">
+            <div id="content">
+                <div class="container">
 
-                <div class="col-md-12">
+                    <div class="col-md-12">
 
-                    <ul class="breadcrumb">
-                        <li><a href="#">Início</a>
-                        </li>
-                        <li>Verificação</li>
-                    </ul>
+                        <ul class="breadcrumb">
+                            <li><a href="#">Início</a>
+                            </li>
+                            <li>Verificação</li>
+                        </ul>
 
 
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <div class="box" id="acn">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div class="box" id="acn">
 
-                                <p class="text-center">
-                                    <img src="img/vip.png" alt="Obaju template">
-                                </p>
+                                    <p class="text-center">
+                                        <img src="img/vip.png" alt="Obaju template">
+                                    </p>
 
-                                <h3>Para comprar, você precisa de uma conta!</h3>
-                                <div id="btns">
-                                    <a href="#" id="btn2" data-toggle="modal" class="btn btn-primary" data-target="#login-modal"> 
-                                        <i class="fa fa-sign-in"></i>
-                                        Já tenho uma conta</a>
-                                    <a href="registro" id="btn1" class="btn btn-primary"><img src="img/reg.png" alt=""/> Sou novo</a>
+                                    <h3>Para comprar, você precisa de uma conta!</h3>
+                                    <div id="btns">
+                                        <a href="#" id="btn2" data-toggle="modal" class="btn btn-primary" data-target="#login-modal"> 
+                                            <i class="fa fa-sign-in"></i>
+                                            Já tenho uma conta</a>
+                                        <a href="registro" id="btn1" class="btn btn-primary"><img src="img/reg.png" alt=""/> Sou novo</a>
+                                    </div>
+
                                 </div>
-
                             </div>
                         </div>
+
+
                     </div>
-
-
+                    <!-- /.col-md-9 -->
                 </div>
-                <!-- /.col-md-9 -->
+                <!-- /.container -->
             </div>
-            <!-- /.container -->
+            <!--<br> &nbsp;-->
+
+            <%--<jsp:include page="WEB-INF/jsp/rodape.jsp"/>--%>
+
         </div>
-        <!--<br> &nbsp;-->
+        <!-- /#all -->
 
-        <%--<jsp:include page="WEB-INF/jsp/rodape.jsp"/>--%>
-
-    </div>
-    <!-- /#all -->
-
-    <!-- *** SCRIPTS TO INCLUDE ***
- _________________________________________________________ -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/bootstrap-hover-dropdown.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/front.js"></script>
+        <!-- *** SCRIPTS TO INCLUDE ***
+     _________________________________________________________ -->
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/waypoints.min.js"></script>
+        <script src="js/modernizr.js"></script>
+        <script src="js/bootstrap-hover-dropdown.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/front.js"></script>
 
 
 
 
-</body>
+    </body>
 
 </html>
