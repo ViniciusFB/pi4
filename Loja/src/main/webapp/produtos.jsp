@@ -48,7 +48,7 @@
     <body>
 
         <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
-  
+
         <div id="all">
 
             <div id="content">
@@ -72,32 +72,37 @@
                             </div>
 
                             <div class="panel-body">
-                                <ul class="nav nav-pills nav-stacked category-menu">
-                                    <li>
-                                        <a href="category.html">Acessórios</a>
-                                        <ul>
-                                            <li><a href="category.html">Bolsas</a>
-                                            </li>
-                                            <li><a href="category.html">Mochilas</a>
-                                            </li>
-                                            <li><a href="category.html">Óculos</a>
-                                            </li>
-                                            <li><a href="category.html">Relógios</a>
-                                            </li>
-                                            <li><a href="category.html">Bonés</a>
-                                            </li>
-                                            <li><a href="category.html">Gorros</a>
-                                            </li>
-                                            <li><a href="category.html">Pulseiras</a>
-                                            </li>
-                                            <li><a href="category.html">Brincos</a>
-                                            </li>
-                                            <li><a href="category.html">Carteiras</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                <form action="filtrar" method="post">
+                                    <ul class="nav nav-pills nav-stacked category-menu">
+                                        <li>
+                                            <a>Acessórios</a>
+                                            <ul>
+                                                <li><a class="categorias" name="categoria" href="#">Bolsa</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Mochila</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Oculos</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Relogio</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Bone</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Touca</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Pulseira</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Brinco</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Cinto</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Carteira</a>
+                                                </li>
+                                                <input id="category" type="hidden" name="category" value="">
+                                            </ul>
+                                        </li>
 
-                                </ul>
+                                    </ul>
+                                </form>
 
                             </div>
                         </div>
@@ -139,6 +144,9 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div style="background-color: #c4e3f3; font-weight: bold; width: 100%; margin-bottom: 35px; text-align: center">${mensagem}</div>
+
 
                         <div class="row products">
 
@@ -249,6 +257,34 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
         <script src="js/addCarrinho.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                $(".categorias").click(function () {
+                    var form = $(this).closest("form");
+                    var categoria = $(this).text();
+                    $("#category").attr("value", categoria);
+                    form.submit();
+
+
+//                    var url = "filtrar?category=" + teste;
+
+//                    $.ajax({
+//                        type: "POST",
+//                        url: url,
+//                        data: $(".tCategoria").serialize(),
+//                        success: function ()
+//                        {
+//                            alert("Categoria filtrada");
+//                        }
+//                    });
+
+//                    return false;
+                });
+
+            });
+        </script>
 
     </body>
 

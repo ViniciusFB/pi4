@@ -86,11 +86,11 @@
 
                                 <div class="form-group">
                                     <label for="name">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="name" placeholder="Digite o nome do produto">
+                                    <input type="text" class="form-control" name="nome" id="name" placeholder="Informe o nome do produto">
                                 </div>
                                 <div class="form-group">
                                     <label for="codigo">Código</label>
-                                    <input type="text" class="form-control" name="codigo" placeholder="Digite o codigo do produto">
+                                    <input type="text" class="form-control" name="codigo" placeholder="Informe o codigo do produto">
                                 </div>
                                 <div class="form-group">
                                     <label for="quantidade">Quantidade</label>
