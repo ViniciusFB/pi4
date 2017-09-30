@@ -101,7 +101,7 @@ _________________________________________________________ -->
                     <span class="sr-only">Toggle Navegação</span>
                     <i class="fa fa-align-justify"></i>
                 </button>
-                <a class="btn btn-default navbar-toggle" href="carrinho.jsp">
+                <a class="btn btn-default navbar-toggle" id="btnCarrinho" href="carrinho.jsp">
                     <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">${numItens} itens no carrinho</span>
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">

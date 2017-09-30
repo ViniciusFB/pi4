@@ -28,14 +28,17 @@
                 <p class="buttons">
                     <a href="detalhes?c=${produto.codigo}" class="btn btn-default">Ver detalhes</a>
                     <input type="hidden" name="idProduto" class="idProd" value="${produto.id}">
-                    <a type="#" value="${produto.id}" class="addCarrinho btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a> 
+                    <a type="#" value="${produto.id}" class="addCarrinho btn btn-primary"><i class="fa fa-shopping-cart"><span style="display: none">${produto.nome}</span></i> Adicionar ao carrinho</a> 
                 </p>
             </div>
             <!-- /.text -->
         </div>
         <!-- /.product -->
-    </div>
-</c:forEach>
+
+        <div class="alert alert-success" id="mensagem" style="display: none; position: fixed; bottom: 0; left: 0; z-index: 2; color: black; background-color: rgba(98, 203, 55, 0.6);">
+
+        </div>
+    </c:forEach>
 
 
-<script src="js/addCarrinho.js"></script>
+    <script src="js/addCarrinho.js"></script>

@@ -84,10 +84,9 @@ public class ControleCarrinho extends HttpServlet {
                     novoItem.setQuantidade(1);
                     //adiciona novo item
                     carrinho.addNovoItem(novoItem);
-//                    System.out.println("CARRINHO: " + carrinho.getItens().size());
-                    sessao.setAttribute("numItens", carrinho.getItens().size());
                 }
                 //carrega a pagina do carrinho de compras
+                sessao.setAttribute("numItens", carrinho.getItens().size());
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
             }//fim addProduto
             if (acao.equals("delUnidade")) {
@@ -132,7 +131,6 @@ public class ControleCarrinho extends HttpServlet {
                 prodRemove.setId(idProduto);
                 itemRemove.setProduto(prodRemove);
                 carrinho.removerItem(itemRemove);
-                System.out.println("CARRINHO: " + carrinho.getItens().size());
                 request.setAttribute("numItens", carrinho.getItens().size());
 
 //carrega a pagina do carrinho de compras
