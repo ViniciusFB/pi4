@@ -49,11 +49,8 @@
 
         <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
 
-        <%
-            int quantidadePagina = Integer.parseInt(request.getParameter("quantidadePagina"));
-            int numeroPagina = Integer.parseInt(request.getParameter("numeroPagina"));
-        %>
-        <c:out value="${erro}"/>
+        <input type="hidden" name="quantidadePagina" value="${quantidadePagina}">
+        <input type="hidden" name="numeroPagina" value="${numeroPagina}">
 
         <div id="all">
 
@@ -198,44 +195,11 @@
                         <div class="pages">
 
                             <ul class="pagination">
-                                <!--                                                            <li><a href="#">&laquo;</a>
-                                                                                            </li>
-                                                                                            <li class="active"><a href="#">1</a>
-                                                                                            </li>
-                                                                                            <li><a href="#">2</a>
-                                                                                            </li>
-                                                                                            <li><a href="#">3</a>
-                                                                                            </li>
-                                                                                            <li><a href="#">4</a>
-                                                                                            </li>
-                                                                                            <li><a href="#">5</a>
-                                                                                            </li>
-                                                                                            <li><a href="#">&raquo;</a>
-                                                                                            </li>-->
-                                <!--</ul>-->
+                                ${laquo}
+                                    <!--<li><a class="${active}" href=produtos?numeroPagina=${pagina}> ${pagina}</a></li>-->
+                                ${pagina}
+                                ${raquo}
 
-                                <%
-                                    if (quantidadePagina > 0) {
-                                        if (numeroPagina <= quantidadePagina && (numeroPagina - 1) > 0) {
-                                            out.println("<li><a href=produtos?numeroPagina=" + (numeroPagina - 1) + ">&laquo</a></li>");
-                                        }
-
-                                        for (int i = 1; i <= quantidadePagina; i++) {
-
-                                            if (i == numeroPagina) {
-                                                out.println("<li class=active><a href=produtos?numeroPagina=" + i + "> " + i + "</a></li>");
-                                            } else {
-                                                out.println("<li><a href=produtos?numeroPagina=" + i + "> " + i + "</a></li>");
-                                            }
-                                        }
-                                    } else {
-                                        out.println("<a href=produtos?numeroPagina=1>" + 1 + "</a>");
-                                    }
-                                    if (quantidadePagina > numeroPagina) {
-
-                                        out.println("<li><a href=produtos?numeroPagina=" + (numeroPagina + 1) + ">&raquo</a></li>");
-                                    }
-                                %>
                             </ul>
                         </div>
 

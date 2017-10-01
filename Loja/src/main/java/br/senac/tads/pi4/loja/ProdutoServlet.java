@@ -10,8 +10,6 @@ import br.senac.tads.pi4.models.Produto;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +48,7 @@ public class ProdutoServlet extends HttpServlet {
             ProdutoDAO dao = new ProdutoDAO();
             List<Produto> produtos = null;
             String numeroPagina = request.getParameter("numeroPagina");
+            int numPagina = Integer.parseInt(request.getParameter("numeroPagina"));
 
             produtos = dao.consultaPaginada(numeroPagina);
             if (produtos.isEmpty()) {
@@ -61,13 +60,36 @@ public class ProdutoServlet extends HttpServlet {
 
             int quantidadePagina = dao.quantidadePagina();
             request.setAttribute("quantidadePagina", quantidadePagina);
-            System.out.println("Quantidade de Páginas = "+quantidadePagina);
-            System.out.println("Página Atual = "+numeroPagina);
+            if (quantidadePagina > 0) {
+                if (numPagina <= quantidadePagina && (numPagina - 1) > 0) {
+                    request.setAttribute("laquo", "<li><a href=produtos?numeroPagina=" + (numPagina - 1) + ">&laquo</a></li>");
+                }
+//                int i = 1;
+                for (int i = 1; i <= quantidadePagina; i++) {
+
+                    if (i == numPagina) {
+                        request.setAttribute("pagina", "<li><a class=${active} href=produtos?numeroPagina=" + i + ">" + i + "</a></li>");
+                        request.setAttribute("active", "active");
+//                        i++;
+                    } else {
+                        request.setAttribute("pagina", "<li><a href=produtos?numeroPagina=" + i + ">" + i + "</a></li>");
+//                        i++;
+                    }
+                }
+            } else {
+                request.setAttribute("pagina", "<a href=produtos?numeroPagina=1>" + 1 + "</a>");
+            }
+            if (quantidadePagina > numPagina) {
+
+                request.setAttribute("raquo", "<li><a href=produtos?numeroPagina=" + (numPagina + 1) + ">&raquo</a></li>");
+            }
+            System.out.println("Quantidade de Páginas = " + quantidadePagina);
+            System.out.println("Página Atual = " + numeroPagina);
             request.getRequestDispatcher("/produtos.jsp?quantidadePagina=" + quantidadePagina
                     + "&numeroPagina=" + numeroPagina).forward(request, response);
 
         } catch (Exception e) {
-            System.out.println("ERRO: "+e.getMessage());
+            System.out.println("ERRO: " + e.getMessage());
             request.getRequestDispatcher("/produtos.jsp").forward(request, response);
         }
 

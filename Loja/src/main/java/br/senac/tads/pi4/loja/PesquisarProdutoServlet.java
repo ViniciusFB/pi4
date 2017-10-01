@@ -67,17 +67,24 @@ public class PesquisarProdutoServlet extends HttpServlet {
                 if (nome != null) {
                     produtos = dao.pesquisarProduto(nome);
                     request.setAttribute("listaProd", produtos);
+                    request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+
                 } else if (nome == null) {
                     request.setAttribute("listaProd", dao.listar());
+                    request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+
                 }
 
             } else if (acao.equals(null) || acao == null) {
                 request.setAttribute("listaProd", dao.listar());
+                request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+
             } else if (acao.equals("categoria")) {
                 String categoria = request.getParameter("category");
 
                 produtos = dao.filtrarPorCategoria(categoria);
                 request.setAttribute("listaProd", produtos);
+                request.getRequestDispatcher("/produtos.jsp").forward(request, response);
 
             }
 
@@ -85,8 +92,6 @@ public class PesquisarProdutoServlet extends HttpServlet {
             e.getMessage();
         }
 
-        //Comando que ira chamar a JSP passada no parametro
-        request.getRequestDispatcher("/produtos.jsp").forward(request, response);
         //Comando que ira chamar a JSP passada no parametro
     }
 
