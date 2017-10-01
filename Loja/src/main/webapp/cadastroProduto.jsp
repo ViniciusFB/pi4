@@ -110,6 +110,7 @@
                                         <option value="Bone">Bone</option>
                                         <option value="Touca">Touca</option>
                                         <option value="Pulseira">Pulseira</option>
+                                        <option value="Colar">Colar</option>
                                         <option value="Brinco">Brinco</option>
                                         <option value="Cinto">Cinto</option>
                                         <option value="Carteira">Carteira</option>

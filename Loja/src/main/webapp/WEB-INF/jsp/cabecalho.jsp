@@ -118,7 +118,7 @@ _________________________________________________________ -->
                 <li class="active"><a href="index">Inicio</a>
                 </li>
                 <li class="dropdown yamm-fw">
-                    <a href="produtos" class="dropdown-toggle" data-hover="dropdown" data-delay="200">Produtos</a>
+                    <a href="produtos?numeroPagina=1" class="dropdown-toggle" data-hover="dropdown" data-delay="200">Produtos</a>
 
                 </li>
             </ul>
@@ -132,7 +132,7 @@ _________________________________________________________ -->
                 <a href="carrinho.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">${numItens} itens no carrinho</span></a>
             </div>
             <!--/.nav-collapse -->
-            <form class="navbar-form" role="search" action="produtos" method="post" id="formBusca">
+            <form class="navbar-form" role="search" action="pesquisar" method="post" id="formBusca">
                 <div class="navbar-collapse collapse right" id="search-not-mobile">
                     <div class="input-group">
                         <input type="text" name="nomeProduto"  style="width: 235px" class="form-control navbar-btn" placeholder="Pesquise um produto...">

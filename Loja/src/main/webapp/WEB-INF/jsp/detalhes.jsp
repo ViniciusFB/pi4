@@ -96,6 +96,8 @@
                                                 </li>
                                                 <li><button class="categorias" name="acao" value="categoria" href="#">Pulseira</button>
                                                 </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Colar</button>
+                                                </li>
                                                 <li><button class="categorias" name="acao" value="categoria" href="#">Brinco</button>
                                                 </li>
                                                 <li><button class="categorias" name="acao" value="categoria" href="#">Cinto</button>

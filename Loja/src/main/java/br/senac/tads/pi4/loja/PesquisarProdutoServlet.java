@@ -10,8 +10,6 @@ import br.senac.tads.pi4.models.Produto;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ProjetoX
  */
-@WebServlet(name = "produtos", urlPatterns = {"/produtos"})
-public class ProdutoServlet extends HttpServlet {
+@WebServlet(name = "pesquisar", urlPatterns = {"/pesquisar"})
+public class PesquisarProdutoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,31 +43,10 @@ public class ProdutoServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        ProdutoDAO dao = new ProdutoDAO();
 
-        try {
-            ProdutoDAO dao = new ProdutoDAO();
-            List<Produto> produtos = null;
-            String numeroPagina = request.getParameter("numeroPagina");
-
-            produtos = dao.consultaPaginada(numeroPagina);
-            if (produtos.isEmpty()) {
-                numeroPagina = "" + (Integer.parseInt(numeroPagina) - 1);
-            }
-            //Comando que ira chamar a JSP passada no parametro
-            request.setAttribute("listaProd", produtos);
-            request.setAttribute("numeroPagina", (numeroPagina != null ? numeroPagina : 1));
-
-            int quantidadePagina = dao.quantidadePagina();
-            request.setAttribute("quantidadePagina", quantidadePagina);
-            System.out.println("Quantidade de Páginas = "+quantidadePagina);
-            System.out.println("Página Atual = "+numeroPagina);
-            request.getRequestDispatcher("/produtos.jsp?quantidadePagina=" + quantidadePagina
-                    + "&numeroPagina=" + numeroPagina).forward(request, response);
-
-        } catch (Exception e) {
-            System.out.println("ERRO: "+e.getMessage());
-            request.getRequestDispatcher("/produtos.jsp").forward(request, response);
-        }
+        request.setAttribute("listaProd", dao.listar());
+        request.getRequestDispatcher("/produtos.jsp").forward(request, response);
 
     }
 

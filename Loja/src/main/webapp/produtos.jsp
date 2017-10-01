@@ -49,6 +49,12 @@
 
         <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
 
+        <%
+            int quantidadePagina = Integer.parseInt(request.getParameter("quantidadePagina"));
+            int numeroPagina = Integer.parseInt(request.getParameter("numeroPagina"));
+        %>
+        <c:out value="${erro}"/>
+
         <div id="all">
 
             <div id="content">
@@ -90,6 +96,8 @@
                                                 <li><a class="categorias" name="categoria" href="#">Touca</a>
                                                 </li>
                                                 <li><a class="categorias" name="categoria" href="#">Pulseira</a>
+                                                </li>
+                                                <li><a class="categorias" name="categoria" href="#">Colar</a>
                                                 </li>
                                                 <li><a class="categorias" name="categoria" href="#">Brinco</a>
                                                 </li>
@@ -181,7 +189,7 @@
                                     <!-- /.product -->
                                 </div>
                                 <div class="alert alert-success" id="mensagem" style="display: none; position: fixed; bottom: 50px; left: 0; z-index: 2; color: black; background-color: rgba(98, 203, 55, 0.6);">
-                                    
+
                                 </div>
                             </c:forEach>
                         </div>
@@ -189,25 +197,45 @@
 
                         <div class="pages">
 
-                            <p class="loadMore">
-                                <a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Carregar mais</a>
-                            </p>
-
                             <ul class="pagination">
-                                <li><a href="#">&laquo;</a>
-                                </li>
-                                <li class="active"><a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a>
-                                </li>
-                                <li><a href="#">3</a>
-                                </li>
-                                <li><a href="#">4</a>
-                                </li>
-                                <li><a href="#">5</a>
-                                </li>
-                                <li><a href="#">&raquo;</a>
-                                </li>
+                                <!--                                                            <li><a href="#">&laquo;</a>
+                                                                                            </li>
+                                                                                            <li class="active"><a href="#">1</a>
+                                                                                            </li>
+                                                                                            <li><a href="#">2</a>
+                                                                                            </li>
+                                                                                            <li><a href="#">3</a>
+                                                                                            </li>
+                                                                                            <li><a href="#">4</a>
+                                                                                            </li>
+                                                                                            <li><a href="#">5</a>
+                                                                                            </li>
+                                                                                            <li><a href="#">&raquo;</a>
+                                                                                            </li>-->
+                                <!--</ul>-->
+
+                                <%
+                                    if (quantidadePagina > 0) {
+                                        if (numeroPagina <= quantidadePagina && (numeroPagina - 1) > 0) {
+                                            out.println("<li><a href=produtos?numeroPagina=" + (numeroPagina - 1) + ">&laquo</a></li>");
+                                        }
+
+                                        for (int i = 1; i <= quantidadePagina; i++) {
+
+                                            if (i == numeroPagina) {
+                                                out.println("<li class=active><a href=produtos?numeroPagina=" + i + "> " + i + "</a></li>");
+                                            } else {
+                                                out.println("<li><a href=produtos?numeroPagina=" + i + "> " + i + "</a></li>");
+                                            }
+                                        }
+                                    } else {
+                                        out.println("<a href=produtos?numeroPagina=1>" + 1 + "</a>");
+                                    }
+                                    if (quantidadePagina > numeroPagina) {
+
+                                        out.println("<li><a href=produtos?numeroPagina=" + (numeroPagina + 1) + ">&raquo</a></li>");
+                                    }
+                                %>
                             </ul>
                         </div>
 

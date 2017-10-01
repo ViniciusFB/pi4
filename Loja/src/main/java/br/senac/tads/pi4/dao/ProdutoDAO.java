@@ -146,10 +146,9 @@ public class ProdutoDAO extends ConexaoBD {
             conn = obterConexao();
             stmt = conn.createStatement();
 
-            stmt.setMaxRows(6); // Limitar o número de itens exibidos
-            System.out.println("Realizando uma consulta limitada a "
-                    + stmt.getMaxRows() + " linhas.");
-
+//            stmt.setMaxRows(6); // Limitar o número de itens exibidos
+//            System.out.println("Realizando uma consulta limitada a "
+//                    + stmt.getMaxRows() + " linhas.");
             ResultSet resultados = stmt.executeQuery(sql);
 
             while (resultados.next()) {
@@ -669,6 +668,48 @@ public class ProdutoDAO extends ConexaoBD {
         return lista;
     }
 
+    public List<Produto> consultaPaginada(String numeroPagina) throws Exception {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        int totalProdutosPagina = 9;
+        if (numeroPagina == null || (numeroPagina != null && numeroPagina.trim().isEmpty())) {
+            numeroPagina = "0";
+        }
+        int from = (Integer.parseInt(numeroPagina) * totalProdutosPagina) - totalProdutosPagina;
+
+        if (from < 0) {
+            from = 0;
+        }
+
+        List<Produto> retorno = new ArrayList<Produto>();
+        String sql = "SELECT * FROM ( "
+                + "    SELECT ROW_NUMBER() OVER() AS rownum, Produto.* "
+                + "    FROM Produto "
+                + ") AS tmp "
+                + "WHERE rownum > " + from + " AND rownum <= " + totalProdutosPagina+from;
+
+        conn = obterConexao();
+        stmt = conn.prepareStatement(sql);
+        stmt.setMaxRows(9); // Limitar o número de itens exibidos
+
+        ResultSet resultados = stmt.executeQuery();
+
+        while (resultados.next()) {
+            int id = resultados.getInt("idProduto");
+            String nomeP = resultados.getString("nomeProduto");
+            int codigo = resultados.getInt("codigo");
+            String categorias = resultados.getString("categorias");
+            int quantidade = resultados.getInt("quantidade");
+            String descricao = resultados.getString("descricao");
+            double valor = resultados.getDouble("valorProduto");
+            String imagem = resultados.getString("imagem");
+
+            retorno.add(new Produto(id, nomeP, codigo, categorias, quantidade, descricao, valor, imagem));
+        }
+        return retorno;
+
+    }
+
     public int quantidadePagina() throws Exception {
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -688,7 +729,8 @@ public class ProdutoDAO extends ConexaoBD {
                 double quantidadePaginaTemp = Float.parseFloat("" + (totalProdutos / totalProdutosPagina));
 
                 if (!(quantidadePaginaTemp % 2 == 0)) {
-                    quantidadePagina = new Double(quantidadePaginaTemp).intValue() + 1;
+//                    quantidadePagina = new Double(quantidadePaginaTemp).intValue() + 1;
+                    quantidadePagina = new Double(quantidadePaginaTemp).intValue();
                 } else {
                     quantidadePagina = new Double(quantidadePaginaTemp).intValue();
 
