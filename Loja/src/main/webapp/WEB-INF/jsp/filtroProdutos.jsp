@@ -35,10 +35,11 @@
         </div>
         <!-- /.product -->
 
-        <div class="alert alert-success" id="mensagem" style="display: none; position: fixed; bottom: 0; left: 0; z-index: 2; color: black; background-color: rgba(98, 203, 55, 0.6);">
+    </div>
+    <div class="alert alert-success" id="mensagem" style="display: none; position: fixed; bottom: 0; left: 0; z-index: 2; color: black; background-color: rgba(98, 203, 55, 0.6);">
 
-        </div>
-    </c:forEach>
+    </div>
+</c:forEach>
 
 
-    <script src="js/addCarrinho.js"></script>
+<script src="js/addCarrinho.js"></script>

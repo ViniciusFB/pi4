@@ -68,7 +68,6 @@ public class ProdutoServlet extends HttpServlet {
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
 
-        
         List<Produto> produtos;
         ProdutoDAO dao = new ProdutoDAO();
 
@@ -85,6 +84,12 @@ public class ProdutoServlet extends HttpServlet {
 
             } else if (acao.equals(null) || acao == null) {
                 request.setAttribute("listaProd", dao.listar());
+            } else if (acao.equals("categoria")) {
+                String categoria = request.getParameter("category");
+
+                produtos = dao.filtrarPorCategoria(categoria);
+                request.setAttribute("listaProd", produtos);
+
             }
 
         } catch (ClassNotFoundException | SQLException e) {

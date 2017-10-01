@@ -145,9 +145,13 @@ public class ProdutoDAO extends ConexaoBD {
         try {
             conn = obterConexao();
             stmt = conn.createStatement();
+
+            stmt.setMaxRows(6); // Limitar o número de itens exibidos
+            System.out.println("Realizando uma consulta limitada a "
+                    + stmt.getMaxRows() + " linhas.");
+
             ResultSet resultados = stmt.executeQuery(sql);
 
-            //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
             while (resultados.next()) {
                 int id = resultados.getInt("idProduto");
                 String nome = resultados.getString("nomeProduto");
@@ -162,6 +166,8 @@ public class ProdutoDAO extends ConexaoBD {
 
                 lista.add(produto);
             }
+//            System.out.println("ULTIMA = " + resultados.getRow());
+//            stmt.setFetchDirection(resultados.getRow());
 
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -612,6 +618,7 @@ public class ProdutoDAO extends ConexaoBD {
         }
         return lista;
     }
+
     public List<Produto> filtrarPorCategoria(String categoria) throws SQLException, ClassNotFoundException {
 
         PreparedStatement stmt = null;
@@ -660,5 +667,37 @@ public class ProdutoDAO extends ConexaoBD {
             }
         }
         return lista;
+    }
+
+    public int quantidadePagina() throws Exception {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        String sql = "SELECT COUNT(1) as totalProdutos FROM PRODUTO";
+        int quantidadePagina = 1;
+        double totalProdutosPagina = 6.0;
+
+        conn = obterConexao();
+        stmt = conn.prepareStatement(sql);
+
+        ResultSet resultados = stmt.executeQuery();
+
+        if (resultados.next()) {
+            double totalProdutos = resultados.getDouble("totalProdutos");
+
+            if (totalProdutos > totalProdutosPagina) {
+                double quantidadePaginaTemp = Float.parseFloat("" + (totalProdutos / totalProdutosPagina));
+
+                if (!(quantidadePaginaTemp % 2 == 0)) {
+                    quantidadePagina = new Double(quantidadePaginaTemp).intValue() + 1;
+                } else {
+                    quantidadePagina = new Double(quantidadePaginaTemp).intValue();
+
+                }
+            } else {
+                quantidadePagina = 1;
+            }
+
+        }
+        return quantidadePagina;
     }
 }

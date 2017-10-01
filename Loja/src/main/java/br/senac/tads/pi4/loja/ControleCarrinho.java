@@ -18,17 +18,6 @@ public class ControleCarrinho extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        Cliente cliente = null;
-//        ClienteDAO dao = new ClienteDAO();
-//        try {
-//            cliente = new Cliente((Cliente) dao.obterCliente(Integer.parseInt(request.getParameter("idCliente"))));
-//        } catch (NullPointerException | NumberFormatException e) {
-//            System.out.println(e);
-//            request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
-//            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/vendas.jsp").forward(request, response);
-//
-//        }
-//        HttpSession sessao = request.getSession();
 
         try {
             String acao = request.getParameter("acao");
@@ -48,7 +37,7 @@ public class ControleCarrinho extends HttpServlet {
 
                 //verifica se já exista um carrinho na sessao
                 if (carrinho == null) {
-//cria um carrinho
+                    //cria um carrinho
 
                     carrinho = new CarrinhoDeCompra();
                     sessao.setAttribute("carrinho", carrinho);
@@ -86,6 +75,7 @@ public class ControleCarrinho extends HttpServlet {
                     carrinho.addNovoItem(novoItem);
                 }
                 //carrega a pagina do carrinho de compras
+                sessao.setAttribute("valorTotal", carrinho.calculaTotal());
                 sessao.setAttribute("numItens", carrinho.getItens().size());
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
             }//fim addProduto
@@ -131,8 +121,8 @@ public class ControleCarrinho extends HttpServlet {
                 prodRemove.setId(idProduto);
                 itemRemove.setProduto(prodRemove);
                 carrinho.removerItem(itemRemove);
+                sessao.setAttribute("valorTotal", carrinho.calculaTotal());
                 request.setAttribute("numItens", carrinho.getItens().size());
-
 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
             } else if (acao.equals("cancelaCompra")) {

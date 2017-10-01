@@ -77,32 +77,37 @@
                             </div>
 
                             <div class="panel-body">
-                                <ul class="nav nav-pills nav-stacked category-menu">
-                                    <li>
-                                        <a href="category.html">Acessórios</a>
-                                        <ul>
-                                            <li><a href="category.html">Bolsas</a>
-                                            </li>
-                                            <li><a href="category.html">Mochilas</a>
-                                            </li>
-                                            <li><a href="category.html">Óculos</a>
-                                            </li>
-                                            <li><a href="category.html">Relógios</a>
-                                            </li>
-                                            <li><a href="category.html">Bonés</a>
-                                            </li>
-                                            <li><a href="category.html">Gorros</a>
-                                            </li>
-                                            <li><a href="category.html">Pulseiras</a>
-                                            </li>
-                                            <li><a href="category.html">Brincos</a>
-                                            </li>
-                                            <li><a href="category.html">Carteiras</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                <form action="produtos" id="filtroCategoria" method="post">
+                                    <ul class="nav nav-pills nav-stacked category-menu">
+                                        <li>
+                                            <a>Acessórios</a>
+                                            <ul>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Bolsa</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Mochila</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Oculos</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Relogio</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Bone</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Touca</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Pulseira</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Brinco</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Cinto</button>
+                                                </li>
+                                                <li><button class="categorias" name="acao" value="categoria" href="#">Carteira</button>
+                                                </li>
+                                                <input id="category" type="hidden" name="category" value="">
+                                            </ul>
+                                        </li>
 
-                                </ul>
+                                    </ul>
+                                </form>
 
                             </div>
                         </div>
@@ -193,6 +198,26 @@
         <script src="js/bootstrap-hover-dropdown.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                $(".categorias").click(function () {
+                    var form = $("#filtroCategoria");
+                    var categoria = $(this).text();
+                    $("#category").attr("value", categoria);
+                    form.submit();
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "produtos",
+                        data: $(form).serialize()
+                    });
+                });
+
+            });
+
+        </script>
 
     </body>
 

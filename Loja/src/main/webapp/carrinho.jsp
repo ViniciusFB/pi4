@@ -82,11 +82,6 @@
                                             </tr>
                                         </thead>
 
-                                        <%
-                                            //recupera os produtos do carrinho da sessao
-                                            CarrinhoDeCompra carrinho = (CarrinhoDeCompra) session.getAttribute("carrinho");
-                                        %>
-
                                         <c:forEach items="${carrinho.itens}" var="item">
                                             <tbody>
                                                 <tr>
@@ -118,7 +113,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th colspan="5">Total</th>
-                                                <th colspan="2">R$ <%=carrinho.calculaTotal()%></th>
+                                                <th colspan="2">R$ ${valorTotal}</th>
                                             </tr>
                                         </tfoot>
                                     </table>            
@@ -178,7 +173,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Subtotal do pedido </td>
-                                            <th>R$ <%=carrinho.calculaTotal()%></th>
+                                            <th>R$ ${valorTotal}</th>
                                         </tr>
                                         <tr>
                                             <td>Desconto total</td>
@@ -187,7 +182,7 @@
 
                                         <tr class="total">
                                             <td>Total</td>
-                                            <th>R$<%=carrinho.calculaTotal()%></th>
+                                            <th>R$${valorTotal}</th>
                                         </tr>
                                     </tbody>
                                 </table>
