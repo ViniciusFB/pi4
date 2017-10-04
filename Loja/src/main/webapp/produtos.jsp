@@ -47,10 +47,14 @@
 
     <body>
 
+        <!--Cabecalho-->
         <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
+        <!--Fim cabecalho-->
 
-        <input type="hidden" name="quantidadePagina" value="${quantidadePagina}">
-        <input type="hidden" name="numeroPagina" value="${numeroPagina}">
+        <!--Controladores de Paginacao-->
+        <input type="hidden" id="quantidadePagina" name="quantidadePagina" value="${quantidadePagina}">
+        <input type="hidden" id="numPagina" name="numeroPagina" value="${numeroPagina}">
+        <!--Fim Controladores de Paginacao-->
 
         <div id="all">
 
@@ -66,8 +70,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <!-- *** MENUS AND FILTERS ***
-     _________________________________________________________ -->
+                        <!--Filtros de Categoria-->
                         <div class="panel panel-default sidebar-menu">
 
                             <div class="panel-heading">
@@ -111,7 +114,7 @@
 
                             </div>
                         </div>
-                        <!-- *** MENUS AND FILTERS END *** -->
+                        <!--Fim Filtros de Categoria-->
                     </div>
 
                     <div class="col-md-9">
@@ -149,9 +152,8 @@
                             </div>
                         </div>
 
+                        <!--Listagem de Produtos-->
                         <div class="row products" id="produtos1">
-
-
                             <c:forEach items="${listaProd}" var="produto">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="product">
@@ -183,26 +185,30 @@
                                         </div>
                                         <!-- /.text -->
                                     </div>
-                                    <!-- /.product -->
                                 </div>
                                 <div class="alert alert-success" id="mensagem" style="display: none; position: fixed; bottom: 50px; left: 0; z-index: 2; color: black; background-color: rgba(98, 203, 55, 0.6);">
 
                                 </div>
                             </c:forEach>
                         </div>
-                        <!-- /.products -->
+                        <!--Fim Listagem de Produtos-->
 
                         <div class="pages">
 
+
+                            <!--Lista de paginas-->
                             <ul class="pagination">
                                 ${laquo}
-                                    <!--<li><a class="${active}" href=produtos?numeroPagina=${pagina}> ${pagina}</a></li>-->
-                                ${pagina}
-                                ${raquo}
+
+                                <!--paginas-->
+                                <c:forEach begin="1" end="${quantidadePagina}" varStatus="status">
+                                    <li class="nPagina"><a href=produtos?numeroPagina=${status.count}> ${status.count}</a></li>
+                                    </c:forEach> 
+                                    ${raquo}
 
                             </ul>
+                            <!--Fim lista de paginas-->
                         </div>
-
 
                     </div>
                     <!-- /.col-md-9 -->
@@ -211,12 +217,11 @@
             </div>
             <!-- /#content -->
 
-            <!-- *** COPYRIGHT ***
-     _________________________________________________________ -->
+            <!--Rodape-->
 
             <jsp:include page="WEB-INF/jsp/rodape.jsp" />
 
-            <!-- *** COPYRIGHT END *** -->
+            <!--Fim Rodape-->
 
 
         </div>
@@ -235,6 +240,22 @@
         <script src="js/addCarrinho.js"></script>
         <script src="js/filtroCategoria.js"></script>
 
+        <script>
+            //Script para adicionar a classe "active" na página atual.
+            $(document).ready(function () {
+                var numPagina = parseInt($("#numPagina").val(), 10);
+                var quantidadePagina = parseInt($("#quantidadePagina").val(), 10);
+
+                for (var i = 1; i <= quantidadePagina; i++) {
+
+                    if (i === numPagina) {
+                        $(".nPagina").eq(i - 1).attr("class", "nPagina active");
+                    }
+                }
+
+
+            });
+        </script>
 
     </body>
 

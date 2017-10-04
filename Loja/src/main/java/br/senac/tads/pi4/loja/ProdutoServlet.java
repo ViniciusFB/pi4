@@ -64,20 +64,6 @@ public class ProdutoServlet extends HttpServlet {
                 if (numPagina <= quantidadePagina && (numPagina - 1) > 0) {
                     request.setAttribute("laquo", "<li><a href=produtos?numeroPagina=" + (numPagina - 1) + ">&laquo</a></li>");
                 }
-//                int i = 1;
-                for (int i = 1; i <= quantidadePagina; i++) {
-
-                    if (i == numPagina) {
-                        request.setAttribute("pagina", "<li><a class=${active} href=produtos?numeroPagina=" + i + ">" + i + "</a></li>");
-                        request.setAttribute("active", "active");
-//                        i++;
-                    } else {
-                        request.setAttribute("pagina", "<li><a href=produtos?numeroPagina=" + i + ">" + i + "</a></li>");
-//                        i++;
-                    }
-                }
-            } else {
-                request.setAttribute("pagina", "<a href=produtos?numeroPagina=1>" + 1 + "</a>");
             }
             if (quantidadePagina > numPagina) {
 

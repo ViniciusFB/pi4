@@ -715,7 +715,7 @@ public class ProdutoDAO extends ConexaoBD {
         Connection conn = null;
         String sql = "SELECT COUNT(1) as totalProdutos FROM PRODUTO";
         int quantidadePagina = 1;
-        double totalProdutosPagina = 6.0;
+        double totalProdutosPagina = 9.0;
 
         conn = obterConexao();
         stmt = conn.prepareStatement(sql);
@@ -728,9 +728,9 @@ public class ProdutoDAO extends ConexaoBD {
             if (totalProdutos > totalProdutosPagina) {
                 double quantidadePaginaTemp = Float.parseFloat("" + (totalProdutos / totalProdutosPagina));
 
-                if (!(quantidadePaginaTemp % 2 == 0)) {
+                if (!(quantidadePaginaTemp % 3 == 0)) {
 //                    quantidadePagina = new Double(quantidadePaginaTemp).intValue() + 1;
-                    quantidadePagina = new Double(quantidadePaginaTemp).intValue();
+                    quantidadePagina = new Double(quantidadePaginaTemp).intValue()+1;
                 } else {
                     quantidadePagina = new Double(quantidadePaginaTemp).intValue();
 
