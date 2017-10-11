@@ -82,7 +82,7 @@ public class PesquisarProdutoServlet extends HttpServlet {
             } else if (acao.equals("categoria")) {
                 String categoria = request.getParameter("category");
 
-                produtos = dao.filtrarPorCategoria(categoria);
+                produtos = dao.filtrarPorCategoria(categoria, "n");
                 request.setAttribute("listaProd", produtos);
                 request.getRequestDispatcher("/produtos.jsp").forward(request, response);
 

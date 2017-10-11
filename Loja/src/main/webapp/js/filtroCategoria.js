@@ -7,11 +7,11 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "filtrar",
-            data: $(form).serialize(),
+            url: "produtos",
+            data: form.serialize(),
             success: function (data)
             {
-                $("#produtos1").html(data);
+                $("#principal").html(data);
             }
         });
 

@@ -618,18 +618,28 @@ public class ProdutoDAO extends ConexaoBD {
         return lista;
     }
 
-    public List<Produto> filtrarPorCategoria(String categoria) throws SQLException, ClassNotFoundException {
+    public List<Produto> filtrarPorCategoria(String categoria, String numeroPagina) throws SQLException, ClassNotFoundException {
 
         PreparedStatement stmt = null;
         Connection conn = null;
-        String sql = "SELECT idProduto, nomeProduto, codigo, categorias, quantidade, descricao, valorProduto, imagem "
-                + "FROM Produto WHERE UPPER(categorias) LIKE UPPER(?) ";
+        int totalProdutosPagina = 9;
+        if (numeroPagina == null || (numeroPagina != null && numeroPagina.trim().isEmpty())) {
+            numeroPagina = "0";
+        }
+        int from = (Integer.parseInt(numeroPagina) * totalProdutosPagina) - totalProdutosPagina;
+
+        if (from < 0) {
+            from = 0;
+        }
+        String sql = "SELECT * FROM (SELECT ROW_NUMBER() OVER() AS rownum, Produto.* FROM Produto WHERE Categorias = '" + categoria + "') AS tmp "
+                + " WHERE rownum > " + from + " AND rownum <= " + (totalProdutosPagina + from) + " AND UPPER(categorias) LIKE UPPER(?)";
 
         List<Produto> lista = new ArrayList<>();
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, "%" + categoria + "%");
+            stmt.setMaxRows(9);
 
             ResultSet resultados = stmt.executeQuery();
 
@@ -686,7 +696,7 @@ public class ProdutoDAO extends ConexaoBD {
                 + "    SELECT ROW_NUMBER() OVER() AS rownum, Produto.* "
                 + "    FROM Produto "
                 + ") AS tmp "
-                + "WHERE rownum > " + from + " AND rownum <= " + totalProdutosPagina+from;
+                + "WHERE rownum > " + from + " AND rownum <= " + totalProdutosPagina + from;
 
         conn = obterConexao();
         stmt = conn.prepareStatement(sql);
@@ -730,7 +740,74 @@ public class ProdutoDAO extends ConexaoBD {
 
                 if (!(quantidadePaginaTemp % 3 == 0)) {
 //                    quantidadePagina = new Double(quantidadePaginaTemp).intValue() + 1;
-                    quantidadePagina = new Double(quantidadePaginaTemp).intValue()+1;
+                    quantidadePagina = new Double(quantidadePaginaTemp).intValue() + 1;
+                } else {
+                    quantidadePagina = new Double(quantidadePaginaTemp).intValue();
+
+                }
+            } else {
+                quantidadePagina = 1;
+            }
+
+        }
+        return quantidadePagina;
+    }
+
+    public int quantidadeProdutos() throws Exception {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        String sql = "SELECT COUNT(*) as totalProdutos FROM PRODUTO";
+        int totalProdutos = 0;
+        conn = obterConexao();
+        stmt = conn.prepareStatement(sql);
+//        stmt.setString(1, "%" + categoria + "%");
+        ResultSet resultados = stmt.executeQuery();
+
+        if (resultados.next()) {
+            totalProdutos = resultados.getInt("totalProdutos");
+
+        }
+        return totalProdutos;
+    }
+    public int quantidadeProdutosCategoria(String categoria) throws Exception {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        String sql = "SELECT COUNT(*) as totalProdutos FROM PRODUTO WHERE Produto.CATEGORIAS = '" + categoria + "'";
+        int totalProdutos = 0;
+        conn = obterConexao();
+        stmt = conn.prepareStatement(sql);
+//        stmt.setString(1, "%" + categoria + "%");
+        ResultSet resultados = stmt.executeQuery();
+
+        if (resultados.next()) {
+            totalProdutos = resultados.getInt("totalProdutos");
+
+        }
+        return totalProdutos;
+    }
+
+    public int quantidadePaginaCategoria(String categoria) throws Exception {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        String sql = "SELECT COUNT(1) as totalProdutos FROM PRODUTO WHERE UPPER(categorias) LIKE UPPER(?)";
+        int quantidadePagina = 1;
+        double totalProdutosPagina = 9.0;
+
+        conn = obterConexao();
+        stmt = conn.prepareStatement(sql);
+        stmt.setString(1, "%" + categoria + "%");
+
+        ResultSet resultados = stmt.executeQuery();
+
+        if (resultados.next()) {
+            double totalProdutos = resultados.getDouble("totalProdutos");
+
+            if (totalProdutos > totalProdutosPagina) {
+                double quantidadePaginaTemp = Float.parseFloat("" + (totalProdutos / totalProdutosPagina));
+
+                if (!(quantidadePaginaTemp % 3 == 0)) {
+//                    quantidadePagina = new Double(quantidadePaginaTemp).intValue() + 1;
+                    quantidadePagina = new Double(quantidadePaginaTemp).intValue() + 1;
                 } else {
                     quantidadePagina = new Double(quantidadePaginaTemp).intValue();
 
