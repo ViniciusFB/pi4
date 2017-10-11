@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ProjetoX
  */
-@WebServlet(name = "pesquisar", urlPatterns = {"/pesquisar"})
-public class PesquisarProdutoServlet extends HttpServlet {
+@WebServlet(name = "filtrar", urlPatterns = {"/filtrar"})
+public class FiltroServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,10 +45,6 @@ public class PesquisarProdutoServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
-        ProdutoDAO dao = new ProdutoDAO();
-
-        request.setAttribute("listaProd", dao.listar());
-        request.getRequestDispatcher("/produtos.jsp").forward(request, response);
 
     }
 
@@ -64,41 +60,58 @@ public class PesquisarProdutoServlet extends HttpServlet {
 
         try {
             String acao = request.getParameter("acao");
+            String categoria = request.getParameter("category");
+            String numeroPagina = request.getParameter("numeroPagina");
+            int numPagina = 0;
+
             if (acao.equals("pesquisarProduto")) {
                 String nome = request.getParameter("nomeProduto");
                 if (nome != null) {
                     produtos = dao.pesquisarProduto(nome);
                     request.setAttribute("listaProd", produtos);
-                    request.setAttribute("qtdProdutos", produtos.size());
-                    request.setAttribute("totalProdutos", dao.quantidadeProdutos());
-                    request.getRequestDispatcher("/produtos.jsp").forward(request, response);
-
                 } else if (nome == null) {
                     request.setAttribute("listaProd", dao.listar());
-                    request.getRequestDispatcher("/produtos.jsp").forward(request, response);
-
                 }
 
             } else if (acao.equals(null) || acao == null) {
                 request.setAttribute("listaProd", dao.listar());
-                request.getRequestDispatcher("/produtos.jsp").forward(request, response);
-
             } else if (acao.equals("categoria")) {
-                String categoria = request.getParameter("category");
-                String numeroPagina = request.getParameter("numeroPagina");
 
                 produtos = dao.filtrarPorCategoria(categoria, numeroPagina);
-                request.setAttribute("listaProd", produtos);
-                request.getRequestDispatcher("/produtos.jsp").forward(request, response);
+                if (produtos.isEmpty()) {
+                    numeroPagina = "" + (Integer.parseInt(numeroPagina) - 1);
+                    numPagina = Integer.parseInt(numeroPagina);
 
+                }
+                request.setAttribute("listaProd", produtos);
+                request.setAttribute("numeroPagina", (numeroPagina != null ? numeroPagina : 1));
+                request.setAttribute("category", categoria);
+
+                int quantidadePagina = dao.quantidadePaginaCategoria(categoria);
+                request.setAttribute("quantidadePagina", quantidadePagina);
+                if (quantidadePagina > 0) {
+                    if (numPagina <= quantidadePagina && (numPagina - 1) > 0) {
+                        request.setAttribute("laquo", "<li><a href=produtos?numeroPagina=" + (numPagina - 1) + ">&laquo</a></li>");
+                    }
+                }
+                if (quantidadePagina > numPagina) {
+
+                    request.setAttribute("raquo", "<li><a href=produtos?numeroPagina=" + (numPagina + 1) + ">&raquo</a></li>");
+                }
+
+                request.setAttribute("listaProd", produtos);
+                request.setAttribute("qtdProdutos", produtos.size());
+                request.setAttribute("totalProdutos", dao.quantidadeProdutosCategoria(categoria));
             }
 
         } catch (ClassNotFoundException | SQLException e) {
             e.getMessage();
         } catch (Exception ex) {
-            Logger.getLogger(PesquisarProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FiltroServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        //Comando que ira chamar a JSP passada no parametro
+        request.getRequestDispatcher("/produtos.jsp").forward(request, response);
         //Comando que ira chamar a JSP passada no parametro
     }
 

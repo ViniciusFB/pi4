@@ -77,8 +77,6 @@ public class ProdutoServlet extends HttpServlet {
 
                 request.setAttribute("raquo", "<li><a href=produtos?numeroPagina=" + (numPagina + 1) + ">&raquo</a></li>");
             }
-            System.out.println("Quantidade de Páginas = " + quantidadePagina);
-            System.out.println("Página Atual = " + numPagina);
 //            System.out.println("Qtde Produtos na página: " + produtos.size());
             request.setAttribute("qtdProdutos", produtos.size());
             request.setAttribute("totalProdutos", dao.quantidadeProdutos());
@@ -117,7 +115,6 @@ public class ProdutoServlet extends HttpServlet {
             request.setAttribute("listaProd", produtos);
             request.setAttribute("numeroPagina", (numeroPagina != null ? numeroPagina : 1));
             request.setAttribute("category", categoria);
-            System.out.println("CATEGORIA: " + categoria);
 
             int quantidadePagina = dao.quantidadePaginaCategoria(categoria);
             request.setAttribute("quantidadePagina", quantidadePagina);
@@ -130,9 +127,6 @@ public class ProdutoServlet extends HttpServlet {
 
                 request.setAttribute("raquo", "<li><a href=produtos?numeroPagina=" + (numPagina + 1) + ">&raquo</a></li>");
             }
-            System.out.println("Quantidade de Páginas = " + quantidadePagina);
-            System.out.println("Página Atual = " + numeroPagina);
-
 //            produtos = dao.filtrarPorCategoria(categoria, numeroPagina);
             request.setAttribute("listaProd", produtos);
 //            System.out.println("Qtde Produtos na página: " + produtos.size());

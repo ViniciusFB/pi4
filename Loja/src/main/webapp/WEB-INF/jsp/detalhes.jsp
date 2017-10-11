@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="panel-body">
-                                <form action="produtos" id="filtroCategoria" method="post">
+                                <form action="filtrar" id="filtroCategoria" method="post">
                                     <ul class="nav nav-pills nav-stacked category-menu">
                                         <li>
                                             <a>Acessórios</a>
@@ -212,7 +212,7 @@
                     
                     $.ajax({
                         type: "POST",
-                        url: "produtos",
+                        url: "filtrar",
                         data: $(form).serialize()
                     });
                 });
