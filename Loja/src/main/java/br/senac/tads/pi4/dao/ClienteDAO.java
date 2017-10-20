@@ -32,7 +32,7 @@ public class ClienteDAO extends ConexaoBD {
 //        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, estadoCliente, cidadeCliente, enderecoCliente, "
 //                + "generoCliente "
 //                + "FROM Cliente WHERE idCliente = ?";
-        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, senha, cep, rua, numero, complemento, bairro, cidade, uf "
+        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, senha "
                 + "FROM Cliente WHERE idCliente = ?";
 
         try {
@@ -50,14 +50,7 @@ public class ClienteDAO extends ConexaoBD {
                 String email = resultados.getString("emailCliente");
                 String telefone = resultados.getString("telefoneCliente");
                 String senha = resultados.getString("senha");
-                String cep = resultados.getString("cep");
-                String rua = resultados.getString("rua");
-                int numero = resultados.getInt("numero");
-                String complemento = resultados.getString("complemento");
-                String bairro = resultados.getString("bairro");
-                String cidade = resultados.getString("cidade");
-                String uf = resultados.getString("uf");
-                c = new Cliente(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha, cep, rua, numero, complemento, bairro, cidade, uf);
+                c = new Cliente(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha);
                 break;
             }
         } catch (SQLException ex) {

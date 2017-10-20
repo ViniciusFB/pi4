@@ -91,10 +91,7 @@
                                         <a href="pedidos"><i class="fa fa-list"></i> Meus pedidos</a>
                                     </li>
                                     <li>
-                                        <a href="customer-wishlist.html"><i class="fa fa-heart"></i> Lista de Desejos</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                        <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
                                     </li>
                                 </ul>
                             </div>
