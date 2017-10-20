@@ -85,16 +85,13 @@
 
                                 <ul class="nav nav-pills nav-stacked">
                                     <li class="active">
-                                        <a href="customer-orders.html"><i class="fa fa-list"></i> Meus pedidos</a>
+                                        <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
                                     <li>
-                                        <a href="customer-wishlist.html"><i class="fa fa-heart"></i> Lista de Desejos</a>
+                                        <a href="pedidos"><i class="fa fa-list"></i> Meus pedidos</a>
                                     </li>
                                     <li>
-                                        <a href="customer-account.html"><i class="fa fa-user"></i> Minha conta</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                        <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
                                     </li>
                                 </ul>
                             </div>

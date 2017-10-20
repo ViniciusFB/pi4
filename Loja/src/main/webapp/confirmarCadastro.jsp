@@ -95,7 +95,7 @@
             </div>
             <!--<br> &nbsp;-->
 
-            <%--<jsp:include page="WEB-INF/jsp/rodape.jsp"/>--%>
+            <jsp:include page="WEB-INF/jsp/rodape.jsp"/>
 
         </div>
         <!-- /#all -->

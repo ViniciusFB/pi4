@@ -101,7 +101,7 @@
                                                         <a class="btnRem" href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
                                                     </td>
                                                     <td>R$ ${item.valor}</td> <input type="hidden" name="valorUni" id="valorUni" class="valorUni" value="${item.valor}">
-
+                                            <input type="hidden" name="idProduto" value="${item.id}">
                                             <td class="vTotal" id="vTotal">R$ ${item.total}</td> <input type="hidden" name="valorTotal" id="valorTotal">
                                             <td><a href="carrinho?acao=removeProduto&idProduto=${item.id}" id="refreshA" onclick="return onclickFunction(${item.id})"><i class="fa fa-trash-o"></i></a>
                                                 <!--<td><button type="submit" name="acao" id="addEnd" value="removeProduto"><i class="fa fa-trash-o"></i></button>-->
@@ -122,6 +122,7 @@
 
                             </div>
                             <!-- /.table-responsive -->
+                            <input type="hidden" name="valorFinal" value="${valorTotal}">
 
                             <div class="box-footer">
                                 <div class="pull-left">
@@ -134,7 +135,11 @@
                                         <c:when test="${not empty sessionScope.usuario}">
                                             <!--                                            <a href="checkout1.html" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
                                                                                         </a>-->
-                                            <form method="post" action="checkout1">
+                                            <!--                                            <form method="post" action="checkout1">
+                                                                                            <button type="submit" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
+                                                                                            </button>
+                                                                                        </form>-->
+                                            <form method="post" action="finalizarCompra">
                                                 <button type="submit" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
                                                 </button>
                                             </form>

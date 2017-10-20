@@ -23,7 +23,6 @@
  */
 package br.senac.tads.pi4.loja;
 
-import br.senac.tads.pi4.dao.ProdutoDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,11 +44,8 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         sessao.invalidate();
-        ProdutoDAO daoProd = new ProdutoDAO();
-        request.setAttribute("listaProdutos", daoProd.listar());
+//        request.getRequestDispatcher("/index.jsp").forward(request, response);
 
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
-
-//        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        response.sendRedirect(request.getContextPath() + "/index");
     }
 }

@@ -9,7 +9,8 @@
  */
 
 create table Produto(
-    idProduto INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    idProduto INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) 
+CONSTRAINT PK_Produto PRIMARY KEY,
     nomeProduto VARCHAR(50) NOT NULL,
     codigo INT NOT NULL UNIQUE,
     categorias VARCHAR(50) NOT NULL,
@@ -83,25 +84,30 @@ CREATE TABLE Filial (
 );
 
  create table Venda (
-    idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+--     protocolo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     idCliente INT NOT NULL,
-    idProduto INT NOT NULL,
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
-    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
-    FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
--- create table VendaProd(
---    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
---    idVenda INTEGER NOT NULL,
---    idProduto INTEGER NOT NULL,
---    nomeProduto VARCHAR(50) NOT NULL,
---    quantidade INT NOT NULL,
---    PRIMARY KEY (idVendaProd),
---    FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
---    FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
--- );
+create table VendaProd (
+   idVendaProd INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+   idVenda INT NOT NULL,
+   idProduto INT NOT NULL,
+   idCliente INT NOT NULL,
+   dataProd DATE NOT NULL,
+   nomeProduto VARCHAR(50) NOT NULL,
+   codigo INT NOT NULL,
+   quantidade INT NOT NULL,
+   valorUni DOUBLE NOT NULL,
+   valorTotal DOUBLE NOT NULL,
+   imagem varchar(2083),
+   FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
+   FOREIGN KEY (idProduto) REFERENCES Produto(idProduto),
+   FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
 
 -- 
 -- create table Relatorio(
