@@ -35,17 +35,11 @@ create table Cliente (
     cpfCliente VARCHAR(14) NOT NULL UNIQUE,
     emailCliente VARCHAR(50) NOT NULL,
     telefoneCliente VARCHAR(15) NOT NULL,
-    senha VARCHAR(50) NOT NULL, -- O tamanho da VARCHAR deve ser no mínimo 32 caracteres (Hashes md5 possuem 32 caracteres). Menos do que isso, provavelmente vai dar erro.
-    cep VARCHAR(9) NOT NULL,
-    rua VARCHAR(50) NOT NULL,
-    numero INT NOT NULL,
-    complemento VARCHAR(50),
-    bairro VARCHAR(50),
-    cidade VARCHAR(50),
-    uf VARCHAR(2)
+    senha VARCHAR(50) NOT NULL -- O tamanho da VARCHAR deve ser no mínimo 32 caracteres (Hashes md5 possuem 32 caracteres). Menos do que isso, provavelmente vai dar erro.
 );
 
 CREATE TABLE Endereco (
+    idEndereco INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
    idCliente INT NOT NULL,
    cep VARCHAR(9) NOT NULL,
    rua VARCHAR(50) NOT NULL,
@@ -54,6 +48,31 @@ CREATE TABLE Endereco (
    bairro VARCHAR(50),
    cidade VARCHAR(50),
    uf VARCHAR(2),
+   FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
+ create table Venda (
+    idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+--     protocolo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    idCliente INT NOT NULL,
+    dataVenda TIMESTAMP NOT NULL,
+    valorFinal DOUBLE NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
+
+create table VendaProd (
+   idVendaProd INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+   idVenda INT NOT NULL,
+   idProduto INT NOT NULL,
+   idCliente INT NOT NULL,
+   dataProd DATE NOT NULL,
+   nomeProduto VARCHAR(50) NOT NULL,
+   codigo INT NOT NULL,
+   quantidade INT NOT NULL,
+   valorUni DOUBLE NOT NULL,
+   valorTotal DOUBLE NOT NULL,
+   imagem varchar(2083),
+   FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
+   FOREIGN KEY (idProduto) REFERENCES Produto(idProduto),
    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
@@ -81,32 +100,6 @@ CREATE TABLE Filial (
     estadoFilial VARCHAR(50) NOT NULL
 --   , idProduto INT NOT NULL
 --   ,  FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
-);
-
- create table Venda (
-    idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
---     protocolo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    idCliente INT NOT NULL,
-    dataVenda TIMESTAMP NOT NULL,
-    valorFinal DOUBLE NOT NULL,
-    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
-);
-
-create table VendaProd (
-   idVendaProd INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
-   idVenda INT NOT NULL,
-   idProduto INT NOT NULL,
-   idCliente INT NOT NULL,
-   dataProd DATE NOT NULL,
-   nomeProduto VARCHAR(50) NOT NULL,
-   codigo INT NOT NULL,
-   quantidade INT NOT NULL,
-   valorUni DOUBLE NOT NULL,
-   valorTotal DOUBLE NOT NULL,
-   imagem varchar(2083),
-   FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
-   FOREIGN KEY (idProduto) REFERENCES Produto(idProduto),
-   FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
 -- 
@@ -181,6 +174,3 @@ INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO
 	VALUES ('Colar PS Beake', 114488, 'Colar', 2, '', 15.0, 'http://static1.netshoes.net/Produtos/colar-polo-state-beake-003/38/K03-0084-138/K03-0084-138_detalhe1.jpg?resize=254:*');
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM) 
 	VALUES ('Cinto Oakley', 228844, 'Cinto', 2, '', 40.0, 'http://static1.netshoes.net/Produtos/cinto-oakley-halifax-belt/06/D63-0959-006/D63-0959-006_detalhe1.jpg?resize=254:*');
-
-
-

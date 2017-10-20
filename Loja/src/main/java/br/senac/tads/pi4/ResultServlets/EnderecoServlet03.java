@@ -37,6 +37,7 @@ public class EnderecoServlet03 extends HttpServlet {
 
             if (!endSelecionado.equals("")) {
                 Endereco endereco = new Endereco((Endereco) dao.obterEnderecoIdCliCep(id, endSelecionado));
+                sessao.setAttribute("idEndereco", endereco.getId());
                 request.setAttribute("cep", endereco.getCep());
                 request.setAttribute("rua", endereco.getRua());
                 request.setAttribute("bairro", endereco.getBairro());
@@ -59,7 +60,38 @@ public class EnderecoServlet03 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession sessao = request.getSession();
+        request.setAttribute("usuario", sessao.getAttribute("usuario"));
+        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+
+//        int id = Integer.parseInt(request.getParameter("idCliente"));
+        int id = (int) sessao.getAttribute("idCliente");
+        EnderecoDAO dao = new EnderecoDAO();
+        String endSelecionado = request.getParameter("endSelecionado");
+
+//        String cep = request.getParameter("cep");
+        try {
+
+            if (!endSelecionado.equals("")) {
+                Endereco endereco = new Endereco((Endereco) dao.obterEnderecoIdCliCep(id, endSelecionado));
+//                request.setAttribute("idEndereco", endereco.getId());
+                sessao.setAttribute("idEndereco", endereco.getId());
+                request.setAttribute("cep", endereco.getCep());
+                request.setAttribute("rua", endereco.getRua());
+                request.setAttribute("bairro", endereco.getBairro());
+                request.setAttribute("cidade", endereco.getCidade());
+                request.setAttribute("uf", endereco.getUf());
+                request.setAttribute("numero", endereco.getNumeroCasa());
+                request.setAttribute("complemento", endereco.getComplemento());
+
+            }
+            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+            request.getRequestDispatcher("/WEB-INF/jsp/checkout.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            System.out.println("Erro ao encontrar endereço " + e);
+            request.getRequestDispatcher("/404.jsp").forward(request, response);
+        }
 
     }
 

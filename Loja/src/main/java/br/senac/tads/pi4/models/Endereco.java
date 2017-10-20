@@ -11,6 +11,7 @@ package br.senac.tads.pi4.models;
  */
 public class Endereco {
 
+    private int id;
     private int idCliente;
     private String cep;
     private String rua;
@@ -25,6 +26,7 @@ public class Endereco {
     }
 
     public Endereco(Endereco endereco) {
+        this.id = endereco.id;
         this.idCliente = endereco.idCliente;
         this.cep = endereco.cep;
         this.rua = endereco.rua;
@@ -45,8 +47,9 @@ public class Endereco {
         this.cidade = cidade;
         this.uf = uf;
     }
-
-    public Endereco(String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
+    public Endereco(int id, int idCliente, String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
+        this.id = id;
+        this.idCliente = idCliente;
         this.cep = cep;
         this.rua = rua;
         this.numeroCasa = numeroCasa;
@@ -56,6 +59,15 @@ public class Endereco {
         this.uf = uf;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public int getIdCliente() {
         return idCliente;
     }

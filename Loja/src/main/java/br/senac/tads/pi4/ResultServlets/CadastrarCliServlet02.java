@@ -6,7 +6,9 @@
 package br.senac.tads.pi4.ResultServlets;
 
 import br.senac.tads.pi4.dao.ClienteDAO;
+import br.senac.tads.pi4.dao.EnderecoDAO;
 import br.senac.tads.pi4.models.Cliente;
+import br.senac.tads.pi4.models.Endereco;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -85,18 +87,15 @@ public class CadastrarCliServlet02 extends HttpServlet {
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
-            Cliente novo = new Cliente(nome, sobrenome, dataNasc, cpf, email, telefone, md5(senha), cep, rua, numero,
-            complemento, bairro, cidade, uf);
-
-//            Endereco end = new Endereco(cep, rua, numero, complemento, bairro, municipio, uf); fail
-
+            Cliente novo = new Cliente(nome, sobrenome, dataNasc, cpf, email, telefone, md5(senha));
             ClienteDAO dao = new ClienteDAO();
-//            EnderecoDAO daoEnd = new EnderecoDAO(); fail
             dao.incluirComTransacao(novo);
-//            daoEnd.incluirComTransacao(end); fail
-
-//            request.setAttribute("cliente", "Cliente: ''" + nome + "'' foi cadastrado com sucesso!!");
-//            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastrarCliente.jsp").forward(request, response);
+            int idCliente = novo.getId();
+            
+            EnderecoDAO endDAO = new EnderecoDAO();
+            Endereco end = new Endereco(idCliente, cep, rua, numero, complemento, bairro, cidade, uf);
+            endDAO.incluirComTransacao(end);
+            
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastroRealizado.jsp").forward(request, response);
         } else {
             // Tem erro no preenchimento dos dados.

@@ -146,9 +146,8 @@ public class ClienteDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Cliente "
-                + "(nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, senha, cep, "
-                + "rua, numero, complemento, bairro, cidade, uf) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "(nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, senha) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = obterConexao();
@@ -162,13 +161,6 @@ public class ClienteDAO extends ConexaoBD {
             stmt.setString(5, cliente.getEmail());
             stmt.setString(6, cliente.getTelefone());
             stmt.setString(7, cliente.getSenha());
-            stmt.setString(8, cliente.getCep());
-            stmt.setString(9, cliente.getRua());
-            stmt.setInt(10, cliente.getNumeroCasa());
-            stmt.setString(11, cliente.getComplemento());
-            stmt.setString(12, cliente.getBairro());
-            stmt.setString(13, cliente.getCidade());
-            stmt.setString(14, cliente.getUf());
 
             stmt.executeUpdate();
 

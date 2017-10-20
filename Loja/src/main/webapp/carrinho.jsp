@@ -139,7 +139,7 @@
                                                                                             <button type="submit" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
                                                                                             </button>
                                                                                         </form>-->
-                                            <form method="post" action="finalizarCompra">
+                                            <form method="post" action="checkout1">
                                                 <button type="submit" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
                                                 </button>
                                             </form>

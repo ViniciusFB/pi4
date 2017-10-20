@@ -6,6 +6,7 @@
 package br.senac.tads.pi4.ResultServlets;
 
 import br.senac.tads.pi4.dao.EnderecoDAO;
+import br.senac.tads.pi4.models.CarrinhoDeCompra;
 import br.senac.tads.pi4.models.Endereco;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ProjetoX
  */
-@WebServlet(name = "checkout1", urlPatterns = {"/checkout1"})
-public class checkoutServlet01 extends HttpServlet {
+@WebServlet(name = "checkout4", urlPatterns = {"/checkout4"})
+public class checkoutServlet04 extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,35 +36,12 @@ public class checkoutServlet01 extends HttpServlet {
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
         request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
 
-        String idEnd = "" + sessao.getAttribute("idEndereco");
-        if (idEnd == null) {
-            request.getRequestDispatcher("WEB-INF/jsp/checkout.jsp").forward(request, response);
+        CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
+//        sessao.setAttribute("carrinho", carrinho);
 
-        } else {
+        sessao.setAttribute("valorTotal", carrinho.calculaTotal());
 
-            Endereco endereco = null;
-            EnderecoDAO dao = new EnderecoDAO();
-            int idEndereco = Integer.parseInt(idEnd);
-
-            try {
-                endereco = new Endereco((Endereco) dao.obterEndereco(idEndereco));
-            } catch (NullPointerException | NumberFormatException e) {
-                System.out.println(e);
-
-            }
-//            request.setAttribute("idEndereco", endereco.getId());
-            request.setAttribute("cep", endereco.getCep());
-            request.setAttribute("rua", endereco.getRua());
-            request.setAttribute("bairro", endereco.getBairro());
-            request.setAttribute("cidade", endereco.getCidade());
-            request.setAttribute("uf", endereco.getUf());
-            request.setAttribute("numero", endereco.getNumeroCasa());
-            request.setAttribute("complemento", endereco.getComplemento());
-            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
-            request.getRequestDispatcher("WEB-INF/jsp/checkout.jsp").forward(request, response);
-
-        }
-
+        request.getRequestDispatcher("WEB-INF/jsp/checkout4.jsp").forward(request, response);
     }
 
     /**
@@ -80,22 +58,18 @@ public class checkoutServlet01 extends HttpServlet {
         boolean erro = false;
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
+        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
 
-//        Cliente cliente = null;
-//        ClienteDAO dao = new ClienteDAO();
+//        Endereco endereco = null;
 //        try {
-//            cliente = new Cliente((Cliente) dao.obterCliente(Integer.parseInt(request.getParameter("idCliente"))));
+//            endereco = new Endereco((Endereco) dao.obterCliente(Integer.parseInt(request.getParameter("idCliente"))));
 //        } catch (NullPointerException | NumberFormatException e) {
 //            System.out.println(e);
 //            request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
 //
 //        }
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
-        EnderecoDAO dao = new EnderecoDAO();
-
-        request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout4.jsp").forward(request, response);
 
     }
 

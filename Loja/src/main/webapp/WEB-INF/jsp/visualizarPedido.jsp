@@ -142,12 +142,14 @@
 
                                     <tfoot>
                                         <tr>
-                                            <th colspan="5">Total</th>
+                                            <th colspan="4">Total</th>
                                             <th colspan="2">R$ ${valorCompra}</th>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
+                            <a href="pedidos" class="btn btn-default"><i class="fa fa-chevron-left"></i> Meus pedidos</a>
+
                         </div>
                     </div>
 

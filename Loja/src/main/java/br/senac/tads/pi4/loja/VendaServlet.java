@@ -13,8 +13,6 @@ import br.senac.tads.pi4.models.Venda;
 import br.senac.tads.pi4.models.VendaProd;
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

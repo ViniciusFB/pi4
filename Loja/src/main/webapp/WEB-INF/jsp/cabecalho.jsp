@@ -18,6 +18,7 @@ _________________________________________________________ -->
                                 <span style="margin-right: 5px; color: white;" class="glyphicon glyphicon-user"></span>
                                 <c:out value="${sessionScope.usuario}"/><b style="margin-left: 5px" class="caret"></b></a>
                             <input type="hidden" name="idCliente" value="${idCliente}">
+                            <input type="hidden" name="idEndereco" value="${idEndereco}">
                             <ul class="dropdown-menu">
                                 <li>
                                     <div  class="yamm-content">

@@ -82,13 +82,13 @@
                                 <p class="lead">Ainda não é um cliente registrado?</p>
 
                                 <hr>
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <input type="radio" name="tipo" id="tipo" value="fisica"><label for="tipo"> &nbsp;
                                         Pessoa Física</label>
                                     &nbsp;
                                     &nbsp;
                                     <input type="radio" name="tipo" id="tipo" value="juridica"><label for="tipo">&nbsp; Pessoa Jurídica</label>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <label for="name">Nome</label>
                                     <input type="text" class="form-control" name="nome" id="name" placeholder="Digite seu primeiro nome">
@@ -102,6 +102,7 @@
                                     <input type="date" class="form-control" name="dataNasc" id="dataNasc">
                                 </div>
                                 <div class="form-group">
+                                    <!--<label for="name">CPF/CNPJ</label>-->
                                     <label for="name">CPF/CNPJ</label>
                                     <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)" placeholder="000.000.000-00">
                                 </div>

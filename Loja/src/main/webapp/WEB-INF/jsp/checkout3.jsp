@@ -70,115 +70,85 @@
                     <div class="col-md-9" id="checkout">
 
                         <div class="box">
-                            <form method="post" class="preencherDados" id="preencherDados" action="checkout01">
+                            <form method="post" action="checkout4">
                                 <h1>Checkout</h1>
                                 <ul class="nav nav-pills nav-justified">
-                                    <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Endereço</a>
+                                    <li><a href="checkout1"><i class="fa fa-map-marker"></i><br>Endereço</a>
                                     </li>
-                                    <li class="disabled"><a href="#"><i class="fa fa-truck"></i><br>Forma de entrega</a>
+                                    <li><a href="checkout2"><i class="fa fa-truck"></i><br>Forma de entrega</a>
                                     </li>
-                                    <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Forma de pagamento</a>
+                                    <li class="active"><a href="#"><i class="fa fa-money"></i><br>Forma de pagamento</a>
                                     </li>
                                     <li class="disabled"><a href="#"><i class="fa fa-eye"></i><br>Revisão do pedido</a>
                                     </li>
                                 </ul>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input type="hidden" class="idCliente" id="idCliente" name="idCliente" value="${idCliente}">
-                                            <c:forEach items="${listaEnderecos}" var="endereco">
-                                                <input type="radio" name="endSelecionado" id="endereco" class="enderecos" value="${endereco.cep}" onClick="this.form.submit()"><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span></a>
-                                            </c:forEach>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-
-
-
-                            <form action="checkout2" method="post">
                                 <div class="content">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="cep">CEP: </label>
-                                                <input type="text" class="form-control" maxlength="9" name="cep" id="cep" value="${cep}" onkeypress="javascript: mascara(this, cep_mask)">
+                                            <div class="box payment-method">
+
+                                                <h4>Paypal</h4>
+
+                                                <p>We like it all.</p>
+
+                                                <div class="box-footer text-center">
+
+                                                    <input type="radio" name="payment" value="payment1">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="rua">Rua: </label>
-                                                <input type="text" readonly class="form-control" value="${rua}" name="rua" id="rua">
+                                            <div class="box payment-method">
+
+                                                <h4>Payment gateway</h4>
+
+                                                <p>VISA and Mastercard only.</p>
+
+                                                <div class="box-footer text-center">
+
+                                                    <input type="radio" name="payment" value="payment2">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="box payment-method">
+
+                                                <h4>Cash on delivery</h4>
+
+                                                <p>You pay when you get it.</p>
+
+                                                <div class="box-footer text-center">
+
+                                                    <input type="radio" name="payment" value="payment3">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- /.row -->
 
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="bairro">Bairro: </label>
-                                                <input type="text" readonly class="form-control" value="${bairro}" name="bairro" id="bairro">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="cidade">Cidade: </label>
-                                                <input type="text" readonly class="form-control" name="cidade" value="${cidade}" id="cidade">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-
-                                    <div class="row">
-                                        <div class="col-sm-6 col-md-3">
-                                            <div class="form-group">
-                                                <label for="uf">UF: </label>
-                                                <input type="text" readonly class="form-control" maxlength="2" value="${uf}" name="uf" id="uf">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-3">
-                                            <div class="form-group">
-                                                <label for="numero">Número: </label>
-                                                <input type="text" class="form-control" value="${numero}" name="numero" id="numero">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-3">
-                                            <div class="form-group">
-                                                <label for="complemento">Complemento: </label>
-                                                <input type="text" class="form-control" value="${complemento}" name="complemento" id="complemento">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-3"> &nbsp;
-                                            <div class="form-group">
-                                                <br><input type="checkbox" class="form-check-input" name="novoEndereco" checked value="checked"><span style="color: #069;"> Salvar esse endereço</span>
-                                                <!--<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar endereço</button>-->
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <!-- /.row -->
                                 </div>
+                                <!-- /.content -->
 
                                 <div class="box-footer">
                                     <div class="pull-left">
-                                        <a href="basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Continuar comprando</a>
+                                        <a href="checkout2" class="btn btn-default"><i class="fa fa-chevron-left"></i>Voltar para formas de entrega</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="submit" class="btn btn-primary">Seguir para formas de entrega<i class="fa fa-chevron-right"></i>
+                                        <button type="submit" class="btn btn-primary">Seguir para revisão do pedido<i class="fa fa-chevron-right"></i>
                                         </button>
                                     </div>
                                 </div>
                             </form>
-                            <!--</form>-->
                         </div>
                         <!-- /.box -->
 
 
+
                     </div>
                     <!-- /.col-md-9 -->
+
 
                     <div class="col-md-3">
                         <div class="box" id="order-summary">
