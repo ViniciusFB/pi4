@@ -66,8 +66,9 @@ public class VendaServlet extends HttpServlet {
             int idCliente = (int) sessao.getAttribute("idCliente");
             Date dataVenda = new Date(System.currentTimeMillis());
             double valorTotal = carrinho.calculaTotal();
+            long protocolo = (long) (1000000000 + Math.random() * 999999999);
 
-            Venda venda = new Venda(idCliente, dataVenda, valorTotal);
+            Venda venda = new Venda(idCliente, protocolo, dataVenda, valorTotal);
             vDao.incluirComTransacao(venda);
             int idVenda = venda.getId();
             System.out.println("idVenda = " + idVenda);

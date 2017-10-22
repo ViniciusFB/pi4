@@ -45,6 +45,8 @@ public class ProdutoServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        String url = request.getRequestURL().toString();
+        sessao.setAttribute("urlPage", url);
 
         try {
             ProdutoDAO dao = new ProdutoDAO();

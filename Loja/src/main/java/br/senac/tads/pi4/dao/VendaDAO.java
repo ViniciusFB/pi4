@@ -29,8 +29,8 @@ public class VendaDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(idCliente, dataVenda, valorFinal) "
-                + "VALUES (?, ?, ?)";
+                + "(idCliente, protocolo, dataVenda, valorFinal) "
+                + "VALUES (?, ?, ?, ?)";
 
         try {
             conn = obterConexao();
@@ -38,8 +38,9 @@ public class VendaDAO extends ConexaoBD {
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, venda.getIdCliente());
-            stmt.setDate(2, venda.getDataVenda());
-            stmt.setDouble(3, venda.getValorFinal());
+            stmt.setString(2, "" + venda.getProtocolo());
+            stmt.setDate(3, venda.getDataVenda());
+            stmt.setDouble(4, venda.getValorFinal());
             stmt.executeUpdate();
 
             // ResultSet para recuperar o ID gerado automaticamente no banco de dados.
@@ -106,13 +107,14 @@ public class VendaDAO extends ConexaoBD {
 
             while (resultados.next()) {
                 int id = resultados.getInt("idVenda");
+                long protocolo = Long.parseLong(resultados.getString("protocolo"));
                 int idCli = resultados.getInt("idCliente");
                 Date dataVenda = resultados.getDate("dataVenda");
                 SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy");
                 String dataFormatada = formatBR.format(dataVenda);
                 double valor = resultados.getDouble("valorFinal");
 
-                Venda venda = new Venda(id, idCli, dataFormatada, valor);
+                Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor);
 
                 lista.add(venda);
             }
@@ -159,13 +161,14 @@ public class VendaDAO extends ConexaoBD {
 
             while (resultados.next()) {
                 int id = resultados.getInt("idVenda");
+                long protocolo = Long.parseLong(resultados.getString("protocolo"));
                 int idCli = resultados.getInt("idCliente");
                 Date dataVenda = resultados.getDate("dataVenda");
                 SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy");
                 String dataFormatada = formatBR.format(dataVenda);
                 double valor = resultados.getDouble("valorFinal");
 
-                Venda venda = new Venda(id, idCli, dataFormatada, valor);
+                Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor);
 
                 lista.add(venda);
             }

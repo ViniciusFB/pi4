@@ -88,7 +88,10 @@
                                         <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
                                     <li>
-                                        <a href="pedidos"><i class="fa fa-list"></i> Meus pedidos</a>
+                                        <a href="EnderecoServlet01"><i class="fa fa-home"></i> Meus enderecos</a>
+                                    </li>
+                                    <li>
+                                        <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
                                     </li>
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
@@ -108,38 +111,38 @@
                             <p class="lead">${mensagem}</p>
                             <p class="text-muted">Aqui você pode mudar seus dados pessoas ou senha.</p>
 
-                            <h3>Mudar a senha</h3>
+                            <!--<h3>Mudar a senha</h3>-->
 
-                            <form>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="senhaAntiga">Senha atual</label>
-                                            <input type="password" class="form-control" id="password_old">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="senhaNova">Nova senha</label>
-                                            <input type="password" class="form-control" name="senha" id="password">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="confirmarSenha">Confirme a nova senha</label>
-                                            <input type="password" class="form-control" name="confirmarSenha" id="confirmarSenha">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-
-                                <div class="col-sm-12 text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar nova senha</button>
-                                </div>
-                            </form>
+                            <!--                            <form>
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="senhaAntiga">Senha atual</label>
+                                                                        <input type="password" class="form-control" id="password_old">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="senhaNova">Nova senha</label>
+                                                                        <input type="password" class="form-control" name="senha" id="password">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="confirmarSenha">Confirme a nova senha</label>
+                                                                        <input type="password" class="form-control" name="confirmarSenha" id="confirmarSenha">
+                            
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                             /.row 
+                            
+                                                            <div class="col-sm-12 text-center">
+                                                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar nova senha</button>
+                                                            </div>
+                                                        </form>-->
 
                             <hr>
 
@@ -199,99 +202,36 @@
                                     </div>
                                 </div>
                             </form>
-
-                            <h3>Endereço</h3>
-                            <form action="EnderecoServlet01" method="post">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="cep">CEP: </label>
-                                            <input type="text" class="form-control" maxlength="9" name="cep" id="cep" onkeypress="javascript: mascara(this, cep_mask)">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="rua">Rua: </label>
-                                            <input type="text" readonly class="form-control" name="rua" id="rua">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="bairro">Bairro: </label>
-                                            <input type="text" readonly class="form-control" name="bairro" id="bairro">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="cidade">Cidade: </label>
-                                            <input type="text" readonly class="form-control" name="cidade" id="cidade">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- /.row -->
-
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="uf">UF: </label>
-                                            <input type="text" readonly class="form-control" maxlength="2" name="uf" id="uf">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="numero">Número: </label>
-                                            <input type="text" class="form-control" name="numero" id="numero">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <label for="complemento">Complemento: </label>
-                                            <input type="text" class="form-control" name="complemento" id="complemento">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="form-group">
-                                            <br><button class="btnHref" id="addEnd"> Clique para adicionar um <span style="font-weight: bold">NOVO</span> endereço</button> 
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </form>
                         </div>
                     </div>
-
                 </div>
-                <!-- /.container -->
+
             </div>
-            <!-- /#content -->
-
-            <!-- *** COPYRIGHT ***
-     _________________________________________________________ -->
-            <jsp:include page="rodape.jsp" />
-
+            <!-- /.container -->
         </div>
-        <!-- /#all -->
+        <!-- /#content -->
 
-        <!-- *** SCRIPTS TO INCLUDE ***
-     _________________________________________________________ -->
-        <script src="js/jquery-1.11.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/waypoints.min.js"></script>
-        <script src="js/modernizr.js"></script>
-        <script src="js/bootstrap-hover-dropdown.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/front.js"></script>
+        <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+        <jsp:include page="rodape.jsp" />
 
-        <script src="js/bootstrapValidator.js" type="text/javascript"></script>
-        <script src="js/validar.js" type="text/javascript"></script>
+    </div>
+    <!-- /#all -->
+
+    <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/bootstrap-hover-dropdown.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/front.js"></script>
+
+    <script src="js/bootstrapValidator.js" type="text/javascript"></script>
+    <script src="js/validar.js" type="text/javascript"></script>
 
 
-    </body>
+</body>
 </html>

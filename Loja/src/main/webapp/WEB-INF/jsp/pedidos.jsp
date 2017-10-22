@@ -148,8 +148,11 @@
                                     <li>
                                         <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
+                                    <li>
+                                        <a href="EnderecoServlet01"><i class="fa fa-home"></i> Meus enderecos</a>
+                                    </li>
                                     <li class="active">
-                                        <a href="pedidos"><i class="fa fa-list"></i> Meus pedidos</a>
+                                        <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
                                     </li>
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
@@ -191,7 +194,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Pedido</th>
+                                            <th>Protocolo</th>
                                             <th>Data</th>
                                             <th>Total</th>
                                             <!--<th>Status</th>-->
@@ -203,7 +206,7 @@
                                         <tbody>
                                             <tr>
                                                 <!--<input type="hidden" name="idVenda" value="${compra.id}">-->
-                                                <th>${compra.id}</th>
+                                                <th>${compra.protocolo}</th>
                                                 <td>${compra.dataFormatada}</td>
                                                 <td>R$ ${compra.valorFinal}</td>
                                                 <!--<td><span class="label label-info">Being prepared</span>-->

@@ -27,11 +27,15 @@ import br.senac.tads.pi4.dao.ClienteDAO;
 import br.senac.tads.pi4.dao.ProdutoDAO;
 import br.senac.tads.pi4.models.Cliente;
 import br.senac.tads.pi4.models.Produto;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -74,11 +78,19 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
+        String urlPage = (String) sessao.getAttribute("urlPage");
         Cliente cliente = null;
         ClienteDAO dao = new ClienteDAO();
         String usuario = request.getParameter("usuario");
-        Produto produto = null;
-        ProdutoDAO daoProd = new ProdutoDAO();
+
+        URI uri;
+        String pagina = "";
+        try {
+            uri = new URI(urlPage);
+            pagina = new File(uri.getPath()).getName();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try {
             cliente = new Cliente((Cliente) dao.obterClientePorEmail(usuario));
@@ -96,6 +108,12 @@ public class LoginServlet extends HttpServlet {
         }
         String senhaDigitada = this.md5(request.getParameter("senha")); // Criptografa a senha que foi digitada no campo
 
+        //        Redirect para a página de produtos
+        
+        if(pagina.equals("produtos")) {
+            pagina = "produtos?numeroPagina=1";
+        }
+//        Fim redirect produtos
         if (senha == null) {
             this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
         } else if (senha.equals(senhaDigitada)) { // Compara a senha no banco com a senha digitada no campo (ambas criptografadas)
@@ -106,7 +124,9 @@ public class LoginServlet extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.getServletContext().getRequestDispatcher("/index").forward(request, response);
+//            this.getServletContext().getRequestDispatcher("/" + pagina).forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/" + pagina);
+
         } else {
             this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
         }

@@ -10,7 +10,7 @@ _________________________________________________________ -->
         <div class="col-md-6" data-animate="fadeInDown">
             <ul class="menu">
 
-
+                <input type="hidden" name="urlPage" value="${urlPage}">
                 <c:choose>
                     <c:when test="${not empty sessionScope.usuario}">
                         <li class="dropdown yamm-fw">
@@ -56,7 +56,7 @@ _________________________________________________________ -->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="Login">Login do Cliente</h4>
+                <h4 class="modal-title" id="Login">Login</h4>
             </div>
             <div class="modal-body">
                 <form action="login" method="post">
@@ -102,7 +102,7 @@ _________________________________________________________ -->
                     <span class="sr-only">Toggle Navegação</span>
                     <i class="fa fa-align-justify"></i>
                 </button>
-                <a class="btn btn-default navbar-toggle" id="btnCarrinho" href="carrinho.jsp">
+                <a class="btn btn-default navbar-toggle" id="btnCarrinho" href="carrinho">
                     <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">${numItens} itens no carrinho</span>
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
@@ -130,7 +130,7 @@ _________________________________________________________ -->
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="carrinho.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">${numItens} itens no carrinho</span></a>
+                <a href="carrinho" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">${numItens} itens no carrinho</span></a>
             </div>
             <!--/.nav-collapse -->
             <form class="navbar-form" role="search" action="pesquisar" method="post" id="formBusca">

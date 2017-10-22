@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 public class Venda {
 
     private int id;
+    private Long protocolo;
     private int idCliente;
     private Date dataVenda;
     private String dataFormatada;
@@ -24,21 +25,25 @@ public class Venda {
 
     }
 
-    public Venda(int id, int idCliente, Date dataVenda, Double valorFinal) {
+    public Venda(int id, long protocolo, int idCliente, Date dataVenda, Double valorFinal) {
         this.id = id;
+        this.protocolo = protocolo;
         this.idCliente = idCliente;
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
     }
-    public Venda(int id, int idCliente, String dataFormatada, Double valorFinal) {
+
+    public Venda(int id, long protocolo, int idCliente, String dataFormatada, Double valorFinal) {
         this.id = id;
+        this.protocolo = protocolo;
         this.idCliente = idCliente;
         this.dataFormatada = dataFormatada;
         this.valorFinal = valorFinal;
     }
 
-    public Venda(int idCliente, Date dataVenda, Double valorFinal) {
+    public Venda(int idCliente, long protocolo, Date dataVenda, Double valorFinal) {
         this.idCliente = idCliente;
+        this.protocolo = protocolo;
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
     }
@@ -83,4 +88,13 @@ public class Venda {
         return dataFormatada;
     }
 
+    public Long getProtocolo() {
+        return protocolo;
+    }
+
+    public void setProtocolo(Long protocolo) {
+        this.protocolo = protocolo;
+    }
+
+    
 }

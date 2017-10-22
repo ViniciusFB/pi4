@@ -82,11 +82,14 @@
                             <div class="panel-body">
 
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li class="active">
+                                    <li>
                                         <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
+                                    <li class="active">
+                                        <a href="EnderecoServlet01"><i class="fa fa-home"></i> Meus enderecos</a>
+                                    </li>
                                     <li>
-                                        <a href="pedidos"><i class="fa fa-list"></i> Meus pedidos</a>
+                                        <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
                                     </li>
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
@@ -114,8 +117,8 @@
                                         <!--<label for="enderecos">Endereço X</label>-->
                                         <!--<input type="radio">-->
                                         <c:forEach items="${listaEnderecos}" var="endereco">
-                                            <input type="radio" name="endereco" id="endereco" value="${endereco.rua}"><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span>
-                                        </c:forEach>
+                                            <li><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span></li>
+                                            </c:forEach>
                                     </div>
                                 </div>
                             </div>
