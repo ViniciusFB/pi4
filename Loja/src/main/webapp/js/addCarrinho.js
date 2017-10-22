@@ -14,7 +14,8 @@ $(document).ready(function () {
             data: $(".addCarrinho").serialize(),
             success: function ()
             {
-                mensagem.fadeIn(500).fadeOut(8000);
+//                mensagem.fadeIn(500).fadeOut(8000);
+            $("#myModal").modal({backdrop: true});
             }
         });
 

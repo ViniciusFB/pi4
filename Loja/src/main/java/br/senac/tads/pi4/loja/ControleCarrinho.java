@@ -150,11 +150,116 @@ public class ControleCarrinho extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        HttpSession sessao = request.getSession();
+        String acao = request.getParameter("acao");
 
-        String url = request.getRequestURL().toString();
-        sessao.setAttribute("urlPage", url);
-        request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
+        if (acao == null) {
+            HttpSession sessao = request.getSession();
+
+            String url = request.getRequestURL().toString();
+            sessao.setAttribute("urlPage", url);
+            request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
+        } else if (acao.equals("removeProduto")) {
+            HttpSession sessao = request.getSession();
+            //recupera um carrinho de produtos da sessão
+            CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
+            //recupera o id do produto
+            int idProduto = Integer.parseInt(request.getParameter("idProduto"));
+            ItemDeCompra itemRemove = new ItemDeCompra();
+            Produto prodRemove = new Produto();
+            prodRemove.setId(idProduto);
+            itemRemove.setProduto(prodRemove);
+            carrinho.removerItem(itemRemove);
+            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
+            request.setAttribute("numItens", carrinho.getItens().size());
+//carrega a pagina do carrinho de compras
+            request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
+        } else if (acao.equals("delUnidade")) {
+            //recupera o id do produto que deve ser add no carrinho
+            int idProduto = Integer.parseInt(request.getParameter("idProduto"));
+            //flag para controle de inserção de novos produtos no carrinho
+            boolean existe = false;
+            //recupera a sessão pertencente ao request
+            HttpSession sessao = request.getSession();
+            //recupera um carrinho de produtos da sessão
+            //se não exite um carrinho na sessão o valor será igual a null
+            CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
+            request.setAttribute("usuario", sessao.getAttribute("usuario"));
+            request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+
+            //verifica se o produto existe no carrinho
+            if (carrinho.getItens() != null) {
+                for (ItemDeCompra item : carrinho.getItens()) {
+                    if (item.getProduto().getId() == idProduto) {
+                        //incrementa a quantidade
+                        item.setQuantidade(item.getQuantidade() - 1);
+                        existe = true;
+                    }
+                }
+            }
+            //se não existe o item ou produto, cria um novo
+            if (existe == false) {
+                System.out.println("Não existe nenhum produto no carrinho");
+            }
+            //carrega a pagina do carrinho de compras
+            request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
+        }//fim delUnidade
+        else if (acao.equals("addProduto")) {
+            //recupera o id do produto que deve ser add no carrinho
+            int idProduto = Integer.parseInt(request.getParameter("idProduto"));
+            //flag para controle de inserção de novos produtos no carrinho
+            boolean existe = false;
+            //recupera a sessão pertencente ao request
+            HttpSession sessao = request.getSession();
+            //recupera um carrinho de produtos da sessão
+            //se não exite um carrinho na sessão o valor será igual a null
+            CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
+            request.setAttribute("usuario", sessao.getAttribute("usuario"));
+            request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+
+            //verifica se já exista um carrinho na sessao
+            if (carrinho == null) {
+                //cria um carrinho
+
+                carrinho = new CarrinhoDeCompra();
+                sessao.setAttribute("carrinho", carrinho);
+            }
+            //verifica se o produto existe no carrinho
+            if (carrinho.getItens() != null) {
+                for (ItemDeCompra item : carrinho.getItens()) {
+                    if (item.getProduto().getId() == idProduto) {
+                        //incrementa a quantidade
+                        Produto produto = new Produto();
+                        item.setQuantidadeEstoque(produto.getQuantidade());
+                        int qtdeEstoque = item.getQuantidadeEstoque();
+                        int qtd = item.getQuantidade();
+
+                        if (qtd != qtdeEstoque) {
+
+                            item.setQuantidade(qtd + 1);
+
+                        } else {
+//                                sessao.setAttribute("mensagem", "O estoque para esse produto está esgotado");
+                        }
+                        existe = true;
+                    }
+                }
+            }
+            //se não existe o item ou produto, cria um novo
+            if (existe == false) {
+                //encontra o produto no banco
+                Produto produto = new ProdutoDAO().consultarPorId(idProduto);
+                //cria um novo item
+                ItemDeCompra novoItem = new ItemDeCompra();
+                novoItem.setProduto(produto);
+                novoItem.setQuantidade(1);
+                //adiciona novo item
+                carrinho.addNovoItem(novoItem);
+            }
+            //carrega a pagina do carrinho de compras
+            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
+            sessao.setAttribute("numItens", carrinho.getItens().size());
+            request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
+        }//fim addProduto
 
     }
 

@@ -63,7 +63,9 @@
                     <p class="buttons">
                         <a href="detalhes?c=${produto.codigo}" class="btn btn-default">Ver detalhes</a>
                         <input type="hidden" name="idProduto" class="idProd" value="${produto.id}">
-                        <a type="#" value="${produto.id}" class="addCarrinho btn btn-primary"><i class="fa fa-shopping-cart"><span style="display: none">${produto.nome}</span></i> Adicionar ao carrinho</a> 
+                        <!--<a type="" value="${produto.id}" data-toggle="modal" data-target="#myModal" class="addCarrinho btn btn-primary"><i class="fa fa-shopping-cart"><span style="display: none">${produto.nome}</span></i> Adicionar ao carrinho</a>--> 
+                        <a type="#" value="${produto.id}" class="addCarrinho btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-cart"><span style="display: none">${produto.nome}</span></i> Adicionar ao carrinho</a> 
+
                     </p>
                 </div>
                 <!-- /.text -->
@@ -74,8 +76,21 @@
     </c:forEach>
 </div>
 
-<div class="alert alert-success" id="mensagem" style="display: none; position: fixed; bottom: 0; left: 0; z-index: 2; color: black; background-color: rgba(98, 203, 55, 0.6);">
-
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Aviso</h4>
+            </div>
+            <div class="modal-body">
+                <p id="mensagem"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="pages">
 
@@ -93,5 +108,6 @@
     </ul>
     <!--Fim lista de paginas-->
 </div>
+
 
 <script src="js/addCarrinho.js"></script>
