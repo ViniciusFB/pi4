@@ -164,7 +164,7 @@
 
                                 <div class="box-footer">
                                     <div class="pull-left">
-                                        <a href="basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Continuar comprando</a>
+                                        <a href="carrinho" class="btn btn-default"><i class="fa fa-chevron-left"></i>Voltar</a>
                                     </div>
                                     <div class="pull-right">
                                         <button type="submit" class="btn btn-primary">Seguir para formas de entrega<i class="fa fa-chevron-right"></i>
@@ -191,7 +191,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Subtotal do pedido </td>
-                                            <th>R$ 446.00</th>
+                                            <th>R$${valorTotal}</th>
                                         </tr>
                                         <tr>
                                             <td>Desconto total</td>
@@ -200,7 +200,7 @@
 
                                         <tr class="total">
                                             <td>Total</td>
-                                            <th>R$456.00</th>
+                                            <th>R$${valorTotal}</th>
                                         </tr>
                                     </tbody>
                                 </table>

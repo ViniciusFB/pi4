@@ -160,7 +160,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Subtotal do pedido </td>
-                                            <th>R$ 446.00</th>
+                                            <th>R$${valorTotal}</th>
                                         </tr>
                                         <tr>
                                             <td>Desconto total</td>
@@ -169,7 +169,7 @@
 
                                         <tr class="total">
                                             <td>Total</td>
-                                            <th>R$456.00</th>
+                                            <th>R$${valorTotal}</th>
                                         </tr>
                                     </tbody>
                                 </table>

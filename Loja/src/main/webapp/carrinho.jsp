@@ -67,6 +67,7 @@
                             <!--<form method="post" action="confirmarCadastro.jsp">-->
                             <input type="hidden" class="form-control" name="idCliente" value="${idCliente}">
                             <h1>Carrinho de Compras</h1>
+                            <span style="color: red"> ${erro} </span>
                             <p class="text-muted">Você possui atualmente <span>${numItens}</span> itens no seu carrrinho</p>
                             <div class="table-responsive">
                                 <form method="post" action="carrinho">
@@ -126,7 +127,7 @@
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <a href="produtos" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continuar comprando</a>
+                                    <a href="produtos?numeroPagina=1" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continuar comprando</a>
                                 </div>
                                 <div class="pull-right">
                                     <!--<button class="btn btn-default"><i class="fa fa-refresh"></i> Atualizar carrinho</button>-->

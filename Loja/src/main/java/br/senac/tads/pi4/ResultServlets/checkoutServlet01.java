@@ -6,8 +6,15 @@
 package br.senac.tads.pi4.ResultServlets;
 
 import br.senac.tads.pi4.dao.EnderecoDAO;
+import br.senac.tads.pi4.loja.LoginServlet;
+import br.senac.tads.pi4.models.CarrinhoDeCompra;
 import br.senac.tads.pi4.models.Endereco;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +40,7 @@ public class checkoutServlet01 extends HttpServlet {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
-        request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
+        CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
 
         String idEnd = "" + sessao.getAttribute("idEndereco");
         if (idEnd == null) {
@@ -60,6 +67,7 @@ public class checkoutServlet01 extends HttpServlet {
             request.setAttribute("numero", endereco.getNumeroCasa());
             request.setAttribute("complemento", endereco.getComplemento());
             request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+//            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
             request.getRequestDispatcher("WEB-INF/jsp/checkout.jsp").forward(request, response);
 
         }
@@ -80,22 +88,42 @@ public class checkoutServlet01 extends HttpServlet {
         boolean erro = false;
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-
-//        Cliente cliente = null;
-//        ClienteDAO dao = new ClienteDAO();
-//        try {
-//            cliente = new Cliente((Cliente) dao.obterCliente(Integer.parseInt(request.getParameter("idCliente"))));
-//        } catch (NullPointerException | NumberFormatException e) {
-//            System.out.println(e);
-//            request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
-//
-//        }
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
-        EnderecoDAO dao = new EnderecoDAO();
+        request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
+        request.setAttribute("urlPage", sessao.getAttribute("urlPage"));
 
-        request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+        CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
+        URI uri;
+        String pagina = "";
+        String urlPage = (String) sessao.getAttribute("urlPage");
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout.jsp").forward(request, response);
+        try {
+            uri = new URI(urlPage);
+            pagina = new File(uri.getPath()).getName();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (pagina.equals("carrinho")) {
+            pagina = "carrinho";
+        }
+        if (carrinho == null) {
+            request.setAttribute("erro", "Você não pode finalizar uma compra sem itens no carrinho");
+            this.getServletContext().getRequestDispatcher("/carrinho.jsp").forward(request, response);
+        }
+        if (!carrinho.getItens().isEmpty()) {
+
+            request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+            EnderecoDAO dao = new EnderecoDAO();
+//            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
+
+            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout.jsp").forward(request, response);
+        } else {
+            request.setAttribute("erro", "Você não pode finalizar uma compra sem itens no carrinho");
+            this.getServletContext().getRequestDispatcher("/carrinho.jsp").forward(request, response);
+        }
 
     }
 
