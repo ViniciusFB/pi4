@@ -87,8 +87,11 @@
                                     <li>
                                         <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
+                                    <li>
+                                        <a href="EnderecoServlet01"><i class="fa fa-home"></i> Meus enderecos</a>
+                                    </li>
                                     <li class="active">
-                                        <a href="pedidos"><i class="fa fa-list"></i> Meus pedidos</a>
+                                        <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
                                     </li>
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>

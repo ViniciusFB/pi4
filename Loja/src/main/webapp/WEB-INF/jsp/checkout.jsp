@@ -54,16 +54,18 @@
 
         <jsp:include page="cabecalho.jsp" />
 
-        <div id="all">
+        <div id="all" class="all">
 
-            <div id="content">
+            <div id="content" class="contentc">
+                <input type="hidden" class="etapa" value="1">
                 <div class="container">
 
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a>
+                            <li><a href="index">Início</a>
                             </li>
-                            <li>Checkout - Endereço</li>
+                            <li><a href="carrinho">Carrinho</a></li>
+                            <li>Checkout</li>
                         </ul>
                     </div>
 
@@ -87,7 +89,7 @@
                                         <div class="form-group">
                                             <input type="hidden" class="idCliente" id="idCliente" name="idCliente" value="${idCliente}">
                                             <c:forEach items="${listaEnderecos}" var="endereco">
-                                                <input type="radio" name="endSelecionado" id="endereco" class="enderecos" value="${endereco.cep}" onClick="this.form.submit()"><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span></a>
+                                                <input type="radio" name="endSelecionado" id="endereco" class="enderecos" value="${endereco.cep}"><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span></a>
                                             </c:forEach>
 
                                         </div>
@@ -167,7 +169,7 @@
                                         <a href="carrinho" class="btn btn-default"><i class="fa fa-chevron-left"></i>Voltar</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="submit" class="btn btn-primary">Seguir para formas de entrega<i class="fa fa-chevron-right"></i>
+                                        <button type="submit" class="btn btnProx btn-primary">Seguir para formas de entrega<i class="fa fa-chevron-right"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -230,6 +232,27 @@
         <script src="js/bootstrap-hover-dropdown.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
+        <script src="js/checkout.js"></script>
+        <script>
+                                                    $(document).ready(function () {
 
+                                                        $(".enderecos").click(function () {
+//                                                            var cepEnd = $(this).attr("value");
+                                                            var form = $(this).closest("form");
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: "checkout01",
+                                                                data: form.serialize(),
+                                                                success: function (data)
+                                                                {
+                                                                    $("#checkout").html(data);
+                                                                }
+                                                            });
+
+                                                            return false;
+                                                        });
+
+                                                    });
+        </script>
     </body>
 </html>

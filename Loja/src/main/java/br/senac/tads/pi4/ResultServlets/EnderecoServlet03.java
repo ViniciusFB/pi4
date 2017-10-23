@@ -48,7 +48,7 @@ public class EnderecoServlet03 extends HttpServlet {
 
             }
             request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
-            request.getRequestDispatcher("/WEB-INF/jsp/checkout.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/checkout1.jsp").forward(request, response);
 
         } catch (Exception e) {
             System.out.println("Erro ao encontrar endereço " + e);
@@ -86,7 +86,7 @@ public class EnderecoServlet03 extends HttpServlet {
 
             }
             request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
-            request.getRequestDispatcher("/WEB-INF/jsp/checkout.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/checkout1.jsp").forward(request, response);
 
         } catch (Exception e) {
             System.out.println("Erro ao encontrar endereço " + e);
