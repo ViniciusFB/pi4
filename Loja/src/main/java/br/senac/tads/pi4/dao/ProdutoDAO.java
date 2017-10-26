@@ -194,6 +194,62 @@ public class ProdutoDAO extends ConexaoBD {
         return lista;
     }
 
+    public List<Produto> listarUltimos(int numero) {
+        Statement stmt = null;
+        Connection conn = null;
+
+        String sql = "SELECT * FROM Produto ORDER BY idProduto DESC FETCH FIRST " + numero + " ROWS ONLY ";
+
+        List<Produto> lista = new ArrayList<>();
+        try {
+            conn = obterConexao();
+            stmt = conn.createStatement();
+
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            while (resultados.next()) {
+                int id = resultados.getInt("idProduto");
+                String nome = resultados.getString("nomeProduto");
+                int codigo = resultados.getInt("codigo");
+                String categorias = resultados.getString("categorias");
+                int quantidade = resultados.getInt("quantidade");
+                String descricao = resultados.getString("descricao");
+                double valor = resultados.getDouble("valorProduto");
+                String imagem = resultados.getString("imagem");
+
+                Produto produto = new Produto(id, nome, codigo, categorias, quantidade, descricao, valor, imagem);
+
+                lista.add(produto);
+            }
+//            System.out.println("ULTIMA = " + resultados.getRow());
+//            stmt.setFetchDirection(resultados.getRow());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return lista;
+    }
+
     public void incluirComTransacao(Produto produto) {
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -769,6 +825,7 @@ public class ProdutoDAO extends ConexaoBD {
         }
         return totalProdutos;
     }
+
     public int quantidadeProdutosCategoria(String categoria) throws Exception {
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -818,5 +875,29 @@ public class ProdutoDAO extends ConexaoBD {
 
         }
         return quantidadePagina;
+    }
+
+    public void updateQuantidade(int id, int qtd, int qtdAtual, String tipoOperacao) throws SQLException {
+        Statement stmt = null;
+        Connection conn = null;
+        String sql;
+        try {
+            int valorAtual = 0;//Variavel local somente para este metodo
+            conn = obterConexao();
+            if (tipoOperacao.equals("Venda")) {//Se for venda é subtraído a quantidade em estoque
+                valorAtual = qtdAtual - qtd;
+            } else {
+                valorAtual = qtdAtual + qtd;//Se for entrada é incrementada a quantidade em estoque
+            }
+            sql = "UPDATE Produto SET quantidade = " + valorAtual + " WHERE idProduto = " + id;
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Erro ao alterar quantidade do produto: " + e);
+        } finally {
+//            Conexao.fechaConexao(this.conn);
+            conn.close();
+        }
     }
 }

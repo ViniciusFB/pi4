@@ -6,7 +6,6 @@
 package br.senac.tads.pi4.dao;
 
 import br.senac.tads.pi4.models.Endereco;
-import br.senac.tads.pi4.models.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -153,7 +152,8 @@ public class EnderecoDAO extends ConexaoBD {
 
             //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
             while (resultados.next()) {
-                int id = resultados.getInt("idCliente");
+                int id = resultados.getInt("idEndereco");
+                int idCliente = resultados.getInt("idCliente");
                 String cep = resultados.getString("cep");
                 String rua = resultados.getString("rua");
                 int numero = resultados.getInt("numero");
@@ -161,7 +161,7 @@ public class EnderecoDAO extends ConexaoBD {
                 String bairro = resultados.getString("bairro");
                 String cidade = resultados.getString("cidade");
                 String uf = resultados.getString("uf");
-                Endereco endereco = new Endereco(id, cep, rua, numero, complemento, bairro, cidade, uf);
+                Endereco endereco = new Endereco(id, idCliente, cep, rua, numero, complemento, bairro, cidade, uf);
 
                 lista.add(endereco);
             }
@@ -244,6 +244,45 @@ public class EnderecoDAO extends ConexaoBD {
             }
         }
         return e;
+
+    }
+
+    public void excluirEndereco(int id) {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "DELETE FROM Endereco WHERE (idEndereco=?)";
+
+        try {
+
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, id);
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
 
     }
 

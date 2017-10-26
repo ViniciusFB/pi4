@@ -82,7 +82,8 @@ public class EnderecoServlet02 extends HttpServlet {
 
             dao.adicionarEndereco(novo);
 
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/usuario.jsp").forward(request, response);
+//            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/usuario.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/EnderecoServlet01");
         } else {
             // Tem erro no preenchimento dos dados.
             // Reapresenta o formulário para o usuário indicando os erros.

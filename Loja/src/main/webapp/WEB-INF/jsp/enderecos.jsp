@@ -117,8 +117,8 @@
                                         <!--<label for="enderecos">Endereço X</label>-->
                                         <!--<input type="radio">-->
                                         <c:forEach items="${listaEnderecos}" var="endereco">
-                                            <li><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span></li>
-                                            </c:forEach>
+                                            <li><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}<span>&nbsp;<a href="EnderecoServlet01?acao=removerEndereco&idEndereco=${endereco.id}"><i style="color: red" class="glyphicon glyphicon-remove"></i></a></span></span></li>
+                                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>

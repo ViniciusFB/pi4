@@ -5,6 +5,7 @@
  */
 package br.senac.tads.pi4.loja;
 
+import br.senac.tads.pi4.dao.ProdutoDAO;
 import br.senac.tads.pi4.dao.VendaDAO;
 import br.senac.tads.pi4.dao.VendaProdDAO;
 import br.senac.tads.pi4.models.CarrinhoDeCompra;
@@ -13,6 +14,9 @@ import br.senac.tads.pi4.models.Venda;
 import br.senac.tads.pi4.models.VendaProd;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,6 +61,7 @@ public class VendaServlet extends HttpServlet {
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
         VendaProdDAO dao = new VendaProdDAO();
         VendaDAO vDao = new VendaDAO();
+        ProdutoDAO pDao = new ProdutoDAO();
 
         CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
 
@@ -79,12 +84,19 @@ public class VendaServlet extends HttpServlet {
                 String nomeProduto = item.getNome();
                 int codigo = item.getCodigo();
                 int quantidade = item.getQuantidade();
+                int qtdeEstoque = item.getQuantidadeEstoque();
                 double valor = item.getValor();
                 double total = item.getTotal();
                 String imagem = item.getImagem();
                 VendaProd vp = new VendaProd(idVenda, idProduto, idCliente, dataProd, nomeProduto,
                         codigo, quantidade, valor, total, imagem);
                 dao.incluirComTransacao(vp);
+                try {
+                    pDao.updateQuantidade(idProduto, quantidade, qtdeEstoque, "Venda");
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
 
 //        sessao.invalidate();
