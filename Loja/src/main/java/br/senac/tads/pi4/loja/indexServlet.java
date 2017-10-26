@@ -41,20 +41,15 @@ public class indexServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
-
+        // Salvar a página
+        String url = request.getRequestURL().toString();
+        sessao.setAttribute("urlPage", url);
         Produto produto = null;
-            ProdutoDAO dao = new ProdutoDAO();
+        ProdutoDAO dao = new ProdutoDAO();
 
         request.setAttribute("listaProdutos", dao.listar());
         //Comando que ira chamar a JSP passada no parametro
         request.getRequestDispatcher("/index.jsp").forward(request, response);
-//        try {
-//            cliente = new Cliente((Cliente) dao.obterCliente(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
-//        } catch (NullPointerException | NumberFormatException e) {
-//            System.out.println(e);
-//            request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
-//
-//        }
 
     }
 
