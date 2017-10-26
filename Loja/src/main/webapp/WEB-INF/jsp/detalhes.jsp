@@ -135,9 +135,15 @@
                                         <p class="price">R$ ${valorProduto}</p>
 
                                         <p class="text-center buttons">
-                                            <!--<a href="ControleCarrinho?acao=addProduto&idProduto=${produto.id}&idCliente=${idCliente}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a>--> 
                                             <input type="hidden" name="idProduto" value="${idProduto}">
-                                            <button type="submit" name="acao" value="addProduto" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button> 
+                                            <c:choose>
+                                                <c:when test="${quantidade <= 0}">
+                                                    <a type="#" class="btn btn-danger"><i class="fa fa-exclamation-triangle"><span style="display: none">${produto.nome}</span></i> Produto Esgotado</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <button type="submit" name="acao" value="addProduto" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button> 
+                                                </c:otherwise>
+                                            </c:choose>
                                         </p>
                                     </form>
 
@@ -209,7 +215,7 @@
                     var categoria = $(this).text();
                     $("#category").attr("value", categoria);
                     form.submit();
-                    
+
                     $.ajax({
                         type: "POST",
                         url: "filtrar",

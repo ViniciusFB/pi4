@@ -63,8 +63,16 @@
                     <p class="buttons">
                         <a href="detalhes?c=${produto.codigo}" class="btn btn-default">Ver detalhes</a>
                         <input type="hidden" name="idProduto" class="idProd" value="${produto.id}">
-                        <!--<a type="" value="${produto.id}" data-toggle="modal" data-target="#myModal" class="addCarrinho btn btn-primary"><i class="fa fa-shopping-cart"><span style="display: none">${produto.nome}</span></i> Adicionar ao carrinho</a>--> 
-                        <a type="#" value="${produto.id}" class="addCarrinho btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-cart"><span style="display: none">${produto.nome}</span></i> Adicionar ao carrinho</a> 
+                        <c:choose>
+                            <c:when test="${produto.quantidade <= 0}">
+                                <a type="#" value="${produto.id}" class="btn btn-danger"><i class="fa fa-exclamation-triangle"><span style="display: none">${produto.nome}</span></i> Produto Esgotado</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                <a type="#" value="${produto.id}" class="addCarrinho btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-cart"><span style="display: none">${produto.nome}</span></i> Adicionar ao carrinho</a>
+
+                            </c:otherwise>
+
+                        </c:choose>
 
                     </p>
                 </div>

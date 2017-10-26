@@ -58,6 +58,7 @@ public class DetalheServlet extends HttpServlet {
         request.setAttribute("c", produto.getCodigo());
         request.setAttribute("nomeProduto", produto.getNome());
         request.setAttribute("valorProduto", produto.getValor());
+        request.setAttribute("quantidade", produto.getQuantidade());
         request.setAttribute("descricao", produto.getDescricao());
         request.setAttribute("imagem", produto.getImagem());
         request.setAttribute("categorias", produto.getCategorias());
