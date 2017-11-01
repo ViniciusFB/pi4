@@ -47,7 +47,7 @@ public class indexServlet extends HttpServlet {
         Produto produto = null;
         ProdutoDAO dao = new ProdutoDAO();
 
-        request.setAttribute("listaProdutos", dao.listar());
+        request.setAttribute("listaProdutos", dao.listarUltimos(10));
         //Comando que ira chamar a JSP passada no parametro
         request.getRequestDispatcher("/index.jsp").forward(request, response);
 
