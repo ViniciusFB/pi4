@@ -34,6 +34,8 @@ public class checkoutServlet03 extends HttpServlet {
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
         request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
+        request.setAttribute("frete", sessao.getAttribute("valorFrete"));
+
         request.getRequestDispatcher("WEB-INF/jsp/checkout3.jsp").forward(request, response);
     }
 
@@ -53,9 +55,9 @@ public class checkoutServlet03 extends HttpServlet {
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
         request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
+        request.setAttribute("frete", sessao.getAttribute("valorFrete"));
 
 //        Endereco endereco = null;
-
 //        try {
 //            endereco = new Endereco((Endereco) dao.obterCliente(Integer.parseInt(request.getParameter("idCliente"))));
 //        } catch (NullPointerException | NumberFormatException e) {

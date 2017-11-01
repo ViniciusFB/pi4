@@ -25,6 +25,22 @@ $(document).ready(function () {
 
         return false;
     });
+    $("#calcFrete").click(function () {
+        var form = $(this).closest("form");
+        $.ajax({
+            type: "POST",
+            url: "Frete",
+            data: form.serialize(),
+            success: function (data)
+            {
+                $(".contentc").html(data);
+                $("h5").css("display", "");
+
+            }
+        });
+
+        return false;
+    });
     $(".btnVoltar").click(function () {
         var etapa = $(".etapa").attr("value");
         var form = $(this).closest("form");

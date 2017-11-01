@@ -67,6 +67,7 @@ public class checkoutServlet01 extends HttpServlet {
             request.setAttribute("numero", endereco.getNumeroCasa());
             request.setAttribute("complemento", endereco.getComplemento());
             request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+            sessao.setAttribute("cepDestino", endereco.getCep());
 //            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
             request.getRequestDispatcher("WEB-INF/jsp/checkout.jsp").forward(request, response);
 

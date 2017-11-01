@@ -38,6 +38,7 @@ public class EnderecoServlet03 extends HttpServlet {
             if (!endSelecionado.equals("")) {
                 Endereco endereco = new Endereco((Endereco) dao.obterEnderecoIdCliCep(id, endSelecionado));
                 sessao.setAttribute("idEndereco", endereco.getId());
+                sessao.setAttribute("cepDestino", endereco.getCep());
                 request.setAttribute("cep", endereco.getCep());
                 request.setAttribute("rua", endereco.getRua());
                 request.setAttribute("bairro", endereco.getBairro());

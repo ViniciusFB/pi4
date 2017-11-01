@@ -69,6 +69,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!--<input type="text" name="frete" value="${frete}">-->
                     </div>
                     <!-- /.row -->
 

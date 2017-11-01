@@ -14,44 +14,45 @@
     <div class="col-md-9" id="checkout">
 
         <div class="box">
-            <form method="post" action="checkout3">
-                <h1>Checkout</h1>
-                <ul class="nav nav-pills nav-justified">
-                    <li><a href="checkout1"><i class="fa fa-map-marker"></i><br>Endereço</a>
-                    </li>
-                    <li class="active"><a href="#"><i class="fa fa-truck"></i><br>Forma de entrega</a>
-                    </li>
-                    <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Forma de pagamento</a>
-                    </li>
-                    <li class="disabled"><a href="#"><i class="fa fa-eye"></i><br>Revisão do pedido</a>
-                    </li>
-                </ul>
+            <!--<form method="post" action="checkout3">-->
+            <h1>Checkout</h1>
+            <ul class="nav nav-pills nav-justified">
+                <li><a href="checkout1"><i class="fa fa-map-marker"></i><br>Endereço</a>
+                </li>
+                <li class="active"><a href="#"><i class="fa fa-truck"></i><br>Forma de entrega</a>
+                </li>
+                <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Forma de pagamento</a>
+                </li>
+                <li class="disabled"><a href="#"><i class="fa fa-eye"></i><br>Revisão do pedido</a>
+                </li>
+            </ul>
 
+            <form action="Frete" method="post">
                 <div class="content">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="box shipping-method">
 
-                                <h4>USPS Next Day</h4>
+                                <h4>SEDEX</h4>
 
                                 <p>Get it right on next day - fastest option possible.</p>
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" name="delivery" value="delivery1">
+                                    <input type="radio" name="entrega" value="1">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="box shipping-method">
 
-                                <h4>USPS Next Day</h4>
+                                <h4>SEDEX 10</h4>
 
                                 <p>Get it right on next day - fastest option possible.</p>
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" name="delivery" value="delivery2">
+                                    <input type="radio" name="entrega" value="2">
                                 </div>
                             </div>
                         </div>
@@ -59,32 +60,39 @@
                         <div class="col-sm-6">
                             <div class="box shipping-method">
 
-                                <h4>USPS Next Day</h4>
+                                <h4>PAC</h4>
 
                                 <p>Get it right on next day - fastest option possible.</p>
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" name="delivery" value="delivery3">
+                                    <input type="radio" name="entrega" value="3">
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="cepOrigem" value="04696000">
+                        <input type="hidden" name="cepDestino" value="${cepDestino}">
+                        <h5 style="display: none;"> Valor: R$${valorFrete} </h5>
+                        <h5 style="display: none;"> Prazo: ${diasUteis} dias uteis</h5>
+                        <input id="calcFrete" style="margin-left: 20px" type="submit" value="Calcular Frete">
                     </div>
                     <!-- /.row -->
 
                 </div>
-                <!-- /.content -->
-
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <a href="checkout1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Voltar para endereços</a>
-                    </div>
-                    <div class="pull-right">
-                        <button type="submit" class="btn btnProx btn-primary">Seguir para formas de pagamento<i class="fa fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
             </form>
+
+            <!-- /.content -->
+
+            <div class="box-footer">
+                <div class="pull-left">
+                    <a href="checkout1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Voltar para endereços</a>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" class="btn btnProx btn-primary">Seguir para formas de pagamento<i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <!--</form>-->
         </div>
         <!-- /.box -->
 

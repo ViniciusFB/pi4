@@ -70,7 +70,9 @@ public class VendaServlet extends HttpServlet {
         } else {
             int idCliente = (int) sessao.getAttribute("idCliente");
             Date dataVenda = new Date(System.currentTimeMillis());
-            double valorTotal = carrinho.calculaTotal();
+            double valorCompra = carrinho.calculaTotal();
+            double valorFrete = Double.parseDouble(sessao.getAttribute("frete").toString());
+            double valorTotal = valorCompra + valorFrete;
             long protocolo = (long) (1000000000 + Math.random() * 999999999);
 
             Venda venda = new Venda(idCliente, protocolo, dataVenda, valorTotal);
@@ -103,6 +105,9 @@ public class VendaServlet extends HttpServlet {
             sessao.removeAttribute("carrinho");
             sessao.removeAttribute("valorTotal");
             sessao.removeAttribute("numItens");
+            sessao.removeAttribute("idEndereco");
+            sessao.removeAttribute("cepDestino");
+            sessao.removeAttribute("Frete");
 
             response.sendRedirect(request.getContextPath() + "/pedidos");
 
