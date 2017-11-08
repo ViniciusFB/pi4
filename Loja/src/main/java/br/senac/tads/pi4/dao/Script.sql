@@ -174,3 +174,11 @@ INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO
 	VALUES ('Colar PS Beake', 114488, 'Colar', 2, '', 15.0, 'http://static1.netshoes.net/Produtos/colar-polo-state-beake-003/38/K03-0084-138/K03-0084-138_detalhe1.jpg?resize=254:*');
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM) 
 	VALUES ('Cinto Oakley', 228844, 'Cinto', 2, '', 40.0, 'http://static1.netshoes.net/Produtos/cinto-oakley-halifax-belt/06/D63-0959-006/D63-0959-006_detalhe1.jpg?resize=254:*');
+
+
+INSERT INTO LOJA.CLIENTE (NOMECLIENTE, SOBRENOMECLIENTE, DATANASC, CPFCLIENTE, EMAILCLIENTE, TELEFONECLIENTE, SENHA) 
+	VALUES ('Vinicius', 'Ferreira', '1998-11-01', '360.000.000-00', 'cliente@gmail.com', '(11) 90000-0000', '4297f44b13955235245b2497399d7a93');
+
+INSERT INTO LOJA.ENDERECO (IDCLIENTE, CEP, RUA, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, UF) 
+	VALUES (1, '04686-000', 'Avenida Nossa Senhora do SabarÃ¡', 121, 'aa', 'Jardim BÃ©lgica', 'SÃ£o Paulo', 'SP');
+
