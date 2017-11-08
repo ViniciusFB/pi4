@@ -34,7 +34,7 @@
 
                                 <h4>Paypal</h4>
 
-                                <p>We like it all.</p>
+                                <!--<p>We like it all.</p>-->
 
                                 <div class="box-footer text-center">
 
@@ -45,9 +45,9 @@
                         <div class="col-sm-6">
                             <div class="box payment-method">
 
-                                <h4>Payment gateway</h4>
+                                <h4>Cartão de Crédito</h4>
 
-                                <p>VISA and Mastercard only.</p>
+                                <!--<p>VISA and Mastercard only.</p>-->
 
                                 <div class="box-footer text-center">
 
@@ -56,12 +56,25 @@
                             </div>
                         </div>
 
+<!--                        <div class="col-sm-6">
+                            <div class="box payment-method">
+
+                                <h4>Pagamento na entrega</h4>
+
+                                <p>You pay when you get it.</p>
+
+                                <div class="box-footer text-center">
+
+                                    <input type="radio" name="payment" value="payment3">
+                                </div>
+                            </div>
+                        </div>-->
                         <div class="col-sm-6">
                             <div class="box payment-method">
 
-                                <h4>Cash on delivery</h4>
+                                <h4>Cartão de Débito</h4>
 
-                                <p>You pay when you get it.</p>
+                                <!--<p>You pay when you get it.</p>-->
 
                                 <div class="box-footer text-center">
 

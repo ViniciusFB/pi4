@@ -142,7 +142,7 @@
 
                                     <tfoot>
                                         <tr>
-                                            <th colspan="4">Total</th>
+                                            <th colspan="4">Total + Frete</th>
                                             <th colspan="2">R$ ${valorCompra}</th>
                                         </tr>
                                     </tfoot>

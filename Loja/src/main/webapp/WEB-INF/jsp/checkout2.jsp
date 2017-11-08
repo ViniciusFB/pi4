@@ -36,7 +36,7 @@
 
                                 <h4>SEDEX</h4>
 
-                                <p>Get it right on next day - fastest option possible.</p>
+                                <!--<p>Get it right on next day - fastest option possible.</p>-->
 
                                 <div class="box-footer text-center">
 
@@ -49,7 +49,7 @@
 
                                 <h4>SEDEX 10</h4>
 
-                                <p>Get it right on next day - fastest option possible.</p>
+                                <!--<p>Get it right on next day - fastest option possible.</p>-->
 
                                 <div class="box-footer text-center">
 
@@ -63,7 +63,7 @@
 
                                 <h4>PAC</h4>
 
-                                <p>Get it right on next day - fastest option possible.</p>
+                                <!--<p>Get it right on next day - fastest option possible.</p>-->
 
                                 <div class="box-footer text-center">
 
@@ -73,10 +73,16 @@
                         </div>
                         <input type="hidden" name="cepOrigem" value="04696000">
                         <input type="hidden" name="cepDestino" value="${cepDestino}">
-                        <div id="inform" style="display: none; padding-left: 420px">
-                            <h5> Valor: R$${valorFrete} </h5>
-                            <h5> Prazo: ${diasUteis} dias uteis</h5>
+                        <div class="col-sm-6" id="inform" style="display: none;">
+                            <div class="box shipping-method">
+
+                                <!--<div id="inform" style="display: none; padding-left: 420px">-->
+                                <h5> Valor: R$${valorFrete} </h5>
+                                <h5> Prazo: ${diasUteis} dias uteis</h5>
+                                <!--</div>-->
+                            </div>
                         </div>
+
                         <!--<input id="calcFrete" style="margin-left: 20px" type="submit" value="Calcular Frete">-->
                     </div>
                     <!-- /.row -->
