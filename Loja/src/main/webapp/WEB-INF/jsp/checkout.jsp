@@ -85,13 +85,15 @@
                                     </li>
                                 </ul>
                                 <div class="row">
+                                    <input type="hidden" class="idCliente" id="idCliente" name="idCliente" value="${idCliente}">
                                     <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input type="hidden" class="idCliente" id="idCliente" name="idCliente" value="${idCliente}">
-                                            <c:forEach items="${listaEnderecos}" var="endereco">
-                                                <input type="radio" name="endSelecionado" id="endereco" class="enderecos" value="${endereco.cep}"><span style="margin-right: 15px;">${endereco.rua}, ${endereco.numeroCasa}</span></a>
-                                            </c:forEach>
-
+                                        <div class="box shipping-method">
+                                            <select name="endSelecionado" class="enderecos form-control">
+                                                <option value="" disabled selected>Meus endereços cadastrados...</option>
+                                                <c:forEach items="${listaEnderecos}" var="endereco">
+                                                    <option value="${endereco.cep}">${endereco.rua}, ${endereco.numeroCasa}</option>
+                                                </c:forEach>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +101,7 @@
 
 
 
-                            <form action="checkout2" method="post">
+                            <form action="checkout2" method="post" id="formCheck2">
                                 <div class="content">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -236,8 +238,8 @@
         <script>
                                                     $(document).ready(function () {
 
-                                                        $(".enderecos").click(function () {
-//                                                            var cepEnd = $(this).attr("value");
+                                                        $(".enderecos").on("change", function () {
+                                                            //                                                            var cepEnd = $(this).attr("value");
                                                             var form = $(this).closest("form");
                                                             $.ajax({
                                                                 type: "POST",
@@ -245,7 +247,7 @@
                                                                 data: form.serialize(),
                                                                 success: function (data)
                                                                 {
-                                                                    $("#checkout").html(data);
+                                                                    $("#formCheck2").html(data);
                                                                 }
                                                             });
 

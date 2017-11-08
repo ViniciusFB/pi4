@@ -25,7 +25,7 @@ $(document).ready(function () {
 
         return false;
     });
-    $("#calcFrete").click(function () {
+    $(".entrega").click(function () {
         var form = $(this).closest("form");
         $.ajax({
             type: "POST",
@@ -34,7 +34,7 @@ $(document).ready(function () {
             success: function (data)
             {
                 $(".contentc").html(data);
-                $("h5").css("display", "");
+                $("#inform").css("display", "");
 
             }
         });

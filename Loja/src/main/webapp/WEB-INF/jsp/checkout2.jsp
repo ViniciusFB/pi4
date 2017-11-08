@@ -1,3 +1,4 @@
+
 <!--<div id="content" class="contentc">-->
 <input type="hidden" class="etapa" value="2">
 <div class="container">
@@ -39,7 +40,7 @@
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" name="entrega" value="1">
+                                    <input type="radio" class="entrega" name="entrega" value="1">
                                 </div>
                             </div>
                         </div>
@@ -52,7 +53,7 @@
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" name="entrega" value="2">
+                                    <input type="radio" class="entrega" name="entrega" value="2">
                                 </div>
                             </div>
                         </div>
@@ -66,15 +67,17 @@
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" name="entrega" value="3">
+                                    <input type="radio" class="entrega" name="entrega" value="3">
                                 </div>
                             </div>
                         </div>
                         <input type="hidden" name="cepOrigem" value="04696000">
                         <input type="hidden" name="cepDestino" value="${cepDestino}">
-                        <h5 style="display: none;"> Valor: R$${valorFrete} </h5>
-                        <h5 style="display: none;"> Prazo: ${diasUteis} dias uteis</h5>
-                        <input id="calcFrete" style="margin-left: 20px" type="submit" value="Calcular Frete">
+                        <div id="inform" style="display: none; padding-left: 420px">
+                            <h5> Valor: R$${valorFrete} </h5>
+                            <h5> Prazo: ${diasUteis} dias uteis</h5>
+                        </div>
+                        <!--<input id="calcFrete" style="margin-left: 20px" type="submit" value="Calcular Frete">-->
                     </div>
                     <!-- /.row -->
 
