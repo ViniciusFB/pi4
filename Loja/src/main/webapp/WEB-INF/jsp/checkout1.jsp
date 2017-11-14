@@ -53,7 +53,7 @@
         </div>
         <div class="col-sm-6 col-md-3"> &nbsp;
             <div class="form-group">
-                <br><input type="checkbox" class="form-check-input" name="novoEndereco" checked value="checked"><span style="color: #069;"> Salvar esse endereço</span>
+                <br><input type="checkbox" class="form-check-input" name="novoEndereco" id="saveEnd" value="checked"><span style="color: #069;"> Salvar esse endereço</span>
                 <!--<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar endereço</button>-->
             </div>
         </div>
@@ -71,15 +71,17 @@
         <button type="submit" class="btn btnProx btn-primary">Seguir para formas de entrega<i class="fa fa-chevron-right"></i>
         </button>
     </div>
+    <div class="pull-left" style="margin-left: 5px">
+        <a id="limpar" class="btn btn-default">Limpar
+        </a>
+    </div>
 </div>
-</form>
-<!--</form>-->
 <script src="js/checkout.js"></script>
+<script src="js/consultaCep.js" type="text/javascript"></script>
 <script>
                     $(document).ready(function () {
 
-                        $(".enderecos").on("change", function () {
-//                                                            var cepEnd = $(this).attr("value");
+                        $(".enderecos").on('change', function () {
                             var form = $(this).closest("form");
                             $.ajax({
                                 type: "POST",
@@ -88,11 +90,22 @@
                                 success: function (data)
                                 {
                                     $("#formCheck2").html(data);
+                                    $("#saveEnd").prop({
+                                        disabled: true
+                                    });
                                 }
                             });
 
                             return false;
                         });
+
+                        $("#limpar").click(function () {
+                            var allInputs = $("#formCheck2 :input[type=text]");
+                            allInputs.val("");
+                            $("#saveEnd").prop({
+                                disabled: false
+                            });
+                        })
 
                     });
 </script>

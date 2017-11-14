@@ -1,4 +1,3 @@
-
 <!--<div id="content" class="contentc">-->
 <input type="hidden" class="etapa" value="2">
 <div class="container">
@@ -28,7 +27,7 @@
                 </li>
             </ul>
 
-            <form action="Frete" method="post">
+            <form action="Frete" id="formFrete" method="post">
                 <div class="content">
                     <div class="row">
                         <div class="col-sm-6">
@@ -40,7 +39,7 @@
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" class="entrega" name="entrega" value="1">
+                                    <input type="radio" id="sedex" class="entrega" name="entrega" value="1">
                                 </div>
                             </div>
                         </div>
@@ -53,7 +52,7 @@
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" class="entrega" name="entrega" value="2">
+                                    <input type="radio" id="sedex10" class="entrega" name="entrega" value="2">
                                 </div>
                             </div>
                         </div>
@@ -67,23 +66,22 @@
 
                                 <div class="box-footer text-center">
 
-                                    <input type="radio" class="entrega" name="entrega" value="3">
+                                    <input type="radio" id="pac" name="entrega" class="entrega" value="3">
                                 </div>
                             </div>
                         </div>
                         <input type="hidden" name="cepOrigem" value="04696000">
                         <input type="hidden" name="cepDestino" value="${cepDestino}">
-                        <div class="col-sm-6" id="inform" style="display: none;">
-                            <div class="box shipping-method">
+                        <div class="col-sm-6">
+                            <div id="inform" class="box shipping-method" style="display: none;">
 
-                                <!--<div id="inform" style="display: none; padding-left: 420px">-->
                                 <h5> Valor: R$${valorFrete} </h5>
                                 <h5> Prazo: ${diasUteis} dias uteis</h5>
-                                <!--</div>-->
                             </div>
                         </div>
 
                         <!--<input id="calcFrete" style="margin-left: 20px" type="submit" value="Calcular Frete">-->
+                        <input type="hidden" id="sel" value="">
                     </div>
                     <!-- /.row -->
 
@@ -144,5 +142,4 @@
 </div>
 <!-- /.container -->
 <!--</div>-->
-
 <script src="js/checkout.js"></script>
