@@ -50,13 +50,6 @@
         <!-- Adicionando JQuery -->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
-        <style>
-            .respondida-true {
-                text-decoration: line-through;
-                color: red;
-            }
-
-        </style>
 
     </head>
 
@@ -85,20 +78,20 @@
                         <div class="panel panel-default sidebar-menu">
 
                             <div class="panel-heading">
-                                <h3 class="panel-title">Menu do Funcionário</h3>
+                                <h3 class="panel-title">Sessão do Usuário</h3>
                             </div>
 
                             <div class="panel-body">
 
                                 <ul class="nav nav-pills nav-stacked">
                                     <li>
-                                        <a href=""><i class="fa fa-user"></i> Minha conta</a>
+                                        <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
                                     <li>
-                                        <a href="pedidosBackoffice"><i class="fa fa-home"></i> Pedidos de Clientes</a>
+                                        <a href="EnderecoServlet01"><i class="fa fa-home"></i> Meus enderecos</a>
                                     </li>
                                     <li class="active">
-                                        <a href="mensagens"><i class="fa fa-shopping-cart"></i> Mensagens de Clientes</a>
+                                        <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
                                     </li>
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
@@ -112,38 +105,74 @@
                         <!-- *** CUSTOMER MENU END *** -->
                     </div>
 
-                    <div class="col-md-9" id="customer-orders">
-                        <div class="box">
+                    <!--<div class="col-md-9" id="customer-orders">-->
+                    <form action="visualizarPedidoBackoffice" method="post">
+                        <div class="col-md-9" id="basket">
+                            <div class="box">
+                                <h1>Meus pedidos</h1>
+                                <input type="hidden" name="idVenda2" value="${idVenda2}">
 
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Protocolo</th>
-                                            <th>Nome</th>
-                                            <th>Email</th>
-                                            <th>Data</th>
-                                            <!--<th>Status</th>-->
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
+                                <hr>
 
-                                    <c:forEach items="${listaMensagens}" var="mensagem">
-                                        <tbody>
-                                            <tr class="respondida-${mensagem.respondida}">
-                                                <th>${mensagem.protocolo}</th>
-                                                <td>${mensagem.nome}</td>
-                                                <td>${mensagem.email}</td>
-                                                <td>${mensagem.dataFormatada}</td>
-                                                <td><a href="visualizarMensagem?protocolo=${mensagem.protocolo}" class="btn btn-primary btn-sm">Visualizar</a>
-                                                </td>
-                                            </tr>                                        
-                                        </tbody>
-                                    </c:forEach>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2">Produto</th>
+                                                <th>Quantidade</th>
+                                                <th>Preço Unitário</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+
+                                        <c:forEach items="${listaProdutos}" var="item">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="detalhes?c=${item.codigo}">
+                                                            <img src="${item.imagem}" alt="Imagem Produto">
+                                                        </a>
+                                                    </td>
+                                                    <td><a href="detalhes?c=${item.codigo}">${item.nome}</a></td>
+                                                    <td>${item.quantidade}</td>
+                                                    <td>R$ ${item.valorUni}</td>
+                                                    <td>R$ ${item.valorTotal}</td>
+                                                </tr>
+                                            </tbody>
+
+                                        </c:forEach>
+
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="4">Total + Frete</th>
+                                                <th colspan="2">R$ ${valorCompra}</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+
+                                    <label> Status do Pedido: </label>
+                                    <select name="status" class="form-control">
+                                        <option value="" disabled selected>Atualize os status do pedido...</option>
+                                        <option value="0"> Aguardando Pagamento </option>
+                                        <option value="1"> Pedido em Processamento </option>
+                                        <option value="2"> Faturamento </option>
+                                        <option value="3"> Em Transporte </option>
+                                        <option value="4"> Entregue </option>
+
+                                    </select>
+
+                                </div>
+
+                                <br>
+
+                                <a href="pedidos" class="btn btn-default"><i class="fa fa-chevron-left"></i> Meus pedidos</a>
+                                <input type="submit" value="Salvar" class="btn btn-primary pull-right">
                             </div>
                         </div>
-                    </div>
+                    </form>
 
                 </div>
                 <!-- /.container -->
@@ -152,7 +181,7 @@
 
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
-            <%--<jsp:include page="WEB-INF/jsp/rodape.jsp" />--%>
+            <jsp:include page="WEB-INF/jsp/rodape.jsp" />
 
         </div>
         <!-- /#all -->

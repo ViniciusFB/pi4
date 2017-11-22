@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ProjetoX
  */
-@WebServlet(name = "pedidos", urlPatterns = {"/pedidos"})
-public class PedidoServlet extends HttpServlet {
+@WebServlet(name = "PedidoBOServlet", urlPatterns = {"/pedidosBackoffice"})
+public class PedidoBOServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,11 +46,11 @@ public class PedidoServlet extends HttpServlet {
 
         try {
             VendaDAO dao = new VendaDAO();
-            int idCliente = (int) sessao.getAttribute("idCliente");
-            List<Venda> vendas = dao.listar(idCliente);
+//            int idCliente = (int) sessao.getAttribute("idCliente");
+            List<Venda> vendas = dao.listarPedidosBackoffice();
             request.setAttribute("listaCompras", vendas);
 
-            request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);
+            request.getRequestDispatcher("/pedidosBackoffice.jsp").forward(request, response);
 
         } catch (Exception e) {
             System.out.println("ERRO: " + e.getMessage());

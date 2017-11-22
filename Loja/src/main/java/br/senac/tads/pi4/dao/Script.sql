@@ -56,6 +56,8 @@ CREATE TABLE Endereco (
     idCliente INT NOT NULL,
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
+    status INT NOT NULL,
+    ultimaAtt TIMESTAMP NOT NULL,
     FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
