@@ -96,11 +96,8 @@ create table Funcionario (
   cpfFuncionario VARCHAR(14) NOT NULL UNIQUE,
   emailFuncionario VARCHAR(50) NOT NULL UNIQUE,
   telefoneFuncionario VARCHAR(15) NOT NULL,
-  estadoFuncionario VARCHAR(50),
-  cidadeFuncionario VARCHAR(50),
-  cargo VARCHAR(50) NOT NULL,
-  login VARCHAR(20) NOT NULL UNIQUE,
-  senha VARCHAR(20) NOT NULL
+  cargo VARCHAR(50),
+  senha VARCHAR(50) NOT NULL
 
 );
 
