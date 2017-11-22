@@ -6,6 +6,7 @@
 package br.senac.tads.pi4.models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 /**
@@ -17,12 +18,12 @@ public class Venda {
     private int id;
     private Long protocolo;
     private int idCliente;
-    private Date dataVenda;
+    private Timestamp dataVenda;
     private String dataFormatada;
     private String dataFormatada2;
     private Double valorFinal;
     private int status;
-    private Date ultimaAtt;
+    private Timestamp ultimaAtt;
 
 //    Status:
 // 0 - Aguardando pagamento
@@ -44,7 +45,7 @@ public class Venda {
 
     }
 
-    public Venda(int id, long protocolo, int idCliente, Date dataVenda, Double valorFinal, int status, Date ultimaAtt) {
+    public Venda(int id, long protocolo, int idCliente, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt) {
         this.id = id;
         this.protocolo = protocolo;
         this.idCliente = idCliente;
@@ -64,7 +65,7 @@ public class Venda {
         this.dataFormatada2 = dataFormatada2;
     }
 
-    public Venda(int idCliente, long protocolo, Date dataVenda, Double valorFinal, int status, Date ultimaAtt) {
+    public Venda(int idCliente, long protocolo, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt) {
         this.idCliente = idCliente;
         this.protocolo = protocolo;
         this.dataVenda = dataVenda;
@@ -73,7 +74,7 @@ public class Venda {
         this.ultimaAtt = ultimaAtt;
     }
 
-    public Venda(Long protocolo, Double valorFinal, int status, Date ultimaAtt, int id) {
+    public Venda(Long protocolo, Double valorFinal, int status, Timestamp ultimaAtt, int id) {
         this.protocolo = protocolo;
         this.valorFinal = valorFinal;
         this.status = status;
@@ -98,11 +99,11 @@ public class Venda {
         this.idCliente = idCliente;
     }
 
-    public Date getDataVenda() {
+    public Timestamp getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(Date dataVenda) {
+    public void setDataVenda(Timestamp dataVenda) {
         this.dataVenda = dataVenda;
     }
 
@@ -146,11 +147,11 @@ public class Venda {
         this.status = status;
     }
 
-    public Date getUltimaAtt() {
+    public Timestamp getUltimaAtt() {
         return ultimaAtt;
     }
 
-    public void setUltimaAtt(Date ultimaAtt) {
+    public void setUltimaAtt(Timestamp ultimaAtt) {
         this.ultimaAtt = ultimaAtt;
     }
 

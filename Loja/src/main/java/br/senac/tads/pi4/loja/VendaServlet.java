@@ -15,6 +15,7 @@ import br.senac.tads.pi4.models.VendaProd;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -69,12 +70,12 @@ public class VendaServlet extends HttpServlet {
             request.getRequestDispatcher("/404.jsp").forward(request, response);
         } else {
             int idCliente = (int) sessao.getAttribute("idCliente");
-            Date dataVenda = new Date(System.currentTimeMillis());
+            Timestamp dataVenda = new Timestamp(System.currentTimeMillis());
             double valorCompra = carrinho.calculaTotal();
             double valorFrete = Double.parseDouble(sessao.getAttribute("frete").toString());
             double valorTotal = valorCompra + valorFrete;
             long protocolo = (long) (1000000000 + Math.random() * 999999999);
-            Date ultimaAtt = new Date(System.currentTimeMillis());
+            Timestamp ultimaAtt = new Timestamp(System.currentTimeMillis());
 
             Venda venda = new Venda(idCliente, protocolo, dataVenda, valorTotal, 0, ultimaAtt);
             vDao.incluirComTransacao(venda);

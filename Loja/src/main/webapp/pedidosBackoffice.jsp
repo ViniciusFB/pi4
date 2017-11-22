@@ -231,23 +231,23 @@
 
                                                 <c:choose>
                                                     <c:when test="${compra.status == 0}">
-                                                        <td><span class="label label-info">Aguardando pagamento</span>
+                                                        <td><span class="label label-danger">Aguardando pagamento</span>
                                                         </td>
                                                     </c:when>
                                                     <c:when test="${compra.status == 1}">
-                                                        <td><span class="label label-info">Pedido em Processamento</span>
+                                                        <td><span class="label label-warning">Pedido em Processamento</span>
                                                         </td>
                                                     </c:when>
                                                     <c:when test="${compra.status == 2}">
-                                                        <td><span class="label label-info">Faturamento</span>
+                                                        <td><span class="label label-default">Faturamento</span>
                                                         </td>
                                                     </c:when>
                                                     <c:when test="${compra.status == 3}">
-                                                        <td><span class="label label-info">Em transporte</span>
+                                                        <td><span class="label label-primary">Em transporte</span>
                                                         </td>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <td><span class="label label-info">Entregue</span>
+                                                        <td><span class="label label-success">Entregue</span>
                                                         </td>
                                                     </c:otherwise>
 

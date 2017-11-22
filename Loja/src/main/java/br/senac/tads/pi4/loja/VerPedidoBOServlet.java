@@ -11,6 +11,7 @@ import br.senac.tads.pi4.models.Venda;
 import br.senac.tads.pi4.models.VendaProd;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -88,7 +89,7 @@ public class VerPedidoBOServlet extends HttpServlet {
 
         int idVenda = Integer.parseInt(request.getParameter("idVenda2"));
         int status = Integer.parseInt(request.getParameter("status"));
-        Date ultimaAtt = new Date(System.currentTimeMillis());
+        Timestamp ultimaAtt = new Timestamp(System.currentTimeMillis());
         Venda v = null;
 
         try {
@@ -100,7 +101,7 @@ public class VerPedidoBOServlet extends HttpServlet {
         }
         Long protocolo = v.getProtocolo();
         int idCliente = v.getIdCliente();
-        Date dataVenda = new Date(System.currentTimeMillis());
+        Timestamp dataVenda = new Timestamp(System.currentTimeMillis());
         double valorFinal = v.getValorFinal();
 
         venda = new Venda(protocolo, valorFinal, status, ultimaAtt, idVenda);
