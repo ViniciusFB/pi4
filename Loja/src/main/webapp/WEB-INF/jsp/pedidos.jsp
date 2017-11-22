@@ -122,7 +122,24 @@
 
             <div id="content">
                 <div class="container">
-
+                    <input name="sucesso" id="sucesso" type="hidden" value="${sucesso}">
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Aviso</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p id="mensagem"><strong>${msg}</strong></p>
+                                    <p><strong>Protocolo: ${protocolo}</strong></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-12">
 
                         <ul class="breadcrumb">
@@ -246,7 +263,18 @@
 
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/validar.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(window).on('load', function () {
+                var verify = $("#sucesso").val();
+                if (verify === '') {
 
+                } else {
+                    $('#myModal').modal('show');
+                }
+
+
+            });
+        </script>
 
     </body>
 </html>

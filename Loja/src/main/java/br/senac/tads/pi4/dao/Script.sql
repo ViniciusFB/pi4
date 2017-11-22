@@ -76,6 +76,17 @@ create table VendaProd (
    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
+ create table Contato (
+    protocolo BIGINT NOT NULL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    motivo VARCHAR(50) NOT NULL,
+    mensagem VARCHAR(4000) NOT NULL,
+    dataMensagem DATE NOT NULL,
+    respondida BOOLEAN NOT NULL
+);
+
 create table Funcionario (
   idFuncionario INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
  CONSTRAINT PK_Funcionario PRIMARY KEY,

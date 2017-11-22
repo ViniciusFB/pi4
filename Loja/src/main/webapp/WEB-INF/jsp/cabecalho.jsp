@@ -122,6 +122,7 @@ _________________________________________________________ -->
                     <a href="produtos?numeroPagina=1" class="dropdown-toggle" data-hover="dropdown" data-delay="200">Produtos</a>
 
                 </li>
+                <li class=""><a href="contato.jsp">Contato</a>
             </ul>
 
         </div>

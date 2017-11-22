@@ -98,7 +98,7 @@ public class VendaServlet extends HttpServlet {
                 } catch (SQLException ex) {
                     Logger.getLogger(VendaServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
 
 //        sessao.invalidate();
@@ -108,9 +108,12 @@ public class VendaServlet extends HttpServlet {
             sessao.removeAttribute("idEndereco");
             sessao.removeAttribute("cepDestino");
             sessao.removeAttribute("Frete");
-
-            response.sendRedirect(request.getContextPath() + "/pedidos");
-
+            request.setAttribute("sucesso", 1);
+            request.setAttribute("msg", "Compra finalizada com sucesso. Verifique o protocolo e acompanhe seu pedido!");
+            request.setAttribute("protocolo", venda.getProtocolo());
+//            response.sendRedirect(request.getContextPath() + "/pedidos");
+             getServletContext().getRequestDispatcher("/pedidos").forward(request, response);
+    
         }
     }
 
