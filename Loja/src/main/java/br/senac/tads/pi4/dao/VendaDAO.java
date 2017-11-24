@@ -119,7 +119,8 @@ public class VendaDAO extends ConexaoBD {
                 double valor = resultados.getDouble("valorFinal");
                 int status = resultados.getInt("status");
                 Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
-                String dataFormatada2 = formatBR.format(ultimaAtt);
+                SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String dataFormatada2 = formatBR2.format(ultimaAtt);
 
                 Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2);
 
@@ -213,8 +214,14 @@ public class VendaDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM Venda WHERE idCliente = " + idCliente + " AND dataVenda BETWEEN '" + dataInicial + " 00:00:00.0' AND '"
-                + dataFinal + " 00:00:00.0'";
+        String sql = "";
+        if (idCliente == 0) {
+            sql = "SELECT * FROM Venda WHERE dataVenda BETWEEN '" + dataInicial + " 00:00:00.0' AND '"
+                    + dataFinal + " 23:59:59.9'";
+        } else {
+            sql = "SELECT * FROM Venda WHERE idCliente = " + idCliente + " AND dataVenda BETWEEN '" + dataInicial + " 00:00:00.0' AND '"
+                    + dataFinal + " 23:59:59.9'";
+        }
 
         List<Venda> lista = new ArrayList<>();
         try {
@@ -227,13 +234,14 @@ public class VendaDAO extends ConexaoBD {
                 int id = resultados.getInt("idVenda");
                 long protocolo = Long.parseLong(resultados.getString("protocolo"));
                 int idCli = resultados.getInt("idCliente");
-                Date dataVenda = resultados.getDate("dataVenda");
-                SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy");
+                Timestamp dataVenda = resultados.getTimestamp("dataVenda");
+                SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 String dataFormatada = formatBR.format(dataVenda);
                 double valor = resultados.getDouble("valorFinal");
                 int status = resultados.getInt("status");
-                Date ultimaAtt = resultados.getDate("ultimaAtt");
-                String dataFormatada2 = formatBR.format(ultimaAtt);
+                Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
+                SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String dataFormatada2 = formatBR2.format(ultimaAtt);
 
                 Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2);
 

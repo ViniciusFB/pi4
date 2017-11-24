@@ -67,21 +67,20 @@ public class PedidoBOServlet extends HttpServlet {
         request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
 
         VendaDAO dao = new VendaDAO();
-        int idCliente = (int) sessao.getAttribute("idCliente");
         String dataI = request.getParameter("dataInicial");
         String dataF = request.getParameter("dataFinal");
 
         if (dataI == null || dataF == null || dataI.equals("") || dataF.equals("")) {
-            List<Venda> vendas = dao.listar(idCliente);
+            List<Venda> vendas = dao.listarPedidosBackoffice();
             request.setAttribute("listaCompras", vendas);
         } else {
             Date dataInicial = Date.valueOf(dataI);
             Date dataFinal = Date.valueOf(dataF);
-            List<Venda> vendas = dao.filtrar(idCliente, dataInicial, dataFinal);
+            List<Venda> vendas = dao.filtrar(0, dataInicial, dataFinal);
             request.setAttribute("listaCompras", vendas);
         }
 
-        request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);
+        request.getRequestDispatcher("/pedidosBackoffice.jsp").forward(request, response);
     }
 
     @Override

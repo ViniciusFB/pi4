@@ -195,7 +195,7 @@
                     <div class="col-md-9" id="customer-orders">
                         <div class="box">
                             <h1>Pedidos</h1>
-                            <form action="pedidos" method="post">
+                            <form action="pedidosBackoffice" method="post">
                                 <div style="float:left;margin-right:20px; margin-top: 5px">
                                     <label for="dataInicial">Data Inicial</label>
                                     <input id="dataInicial" type="date" value="" name="dataInicial" class="form-inline" required style="display: block">

@@ -64,7 +64,7 @@
                         <a href="detalhes?c=${produto.codigo}" class="btn btn-default">Ver detalhes</a>
                         <input type="hidden" name="idProduto" class="idProd" value="${produto.id}">
                         <c:choose>
-                            <c:when test="${produto.quantidade <= 0}">
+                            <c:when test="${produto.disponivel == false}">
                                 <a type="#" value="${produto.id}" class="btn btn-danger"><i class="fa fa-exclamation-triangle"><span style="display: none">${produto.nome}</span></i> Produto Esgotado</a>
                                     </c:when>
                                     <c:otherwise>

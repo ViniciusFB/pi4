@@ -74,7 +74,7 @@ _________________________________________________________ -->
                 </form>
 
                 <p class="text-center text-muted">Não registrado ainda?</p>
-                <p class="text-center text-muted"><a href="register.html"><strong>Registre-se Agora</strong></a>! É fácil e rápido, menos de um minuto!</p>
+                <p class="text-center text-muted"><a href="registro.jsp"><strong>Registre-se Agora</strong></a>! É fácil e rápido, menos de um minuto!</p>
 
             </div>
         </div>
@@ -122,7 +122,10 @@ _________________________________________________________ -->
                     <a href="produtos?numeroPagina=1" class="dropdown-toggle" data-hover="dropdown" data-delay="200">Produtos</a>
 
                 </li>
-                <li class=""><a href="contato.jsp">Contato</a>
+                <li class="dropdown yamm-fw">
+                    <a href="contato.jsp" class="dropdown-toggle" data-hover="dropdown" data-delay="200">Contato</a>
+
+                </li>
             </ul>
 
         </div>
