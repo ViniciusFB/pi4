@@ -19,7 +19,7 @@
         <meta name="keywords" content="">
 
         <title>
-            VIP Modas e-Commerce
+            VIP | Acessórios
         </title>
 
         <meta name="keywords" content="">
@@ -82,13 +82,13 @@
                                 <p class="lead">Ainda não é um cliente registrado?</p>
 
                                 <hr>
-<!--                                <div class="form-group">
-                                    <input type="radio" name="tipo" id="tipo" value="fisica"><label for="tipo"> &nbsp;
-                                        Pessoa Física</label>
-                                    &nbsp;
-                                    &nbsp;
-                                    <input type="radio" name="tipo" id="tipo" value="juridica"><label for="tipo">&nbsp; Pessoa Jurídica</label>
-                                </div>-->
+                                <!--                                <div class="form-group">
+                                                                    <input type="radio" name="tipo" id="tipo" value="fisica"><label for="tipo"> &nbsp;
+                                                                        Pessoa Física</label>
+                                                                    &nbsp;
+                                                                    &nbsp;
+                                                                    <input type="radio" name="tipo" id="tipo" value="juridica"><label for="tipo">&nbsp; Pessoa Jurídica</label>
+                                                                </div>-->
                                 <div class="form-group">
                                     <label for="name">Nome</label>
                                     <input type="text" class="form-control" name="nome" id="name" placeholder="Digite seu primeiro nome">

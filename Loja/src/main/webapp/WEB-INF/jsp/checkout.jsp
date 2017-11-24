@@ -18,7 +18,7 @@
         <meta name="keywords" content="">
 
         <title>
-            VIP Modas e-Commerce
+            VIP | Acessórios
         </title>
 
         <meta name="keywords" content="">
@@ -203,6 +203,10 @@
                                         </tr>
                                         <tr>
                                             <td>Desconto total</td>
+                                            <th>R$ 0.00</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Frete</td>
                                             <th>R$ 0.00</th>
                                         </tr>
 

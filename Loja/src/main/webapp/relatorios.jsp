@@ -50,13 +50,6 @@
         <!-- Adicionando JQuery -->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
-        <style>
-            .respondida-true {
-                text-decoration: line-through;
-                color: red;
-            }
-
-        </style>
 
     </head>
 
@@ -103,10 +96,10 @@
                                     <li>
                                         <a href="pedidosBackoffice"><i class="fa fa-shopping-cart"></i> Pedidos de Clientes</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="mensagens"><i class="fa fa-envelope"></i> Mensagens de Clientes</a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="relatorios"><i class="fa fa-book"></i> Relatórios</a>
                                     </li>
                                     <li>
@@ -121,30 +114,61 @@
                         <!-- *** CUSTOMER MENU END *** -->
                     </div>
 
-                    <div class="col-md-9" id="customer-orders">
+                    <div class="col-md-9" id="basket">
                         <div class="box">
+
+                            <h1> Relatórios </h1>
+                            <hr>
+
+                            <div class="row">
+                                <select name="tipo" class="form-control">
+                                    <option value="" disabled selected>Selecione um tipo de relatório...</option>
+                                    <option value="vendas">Vendas</option>
+                                    <option value="estoque">Produtos</option>
+                                </select>
+
+                            </div>
+                            <br><hr>
 
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Protocolo</th>
-                                            <th>Nome</th>
-                                            <th>Email</th>
-                                            <th>Data</th>
-                                            <!--<th>Status</th>-->
+                                            <th colspan="2">Produto</th>
+                                            <th>Codigo</th>
+                                            <th>Quantidade</th>
+                                            <th>Status</th>
                                             <th>Ação</th>
                                         </tr>
                                     </thead>
 
-                                    <c:forEach items="${listaMensagens}" var="mensagem">
+                                    <c:forEach items="${listaProdutos}" var="produto">
                                         <tbody>
-                                            <tr class="respondida-${mensagem.respondida}">
-                                                <th>${mensagem.protocolo}</th>
-                                                <td>${mensagem.nome}</td>
-                                                <td>${mensagem.email}</td>
-                                                <td>${mensagem.dataFormatada}</td>
-                                                <td><a href="visualizarMensagem?protocolo=${mensagem.protocolo}" class="btn btn-primary btn-sm">Visualizar</a>
+                                            <tr>
+                                                <td>
+                                                    <a href="detalhes?c=${produto.codigo}">
+                                                        <img src="${produto.imagem}" alt="Imagem Produto">
+                                                    </a>
+                                                </td>
+                                                <td><a href="detalhes?c=${produto.codigo}">${produto.nome}</a></td>
+                                                <td>${produto.codigo}</td>
+                                                <td>${produto.quantidade}</td>
+                                                <c:choose>
+                                                    <c:when test="${produto.statusProduto == 1}">
+                                                        <td><span class="label label-warning">Acabando</span>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:when test="${produto.statusProduto == 2}">
+                                                        <td><span class="label label-danger">Esgotado</span>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td><span class="label label-success">Disponível</span>
+                                                        </td>
+                                                    </c:otherwise>
+
+                                                </c:choose>
+                                                <td><a href="?codigo=${produto.codigo}" class="btn btn-primary btn-sm">Editar</a>
                                                 </td>
                                             </tr>                                        
                                         </tbody>

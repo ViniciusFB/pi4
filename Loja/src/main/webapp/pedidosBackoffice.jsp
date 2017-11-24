@@ -20,7 +20,7 @@
         <meta name="keywords" content="">
 
         <title>
-            VIP Modas e-Commerce
+            VIP | Acessórios
         </title>
 
         <meta name="keywords" content="">
@@ -165,11 +165,20 @@
                                     <li>
                                         <a href=""><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
-                                    <li class="active">
-                                        <a href="pedidosBackoffice"><i class="fa fa-home"></i> Pedidos de Clientes</a>
+                                    <li>
+                                        <a href="cadastroProduto.jsp"><i class="fa fa-plus"></i> Cadastrar Produto</a>
                                     </li>
                                     <li>
-                                        <a href="mensagens"><i class="fa fa-shopping-cart"></i> Mensagens de Clientes</a>
+                                        <a href="cadastrarFuncionario.jsp"><i class="fa fa-user"></i> Cadastrar Funcionário</a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="pedidosBackoffice"><i class="fa fa-shopping-cart"></i> Pedidos de Clientes</a>
+                                    </li>
+                                    <li>
+                                        <a href="mensagens"><i class="fa fa-envelope"></i> Mensagens de Clientes</a>
+                                    </li>
+                                    <li>
+                                        <a href="relatorios"><i class="fa fa-book"></i> Relatórios</a>
                                     </li>
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
@@ -185,7 +194,7 @@
 
                     <div class="col-md-9" id="customer-orders">
                         <div class="box">
-                            <h1>Meus pedidos</h1>
+                            <h1>Pedidos</h1>
                             <form action="pedidos" method="post">
                                 <div style="float:left;margin-right:20px; margin-top: 5px">
                                     <label for="dataInicial">Data Inicial</label>
@@ -223,41 +232,41 @@
                                     <c:forEach items="${listaCompras}" var="compra">
                                         <tbody>
                                             <tr>
-                                                <input type="hidden" name="idVenda2" value="${compra.id}">
-                                                <th>${compra.protocolo}</th>
-                                                <td>${compra.dataFormatada}</td>
-                                                <td>${compra.dataFormatada2}</td>
-                                                <td>R$ ${compra.valorFinal}</td>
+                                        <input type="hidden" name="idVenda2" value="${compra.id}">
+                                        <th>${compra.protocolo}</th>
+                                        <td>${compra.dataFormatada}</td>
+                                        <td>${compra.dataFormatada2}</td>
+                                        <td>R$ ${compra.valorFinal}</td>
 
-                                                <c:choose>
-                                                    <c:when test="${compra.status == 0}">
-                                                        <td><span class="label label-danger">Aguardando pagamento</span>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:when test="${compra.status == 1}">
-                                                        <td><span class="label label-warning">Pedido em Processamento</span>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:when test="${compra.status == 2}">
-                                                        <td><span class="label label-default">Faturamento</span>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:when test="${compra.status == 3}">
-                                                        <td><span class="label label-primary">Em transporte</span>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <td><span class="label label-success">Entregue</span>
-                                                        </td>
-                                                    </c:otherwise>
-
-                                                </c:choose>
-
-
-
-                                                <td><a href="visualizarPedidoBackoffice?idVenda=${compra.id}" class="btn btn-primary btn-sm">Visualizar</a>
+                                        <c:choose>
+                                            <c:when test="${compra.status == 0}">
+                                                <td><span class="label label-danger">Aguardando pagamento</span>
                                                 </td>
-                                            </tr>                                        
+                                            </c:when>
+                                            <c:when test="${compra.status == 1}">
+                                                <td><span class="label label-warning">Pedido em Processamento</span>
+                                                </td>
+                                            </c:when>
+                                            <c:when test="${compra.status == 2}">
+                                                <td><span class="label label-default">Faturamento</span>
+                                                </td>
+                                            </c:when>
+                                            <c:when test="${compra.status == 3}">
+                                                <td><span class="label label-primary">Em transporte</span>
+                                                </td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td><span class="label label-success">Entregue</span>
+                                                </td>
+                                            </c:otherwise>
+
+                                        </c:choose>
+
+
+
+                                        <td><a href="visualizarPedidoBackoffice?idVenda=${compra.id}" class="btn btn-primary btn-sm">Visualizar</a>
+                                        </td>
+                                        </tr>                                        
                                         </tbody>
                                     </c:forEach>
                                 </table>

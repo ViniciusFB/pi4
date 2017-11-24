@@ -20,7 +20,7 @@
         <meta name="keywords" content="">
 
         <title>
-            VIP Modas e-Commerce
+            VIP | Acessórios
         </title>
 
         <meta name="keywords" content="">
@@ -78,20 +78,29 @@
                         <div class="panel panel-default sidebar-menu">
 
                             <div class="panel-heading">
-                                <h3 class="panel-title">Sessão do Usuário</h3>
+                                <h3 class="panel-title">Menu do Funcionário</h3>
                             </div>
 
                             <div class="panel-body">
 
                                 <ul class="nav nav-pills nav-stacked">
                                     <li>
-                                        <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
+                                        <a href=""><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
                                     <li>
-                                        <a href="EnderecoServlet01"><i class="fa fa-home"></i> Meus enderecos</a>
+                                        <a href="cadastroProduto.jsp"><i class="fa fa-plus"></i> Cadastrar Produto</a>
+                                    </li>
+                                    <li>
+                                        <a href="cadastrarFuncionario.jsp"><i class="fa fa-user"></i> Cadastrar Funcionário</a>
                                     </li>
                                     <li class="active">
-                                        <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
+                                        <a href="pedidosBackoffice"><i class="fa fa-shopping-cart"></i> Pedidos de Clientes</a>
+                                    </li>
+                                    <li>
+                                        <a href="mensagens"><i class="fa fa-envelope"></i> Mensagens de Clientes</a>
+                                    </li>
+                                    <li>
+                                        <a href="relatorios"><i class="fa fa-book"></i> Relatórios</a>
                                     </li>
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
@@ -168,7 +177,7 @@
 
                                 <br>
 
-                                <a href="pedidos" class="btn btn-default"><i class="fa fa-chevron-left"></i> Meus pedidos</a>
+                                <a href="pedidosBackoffice" class="btn btn-default"><i class="fa fa-chevron-left"></i> Voltar aos pedidos</a>
                                 <input type="submit" value="Salvar" class="btn btn-primary pull-right">
                             </div>
                         </div>

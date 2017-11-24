@@ -122,7 +122,7 @@ public class ControleCarrinho extends HttpServlet {
                 itemRemove.setProduto(prodRemove);
                 carrinho.removerItem(itemRemove);
                 sessao.setAttribute("valorTotal", carrinho.calculaTotal());
-                request.setAttribute("numItens", carrinho.getItens().size());
+                sessao.setAttribute("numItens", carrinho.getItens().size());
 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
             } else if (acao.equals("cancelaCompra")) {
@@ -170,7 +170,7 @@ public class ControleCarrinho extends HttpServlet {
             itemRemove.setProduto(prodRemove);
             carrinho.removerItem(itemRemove);
             sessao.setAttribute("valorTotal", carrinho.calculaTotal());
-            request.setAttribute("numItens", carrinho.getItens().size());
+            sessao.setAttribute("numItens", carrinho.getItens().size());
 //carrega a pagina do carrinho de compras
             request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
         } else if (acao.equals("delUnidade")) {

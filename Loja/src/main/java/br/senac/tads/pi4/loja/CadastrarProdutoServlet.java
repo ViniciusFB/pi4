@@ -56,15 +56,28 @@ public class CadastrarProdutoServlet extends HttpServlet {
         String descricao = request.getParameter("descricao");
         double valor = Double.parseDouble(request.getParameter("valor"));
         String imagem = request.getParameter("imglink");
+        int statusProduto;
+        boolean disponivel;
+        if (quantidade <= 0) {
+            statusProduto = 2; // Produto esgotado
+            disponivel = false;
 
-        Produto novo = new Produto(nome, codigo, categorias, quantidade, descricao, valor, imagem);
+        } else if (quantidade <= 5) {
+            statusProduto = 1; // Produto acabando
+            disponivel = true;
+        } else {
+            statusProduto = 0; // Produto disponível
+            disponivel = true;
+        }
+
+        Produto novo = new Produto(nome, codigo, categorias, quantidade, descricao, valor, imagem, statusProduto, disponivel);
 
         ProdutoDAO dao = new ProdutoDAO();
 
         dao.incluirComTransacao(novo);
 
-        request.setAttribute("mensagem", "Produto " +nome+ " inserido no estoque com sucesso" );
-        
+        request.setAttribute("mensagem", "Produto " + nome + " inserido no estoque com sucesso");
+
         this.getServletContext().getRequestDispatcher("/cadastroProduto.jsp").forward(request, response);
 
     }

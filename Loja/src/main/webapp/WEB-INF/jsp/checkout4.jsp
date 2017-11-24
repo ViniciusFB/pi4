@@ -118,9 +118,14 @@
                             <th>R$ 0.00</th>
                         </tr>
 
+                        <tr>
+                            <td>Frete</td>
+                            <th>R$ ${frete}</th>
+                        </tr>
+
                         <tr class="total">
                             <td>Total</td>
-                            <th>R$${valorTotal}</th>
+                            <th>R$${valorTotal + frete}</th>
                         </tr>
                     </tbody>
                 </table>

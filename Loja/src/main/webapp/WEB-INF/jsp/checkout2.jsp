@@ -125,6 +125,10 @@
                             <td>Desconto total</td>
                             <th>R$ 0.00</th>
                         </tr>
+                        <tr>
+                            <td>Frete</td>
+                            <th>R$ 0.00</th>
+                        </tr>
 
                         <tr class="total">
                             <td>Total</td>

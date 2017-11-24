@@ -100,7 +100,7 @@ public class VendaDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM Venda WHERE idCliente = " + idCliente;
+        String sql = "SELECT * FROM Venda WHERE idCliente = " + idCliente + " ORDER BY dataVenda DESC";
 
         List<Venda> lista = new ArrayList<>();
         try {
@@ -156,7 +156,7 @@ public class VendaDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM Venda";
+        String sql = "SELECT * FROM Venda ORDER BY dataVenda DESC";
 
         List<Venda> lista = new ArrayList<>();
         try {

@@ -19,6 +19,13 @@ public class Produto {
     private String descricao;
     private double valor;
     private String imagem;
+    private int statusProduto;
+    private boolean disponivel;
+    
+//    Status do Produto:
+//    0 = Produto Disponível;
+//    1 = Produto Acabando;
+//    2 = Produto Esgotado;
 
     public Produto() {
 
@@ -33,9 +40,12 @@ public class Produto {
         this.descricao = produto.descricao;
         this.valor = produto.valor;
         this.imagem = produto.imagem;
+        this.statusProduto = produto.statusProduto;
+        this.disponivel = produto.disponivel;
     }
 
-    public Produto(int id, String nome, int codigo, String categorias, int quantidade, String descricao, double valor, String imagem) {
+    public Produto(int id, String nome, int codigo, String categorias, int quantidade, String descricao,
+            double valor, String imagem, int statusProduto, boolean disponivel) {
         this.id = id;
         this.nome = nome;
         this.codigo = codigo;
@@ -44,9 +54,12 @@ public class Produto {
         this.descricao = descricao;
         this.valor = valor;
         this.imagem = imagem;
+        this.statusProduto = statusProduto;
+        this.disponivel = disponivel;
     }
 
-    public Produto(String nome, int codigo, String categorias, int quantidade, String descricao, double valor, String imagem) {
+    public Produto(String nome, int codigo, String categorias, int quantidade, String descricao,
+            double valor, String imagem, int statusProduto, boolean disponivel) {
         this.nome = nome;
         this.codigo = codigo;
         this.categorias = categorias;
@@ -54,7 +67,16 @@ public class Produto {
         this.descricao = descricao;
         this.valor = valor;
         this.imagem = imagem;
+        this.statusProduto = statusProduto;
+        this.disponivel = disponivel;
     }
+    
+    public Produto(int statusProduto, int id) { // Construtor para atualizar status
+        this.statusProduto = statusProduto;
+        this.id = id;
+        
+    }
+    
 
     public int getId() {
         return id;
@@ -118,6 +140,22 @@ public class Produto {
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
+    }
+
+    public int getStatusProduto() {
+        return statusProduto;
+    }
+
+    public void setStatusProduto(int statusProduto) {
+        this.statusProduto = statusProduto;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
 }

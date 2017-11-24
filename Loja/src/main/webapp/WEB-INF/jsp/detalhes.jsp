@@ -19,7 +19,7 @@
         <meta name="keywords" content="">
 
         <title>
-            VIP Modas e-Commerce
+            VIP | Acessórios
         </title>
 
         <meta name="keywords" content="">
@@ -139,8 +139,8 @@
                                             <c:choose>
                                                 <c:when test="${quantidade <= 0}">
                                                     <a type="#" class="btn btn-danger"><i class="fa fa-exclamation-triangle"><span style="display: none">${produto.nome}</span></i> Produto Esgotado</a>
-                                                </c:when>
-                                                <c:otherwise>
+                                                        </c:when>
+                                                        <c:otherwise>
                                                     <button type="submit" name="acao" value="addProduto" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button> 
                                                 </c:otherwise>
                                             </c:choose>

@@ -95,6 +95,11 @@ public class VendaServlet extends HttpServlet {
                 VendaProd vp = new VendaProd(idVenda, idProduto, idCliente, dataProd, nomeProduto,
                         codigo, quantidade, valor, total, imagem);
                 dao.incluirComTransacao(vp);
+                if ((qtdeEstoque - quantidade) <= 5 && (qtdeEstoque - quantidade) > 0) {
+                    pDao.updateProdutoAcabando(idProduto);
+                } else if ((qtdeEstoque - quantidade) == 0) {
+                    pDao.updateProdutoEsgotado(idProduto);
+                }
                 try {
                     pDao.updateQuantidade(idProduto, quantidade, qtdeEstoque, "Venda");
                 } catch (SQLException ex) {
@@ -109,7 +114,7 @@ public class VendaServlet extends HttpServlet {
             sessao.removeAttribute("numItens");
             sessao.removeAttribute("idEndereco");
             sessao.removeAttribute("cepDestino");
-            sessao.removeAttribute("Frete");
+            sessao.removeAttribute("frete");
             request.setAttribute("sucesso", 1);
             request.setAttribute("msg", "Compra finalizada com sucesso. Verifique o protocolo e acompanhe seu pedido!");
             request.setAttribute("protocolo", venda.getProtocolo());
