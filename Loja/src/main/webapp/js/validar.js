@@ -1,4 +1,18 @@
 $(document).ready(function () {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+//    document.getElementById("dataNasc").setAttribute("max", today);
+
     $('#formCadastro').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -92,6 +106,24 @@ $(document).ready(function () {
                     identical: {
                         field: 'senha',
                         message: 'As senhas digitadas são diferentes'
+                    }
+                }
+            },
+            dataNasc: {
+                validators: {
+                    date: {
+                        message: 'A data digitada não é válida',
+                        format: 'YYYY-MM-DD'
+                    },
+                    callback: {
+                        message: 'Data inválida',
+                        callback: function (value, validator) {
+                            var m = new moment(value, 'YYYY-MM-DD', true);
+                            if (!m.isValid()) {
+                                return false;
+                            }
+                            return m.isAfter('1900-01-01') && m.isBefore(today);
+                        }
                     }
                 }
             },

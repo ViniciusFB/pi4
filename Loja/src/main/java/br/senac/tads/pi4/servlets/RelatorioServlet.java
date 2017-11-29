@@ -44,7 +44,7 @@ public class RelatorioServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         try {
             ProdutoDAO dao = new ProdutoDAO();
@@ -65,7 +65,7 @@ public class RelatorioServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
     }
 

@@ -90,24 +90,24 @@
                                                                     <input type="radio" name="tipo" id="tipo" value="juridica"><label for="tipo">&nbsp; Pessoa Jurídica</label>
                                                                 </div>-->
                                 <div class="form-group">
-                                    <label for="name">Nome</label>
+                                    <label for="nome">Nome</label>
                                     <input type="text" class="form-control" name="nome" id="name" placeholder="Digite seu primeiro nome">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Sobrenome</label>
+                                    <label for="sobrenome">Sobrenome</label>
                                     <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Digite seu sobrenome">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Data de Nascimento</label>
+                                    <label for="dataNasc">Data de Nascimento</label>
                                     <input type="date" class="form-control" name="dataNasc" id="dataNasc">
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="name">CPF/CNPJ</label>-->
-                                    <label for="name">CPF/CNPJ</label>
+                                    <label for="cpf">CPF/CNPJ</label>
                                     <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)" placeholder="000.000.000-00">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Telefone</label>
+                                    <label for="telefone">Telefone</label>
                                     <input type="text" class="form-control" name="telefone" maxlength="15" id="telefone" placeholder="(00) 00000-0000">
                                 </div>
                                 <div class="form-group">
@@ -115,11 +115,11 @@
                                     <input type="email" class="form-control" name="email" id="email" placeholder="exemplo@email.com">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Senha</label>
+                                    <label for="senha">Senha</label>
                                     <input type="password" class="form-control" name="senha" id="password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Confirme a senha</label>
+                                    <label for="confirmarSenha">Confirme a senha</label>
                                     <input type="password" class="form-control" name="confirmarSenha" id="confirmarSenha">
                                 </div>
 
@@ -199,6 +199,7 @@
         <!--<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>-->
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/validar.js" type="text/javascript"></script>
+        <script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
 
     </body>
 </html>

@@ -28,7 +28,7 @@ public class VendaProdDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO VendaProd "
-                + "(idVenda, idProduto, idCliente, dataProd, nomeProduto, codigo, quantidade, valorUni, valorTotal, imagem) "
+                + "(idVenda, idProduto, idUsuario, dataProd, nomeProduto, codigo, quantidade, valorUni, valorTotal, imagem) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -117,7 +117,7 @@ public class VendaProdDAO extends ConexaoBD {
                 int id = resultados.getInt("idVendaProd");
                 int idVenda2 = resultados.getInt("idVenda");
                 int idProduto = resultados.getInt("idProduto");
-                int idCliente = resultados.getInt("idCliente");
+                int idUsuario = resultados.getInt("idUsuario");
                 Date dataProd = resultados.getDate("dataProd");
                 String nome = resultados.getString("nomeProduto");
                 int codigo = resultados.getInt("codigo");
@@ -126,7 +126,7 @@ public class VendaProdDAO extends ConexaoBD {
                 double valorTotal = resultados.getDouble("valorTotal");
                 String imagem = resultados.getString("imagem");
 
-                VendaProd vp = new VendaProd(id, idVenda2, idProduto, idCliente, dataProd, nome,
+                VendaProd vp = new VendaProd(id, idVenda2, idProduto, idUsuario, dataProd, nome,
                         codigo, quantidade, valorUni, valorTotal, imagem);
 
                 lista.add(vp);

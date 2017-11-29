@@ -59,7 +59,7 @@ public class VendaServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         VendaProdDAO dao = new VendaProdDAO();
         VendaDAO vDao = new VendaDAO();
         ProdutoDAO pDao = new ProdutoDAO();
@@ -69,7 +69,7 @@ public class VendaServlet extends HttpServlet {
         if (carrinho.getItens().size() < 1) {
             request.getRequestDispatcher("/404.jsp").forward(request, response);
         } else {
-            int idCliente = (int) sessao.getAttribute("idCliente");
+            int idUsuario = (int) sessao.getAttribute("idUsuario");
             Timestamp dataVenda = new Timestamp(System.currentTimeMillis());
             double valorCompra = carrinho.calculaTotal();
             double valorFrete = Double.parseDouble(sessao.getAttribute("frete").toString());
@@ -77,7 +77,7 @@ public class VendaServlet extends HttpServlet {
             long protocolo = (long) (1000000000 + Math.random() * 999999999);
             Timestamp ultimaAtt = new Timestamp(System.currentTimeMillis());
 
-            Venda venda = new Venda(idCliente, protocolo, dataVenda, valorTotal, 0, ultimaAtt);
+            Venda venda = new Venda(idUsuario, protocolo, dataVenda, valorTotal, 0, ultimaAtt);
             vDao.incluirComTransacao(venda);
             int idVenda = venda.getId();
             System.out.println("idVenda = " + idVenda);
@@ -92,7 +92,7 @@ public class VendaServlet extends HttpServlet {
                 double valor = item.getValor();
                 double total = item.getTotal();
                 String imagem = item.getImagem();
-                VendaProd vp = new VendaProd(idVenda, idProduto, idCliente, dataProd, nomeProduto,
+                VendaProd vp = new VendaProd(idVenda, idProduto, idUsuario, dataProd, nomeProduto,
                         codigo, quantidade, valor, total, imagem);
                 dao.incluirComTransacao(vp);
                 if ((qtdeEstoque - quantidade) <= 5 && (qtdeEstoque - quantidade) > 0) {

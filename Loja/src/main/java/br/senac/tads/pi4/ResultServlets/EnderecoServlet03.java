@@ -26,9 +26,9 @@ public class EnderecoServlet03 extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
-        int id = Integer.parseInt(request.getParameter("idCliente"));
+        int id = Integer.parseInt(request.getParameter("idUsuario"));
         EnderecoDAO dao = new EnderecoDAO();
         String endSelecionado = request.getParameter("endSelecionado");
 
@@ -48,7 +48,7 @@ public class EnderecoServlet03 extends HttpServlet {
                 request.setAttribute("complemento", endereco.getComplemento());
 
             }
-            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idUsuario").toString())));
             request.getRequestDispatcher("/WEB-INF/jsp/checkout1.jsp").forward(request, response);
 
         } catch (Exception e) {
@@ -63,10 +63,10 @@ public class EnderecoServlet03 extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
-//        int id = Integer.parseInt(request.getParameter("idCliente"));
-        int id = (int) sessao.getAttribute("idCliente");
+//        int id = Integer.parseInt(request.getParameter("idUsuario"));
+        int id = (int) sessao.getAttribute("idUsuario");
         EnderecoDAO dao = new EnderecoDAO();
         String endSelecionado = request.getParameter("endSelecionado");
 
@@ -86,7 +86,7 @@ public class EnderecoServlet03 extends HttpServlet {
                 request.setAttribute("complemento", endereco.getComplemento());
 
             }
-            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idUsuario").toString())));
             request.getRequestDispatcher("/WEB-INF/jsp/checkout1.jsp").forward(request, response);
 
         } catch (Exception e) {

@@ -17,7 +17,7 @@ public class Venda {
 
     private int id;
     private Long protocolo;
-    private int idCliente;
+    private int idUsuario;
     private Timestamp dataVenda;
     private String dataFormatada;
     private String dataFormatada2;
@@ -45,28 +45,28 @@ public class Venda {
 
     }
 
-    public Venda(int id, long protocolo, int idCliente, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt) {
+    public Venda(int id, long protocolo, int idUsuario, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt) {
         this.id = id;
         this.protocolo = protocolo;
-        this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
         this.status = status;
         this.ultimaAtt = ultimaAtt;
     }
 
-    public Venda(int id, long protocolo, int idCliente, String dataFormatada, Double valorFinal, int status, String dataFormatada2) {
+    public Venda(int id, long protocolo, int idUsuario, String dataFormatada, Double valorFinal, int status, String dataFormatada2) {
         this.id = id;
         this.protocolo = protocolo;
-        this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
         this.dataFormatada = dataFormatada;
         this.valorFinal = valorFinal;
         this.status = status;
         this.dataFormatada2 = dataFormatada2;
     }
 
-    public Venda(int idCliente, long protocolo, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt) {
-        this.idCliente = idCliente;
+    public Venda(int idUsuario, long protocolo, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt) {
+        this.idUsuario = idUsuario;
         this.protocolo = protocolo;
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
@@ -92,11 +92,11 @@ public class Venda {
     }
 
     public int getIdCliente() {
-        return idCliente;
+        return idUsuario;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdCliente(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public Timestamp getDataVenda() {

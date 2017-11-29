@@ -6,6 +6,7 @@
 package br.senac.tads.pi4.dao;
 
 import br.senac.tads.pi4.models.Cliente;
+import br.senac.tads.pi4.models.Usuario;
 import br.senac.tads.pi4.models.Endereco;
 import br.senac.tads.pi4.models.Funcionario;
 import java.sql.Connection;
@@ -23,42 +24,38 @@ import java.util.logging.Logger;
  *
  * @author vinicius.fbatista1
  */
-public class FuncionarioDAO extends ConexaoBD {
+public class UsuarioDAO extends ConexaoBD {
 
-    public Funcionario obterFuncionario(int idFuncionario) {
+    public Usuario obterUsuario(int idUsuario) {
         PreparedStatement stmt = null;
         Connection conn = null;
-        Funcionario f = null;
+        Usuario c = null;
 
-//        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, estadoCliente, cidadeCliente, enderecoCliente, "
-//                + "generoCliente "
-//                + "FROM Cliente WHERE idCliente = ?";
-        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, cargo, senha "
-                + "FROM Funcionario WHERE idFuncionario = ?";
+        String sql = "SELECT id, nome, sobrenome, dataNasc, cpf, email, telefone, senha "
+                + "FROM Usuario WHERE id = ?";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, idFuncionario);
+            stmt.setInt(1, idUsuario);
             ResultSet resultados = stmt.executeQuery();
 
             while (resultados.next()) {
-                int id = resultados.getInt("idFuncionario");
-                String nome = resultados.getString("nomeFuncionario");
-                String sobrenome = resultados.getString("sobrenomeFuncionario");
+                int id = resultados.getInt("id");
+                String nome = resultados.getString("nome");
+                String sobrenome = resultados.getString("sobrenome");
                 Date dataNasc = resultados.getDate("dataNasc");
-                String cpf = resultados.getString("cpfFuncionario");
-                String email = resultados.getString("emailFuncionario");
-                String telefone = resultados.getString("telefoneFuncionario");
-                String cargo = resultados.getString("cargo");
+                String cpf = resultados.getString("cpf");
+                String email = resultados.getString("email");
+                String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
-                f = new Funcionario(id, nome, sobrenome, dataNasc, cpf, email, telefone, cargo, senha);
+                c = new Usuario(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha);
                 break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -67,27 +64,82 @@ public class FuncionarioDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
-        return f;
+        return c;
 
     }
 
-    public List<Funcionario> listar() {
+    public List<Cliente> listarClientes() {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT idFuncionario, nomeFuncionario, sobrenomeFuncionario, dataNasc, cpfFuncionario, emailFuncionario, telefoneFuncionario, cargo "
-                + "FROM Funcionario ";
+        String sql = "SELECT id, nome, sobrenome, dataNasc, cpf, email, telefone "
+                + "FROM Usuario WHERE nivel = 0 ";
+
+        List<Cliente> lista = new ArrayList<>();
+        try {
+            conn = obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+            while (resultados.next()) {
+                int id = resultados.getInt("id");
+                String nome = resultados.getString("nome");
+                String sobrenome = resultados.getString("sobrenome");
+                Date dataNasc = resultados.getDate("dataNasc");
+                String cpf = resultados.getString("cpf");
+                String email = resultados.getString("email");
+                String telefone = resultados.getString("telefone");
+                String senha = resultados.getString("senha");
+                int nivel = resultados.getInt("nivel");
+                
+                Cliente cliente = new Cliente(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha);
+
+                lista.add(cliente);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return lista;
+    }
+    public List<Funcionario> listarFuncionarios() {
+        Statement stmt = null;
+        Connection conn = null;
+
+        String sql = "SELECT id, nome, sobrenome, dataNasc, cpf, email, telefone "
+                + "FROM Usuario WHERE nivel != 0 ";
 
         List<Funcionario> lista = new ArrayList<>();
         try {
@@ -97,24 +149,25 @@ public class FuncionarioDAO extends ConexaoBD {
 
             //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
             while (resultados.next()) {
-                int id = resultados.getInt("idFuncionario");
-                String nome = resultados.getString("nomeFuncionario");
-                String sobrenome = resultados.getString("sobrenomeFuncionario");
+                int id = resultados.getInt("id");
+                String nome = resultados.getString("nome");
+                String sobrenome = resultados.getString("sobrenome");
                 Date dataNasc = resultados.getDate("dataNasc");
-                String cpf = resultados.getString("cpfFuncionario");
-                String email = resultados.getString("emailFuncionario");
-                String telefone = resultados.getString("telefoneFuncionario");
-                String cargo = resultados.getString("cargo");
+                String cpf = resultados.getString("cpf");
+                String email = resultados.getString("email");
+                String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
-                Funcionario funcionario = new Funcionario(id, nome, sobrenome, dataNasc, cpf, email, telefone, cargo, senha);
+                int nivel = resultados.getInt("nivel");
+                
+                Funcionario funcionario = new Funcionario(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha, nivel);
 
                 lista.add(funcionario);
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -123,41 +176,40 @@ public class FuncionarioDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         return lista;
     }
 
-    public void incluirComTransacao(Funcionario funcionario) {
+    public void incluirComTransacao(Usuario usuario) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "INSERT INTO Funcionario "
-                + "(nomeFuncionario, sobrenomeFuncionario, dataNasc, cpfFuncionario, emailFuncionario, telefoneFuncionario, cargo, senha) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuario "
+                + "(nome, sobrenome, dataNasc, cpf, email, telefone, senha) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = obterConexao();
 
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, funcionario.getNome());
-            stmt.setString(2, funcionario.getSobrenome());
-            stmt.setDate(3, funcionario.getDataNasc());
-            stmt.setString(4, funcionario.getCpf());
-            stmt.setString(5, funcionario.getEmail());
-            stmt.setString(6, funcionario.getTelefone());
-            stmt.setString(7, funcionario.getCargo());
-            stmt.setString(8, funcionario.getSenha());
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getSobrenome());
+            stmt.setDate(3, usuario.getDataNasc());
+            stmt.setString(4, usuario.getCpf());
+            stmt.setString(5, usuario.getEmail());
+            stmt.setString(6, usuario.getTelefone());
+            stmt.setString(7, usuario.getSenha());
 
             stmt.executeUpdate();
 
@@ -166,7 +218,7 @@ public class FuncionarioDAO extends ConexaoBD {
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
                 int idNovo = generatedKeys.getInt(1);
-                funcionario.setId(idNovo);
+                usuario.setId(idNovo);
                 System.out.println("***** ID NOVO CADASTRADO: " + String.valueOf(idNovo));
 
                 // Executar próximos INSERTs USANDO O ID novo.
@@ -179,9 +231,9 @@ public class FuncionarioDAO extends ConexaoBD {
                     conn.rollback();
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
             }
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             try {
                 // Caso ocorra algum erro, tenta desfazer todas as ações realizadas no BD.
@@ -189,126 +241,118 @@ public class FuncionarioDAO extends ConexaoBD {
                     conn.rollback();
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
             }
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
 
-    public void incluir(Funcionario funcionario) {
+    public void incluir(Usuario usuario) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-//        String sql = "INSERT INTO Cliente "
-//                + "(nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, estadoCliente, cidadeCliente, enderecoCliente, "
-//                + "generoCliente) "
-//                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        String sql = "INSERT INTO Cliente "
-                + "(nomeFuncionario, sobrenomeFuncionario, dataNasc, cpfFuncionario, emailFuncionario, telefoneFuncionario, cargo, senha) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuario "
+                + "(nome, sobrenome, dataNasc, cpf, email, telefone, senha) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, funcionario.getNome());
-            stmt.setString(2, funcionario.getSobrenome());
-            stmt.setDate(3, funcionario.getDataNasc());
-            stmt.setString(4, funcionario.getCpf());
-            stmt.setString(5, funcionario.getEmail());
-            stmt.setString(6, funcionario.getTelefone());
-            stmt.setString(7, funcionario.getCargo());
-            stmt.setString(8, funcionario.getSenha());
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getSobrenome());
+            stmt.setDate(3, usuario.getDataNasc());
+            stmt.setString(4, usuario.getCpf());
+            stmt.setString(5, usuario.getEmail());
+            stmt.setString(6, usuario.getTelefone());
+            stmt.setString(7, usuario.getSenha());
             stmt.executeUpdate();
             //System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
 
-    public void atualizarFuncionario(Funcionario funcionario) {
+    public void atualizarUsuario(Usuario usuario) {
 
         PreparedStatement stmt = null;
         Connection conn = null;
 
-//        String sql = "UPDATE Cliente SET nomeCliente=?, sobrenomeCliente=?, dataNasc=?, cpfCliente=?, emailCliente=?, "
-//                + "telefoneCliente=?, estadoCliente=?, cidadeCliente=?, enderecoCliente=? WHERE (idCliente=?)";
-        String sql = "UPDATE Funcionario SET nomeFuncionario=?, sobrenomeFuncionario=?, dataNasc=?, cpfFuncionario=?, emailFuncionario=?, telefoneFuncionario=?, cargo=? WHERE (idFuncionario=?)";
+        String sql = "UPDATE Usuario SET nome=?, sobrenome=?, dataNasc=?, cpf=?, email=?, telefone=? WHERE (id=?)";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, funcionario.getNome());
-            stmt.setString(2, funcionario.getSobrenome());
-            stmt.setDate(3, funcionario.getDataNasc());
-            stmt.setString(4, funcionario.getCpf());
-            stmt.setString(5, funcionario.getEmail());
-            stmt.setString(6, funcionario.getTelefone());
-            stmt.setString(7, funcionario.getCargo());
-            stmt.setInt(8, funcionario.getId());
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getSobrenome());
+            stmt.setDate(3, usuario.getDataNasc());
+            stmt.setString(4, usuario.getCpf());
+            stmt.setString(5, usuario.getEmail());
+            stmt.setString(6, usuario.getTelefone());
+            stmt.setInt(7, usuario.getId());
 
             stmt.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
 
-    public void excluirFuncionario(int id) {
+    public void excluirUsuario(int id) {
 
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "DELETE FROM Funcionario WHERE (idFuncionario=?)";
+        String sql = "DELETE FROM Usuario WHERE (id=?)";
 
         try {
 
@@ -320,22 +364,22 @@ public class FuncionarioDAO extends ConexaoBD {
             stmt.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -350,8 +394,8 @@ public class FuncionarioDAO extends ConexaoBD {
         Connection conn = null;
         try {
             conn = obterConexao();
-            sql = "SELECT nomeFuncionario FROM Funcionario WHERE Funcionario.emailFuncionario = '" + email
-                    + "' and Funcionario.senha = '" + senha + "'";
+            sql = "SELECT nome FROM Usuario WHERE Usuario.email = '" + email
+                    + "' and Usuario.senha = '" + senha + "'";
             stmt = conn.prepareStatement(sql);
 
             resultSet = stmt.executeQuery();
@@ -367,14 +411,14 @@ public class FuncionarioDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -388,8 +432,8 @@ public class FuncionarioDAO extends ConexaoBD {
         Connection conn = null;
         try {
             conn = obterConexao();
-            sql = "SELECT idFuncionario FROM Funcionario WHERE Funcionario.emailFuncionario = '" + email
-                    + "' and Funcionario.senha = '" + senha + "'";
+            sql = "SELECT id FROM Usuario WHERE Usuario.email= '" + email
+                    + "' and Usuario.senha = '" + senha + "'";
             stmt = conn.prepareStatement(sql);
 
             resultSet = stmt.executeQuery();
@@ -405,27 +449,27 @@ public class FuncionarioDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         return id;
     }
 
-    public Funcionario obterFuncionarioPorEmail(String email) {
+    public Usuario obterUsuarioPorEmail(String email) {
         PreparedStatement stmt = null;
         Connection conn = null;
-        Funcionario f = null;
+        Usuario c = null;
 
-        String sql = "SELECT idFuncionario, nomeFuncionario, sobrenomeFuncionario, dataNasc, cpfFuncionario, emailFuncionario, telefoneFuncionario, cargo, senha "
-                + "FROM Funcionario WHERE emailFuncionario = ?";
+        String sql = "SELECT id, nome, sobrenome, dataNasc, cpf, email, telefone, senha "
+                + "FROM Usuario WHERE email = ?";
 
         try {
             conn = obterConexao();
@@ -434,22 +478,21 @@ public class FuncionarioDAO extends ConexaoBD {
             ResultSet resultados = stmt.executeQuery();
 
             while (resultados.next()) {
-                int id = resultados.getInt("idFuncionario");
-                String nome = resultados.getString("nomeFuncionario");
-                String sobrenome = resultados.getString("sobrenomeFuncionario");
+                int id = resultados.getInt("id");
+                String nome = resultados.getString("nome");
+                String sobrenome = resultados.getString("sobrenome");
                 Date dataNasc = resultados.getDate("dataNasc");
-                String cpf = resultados.getString("cpfFuncionario");
-                String emailc = resultados.getString("emailFuncionario");
-                String telefone = resultados.getString("telefoneFuncionario");
-                String cargo = resultados.getString("cargo");
+                String cpf = resultados.getString("cpf");
+                String emailc = resultados.getString("email");
+                String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
-                f = new Funcionario(id, nome, sobrenome, dataNasc, cpf, emailc, telefone, cargo, senha);
+                c = new Usuario(id, nome, sobrenome, dataNasc, cpf, emailc, telefone, senha);
                 break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -458,18 +501,18 @@ public class FuncionarioDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
-        return f;
+        return c;
 
     }
 
@@ -479,10 +522,10 @@ public class FuncionarioDAO extends ConexaoBD {
         Connection conn = null;
         String sql = null;
         ResultSet resultSet;
-//        Cliente funcionario = null;
+        Usuario usuario = null;
         try {
             conn = obterConexao();
-            sql = "SELECT * FROM Funcionario WHERE Funcionario.emailFuncionario = '" + email + "'";
+            sql = "SELECT * FROM Usuario WHERE Usuario.email = '" + email + "'";
 
             stmt = conn.prepareStatement(sql);
             resultSet = stmt.executeQuery();
@@ -491,7 +534,7 @@ public class FuncionarioDAO extends ConexaoBD {
                 senha = resultSet.getString(8);
             }
         } catch (Exception e) {
-            System.out.println("\nErro ao selecionar senha do funcionario: " + e);
+            System.out.println("\nErro ao selecionar senha do usuario: " + e);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -500,14 +543,14 @@ public class FuncionarioDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -517,10 +560,10 @@ public class FuncionarioDAO extends ConexaoBD {
     public void adicionarEndereco(Endereco endereco) {
         PreparedStatement stmt = null;
         Connection conn = null;
-        Cliente cliente = null;
+        Usuario usuario = null;
 
         String sql = "INSERT INTO Endereco "
-                + "(idCliente, cep, rua, numero, complemento, bairro, cidade, uf) "
+                + "(id, cep, rua, numero, complemento, bairro, cidade, uf) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -528,7 +571,7 @@ public class FuncionarioDAO extends ConexaoBD {
 
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, endereco.getIdCliente());
+            stmt.setInt(1, endereco.getIdUsuario());
             stmt.setString(2, endereco.getCep());
             stmt.setString(3, endereco.getRua());
             stmt.setInt(4, endereco.getNumeroCasa());
@@ -547,9 +590,9 @@ public class FuncionarioDAO extends ConexaoBD {
                     conn.rollback();
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
             }
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             try {
                 // Caso ocorra algum erro, tenta desfazer todas as ações realizadas no BD.

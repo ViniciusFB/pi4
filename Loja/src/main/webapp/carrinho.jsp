@@ -65,7 +65,7 @@
                         <div class="box">
 
                             <!--<form method="post" action="confirmarCadastro.jsp">-->
-                            <input type="hidden" class="form-control" name="idCliente" value="${idCliente}">
+                            <input type="hidden" class="form-control" name="idUsuario" value="${idUsuario}">
                             <h1>Carrinho de Compras</h1>
                             <c:choose>
                                 <c:when test="${not empty carrinho.itens}">

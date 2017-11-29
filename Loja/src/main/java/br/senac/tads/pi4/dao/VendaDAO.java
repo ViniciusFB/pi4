@@ -30,7 +30,7 @@ public class VendaDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(idCliente, protocolo, dataVenda, valorFinal, status, ultimaAtt) "
+                + "(idUsuario, protocolo, dataVenda, valorFinal, status, ultimaAtt) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
@@ -96,11 +96,11 @@ public class VendaDAO extends ConexaoBD {
         }
     }
 
-    public List<Venda> listar(int idCliente) {
+    public List<Venda> listar(int idUsuario) {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM Venda WHERE idCliente = " + idCliente + " ORDER BY dataVenda DESC";
+        String sql = "SELECT * FROM Venda WHERE idUsuario = " + idUsuario + " ORDER BY dataVenda DESC";
 
         List<Venda> lista = new ArrayList<>();
         try {
@@ -112,7 +112,7 @@ public class VendaDAO extends ConexaoBD {
             while (resultados.next()) {
                 int id = resultados.getInt("idVenda");
                 long protocolo = Long.parseLong(resultados.getString("protocolo"));
-                int idCli = resultados.getInt("idCliente");
+                int idCli = resultados.getInt("idUsuario");
                 Timestamp dataVenda = resultados.getTimestamp("dataVenda");
                 SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 String dataFormatada = formatBR.format(dataVenda);
@@ -169,7 +169,7 @@ public class VendaDAO extends ConexaoBD {
             while (resultados.next()) {
                 int id = resultados.getInt("idVenda");
                 long protocolo = Long.parseLong(resultados.getString("protocolo"));
-                int idCli = resultados.getInt("idCliente");
+                int idCli = resultados.getInt("idUsuario");
                 Timestamp dataVenda = resultados.getTimestamp("dataVenda");
                 SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 String dataFormatada = formatBR.format(dataVenda);
@@ -210,16 +210,16 @@ public class VendaDAO extends ConexaoBD {
         return lista;
     }
 
-    public List<Venda> filtrar(int idCliente, Date dataInicial, Date dataFinal) {
+    public List<Venda> filtrar(int idUsuario, Date dataInicial, Date dataFinal) {
         Statement stmt = null;
         Connection conn = null;
 
         String sql = "";
-        if (idCliente == 0) {
+        if (idUsuario == 0) {
             sql = "SELECT * FROM Venda WHERE dataVenda BETWEEN '" + dataInicial + " 00:00:00.0' AND '"
                     + dataFinal + " 23:59:59.9'";
         } else {
-            sql = "SELECT * FROM Venda WHERE idCliente = " + idCliente + " AND dataVenda BETWEEN '" + dataInicial + " 00:00:00.0' AND '"
+            sql = "SELECT * FROM Venda WHERE idUsuario = " + idUsuario + " AND dataVenda BETWEEN '" + dataInicial + " 00:00:00.0' AND '"
                     + dataFinal + " 23:59:59.9'";
         }
 
@@ -233,7 +233,7 @@ public class VendaDAO extends ConexaoBD {
             while (resultados.next()) {
                 int id = resultados.getInt("idVenda");
                 long protocolo = Long.parseLong(resultados.getString("protocolo"));
-                int idCli = resultados.getInt("idCliente");
+                int idCli = resultados.getInt("idUsuario");
                 Timestamp dataVenda = resultados.getTimestamp("dataVenda");
                 SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 String dataFormatada = formatBR.format(dataVenda);
@@ -321,8 +321,6 @@ public class VendaDAO extends ConexaoBD {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-//        String sql = "UPDATE Cliente SET nomeCliente=?, sobrenomeCliente=?, dataNasc=?, cpfCliente=?, emailCliente=?, "
-//                + "telefoneCliente=?, estadoCliente=?, cidadeCliente=?, enderecoCliente=? WHERE (idCliente=?)";
         String sql = "UPDATE Venda SET protocolo=?, valorFinal=?, status=?, ultimaAtt=? WHERE (idVenda=?)";
 
         try {
@@ -375,7 +373,7 @@ public class VendaDAO extends ConexaoBD {
             while (resultados.next()) {
                 int id = resultados.getInt("idVenda");
                 long protocolo = Long.parseLong(resultados.getString("protocolo"));
-                int idCli = resultados.getInt("idCliente");
+                int idCli = resultados.getInt("idUsuario");
                 Date dataVenda = resultados.getDate("dataVenda");
                 SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy");
                 String dataFormatada = formatBR.format(dataVenda);

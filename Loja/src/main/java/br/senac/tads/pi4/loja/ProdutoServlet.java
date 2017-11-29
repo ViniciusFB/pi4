@@ -44,7 +44,7 @@ public class ProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         String url = request.getRequestURL().toString();
         sessao.setAttribute("urlPage", url);
 
@@ -98,7 +98,7 @@ public class ProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         List<Produto> produtos = null;
         ProdutoDAO dao = new ProdutoDAO();

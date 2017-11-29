@@ -136,7 +136,7 @@
                                         <div class="form-group">
                                             <label for="cep">CEP: </label>
                                             <input type="text" class="form-control" maxlength="9" name="cep" id="cep" onkeypress="javascript: mascara(this, cep_mask)">
-                                            <input type="hidden" class="form-control" name="idCliente" value="${idCliente}">
+                                            <input type="hidden" class="form-control" name="idUsuario" value="${idUsuario}">
                                         </div>
                                     </div>
                                 </div>

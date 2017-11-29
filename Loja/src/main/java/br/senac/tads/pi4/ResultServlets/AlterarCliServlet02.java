@@ -5,8 +5,8 @@
  */
 package br.senac.tads.pi4.ResultServlets;
 
-import br.senac.tads.pi4.dao.ClienteDAO;
-import br.senac.tads.pi4.models.Cliente;
+import br.senac.tads.pi4.dao.UsuarioDAO;
+import br.senac.tads.pi4.models.Usuario;
 import java.io.IOException;
 import java.sql.Date;
 import javax.servlet.RequestDispatcher;
@@ -52,14 +52,14 @@ public class AlterarCliServlet02 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean erro = false;
-        Cliente cliente = null;
-        ClienteDAO dao = new ClienteDAO();
+        Usuario usuario = null;
+        UsuarioDAO dao = new UsuarioDAO();
         HttpSession sessao = request.getSession();
 
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
-        int id = Integer.parseInt(request.getParameter("idCliente"));
+        int id = Integer.parseInt(request.getParameter("idUsuario"));
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         Date dataNasc = Date.valueOf(request.getParameter("dataNasc"));
@@ -67,9 +67,9 @@ public class AlterarCliServlet02 extends HttpServlet {
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
 
-        cliente = new Cliente(nome, sobrenome, dataNasc, cpf, email, telefone, id);
+        usuario = new Usuario(nome, sobrenome, dataNasc, cpf, email, telefone, id);
 
-        dao.atualizarCliente(cliente);
+        dao.atualizarUsuario(usuario);
 
 
         request.setAttribute("mensagem", "Dados alterados com sucesso. Faça o login novamente para confirmar as mudanças.");

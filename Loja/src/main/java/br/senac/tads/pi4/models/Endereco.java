@@ -12,7 +12,7 @@ package br.senac.tads.pi4.models;
 public class Endereco {
 
     private int id;
-    private int idCliente;
+    private int idUsuario;
     private String cep;
     private String rua;
     private int numeroCasa;
@@ -27,7 +27,7 @@ public class Endereco {
 
     public Endereco(Endereco endereco) {
         this.id = endereco.id;
-        this.idCliente = endereco.idCliente;
+        this.idUsuario = endereco.idUsuario;
         this.cep = endereco.cep;
         this.rua = endereco.rua;
         this.numeroCasa = endereco.numeroCasa;
@@ -37,8 +37,8 @@ public class Endereco {
         this.uf = endereco.uf;
     }
 
-    public Endereco(int idCliente, String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
-        this.idCliente = idCliente;
+    public Endereco(int idUsuario, String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
+        this.idUsuario = idUsuario;
         this.cep = cep;
         this.rua = rua;
         this.numeroCasa = numeroCasa;
@@ -47,9 +47,9 @@ public class Endereco {
         this.cidade = cidade;
         this.uf = uf;
     }
-    public Endereco(int id, int idCliente, String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
+    public Endereco(int id, int idUsuario, String cep, String rua, int numeroCasa, String complemento, String bairro, String cidade, String uf) {
         this.id = id;
-        this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
         this.cep = cep;
         this.rua = rua;
         this.numeroCasa = numeroCasa;
@@ -68,12 +68,12 @@ public class Endereco {
         this.id = id;
     }
     
-    public int getIdCliente() {
-        return idCliente;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getCep() {

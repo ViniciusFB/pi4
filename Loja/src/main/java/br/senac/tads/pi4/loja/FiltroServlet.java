@@ -44,7 +44,7 @@ public class FiltroServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
     }
 
@@ -53,7 +53,7 @@ public class FiltroServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         List<Produto> produtos;
         ProdutoDAO dao = new ProdutoDAO();

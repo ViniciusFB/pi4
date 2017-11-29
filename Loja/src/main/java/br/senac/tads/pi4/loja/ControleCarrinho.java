@@ -33,7 +33,7 @@ public class ControleCarrinho extends HttpServlet {
                 //se não exite um carrinho na sessão o valor será igual a null
                 CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
                 request.setAttribute("usuario", sessao.getAttribute("usuario"));
-                request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+                request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
                 //verifica se já exista um carrinho na sessao
                 if (carrinho == null) {
@@ -90,7 +90,7 @@ public class ControleCarrinho extends HttpServlet {
                 //se não exite um carrinho na sessão o valor será igual a null
                 CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
                 request.setAttribute("usuario", sessao.getAttribute("usuario"));
-                request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+                request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
                 //verifica se o produto existe no carrinho
                 if (carrinho.getItens() != null) {
@@ -131,7 +131,7 @@ public class ControleCarrinho extends HttpServlet {
 
                 //remove o carrinho da sessão
                 sessao.removeAttribute("carrinho");
-                sessao.removeAttribute("idCliente");
+                sessao.removeAttribute("idUsuario");
 //                sessao.setAttribute("erro", "A venda foi cancelada");
 
                 //redireciona para pagina principal
@@ -184,7 +184,7 @@ public class ControleCarrinho extends HttpServlet {
             //se não exite um carrinho na sessão o valor será igual a null
             CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
             request.setAttribute("usuario", sessao.getAttribute("usuario"));
-            request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+            request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
             //verifica se o produto existe no carrinho
             if (carrinho.getItens() != null) {
@@ -214,7 +214,7 @@ public class ControleCarrinho extends HttpServlet {
             //se não exite um carrinho na sessão o valor será igual a null
             CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
             request.setAttribute("usuario", sessao.getAttribute("usuario"));
-            request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+            request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
             //verifica se já exista um carrinho na sessao
             if (carrinho == null) {

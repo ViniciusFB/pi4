@@ -5,7 +5,7 @@
  */
 package br.senac.tads.pi4.ResultServlets;
 
-import br.senac.tads.pi4.dao.ClienteDAO;
+import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.dao.EnderecoDAO;
 import br.senac.tads.pi4.models.Cliente;
 import br.senac.tads.pi4.models.Endereco;
@@ -88,12 +88,12 @@ public class CadastrarCliServlet02 extends HttpServlet {
         if (!erro) {
             // Os dados foram preenchidos corretamente
             Cliente novo = new Cliente(nome, sobrenome, dataNasc, cpf, email, telefone, md5(senha));
-            ClienteDAO dao = new ClienteDAO();
+            UsuarioDAO dao = new UsuarioDAO();
             dao.incluirComTransacao(novo);
-            int idCliente = novo.getId();
+            int idUsuario = novo.getId();
             
             EnderecoDAO endDAO = new EnderecoDAO();
-            Endereco end = new Endereco(idCliente, cep, rua, numero, complemento, bairro, cidade, uf);
+            Endereco end = new Endereco(idUsuario, cep, rua, numero, complemento, bairro, cidade, uf);
             endDAO.incluirComTransacao(end);
             
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastroRealizado.jsp").forward(request, response);

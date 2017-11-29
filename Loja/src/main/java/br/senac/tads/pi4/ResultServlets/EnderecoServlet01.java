@@ -5,7 +5,7 @@
  */
 package br.senac.tads.pi4.ResultServlets;
 
-import br.senac.tads.pi4.dao.ClienteDAO;
+import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.dao.EnderecoDAO;
 import br.senac.tads.pi4.models.Cliente;
 import br.senac.tads.pi4.models.Endereco;
@@ -34,15 +34,15 @@ public class EnderecoServlet01 extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         String acao = request.getParameter("acao");
         if (acao == null) {
 
             Cliente cliente = null;
-            ClienteDAO daoC = new ClienteDAO();
+            UsuarioDAO daoC = new UsuarioDAO();
             try {
-                cliente = new Cliente((Cliente) daoC.obterCliente(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+                cliente = new Cliente((Cliente) daoC.obterUsuario(Integer.parseInt(sessao.getAttribute("idUsuario").toString())));
             } catch (NullPointerException | NumberFormatException e) {
                 System.out.println(e);
                 request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
@@ -51,7 +51,7 @@ public class EnderecoServlet01 extends HttpServlet {
 
             EnderecoDAO daoE = new EnderecoDAO();
             List<Endereco> enderecos = null;
-            enderecos = daoE.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString()));
+            enderecos = daoE.listar(Integer.parseInt(sessao.getAttribute("idUsuario").toString()));
 
             request.setAttribute("nome", cliente.getNome());
             request.setAttribute("sobrenome", cliente.getSobrenome());
@@ -62,7 +62,7 @@ public class EnderecoServlet01 extends HttpServlet {
             int idEndereco = Integer.parseInt(request.getParameter("idEndereco"));
             daoE.excluirEndereco(idEndereco);
             List<Endereco> enderecos = null;
-            enderecos = daoE.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString()));
+            enderecos = daoE.listar(Integer.parseInt(sessao.getAttribute("idUsuario").toString()));
             request.setAttribute("listaEnderecos", enderecos);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/enderecos.jsp").forward(request, response);
         }
@@ -83,10 +83,10 @@ public class EnderecoServlet01 extends HttpServlet {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
 
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         EnderecoDAO dao = new EnderecoDAO();
         List<Endereco> enderecos = null;
-        enderecos = dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString()));
+        enderecos = dao.listar(Integer.parseInt(sessao.getAttribute("idUsuario").toString()));
 
         request.setAttribute("listaEnderecos", enderecos);
 

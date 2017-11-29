@@ -85,7 +85,7 @@
                                     </li>
                                 </ul>
                                 <div class="row">
-                                    <input type="hidden" class="idCliente" id="idCliente" name="idCliente" value="${idCliente}">
+                                    <input type="hidden" class="idUsuario" id="idUsuario" name="idUsuario" value="${idUsuario}">
                                     <div class="col-sm-12">
                                         <div class="box shipping-method">
                                             <select name="endSelecionado" class="enderecos form-control">

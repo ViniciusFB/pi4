@@ -5,8 +5,9 @@
  */
 package br.senac.tads.pi4.loja;
 
-import br.senac.tads.pi4.dao.ClienteDAO;
+import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.models.Cliente;
+import br.senac.tads.pi4.models.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,24 +41,24 @@ public class UsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
-        Cliente cliente = null;
-        ClienteDAO dao = new ClienteDAO();
+        Usuario usuario = null;
+        UsuarioDAO dao = new UsuarioDAO();
         try {
-            cliente = new Cliente((Cliente) dao.obterCliente(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+            usuario = new Usuario((Usuario) dao.obterUsuario(Integer.parseInt(sessao.getAttribute("idUsuario").toString())));
         } catch (NullPointerException | NumberFormatException e) {
             System.out.println(e);
             request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
 
         }
 
-        request.setAttribute("nome", cliente.getNome());
-        request.setAttribute("sobrenome", cliente.getSobrenome());
-        request.setAttribute("dataNasc", cliente.getDataNasc());
-        request.setAttribute("cpf", cliente.getCpf());
-        request.setAttribute("email", cliente.getEmail());
-        request.setAttribute("telefone", cliente.getTelefone());
+        request.setAttribute("nome", usuario.getNome());
+        request.setAttribute("sobrenome", usuario.getSobrenome());
+        request.setAttribute("dataNasc", usuario.getDataNasc());
+        request.setAttribute("cpf", usuario.getCpf());
+        request.setAttribute("email", usuario.getEmail());
+        request.setAttribute("telefone", usuario.getTelefone());
 
         request.getRequestDispatcher("WEB-INF/jsp/usuario.jsp").forward(request, response);
     }
@@ -67,7 +68,7 @@ public class UsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         //Comando que ira chamar a JSP passada no parametro
         request.getRequestDispatcher("WEB-INF/jsp/usuario.jsp").forward(request, response);

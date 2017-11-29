@@ -42,11 +42,10 @@ public class PedidoBOServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         try {
             VendaDAO dao = new VendaDAO();
-//            int idCliente = (int) sessao.getAttribute("idCliente");
             List<Venda> vendas = dao.listarPedidosBackoffice();
             request.setAttribute("listaCompras", vendas);
 
@@ -64,7 +63,7 @@ public class PedidoBOServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         VendaDAO dao = new VendaDAO();
         String dataI = request.getParameter("dataInicial");

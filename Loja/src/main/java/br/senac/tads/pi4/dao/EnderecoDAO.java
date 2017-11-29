@@ -37,7 +37,7 @@ public class EnderecoDAO extends ConexaoBD {
             //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
             while (resultados.next()) {
                 int idE = resultados.getInt("idEndereco");
-                int idC = resultados.getInt("idCliente");
+                int idC = resultados.getInt("idUsuario");
                 String cep = resultados.getString("cep");
                 String rua = resultados.getString("rua");
                 int numero = resultados.getInt("numero");
@@ -80,7 +80,7 @@ public class EnderecoDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Endereco "
-                + "(idCliente, cep, rua, numero, complemento, bairro, cidade, uf) "
+                + "(idUsuario, cep, rua, numero, complemento, bairro, cidade, uf) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -88,7 +88,7 @@ public class EnderecoDAO extends ConexaoBD {
 
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, endereco.getIdCliente());
+            stmt.setInt(1, endereco.getIdUsuario());
             stmt.setString(2, endereco.getCep());
             stmt.setString(3, endereco.getRua());
             stmt.setInt(4, endereco.getNumeroCasa());
@@ -107,9 +107,9 @@ public class EnderecoDAO extends ConexaoBD {
                     conn.rollback();
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
             }
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             try {
                 // Caso ocorra algum erro, tenta desfazer todas as ações realizadas no BD.
@@ -142,7 +142,7 @@ public class EnderecoDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM Endereco WHERE idCliente= " + idC;
+        String sql = "SELECT * FROM Endereco WHERE idUsuario = " + idC;
 
         List<Endereco> lista = new ArrayList<>();
         try {
@@ -153,7 +153,7 @@ public class EnderecoDAO extends ConexaoBD {
             //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
             while (resultados.next()) {
                 int id = resultados.getInt("idEndereco");
-                int idCliente = resultados.getInt("idCliente");
+                int idUsuario = resultados.getInt("idUsuario");
                 String cep = resultados.getString("cep");
                 String rua = resultados.getString("rua");
                 int numero = resultados.getInt("numero");
@@ -161,7 +161,7 @@ public class EnderecoDAO extends ConexaoBD {
                 String bairro = resultados.getString("bairro");
                 String cidade = resultados.getString("cidade");
                 String uf = resultados.getString("uf");
-                Endereco endereco = new Endereco(id, idCliente, cep, rua, numero, complemento, bairro, cidade, uf);
+                Endereco endereco = new Endereco(id, idUsuario, cep, rua, numero, complemento, bairro, cidade, uf);
 
                 lista.add(endereco);
             }
@@ -192,24 +192,24 @@ public class EnderecoDAO extends ConexaoBD {
         return lista;
     }
 
-    public Endereco obterEnderecoIdCliCep(int idCliente, String cep) throws SQLException {
+    public Endereco obterEnderecoIdCliCep(int idUsuario, String cep) throws SQLException {
         PreparedStatement stmt = null;
         Connection conn = null;
         Endereco e = null;
 
-        String sql = "SELECT idEndereco, idCliente, cep, rua, numero, complemento, bairro, cidade, uf"
-                + " FROM Endereco WHERE idCliente = ? AND cep = ?";
+        String sql = "SELECT idEndereco, idUsuario, cep, rua, numero, complemento, bairro, cidade, uf"
+                + " FROM Endereco WHERE idUsuario = ? AND cep = ?";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, idCliente);
+            stmt.setInt(1, idUsuario);
             stmt.setString(2, cep);
             ResultSet resultados = stmt.executeQuery();
 
             while (resultados.next()) {
                 int idEndereco = resultados.getInt("idEndereco");
-                int idCli = resultados.getInt("idCliente");
+                int idCli = resultados.getInt("idUsuario");
                 String cepCli = resultados.getString("cep");
                 String rua = resultados.getString("rua");
                 int numero = resultados.getInt("numero");

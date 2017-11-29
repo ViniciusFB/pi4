@@ -5,7 +5,7 @@
  */
 package br.senac.tads.pi4.loja;
 
-import br.senac.tads.pi4.dao.ClienteDAO;
+import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.models.Cliente;
 import java.io.IOException;
 import java.util.List;
@@ -28,8 +28,8 @@ public class ClienteServlet01 extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        ClienteDAO dao = new ClienteDAO();
-        List<Cliente> cliente = dao.listar();
+        UsuarioDAO dao = new UsuarioDAO();
+        List<Cliente> cliente = dao.listarClientes();
 
         request.setAttribute("listaClientes", cliente);
 

@@ -5,7 +5,7 @@
  */
 package br.senac.tads.pi4.ResultServlets;
 
-import br.senac.tads.pi4.dao.ClienteDAO;
+import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.models.Cliente;
 import br.senac.tads.pi4.models.Endereco;
 import java.io.IOException;
@@ -51,22 +51,12 @@ public class EnderecoServlet02 extends HttpServlet {
         boolean erro = false;
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
-//        Cliente cliente = null;
-        ClienteDAO dao = new ClienteDAO();
-//        try {
-//            cliente = new Cliente((Cliente) dao.obterCliente(Integer.parseInt(request.getParameter("idCliente"))));
-//        } catch (NullPointerException | NumberFormatException e) {
-//            System.out.println(e);
-//            request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
-//            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/vendas.jsp").forward(request, response);
-//
-//        }
-//
+        UsuarioDAO dao = new UsuarioDAO();
 
         // Endereços
-        int id = Integer.parseInt(request.getParameter("idCliente"));
+        int id = Integer.parseInt(request.getParameter("idUsuario"));
         String cep = request.getParameter("cep");
         String rua = request.getParameter("rua");
         int numero = Integer.parseInt(request.getParameter("numero"));

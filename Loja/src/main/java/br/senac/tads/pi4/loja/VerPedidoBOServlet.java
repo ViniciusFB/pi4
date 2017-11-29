@@ -45,7 +45,7 @@ public class VerPedidoBOServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         try {
             int idV = Integer.parseInt(request.getParameter("idVenda"));
@@ -85,7 +85,6 @@ public class VerPedidoBOServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
 
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-//        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
 
         int idVenda = Integer.parseInt(request.getParameter("idVenda2"));
         int status = Integer.parseInt(request.getParameter("status"));
@@ -100,7 +99,7 @@ public class VerPedidoBOServlet extends HttpServlet {
 
         }
         Long protocolo = v.getProtocolo();
-        int idCliente = v.getIdCliente();
+        int idUsuario = v.getIdCliente();
         Timestamp dataVenda = new Timestamp(System.currentTimeMillis());
         double valorFinal = v.getValorFinal();
 

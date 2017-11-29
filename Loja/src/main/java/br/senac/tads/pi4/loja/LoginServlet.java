@@ -23,10 +23,8 @@
  */
 package br.senac.tads.pi4.loja;
 
-import br.senac.tads.pi4.dao.ClienteDAO;
-import br.senac.tads.pi4.dao.ProdutoDAO;
-import br.senac.tads.pi4.models.Cliente;
-import br.senac.tads.pi4.models.Produto;
+import br.senac.tads.pi4.dao.UsuarioDAO;
+import br.senac.tads.pi4.models.Usuario;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -35,7 +33,6 @@ import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -79,8 +76,8 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession sessao = request.getSession();
         String urlPage = (String) sessao.getAttribute("urlPage");
-        Cliente cliente = null;
-        ClienteDAO dao = new ClienteDAO();
+        Usuario user = null;
+        UsuarioDAO dao = new UsuarioDAO();
         String usuario = request.getParameter("usuario");
 
         URI uri;
@@ -93,7 +90,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         try {
-            cliente = new Cliente((Cliente) dao.obterClientePorEmail(usuario));
+            user = new Usuario((Usuario) dao.obterUsuarioPorEmail(usuario));
 
         } catch (NullPointerException | NumberFormatException e) {
             System.out.println(e);
@@ -119,7 +116,7 @@ public class LoginServlet extends HttpServlet {
         } else if (senha.equals(senhaDigitada)) { // Compara a senha no banco com a senha digitada no campo (ambas criptografadas)
             try {
                 sessao.setAttribute("usuario", dao.selecionaNomeByEmailSenha(request.getParameter("usuario"), senha));
-                sessao.setAttribute("idCliente", dao.selecionaIdByEmailSenha(request.getParameter("usuario"), senha));
+                sessao.setAttribute("idUsuario", dao.selecionaIdByEmailSenha(request.getParameter("usuario"), senha));
 
             } catch (SQLException ex) {
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);

@@ -17,7 +17,7 @@ public class VendaProd {
     private int id;
     private int idVenda;
     private int idProduto;
-    private int idCliente;
+    private int idUsuario;
     private String nome;
     private int codigo;
     private String categorias;
@@ -32,10 +32,10 @@ public class VendaProd {
 
     }
 
-    public VendaProd(int idVenda, int idProduto, int idCliente, Date dataProd, String nome, int codigo, int quantidade, double valorUni, double valorTotal, String imagem) {
+    public VendaProd(int idVenda, int idProduto, int idUsuario, Date dataProd, String nome, int codigo, int quantidade, double valorUni, double valorTotal, String imagem) {
         this.idVenda = idVenda;
         this.idProduto = idProduto;
-        this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
         this.dataProd = dataProd;
         this.nome = nome;
         this.codigo = codigo;
@@ -45,11 +45,11 @@ public class VendaProd {
         this.imagem = imagem;
     }
 
-    public VendaProd(int id, int idVenda, int idProduto, int idCliente, Date dataProd, String nome, int codigo, int quantidade, double valorUni, double valorTotal, String imagem) {
+    public VendaProd(int id, int idVenda, int idProduto, int idUsuario, Date dataProd, String nome, int codigo, int quantidade, double valorUni, double valorTotal, String imagem) {
         this.id = id;
         this.idVenda = idVenda;
         this.idProduto = idProduto;
-        this.idCliente = idCliente;
+        this.idUsuario = idUsuario;
         this.dataProd = dataProd;
         this.nome = nome;
         this.codigo = codigo;
@@ -140,11 +140,11 @@ public class VendaProd {
     }
 
     public int getIdCliente() {
-        return idCliente;
+        return idUsuario;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdCliente(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public double getValorTotal() {

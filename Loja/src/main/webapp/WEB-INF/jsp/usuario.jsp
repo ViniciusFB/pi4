@@ -153,7 +153,7 @@
                                         <div class="form-group">
                                             <label for="firstname">Nome</label>
                                             <input type="text" class="form-control" name="nome" value="${nome}" id="firstname">
-                                            <input type="hidden" class="form-control" name="idCliente" value="${idCliente}">
+                                            <input type="hidden" class="form-control" name="idUsuario" value="${idUsuario}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">

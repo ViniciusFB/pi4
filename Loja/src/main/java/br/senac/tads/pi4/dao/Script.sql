@@ -28,21 +28,22 @@ CONSTRAINT PK_Produto PRIMARY KEY,
   
 );
 
-create table Cliente (
-    idCliente INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
- CONSTRAINT PK_Cliente PRIMARY KEY,
-    nomeCliente VARCHAR(50) NOT NULL,
-    sobrenomeCliente VARCHAR(50) NOT NULL,
+create table Usuario (
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+ CONSTRAINT PK_Usuario PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(50) NOT NULL,
     dataNasc DATE NOT NULL,
-    cpfCliente VARCHAR(14) NOT NULL UNIQUE,
-    emailCliente VARCHAR(50) NOT NULL,
-    telefoneCliente VARCHAR(15) NOT NULL,
-    senha VARCHAR(50) NOT NULL -- O tamanho da VARCHAR deve ser no mínimo 32 caracteres (Hashes md5 possuem 32 caracteres). Menos do que isso, provavelmente vai dar erro.
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    email VARCHAR(50) NOT NULL,
+    telefone VARCHAR(15) NOT NULL,
+    senha VARCHAR(50) NOT NULL, -- O tamanho da VARCHAR deve ser no mínimo 32 caracteres (Hashes md5 possuem 32 caracteres). Menos do que isso, provavelmente vai dar erro.
+    nivel INT DEFAULT 0
 );
 
 CREATE TABLE Endereco (
     idEndereco INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
-   idCliente INT NOT NULL,
+   idUsuario INT NOT NULL,
    cep VARCHAR(9) NOT NULL,
    rua VARCHAR(50) NOT NULL,
    numero INT NOT NULL,
@@ -50,24 +51,24 @@ CREATE TABLE Endereco (
    bairro VARCHAR(50),
    cidade VARCHAR(50),
    uf VARCHAR(2),
-   FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+   FOREIGN KEY (idUsuario) REFERENCES Usuario(id)
 );
  create table Venda (
     idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
     protocolo VARCHAR (10) NOT NULL UNIQUE,
-    idCliente INT NOT NULL,
+    idUsuario INT NOT NULL,
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
     status INT NOT NULL,
     ultimaAtt TIMESTAMP NOT NULL,
-    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(id)
 );
 
 create table VendaProd (
    idVendaProd INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
    idVenda INT NOT NULL,
    idProduto INT NOT NULL,
-   idCliente INT NOT NULL,
+   idUsuario INT NOT NULL,
    dataProd DATE NOT NULL,
    nomeProduto VARCHAR(50) NOT NULL,
    codigo INT NOT NULL,
@@ -77,7 +78,7 @@ create table VendaProd (
    imagem varchar(2083),
    FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
    FOREIGN KEY (idProduto) REFERENCES Produto(idProduto),
-   FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+   FOREIGN KEY (idUsuario) REFERENCES Usuario(id)
 );
 
  create table Contato (
@@ -89,20 +90,6 @@ create table VendaProd (
     mensagem VARCHAR(4000) NOT NULL,
     dataMensagem DATE NOT NULL,
     respondida BOOLEAN NOT NULL
-);
-
-create table Funcionario (
-  idFuncionario INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
- CONSTRAINT PK_Funcionario PRIMARY KEY,
-  nomeFuncionario VARCHAR(50) NOT NULL,
-  sobrenomeFuncionario VARCHAR(50) NOT NULL,
-  dataNasc DATE NOT NULL,
-  cpfFuncionario VARCHAR(14) NOT NULL UNIQUE,
-  emailFuncionario VARCHAR(50) NOT NULL UNIQUE,
-  telefoneFuncionario VARCHAR(15) NOT NULL,
-  cargo VARCHAR(50),
-  senha VARCHAR(50) NOT NULL
-
 );
 
 -- CREATE TABLE Filial (
@@ -188,9 +175,9 @@ INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO
 	VALUES ('Cinto Oakley', 228844, 'Cinto', 2, '', 40.0, 'http://static1.netshoes.net/Produtos/cinto-oakley-halifax-belt/06/D63-0959-006/D63-0959-006_detalhe1.jpg?resize=254:*', 1, true);
 
 
-INSERT INTO LOJA.CLIENTE (NOMECLIENTE, SOBRENOMECLIENTE, DATANASC, CPFCLIENTE, EMAILCLIENTE, TELEFONECLIENTE, SENHA) 
+INSERT INTO LOJA.USUARIO(NOME, SOBRENOME, DATANASC, CPF, EMAIL, TELEFONE, SENHA) 
 	VALUES ('Vinicius', 'Ferreira', '1998-11-01', '360.000.000-00', 'cliente@gmail.com', '(11) 90000-0000', '4297f44b13955235245b2497399d7a93');
 
-INSERT INTO LOJA.ENDERECO (IDCLIENTE, CEP, RUA, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, UF) 
+INSERT INTO LOJA.ENDERECO (IDUSUARIO, CEP, RUA, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, UF) 
 	VALUES (1, '04686-000', 'Avenida Nossa Senhora do SabarÃ¡', 121, 'aa', 'Jardim BÃ©lgica', 'SÃ£o Paulo', 'SP');
 

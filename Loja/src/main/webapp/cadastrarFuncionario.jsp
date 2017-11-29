@@ -135,11 +135,11 @@
 
                                 <div class="form-group">
                                     <label for="cep">Cargo: </label>
-                                    <select name="cargo" id="cargo" class="form-control">
+                                    <select name="nivel" id="cargo" class="form-control">
                                         <option value="" disabled selected>Selecione um cargo...</option>
-                                        <option value="gerente">Gerente</option>
-                                        <option value="estoquista">Estoquista</option>
-                                        <option value="administrador">Administrador</option>
+                                        <option value="1">Gerente</option>
+                                        <option value="2">Estoquista</option>
+                                        <option value="3">Administrador</option>
                                     </select>
                                     <br>
                                     <div id="gerente" style="display: none;">
@@ -212,6 +212,7 @@
         <!--<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>-->
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/validar.js" type="text/javascript"></script>
+        <script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
 
         <script>
 

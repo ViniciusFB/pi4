@@ -39,7 +39,7 @@ public class checkoutServlet01 extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
 
         String idEnd = "" + sessao.getAttribute("idEndereco");
@@ -66,7 +66,7 @@ public class checkoutServlet01 extends HttpServlet {
             request.setAttribute("uf", endereco.getUf());
             request.setAttribute("numero", endereco.getNumeroCasa());
             request.setAttribute("complemento", endereco.getComplemento());
-            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idUsuario").toString())));
             sessao.setAttribute("cepDestino", endereco.getCep());
 //            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
             request.getRequestDispatcher("WEB-INF/jsp/checkout.jsp").forward(request, response);
@@ -89,7 +89,7 @@ public class checkoutServlet01 extends HttpServlet {
         boolean erro = false;
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
         request.setAttribute("urlPage", sessao.getAttribute("urlPage"));
 
@@ -114,11 +114,11 @@ public class checkoutServlet01 extends HttpServlet {
         }
         if (!carrinho.getItens().isEmpty()) {
 
-            request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+            request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
             EnderecoDAO dao = new EnderecoDAO();
 //            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
 
-            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idCliente").toString())));
+            request.setAttribute("listaEnderecos", dao.listar(Integer.parseInt(sessao.getAttribute("idUsuario").toString())));
 
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout.jsp").forward(request, response);
         } else {

@@ -40,7 +40,7 @@ public class indexServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         // Salvar a página
         String url = request.getRequestURL().toString();
         sessao.setAttribute("urlPage", url);
@@ -58,7 +58,7 @@ public class indexServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         //Comando que ira chamar a JSP passada no parametro
         request.getRequestDispatcher("WEB-INF/jsp/usuario.jsp").forward(request, response);

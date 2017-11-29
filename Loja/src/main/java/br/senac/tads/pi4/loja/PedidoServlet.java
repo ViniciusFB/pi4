@@ -42,12 +42,12 @@ public class PedidoServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         try {
             VendaDAO dao = new VendaDAO();
-            int idCliente = (int) sessao.getAttribute("idCliente");
-            List<Venda> vendas = dao.listar(idCliente);
+            int idUsuario = (int) sessao.getAttribute("idUsuario");
+            List<Venda> vendas = dao.listar(idUsuario);
             request.setAttribute("listaCompras", vendas);
 
             request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);
@@ -64,20 +64,20 @@ public class PedidoServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         VendaDAO dao = new VendaDAO();
-        int idCliente = (int) sessao.getAttribute("idCliente");
+        int idUsuario = (int) sessao.getAttribute("idUsuario");
         String dataI = request.getParameter("dataInicial");
         String dataF = request.getParameter("dataFinal");
 
         if (dataI == null || dataF == null || dataI.equals("") || dataF.equals("")) {
-            List<Venda> vendas = dao.listar(idCliente);
+            List<Venda> vendas = dao.listar(idUsuario);
             request.setAttribute("listaCompras", vendas);
         } else {
             Date dataInicial = Date.valueOf(dataI);
             Date dataFinal = Date.valueOf(dataF);
-            List<Venda> vendas = dao.filtrar(idCliente, dataInicial, dataFinal);
+            List<Venda> vendas = dao.filtrar(idUsuario, dataInicial, dataFinal);
             request.setAttribute("listaCompras", vendas);
         }
 

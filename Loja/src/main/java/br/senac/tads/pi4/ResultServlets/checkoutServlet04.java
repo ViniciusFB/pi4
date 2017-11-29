@@ -33,7 +33,7 @@ public class checkoutServlet04 extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
 
         CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
@@ -58,17 +58,9 @@ public class checkoutServlet04 extends HttpServlet {
         boolean erro = false;
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
-        request.setAttribute("idCliente", sessao.getAttribute("idCliente"));
+        request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
 
-//        Endereco endereco = null;
-//        try {
-//            endereco = new Endereco((Endereco) dao.obterCliente(Integer.parseInt(request.getParameter("idCliente"))));
-//        } catch (NullPointerException | NumberFormatException e) {
-//            System.out.println(e);
-//            request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
-//
-//        }
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout4.jsp").forward(request, response);
 
     }

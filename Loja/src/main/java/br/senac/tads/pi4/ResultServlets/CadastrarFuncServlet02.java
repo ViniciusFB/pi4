@@ -5,7 +5,7 @@
  */
 package br.senac.tads.pi4.ResultServlets;
 
-import br.senac.tads.pi4.dao.FuncionarioDAO;
+import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.models.Funcionario;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -73,11 +73,12 @@ public class CadastrarFuncServlet02 extends HttpServlet {
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
+        int nivel = Integer.parseInt(request.getParameter("nivel"));
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
-            Funcionario novo = new Funcionario(nome, sobrenome, dataNasc, cpf, email, telefone, "", md5(senha));
-            FuncionarioDAO dao = new FuncionarioDAO();
+            Funcionario novo = new Funcionario(nome, sobrenome, dataNasc, cpf, email, telefone, md5(senha), 1);
+            UsuarioDAO dao = new UsuarioDAO();
             dao.incluirComTransacao(novo);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastroRealizado.jsp").forward(request, response);
         } else {
