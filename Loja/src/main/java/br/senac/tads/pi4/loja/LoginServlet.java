@@ -106,8 +106,7 @@ public class LoginServlet extends HttpServlet {
         String senhaDigitada = this.md5(request.getParameter("senha")); // Criptografa a senha que foi digitada no campo
 
         //        Redirect para a página de produtos
-        
-        if(pagina.equals("produtos")) {
+        if (pagina.equals("produtos")) {
             pagina = "produtos?numeroPagina=1";
         }
 //        Fim redirect produtos
@@ -115,13 +114,22 @@ public class LoginServlet extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
         } else if (senha.equals(senhaDigitada)) { // Compara a senha no banco com a senha digitada no campo (ambas criptografadas)
             try {
-                sessao.setAttribute("usuario", dao.selecionaNomeByEmailSenha(request.getParameter("usuario"), senha));
+                sessao.setAttribute("usuario", user);
                 sessao.setAttribute("idUsuario", dao.selecionaIdByEmailSenha(request.getParameter("usuario"), senha));
 
             } catch (SQLException ex) {
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-//            this.getServletContext().getRequestDispatcher("/" + pagina).forward(request, response);
+
+            if (user.getNivel() != 0) {
+                request.setAttribute("nome", user.getNome());
+                request.setAttribute("sobrenome", user.getSobrenome());
+                request.setAttribute("dataNasc", user.getDataNasc());
+                request.setAttribute("cpf", user.getCpf());
+                request.setAttribute("email", user.getEmail());
+                request.setAttribute("telefone", user.getTelefone());
+                request.getRequestDispatcher("/usuario").forward(request, response);// Redireciona o funcionário para o Backoffice
+            }
             response.sendRedirect(request.getContextPath() + "/" + pagina);
 
         } else {

@@ -95,7 +95,7 @@
                     <a href="checkout1" class="btn btn-default"><i class="fa fa-chevron-left"></i>Voltar para endereços</a>
                 </div>
                 <div class="pull-right">
-                    <button type="submit" class="btn btnProx btn-primary">Seguir para formas de pagamento<i class="fa fa-chevron-right"></i>
+                    <button type="submit" class="btn btnProx btn-primary" disabled id="btnNext">Seguir para formas de pagamento<i class="fa fa-chevron-right"></i>
                     </button>
                 </div>
             </div>

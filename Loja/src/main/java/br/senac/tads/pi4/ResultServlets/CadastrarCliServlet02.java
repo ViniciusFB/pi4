@@ -91,12 +91,23 @@ public class CadastrarCliServlet02 extends HttpServlet {
             UsuarioDAO dao = new UsuarioDAO();
             dao.incluirComTransacao(novo);
             int idUsuario = novo.getId();
-            
+
             EnderecoDAO endDAO = new EnderecoDAO();
             Endereco end = new Endereco(idUsuario, cep, rua, numero, complemento, bairro, cidade, uf);
             endDAO.incluirComTransacao(end);
-            
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastroRealizado.jsp").forward(request, response);
+
+//            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/cadastroRealizado.jsp").forward(request, response);
+            sessao.setAttribute("usuario", novo);
+            sessao.setAttribute("idUsuario", idUsuario);
+            request.setAttribute("mensagem", "Cadastro realizado com sucesso. Esse é seu menu!");
+            request.setAttribute("nome", novo.getNome());
+            request.setAttribute("sobrenome", novo.getSobrenome());
+            request.setAttribute("dataNasc", novo.getDataNasc());
+            request.setAttribute("cpf", novo.getCpf());
+            request.setAttribute("email", novo.getEmail());
+            request.setAttribute("telefone", novo.getTelefone());
+
+            this.getServletContext().getRequestDispatcher("/usuario").forward(request, response);
         } else {
             // Tem erro no preenchimento dos dados.
             // Reapresenta o formulário para o usuário indicando os erros.

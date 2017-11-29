@@ -29,9 +29,9 @@ public class UsuarioDAO extends ConexaoBD {
     public Usuario obterUsuario(int idUsuario) {
         PreparedStatement stmt = null;
         Connection conn = null;
-        Usuario c = null;
+        Usuario u = null;
 
-        String sql = "SELECT id, nome, sobrenome, dataNasc, cpf, email, telefone, senha "
+        String sql = "SELECT id, nome, sobrenome, dataNasc, cpf, email, telefone, senha, nivel "
                 + "FROM Usuario WHERE id = ?";
 
         try {
@@ -49,7 +49,9 @@ public class UsuarioDAO extends ConexaoBD {
                 String email = resultados.getString("email");
                 String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
-                c = new Usuario(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha);
+                int nivel = resultados.getInt("nivel");
+                
+                u = new Usuario(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha, nivel);
                 break;
             }
         } catch (SQLException ex) {
@@ -75,7 +77,7 @@ public class UsuarioDAO extends ConexaoBD {
                 }
             }
         }
-        return c;
+        return u;
 
     }
 
@@ -195,8 +197,8 @@ public class UsuarioDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Usuario "
-                + "(nome, sobrenome, dataNasc, cpf, email, telefone, senha) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                + "(nome, sobrenome, dataNasc, cpf, email, telefone, senha, nivel) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = obterConexao();
@@ -210,6 +212,7 @@ public class UsuarioDAO extends ConexaoBD {
             stmt.setString(5, usuario.getEmail());
             stmt.setString(6, usuario.getTelefone());
             stmt.setString(7, usuario.getSenha());
+            stmt.setInt(8, usuario.getNivel());
 
             stmt.executeUpdate();
 
@@ -466,9 +469,9 @@ public class UsuarioDAO extends ConexaoBD {
     public Usuario obterUsuarioPorEmail(String email) {
         PreparedStatement stmt = null;
         Connection conn = null;
-        Usuario c = null;
+        Usuario u = null;
 
-        String sql = "SELECT id, nome, sobrenome, dataNasc, cpf, email, telefone, senha "
+        String sql = "SELECT id, nome, sobrenome, dataNasc, cpf, email, telefone, senha, nivel "
                 + "FROM Usuario WHERE email = ?";
 
         try {
@@ -486,7 +489,9 @@ public class UsuarioDAO extends ConexaoBD {
                 String emailc = resultados.getString("email");
                 String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
-                c = new Usuario(id, nome, sobrenome, dataNasc, cpf, emailc, telefone, senha);
+                int nivel = resultados.getInt("nivel");
+                
+                u = new Usuario(id, nome, sobrenome, dataNasc, cpf, emailc, telefone, senha, nivel);
                 break;
             }
         } catch (SQLException ex) {
@@ -512,7 +517,7 @@ public class UsuarioDAO extends ConexaoBD {
                 }
             }
         }
-        return c;
+        return u;
 
     }
 
@@ -563,7 +568,7 @@ public class UsuarioDAO extends ConexaoBD {
         Usuario usuario = null;
 
         String sql = "INSERT INTO Endereco "
-                + "(id, cep, rua, numero, complemento, bairro, cidade, uf) "
+                + "(idUsuario, cep, rua, numero, complemento, bairro, cidade, uf) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {

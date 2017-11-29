@@ -132,7 +132,7 @@
                                 <hr>
 
                                 <div class="form-group">
-                                    <label for="imagem">Imagem: </label>
+                                    <label for="imgLink">Imagem: </label>
                                     <input type="url" name="imglink" id="imglink" class="form-control" placeholder="Coloque a URL da imagem aqui" />
                                     <section id="imagem" class="imagemm"></section>
 

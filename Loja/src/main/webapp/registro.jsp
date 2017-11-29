@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="numero">Número: </label>
-                                    <input type="text" class="form-control" name="numero" id="numero">
+                                    <input type="text" class="form-control" name="numero" id="numero" maxlength="4">
                                 </div>
                                 <div class="form-group">
                                     <label for="complemento">Complemento: </label>

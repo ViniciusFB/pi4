@@ -60,6 +60,10 @@ public class UsuarioServlet extends HttpServlet {
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("telefone", usuario.getTelefone());
 
+//        if (usuario.getNivel() != 0) {
+//            request.getRequestDispatcher("WEB-INF/jsp/usuario.jsp").forward(request, response);
+//        }
+
         request.getRequestDispatcher("WEB-INF/jsp/usuario.jsp").forward(request, response);
     }
 

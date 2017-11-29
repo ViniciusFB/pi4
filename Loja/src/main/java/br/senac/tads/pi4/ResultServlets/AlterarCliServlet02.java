@@ -71,10 +71,16 @@ public class AlterarCliServlet02 extends HttpServlet {
 
         dao.atualizarUsuario(usuario);
 
+        request.setAttribute("mensagem", "Dados alterados com sucesso.");
+        sessao.removeAttribute("usuario");
+        sessao.setAttribute("usuario", usuario);
+        request.setAttribute("nome", usuario.getNome());
+        request.setAttribute("sobrenome", usuario.getSobrenome());
+        request.setAttribute("dataNasc", usuario.getDataNasc());
+        request.setAttribute("cpf", usuario.getCpf());
+        request.setAttribute("email", usuario.getEmail());
+        request.setAttribute("telefone", usuario.getTelefone());
 
-        request.setAttribute("mensagem", "Dados alterados com sucesso. Faça o login novamente para confirmar as mudanças.");
-
-        
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher("/WEB-INF/jsp/usuario.jsp");
         dispatcher.forward(request, response);

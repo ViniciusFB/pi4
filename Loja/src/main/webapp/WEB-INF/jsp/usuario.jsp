@@ -93,11 +93,36 @@
                                     <li>
                                         <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
                                     </li>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.usuario.nivel != 0}">
+                                            <li>
+                                                <a href="cadastroProduto.jsp"><i class="fa fa-plus"></i> Cadastrar Produto</a>
+                                            </li>
+                                            <li>
+                                                <a href="cadastrarFuncionario.jsp"><i class="fa fa-user"></i> Cadastrar Funcionário</a>
+                                            </li>
+                                            <li>
+                                                <a href="pedidosBackoffice"><i class="fa fa-shopping-cart"></i> Pedidos de Clientes</a>
+                                            </li>
+                                            <li>
+                                                <a href="mensagens"><i class="fa fa-envelope"></i> Mensagens de Clientes</a>
+                                            </li>
+                                            <li>
+                                                <a href="relatorios"><i class="fa fa-book"></i> Relatórios</a>
+                                            </li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            
+                                        </c:otherwise>
+                                    </c:choose>
+
+
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
                                     </li>
                                 </ul>
                             </div>
+
 
                         </div>
                         <!-- /.col-md-3 -->
@@ -212,14 +237,14 @@
         <!-- /#content -->
 
         <!-- *** COPYRIGHT ***
- _________________________________________________________ -->
+    _________________________________________________________ -->
         <jsp:include page="rodape.jsp" />
 
     </div>
     <!-- /#all -->
 
     <!-- *** SCRIPTS TO INCLUDE ***
- _________________________________________________________ -->
+    _________________________________________________________ -->
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.cookie.js"></script>

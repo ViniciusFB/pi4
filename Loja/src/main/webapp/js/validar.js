@@ -127,7 +127,54 @@ $(document).ready(function () {
                     }
                 }
             },
-
+            numero: {
+                validators: {
+                    integer: {
+                        message: 'Por favor digite apenas números'
+                    }
+                }
+            },
+            codigo: {
+                validators: {
+                    integer: {
+                        message: 'Por favor digite apenas números'
+                    },
+                    notEmpty: {
+                        message: 'Por favor digite um código válido'
+                    }
+                }
+            },
+            quantidade: {
+                validators: {
+                    integer: {
+                        message: 'Por favor escolha a quantidade'
+                    },
+                    notEmpty: {
+                        message: 'Por favor escolha a quantidade'
+                    }
+                }
+            },
+            valor: {
+                validators: {
+                    numeric: {
+                        message: 'Por favor digite um valor válido',
+                        separator: ","
+                    },
+                    notEmpty: {
+                        message: 'Por favor digite um valor válido'
+                    }
+                }
+            },
+            imgLink: {
+                validators: {
+                    stringLength: {
+                        max: 2083,
+                    },
+                    notEmpty: {
+                        message: 'Por favor cole a URL da imagem nesse campo'
+                    }
+                }
+            },
         }
     })
 

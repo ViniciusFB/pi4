@@ -9,6 +9,7 @@ import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.dao.EnderecoDAO;
 import br.senac.tads.pi4.models.Cliente;
 import br.senac.tads.pi4.models.Endereco;
+import br.senac.tads.pi4.models.Usuario;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -39,10 +40,10 @@ public class EnderecoServlet01 extends HttpServlet {
         String acao = request.getParameter("acao");
         if (acao == null) {
 
-            Cliente cliente = null;
+            Usuario usuario = null;
             UsuarioDAO daoC = new UsuarioDAO();
             try {
-                cliente = new Cliente((Cliente) daoC.obterUsuario(Integer.parseInt(sessao.getAttribute("idUsuario").toString())));
+                usuario = new Usuario((Usuario) daoC.obterUsuario(Integer.parseInt(sessao.getAttribute("idUsuario").toString())));
             } catch (NullPointerException | NumberFormatException e) {
                 System.out.println(e);
                 request.setAttribute("erro", "Nenhum cliente foi encontrado com o ID informado!");
@@ -53,8 +54,8 @@ public class EnderecoServlet01 extends HttpServlet {
             List<Endereco> enderecos = null;
             enderecos = daoE.listar(Integer.parseInt(sessao.getAttribute("idUsuario").toString()));
 
-            request.setAttribute("nome", cliente.getNome());
-            request.setAttribute("sobrenome", cliente.getSobrenome());
+            request.setAttribute("nome", usuario.getNome());
+            request.setAttribute("sobrenome", usuario.getSobrenome());
             request.setAttribute("listaEnderecos", enderecos);
             request.getRequestDispatcher("WEB-INF/jsp/enderecos.jsp").forward(request, response);
         } else if (acao.equals("removerEndereco")) {
