@@ -91,28 +91,30 @@
                                                                 </div>-->
                                 <div class="form-group">
                                     <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="name" placeholder="Digite seu primeiro nome">
+                                    <input type="text" class="form-control" name="nome" id="name" placeholder="Digite seu primeiro nome" value="${nome}">
                                 </div>
                                 <div class="form-group">
                                     <label for="sobrenome">Sobrenome</label>
-                                    <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Digite seu sobrenome">
+                                    <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Digite seu sobrenome" value="${sobrenome}">
                                 </div>
                                 <div class="form-group">
                                     <label for="dataNasc">Data de Nascimento</label>
-                                    <input type="date" class="form-control" name="dataNasc" id="dataNasc">
+                                    <input type="date" class="form-control" name="dataNasc" id="dataNasc" value="${dataNasc}">
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="name">CPF/CNPJ</label>-->
                                     <label for="cpf">CPF/CNPJ</label>
-                                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)" placeholder="000.000.000-00">
+                                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)" placeholder="000.000.000-00" value="${cpf}">
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" maxlength="15" id="telefone" placeholder="(00) 00000-0000">
+                                    <input type="text" class="form-control" name="telefone" maxlength="15" id="telefone" placeholder="(00) 00000-0000" value="${telefone}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="exemplo@email.com">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="exemplo@email.com" value="${email}">
+                                    <span id="valid" style="color: orangered;"> ${valido}</span>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="senha">Senha</label>
@@ -135,31 +137,31 @@
 
                                 <div class="form-group">
                                     <label for="cep">CEP: </label>
-                                    <input type="text" class="form-control" maxlength="9" name="cep" id="cep" onkeypress="javascript: mascara(this, cep_mask)">
+                                    <input type="text" class="form-control" maxlength="9" name="cep" id="cep" onkeypress="javascript: mascara(this, cep_mask)" value="${cep}">
                                 </div>
                                 <div class="form-group">
                                     <label for="rua">Rua: </label>
-                                    <input type="text" readonly="true" class="form-control" name="rua" id="rua">
+                                    <input type="text" readonly="true" class="form-control" name="rua" id="rua" value="${rua}">
                                 </div>
                                 <div class="form-group">
                                     <label for="bairro">Bairro: </label>
-                                    <input type="text" readonly="true" class="form-control" name="bairro" id="bairro">
+                                    <input type="text" readonly="true" class="form-control" name="bairro" id="bairro" value="${bairro}">
                                 </div>
                                 <div class="form-group">
                                     <label for="cidade">Cidade: </label>
-                                    <input type="text" readonly="true" class="form-control" name="cidade" id="cidade">
+                                    <input type="text" readonly="true" class="form-control" name="cidade" id="cidade" value="${cidade}">
                                 </div>
                                 <div class="form-group">
                                     <label for="uf">UF: </label>
-                                    <input type="text" readonly="true" class="form-control" maxlength="2" name="uf" id="uf">
+                                    <input type="text" readonly="true" class="form-control" maxlength="2" name="uf" id="uf" value="${uf}">
                                 </div>
                                 <div class="form-group">
                                     <label for="numero">Número: </label>
-                                    <input type="text" class="form-control" name="numero" id="numero" maxlength="4">
+                                    <input type="text" class="form-control" name="numero" id="numero" maxlength="4" value="${numero}">
                                 </div>
                                 <div class="form-group">
                                     <label for="complemento">Complemento: </label>
-                                    <input type="text" class="form-control" name="complemento" id="complemento">
+                                    <input type="text" class="form-control" name="complemento" id="complemento" value="${complemento}">
                                 </div>
 
                             </div>
@@ -200,6 +202,40 @@
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/validar.js" type="text/javascript"></script>
         <script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
-
+        <!--        <script>
+        
+                                                $(document).ready(function () {
+                                                    var campo = $('#email');
+                                                    campo.change(function () {
+                                                        var url = 'verifyEmail?email=' + campo.val();
+        
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: 'verifyEmail',
+        //                                                    data: campo.val(),
+                                                            data: {
+                                                                email: campo.val()
+                                                            },
+                                                            contentType: "application/json; charset=utf-8",
+                                                            dataType: 'json',
+                                                            success: function (response)
+                                                            {
+        //                                                        $("#valid").html(response.valido2s);
+        //                                                        var test = $.parseJSON(response);
+                                                                response = $.parseJSON(response);
+        //                                                        response = JSON.parse(response);
+                                                                alert(response);
+                                                            },
+                                                            error: function (jqXHR, textStatus, errorThrown) {
+                                                                alert('erro: status: ' + textStatus + " thrown: " + errorThrown);
+                                                            }
+                                                        });
+        
+        //                return false;
+                                                    })
+                                                })
+        
+        
+                </script>-->
     </body>
 </html>

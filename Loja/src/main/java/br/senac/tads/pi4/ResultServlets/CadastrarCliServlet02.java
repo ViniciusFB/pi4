@@ -14,6 +14,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,6 +58,7 @@ public class CadastrarCliServlet02 extends HttpServlet {
         boolean erro = false;
         HttpSession sessao = request.getSession();
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
+        UsuarioDAO dao = new UsuarioDAO();
 
         // Dados pessoais
         String nome = request.getParameter("nome");
@@ -84,14 +87,39 @@ public class CadastrarCliServlet02 extends HttpServlet {
         String bairro = request.getParameter("bairro");
         String cidade = request.getParameter("cidade");
         String uf = request.getParameter("uf");
+        boolean existe = true;
+        try {
+            existe = dao.verificaEmail(email);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastrarCliServlet02.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (existe == true) {
+            erro = true;
+            request.setAttribute("valido", "O E-mail já está sendo usado");
+            request.setAttribute("nome", nome);
+            request.setAttribute("sobrenome", sobrenome);
+            request.setAttribute("dataNasc", dataNasc);
+            request.setAttribute("cpf", cpf);
+            request.setAttribute("telefone", telefone);
+            request.setAttribute("email", email);
+            request.setAttribute("cep", cep);
+            request.setAttribute("rua", rua);
+            request.setAttribute("bairro", bairro);
+            request.setAttribute("cidade", cidade);
+            request.setAttribute("uf", uf);
+            request.setAttribute("numero", numero);
+            request.setAttribute("complemento", complemento);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("registro.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            System.out.println("EMAIL OK!");
+        }
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
             Cliente novo = new Cliente(nome, sobrenome, dataNasc, cpf, email, telefone, md5(senha));
-            UsuarioDAO dao = new UsuarioDAO();
             dao.incluirComTransacao(novo);
             int idUsuario = novo.getId();
-
             EnderecoDAO endDAO = new EnderecoDAO();
             Endereco end = new Endereco(idUsuario, cep, rua, numero, complemento, bairro, cidade, uf);
             endDAO.incluirComTransacao(end);
@@ -108,12 +136,8 @@ public class CadastrarCliServlet02 extends HttpServlet {
             request.setAttribute("telefone", novo.getTelefone());
 
             this.getServletContext().getRequestDispatcher("/usuario").forward(request, response);
-        } else {
-            // Tem erro no preenchimento dos dados.
-            // Reapresenta o formulário para o usuário indicando os erros.
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registro.jsp");
-            dispatcher.forward(request, response);
         }
+
     }
 
     // Md5 gera senha criptografada 

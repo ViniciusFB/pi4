@@ -50,7 +50,7 @@ public class UsuarioDAO extends ConexaoBD {
                 String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
                 int nivel = resultados.getInt("nivel");
-                
+
                 u = new Usuario(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha, nivel);
                 break;
             }
@@ -105,7 +105,7 @@ public class UsuarioDAO extends ConexaoBD {
                 String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
                 int nivel = resultados.getInt("nivel");
-                
+
                 Cliente cliente = new Cliente(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha);
 
                 lista.add(cliente);
@@ -136,6 +136,7 @@ public class UsuarioDAO extends ConexaoBD {
         }
         return lista;
     }
+
     public List<Funcionario> listarFuncionarios() {
         Statement stmt = null;
         Connection conn = null;
@@ -160,7 +161,7 @@ public class UsuarioDAO extends ConexaoBD {
                 String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
                 int nivel = resultados.getInt("nivel");
-                
+
                 Funcionario funcionario = new Funcionario(id, nome, sobrenome, dataNasc, cpf, email, telefone, senha, nivel);
 
                 lista.add(funcionario);
@@ -427,6 +428,7 @@ public class UsuarioDAO extends ConexaoBD {
         }
         return nome;
     }
+
     public int selecionaIdByEmailSenha(String email, String senha) throws SQLException {
         int id = 0;
         ResultSet resultSet;
@@ -490,7 +492,7 @@ public class UsuarioDAO extends ConexaoBD {
                 String telefone = resultados.getString("telefone");
                 String senha = resultados.getString("senha");
                 int nivel = resultados.getInt("nivel");
-                
+
                 u = new Usuario(id, nome, sobrenome, dataNasc, cpf, emailc, telefone, senha, nivel);
                 break;
             }
@@ -624,5 +626,23 @@ public class UsuarioDAO extends ConexaoBD {
                 }
             }
         }
+    }
+
+    public boolean verificaEmail(String email) throws Exception {
+        boolean existe = false;
+        try {
+            Connection conn = obterConexao();
+//            PreparedStatement ps = conn.prepareStatement("SELECT  * FROM Usuario WHERE "
+//                    + "email = ?");
+            Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet res = st.executeQuery("SELECT * FROM Usuario WHERE email = '" + email + "'");
+//            existe = res.first();
+            existe = res.first();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e);
+        }
+        System.out.println("Email " + email + " existe = " + existe);
+        return existe;
     }
 }
