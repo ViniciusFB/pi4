@@ -106,47 +106,73 @@
                     </div>
 
                     <!--<div class="col-md-9" id="customer-orders">-->
-                    <div class="col-md-9" id="basket">
+                    <div class="col-md-9">
                         <div class="box">
                             <h1>Meus pedidos</h1>
 
                             <hr>
 
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2">Produto</th>
-                                            <th>Quantidade</th>
-                                            <th>Preço Unitário</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
+                            <div>
+                                <div class="row">
+                                    <div class="col-xs-0 col-md-1">
+                                    </div>
+                                    <div class="col-xs-6 col-md-5">
+                                        <label> <strong>Produto </strong></label>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2">
+                                        <label> <strong>Qtde</strong> </label>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2">
+                                        <label><strong> Valor Uni.</strong> </label>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2">
+                                        <label><strong> Valor Total</strong></label>
+                                    </div>
 
-                                    <c:forEach items="${listaProdutos}" var="item">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="detalhes?c=${item.codigo}">
-                                                        <img src="${item.imagem}" alt="Imagem Produto">
-                                                    </a>
-                                                </td>
-                                                <td><a href="detalhes?c=${item.codigo}">${item.nome}</a></td>
-                                                <td>${item.quantidade}</td>
-                                                <td>R$ ${item.valorUni}</td>
-                                                <td>R$ ${item.valorTotal}</td>
-                                            </tr>
-                                        </tbody>
 
-                                    </c:forEach>
+                                </div>
+                                <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                                    border-top: 1px solid #eeeeee;">
 
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="4">Total + Frete</th>
-                                            <th colspan="2">R$ ${valorCompra}</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                <c:forEach items="${listaProdutos}" var="item">
+                                    <!--<tbody>-->
+                                    <div class="row">
+                                        <div class="col-xs-3 col-md-1">
+                                            <a href="detalhes?c=${item.codigo}">
+                                                <img src="${item.imagem}" height="50" width="50" alt="Imagem Produto">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-3 col-md-5">
+                                            <br>
+                                            <a href="detalhes?c=${item.codigo}">${item.nome}</a>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <br>
+                                            ${item.quantidade}
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <br>
+                                            ${item.valorUni}
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <br>
+                                            ${item.valorTotal}
+                                        </div>
+
+                                    </div>
+                                    <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                                        border-top: 1px solid #eeeeee;">
+
+                                </c:forEach>
+                                <div class="row">
+                                    <div class="col-xs-9 col-md-10">
+                                        <p><strong>    Total + Frete</strong></p>
+                                    </div>
+                                    <div class="col-xs-3 col-md-2">
+                                        <p><strong> R$${valorCompra} </strong></p>
+                                    </div>
+
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
                                         <h4>Pagamento: Cartão de Crédito</h4>
