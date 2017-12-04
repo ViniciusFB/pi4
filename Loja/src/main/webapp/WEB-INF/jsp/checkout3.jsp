@@ -47,8 +47,8 @@
                                                 </div>-->
                         <div class="col-sm-6">
                             <div class="box payment-method">
-
-                                <h4>Cartão de Crédito</h4>
+                                <i class="fa fa-credit-card"></i>
+                                <h4 style="text-align: center">Cartão de Crédito</h4>
 
                                 <!--<p>VISA and Mastercard only.</p>-->
 

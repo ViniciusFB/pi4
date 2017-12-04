@@ -124,7 +124,7 @@
                                 <h4>Endereço de Entrega</h4>
                                 <span id="rua"></span>, <span id="numero"></span>
                                 <br>
-                                <span> Entrega em ${diasUteis} dias uteis</span>
+                                <span> Entrega em ${diasUteis} dias úteis</span>
                             </div>
                         </div>
 

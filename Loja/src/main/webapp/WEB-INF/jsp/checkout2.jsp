@@ -30,10 +30,10 @@
             <form action="Frete" id="formFrete" accept-charset="iso-8859-1,utf-8" method="post">
                 <div class="content">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="box shipping-method">
 
-                                <h4>SEDEX</h4>
+                                <h4 style="text-align: center">SEDEX</h4>
 
                                 <!--<p>Get it right on next day - fastest option possible.</p>-->
 
@@ -43,10 +43,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="box shipping-method">
 
-                                <h4>SEDEX 10</h4>
+                                <h4 style="text-align: center">SEDEX 10</h4>
 
                                 <!--<p>Get it right on next day - fastest option possible.</p>-->
 
@@ -57,10 +57,10 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="box shipping-method">
 
-                                <h4>PAC</h4>
+                                <h4 style="text-align: center">PAC</h4>
 
                                 <!--<p>Get it right on next day - fastest option possible.</p>-->
 
@@ -72,11 +72,15 @@
                         </div>
                         <input type="hidden" name="cepOrigem" value="04696000">
                         <input type="hidden" name="cepDestino" value="${cepDestino}">
-                        <div class="col-sm-6">
-                            <div id="inform" class="box shipping-method" style="display: none;">
+<!--                        <div class="col-sm-4">
+#e6e6e6
+                        </div>-->
+                        <div class="col-sm-12">
+                            <div id="inform" class="box shipping-method" style="display: none; text-align: center;
+                                 background-color: #F7F7F7">
 
-                                <h5> Valor: R$${valorFrete} </h5>
-                                <h5> Prazo: ${diasUteis} dias uteis</h5>
+                                <h4> Valor: R$${valorFrete} </h4>
+                                <h4> Prazo: ${diasUteis} dias úteis</h4>
                             </div>
                         </div>
 
