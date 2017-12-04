@@ -115,7 +115,7 @@
                     </div>
 
                     <!--<div class="col-md-9" id="customer-orders">-->
-                    <form action="visualizarPedidoBackoffice" method="post">
+                    <form action="visualizarPedidoBackoffice" method="post" accept-charset="iso-8859-1,utf-8">
                         <div class="col-md-9" id="basket">
                             <div class="box">
                                 <h1>Meus pedidos</h1>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <input type="hidden" class="etapa" value="4">
+
 <div class="container">
 
     <div class="col-md-12">
@@ -15,7 +16,7 @@
     <div class="col-md-9" id="checkout">
 
         <div class="box">
-            <form method="post" action="finalizarCompra">
+            <form method="post" accept-charset="iso-8859-1,utf-8" id="formFinaliza" action="finalizarCompra">
                 <h1>Checkout</h1>
                 <ul class="nav nav-pills nav-justified">
                     <li><a href="checkout1"><i class="fa fa-map-marker"></i><br>Endereço</a>
@@ -34,7 +35,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="2">Produto</th>
-                                    <th>Quantidade</th>
+                                    <th>Qtde</th>
                                     <th>Preço Unitário</th>
                                     <th>Total</th>
                                 </tr>
@@ -75,6 +76,12 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <strong><span>Endereço de Entrega: </span></strong>
+                        <span id="rua"></span>, <span id="numero"></span>
+                        <br>
+                        <strong><span>Número de Parcelas: </span></strong>
+                        <span id="parcelas"></span><br>
+                        <strong>Número do Cartão: </strong><span id="ccNumero"></span>
                     </div>
                     <!-- /.table-responsive -->
                 </div>
@@ -85,10 +92,12 @@
                         <a href="checkout3" class="btn btnVoltar btn-default"><i class="fa fa-chevron-left"></i>Voltar para formas de pagamento</a>
                     </div>
                     <div class="pull-right">
-                        <button type="submit" class="btn btn-primary">Finalizar Compra<i class="fa fa-chevron-right"></i>
+                        <button type="submit" id="finalizar" class="btn btn-primary">Finalizar Compra<i class="fa fa-chevron-right"></i>
                         </button>
                     </div>
                 </div>
+                <input type="hidden" id="numeroCartao" name="numeroCartao">
+                <input type="hidden" id="numeroParcelas" name="numeroParcelas">
             </form>
         </div>
         <!-- /.box -->
@@ -140,3 +149,25 @@
 <!-- /.container -->
 
 <script src="js/checkout.js"></script>
+<script>
+    $(document).ready(function () {
+        var rua = $("#rua");
+        rua.text(sessionStorage.getItem("rua"));
+        var numero = $("#numero");
+        numero.text(sessionStorage.getItem("numero"));
+        var parcelas = $("#parcelas");
+        parcelas.text(sessionStorage.getItem("parcelas"));
+        var ccNumero = $("#ccNumero");
+        ccNumero.text(sessionStorage.getItem("ccNumero"));
+
+        $("#numeroCartao").attr("value", ccNumero.text());
+        $("#numeroParcelas").attr("value", parcelas.text());
+
+        var btn = $("#finalizar");
+        btn.click(function () {
+            sessionStorage.clear();
+
+        })
+
+    }) // Form on submit executa função que remove os atributos da sessionStorage do JavaScript
+</script>

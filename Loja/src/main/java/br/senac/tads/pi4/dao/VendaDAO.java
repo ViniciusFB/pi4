@@ -30,8 +30,8 @@ public class VendaDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(idUsuario, protocolo, dataVenda, valorFinal, status, ultimaAtt) "
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+                + "(idUsuario, protocolo, dataVenda, valorFinal, status, ultimaAtt, numeroCartao, numeroParcelas) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = obterConexao();
@@ -44,6 +44,8 @@ public class VendaDAO extends ConexaoBD {
             stmt.setDouble(4, venda.getValorFinal());
             stmt.setInt(5, venda.getStatus());
             stmt.setTimestamp(6, venda.getUltimaAtt());
+            stmt.setLong(7, venda.getNumeroCartao());
+            stmt.setInt(8, venda.getNumeroParcelas());
 
             stmt.executeUpdate();
 
@@ -121,8 +123,10 @@ public class VendaDAO extends ConexaoBD {
                 Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
                 SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 String dataFormatada2 = formatBR2.format(ultimaAtt);
+                long numeroCartao = resultados.getLong("numeroCartao");
+                int numeroParcelas = resultados.getInt("numeroParcelas");
 
-                Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2);
+                Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2, numeroCartao, numeroParcelas);
 
                 lista.add(venda);
             }
@@ -178,8 +182,10 @@ public class VendaDAO extends ConexaoBD {
                 Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
                 SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 String dataFormatada2 = formatBR2.format(ultimaAtt);
+                long numeroCartao = resultados.getLong("numeroCartao");
+                int numeroParcelas = resultados.getInt("numeroParcelas");
 
-                Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2);
+                Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2, numeroCartao, numeroParcelas);
 
                 lista.add(venda);
             }
@@ -242,8 +248,10 @@ public class VendaDAO extends ConexaoBD {
                 Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
                 SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 String dataFormatada2 = formatBR2.format(ultimaAtt);
+                long numeroCartao = resultados.getLong("numeroCartao");
+                int numeroParcelas = resultados.getInt("numeroParcelas");
 
-                Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2);
+                Venda venda = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2, numeroCartao, numeroParcelas);
 
                 lista.add(venda);
             }
@@ -381,8 +389,10 @@ public class VendaDAO extends ConexaoBD {
                 int status = resultados.getInt("status");
                 Date ultimaAtt = resultados.getDate("ultimaAtt");
                 String dataFormatada2 = formatBR.format(ultimaAtt);
+                long numeroCartao = resultados.getLong("numeroCartao");
+                int numeroParcelas = resultados.getInt("numeroParcelas");
 
-                v = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2);
+                v = new Venda(id, protocolo, idCli, dataFormatada, valor, status, dataFormatada2, numeroCartao, numeroParcelas);
                 break;
             }
         } catch (SQLException ex) {

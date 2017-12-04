@@ -172,7 +172,7 @@
                             <hr>
 
                             <h3>Dados pessoais</h3>
-                            <form action="DadosAlterados" method="post">
+                            <form action="DadosAlterados" accept-charset="iso-8859-1,utf-8" method="post">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">

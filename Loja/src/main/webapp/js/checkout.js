@@ -112,21 +112,10 @@ $(document).ready(function () {
         var selecionado = $('input[class=pagamento]:checked', '#formPagamento').val();
 
         $("#inform").css("display", "");
-        $("#btnNext").removeAttr("disabled");
-        var sel = $("#sel").val();
-        sel = selecionado;
-
-        if (sel === '1') {
-//                    alert("Sedex selecionado");
-            $("#credito").prop("checked", true);
-        } else if (selecionado === '2') {
-//                    alert("Sedex10 selecionado");
-            $("#debito").prop("checked", true);
-        } else if (selecionado === '3') {
-//                    alert("Pac selecionado");
-            $("#paypal").prop("checked", true);
-        }
-
+//        $("#btnNext").removeAttr("disabled");
+//        var sel = $("#sel").val();
+//        sel = selecionado;
+        $("#ccNumber").focus();
 
     });
 });

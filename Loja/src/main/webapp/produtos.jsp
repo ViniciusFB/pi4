@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="panel-body">
-                                <form action="filtrar" method="post">
+                                <form action="filtrar" method="post" accept-charset="iso-8859-1,utf-8">
                                     <ul class="nav nav-pills nav-stacked category-menu">
                                         <li>
                                             <a>Acessórios</a>

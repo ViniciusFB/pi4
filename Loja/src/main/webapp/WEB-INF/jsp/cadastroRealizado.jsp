@@ -76,7 +76,7 @@
 
                                     <h3>Cadastro realizado com sucesso!</h3>
                                     <h4 class="text-muted">Faça seu login</h4>
-                                    <form action="login" method="post">
+                                    <form action="login" accept-charset="iso-8859-1,utf-8" method="post">
                                         <div class="form-group">
                                             <label for="email" style="float: left;">Email </label>
                                             <input type="text" class="form-control" name="usuario" id="email">

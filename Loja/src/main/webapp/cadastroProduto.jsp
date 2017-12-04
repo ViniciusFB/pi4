@@ -72,7 +72,7 @@
                     </div>
 
 
-                    <form action="CadastrarProduto" method="post" id="formCadastro">
+                    <form action="CadastrarProduto" method="post" accept-charset="iso-8859-1,utf-8" id="formCadastro">
 
                         <div class="col-md-6">
                             <div class="box">

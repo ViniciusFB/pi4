@@ -72,7 +72,7 @@
                     <div class="col-md-9" id="checkout">
 
                         <div class="box">
-                            <form method="post" class="preencherDados" id="preencherDados" action="checkout01">
+                            <form method="post" class="preencherDados" accept-charset="iso-8859-1,utf-8" id="preencherDados" action="checkout01">
                                 <h1>Checkout</h1>
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Endereço</a>
@@ -101,7 +101,7 @@
 
 
 
-                            <form action="checkout2" method="post" id="formCheck2">
+                            <form action="checkout2" accept-charset="iso-8859-1,utf-8" method="post" id="formCheck2">
                                 <div class="content">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -258,6 +258,8 @@
                                                                     $("#saveEnd").prop({
                                                                         disabled: true
                                                                     });
+                                                                    sessionStorage.setItem("rua", $("#rua").val());
+                                                                    sessionStorage.setItem("numero", $("#numero").val());
                                                                 }
                                                             });
 

@@ -27,7 +27,7 @@
                 </li>
             </ul>
 
-            <form action="Frete" id="formFrete" method="post">
+            <form action="Frete" id="formFrete" accept-charset="iso-8859-1,utf-8" method="post">
                 <div class="content">
                     <div class="row">
                         <div class="col-sm-6">
@@ -127,12 +127,12 @@
                         </tr>
                         <tr>
                             <td>Frete</td>
-                            <th>R$ 0.00</th>
+                            <th>R$ ${frete}</th>
                         </tr>
 
                         <tr class="total">
                             <td>Total</td>
-                            <th>R$${valorTotal}</th>
+                            <th>R$${valorTotal + frete}</th>
                         </tr>
                     </tbody>
                 </table>
@@ -147,3 +147,21 @@
 <!-- /.container -->
 <!--</div>-->
 <script src="js/checkout.js"></script>
+<script>
+    $(document).ready(function () {
+        var selected = sessionStorage.getItem("frete");
+        $(".entrega").click(function () {
+            var selecionado = $('input[class=entrega]:checked', '#formFrete').val();
+            sessionStorage.setItem("frete", selecionado);
+        })
+        if (selected === '1') {
+            $("#sedex").prop("checked", true);
+        } else if (selected === '2') {
+            $("#sedex10").prop("checked", true);
+        } else if (selected === '3') {
+            $("#pac").prop("checked", true);
+//            $("#inform").css("display", "");
+//            $("#btnNext").removeAttr("disabled");
+        }
+    })
+</script>

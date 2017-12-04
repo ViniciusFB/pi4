@@ -122,24 +122,24 @@
 
             <div id="content">
                 <div class="container">
-                    <input name="sucesso" id="sucesso" type="hidden" value="${sucesso}">
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Aviso</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p id="mensagem"><strong>${msg}</strong></p>
-                                    <p><strong>Protocolo: ${protocolo}</strong></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--<input name="sucesso" id="sucesso" type="hidden" value="${sucesso}">-->
+                    <!--                    <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Aviso</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p id="mensagem"><strong>${msg}</strong></p>
+                                                        <p><strong>Protocolo: ${protocolo}</strong></p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
                     <div class="col-md-12">
 
                         <ul class="breadcrumb">
@@ -186,7 +186,10 @@
                     <div class="col-md-9" id="customer-orders">
                         <div class="box">
                             <h1>Meus pedidos</h1>
-                            <form action="pedidos" method="post">
+                            <h3 style="color: green">${msg}</h3>
+                            <h3 style="color: orangered" class="text-muted">${protocolo}</h3>
+
+                            <form action="pedidos" accept-charset="iso-8859-1,utf-8" method="post">
                                 <div style="float:left;margin-right:20px; margin-top: 5px">
                                     <label for="dataInicial">Data Inicial</label>
                                     <input id="dataInicial" type="date" value="" name="dataInicial" class="form-inline" required style="display: block">
@@ -204,7 +207,6 @@
                             </form>
 
                             <br><br>
-
                             <hr>
 
                             <div class="table-responsive">
@@ -214,7 +216,7 @@
                                             <th>Protocolo</th>
                                             <th>Data</th>
                                             <th>Total</th>
-                                            <!--<th>Status</th>-->
+                                            <th>Status</th>
                                             <th>Ação</th>
                                         </tr>
                                     </thead>
@@ -226,8 +228,8 @@
                                                 <th>${compra.protocolo}</th>
                                                 <td>${compra.dataFormatada}</td>
                                                 <td>R$ ${compra.valorFinal}</td>
-                                                <!--<td><span class="label label-info">Being prepared</span>-->
-                                                <!--</td>-->
+                                                <td><span class="label label-info">Aguardando Pagamento</span>
+                                                </td>
                                                 <td><a href="visualizarPedido?idVenda=${compra.id}" class="btn btn-primary btn-sm">Visualizar</a>
                                                 </td>
                                             </tr>                                        

@@ -60,7 +60,7 @@ _________________________________________________________ -->
                 <h4 class="modal-title" id="Login">Login</h4>
             </div>
             <div class="modal-body">
-                <form action="login" method="post">
+                <form action="login" accept-charset="iso-8859-1,utf-8" method="post">
                     <div class="form-group">
                         <input type="text" class="form-control" id="email-modal" placeholder="e-mail" name="usuario">
                     </div>
@@ -138,7 +138,7 @@ _________________________________________________________ -->
                 <a href="carrinho" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">${numItens} itens no carrinho</span></a>
             </div>
             <!--/.nav-collapse -->
-            <form class="navbar-form" role="search" action="pesquisar" method="post" id="formBusca">
+            <form class="navbar-form" role="search" accept-charset="iso-8859-1,utf-8" action="pesquisar" method="post" id="formBusca">
                 <div class="navbar-collapse collapse right" id="search-not-mobile">
                     <div class="input-group">
                         <input type="text" name="nomeProduto"  style="width: 235px" class="form-control navbar-btn" placeholder="Pesquise um produto...">
@@ -152,7 +152,7 @@ _________________________________________________________ -->
             </form>
             <div class="collapse clearfix" id="search">
 
-                <form class="navbar-form" role="search" action="produtos" method="post">
+                <form class="navbar-form" role="search" accept-charset="iso-8859-1,utf-8" action="produtos" method="post">
                     <div class="input-group">
                         <input type="text" name="nomeProduto" class="form-control" placeholder="Pesquise um produto...">
                         <span class="input-group-btn">

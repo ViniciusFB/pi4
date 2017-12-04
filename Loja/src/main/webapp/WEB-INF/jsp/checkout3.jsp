@@ -28,7 +28,7 @@
             </ul>
 
 
-            <form action="Pagamento" id="formPagamento" class="form-horizontal" method="post">
+            <form action="Pagamento" id="formPagamento" class="form-horizontal" accept-charset="iso-8859-1,utf-8" method="post">
 
                 <div class="content">
                     <div class="row">
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="col-sm-6">
-                            <div id="inform" class="box shipping-method" style="display: none;">
+                            <div id="inform" class="inform box shipping-method" style="display: none;">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Número</label>
                                     <div class="col-sm-9">
@@ -71,36 +71,36 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Validade</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" placeholder="Mês" data-stripe="exp-month" />
+                                        <input type="text" class="form-control" id="mes" placeholder="Mês" data-stripe="exp-month" />
                                     </div>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Ano" data-stripe="exp-year" />
+                                        <input type="text" class="form-control" id="ano" placeholder="Ano" data-stripe="exp-year" />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">CVC</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control cvvNumber" />
+                                        <input type="text" id="cvc" class="form-control cvvNumber" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Parcelas</label>
+                                    <div class="col-sm-9">
+                                        <select class="parcelas form-control" name="parcelas" id="parcelas">
+                                            <option value="" selected disabled>Escolha o número de parcelas</option>
+                                            <option value="5">5x de ${(valorTotal+frete)/5} sem juros</option>
+                                            <option value="4">4x de ${(valorTotal+frete)/4} sem juros</option>
+                                            <option value="3">3x de ${(valorTotal+frete)/3} sem juros</option>
+                                            <option value="2">2x de ${(valorTotal+frete)/2} sem juros</option>
+                                            <option value="1">1x de ${(valorTotal+frete)/1} sem juros</option>
+
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
-                        <!--                        <div class="col-sm-6">
-                                                    <div class="box payment-method">
-                        
-                                                        <h4>Pagamento na entrega</h4>
-                        
-                                                        <p>You pay when you get it.</p>
-                        
-                                                        <div class="box-footer text-center">
-                        
-                                                            <input type="radio" name="payment" value="payment3">
-                                                        </div>
-                                                    </div>
-                                                </div>-->
                         <!--                        <div class="col-sm-6">
                                                     <div class="box payment-method">
                         
@@ -181,3 +181,48 @@
 <script src="js/checkout.js"></script>
 <script src="js/bootstrapValidator.js" type="text/javascript"></script>
 <script src="js/validarCheckout.js"></script>
+<script>
+
+    $(document).ready(function () {
+        var numero = $("#ccNumber");
+        var mes = $("#mes");
+        var ano = $("#ano");
+        var cvc = $("#cvc");
+        var parcelas = $(".parcelas");
+        var cont = 0;
+        var campos = $(".inform input");
+
+//        var xd = $("#inform input").filter(function () {
+//            return $("#inform input").css('border-color') === 'rgb(43, 84, 44)';
+//        });
+//        alert(xd.length);
+        campos.change(function () {
+            if ($(this).css('border-color') === 'rgb(43, 84, 44)') {
+                cont++;
+            }
+            if (cont === 5) {
+                $("#btnNext").removeAttr("disabled");
+            }
+        });
+
+        parcelas.change(function () {
+            if ($(this).val() !== 0) {
+                cont++;
+            }
+            if (cont === 5) {
+                $("#btnNext").removeAttr("disabled");
+            }
+        });
+
+
+
+        $(".btnProx").click(function () {
+            sessionStorage.setItem("ccNumero", numero.val());
+            sessionStorage.setItem("mes", mes.val());
+            sessionStorage.setItem("ano", ano.val());
+            sessionStorage.setItem("cvc", cvc.val());
+            sessionStorage.setItem("parcelas", parcelas.val());
+        })
+    })
+
+</script>

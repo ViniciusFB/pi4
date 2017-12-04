@@ -72,7 +72,7 @@
                                     <span style="color: red"> ${erro} </span>
                                     <p class="text-muted">Você possui atualmente <span>${numItens}</span> itens no seu carrrinho</p>
                                     <div class="table-responsive">
-                                        <form method="post" action="carrinho">
+                                        <form method="post" action="carrinho" accept-charset="iso-8859-1,utf-8">
 
                                             <table class="table">
                                                 <thead>
@@ -144,7 +144,7 @@
 
                                             <c:choose>
                                                 <c:when test="${not empty carrinho.itens}">
-                                                    <form method="post" action="checkout1">
+                                                    <form method="post" action="checkout1" accept-charset="iso-8859-1,utf-8">
                                                         <button type="submit" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
                                                         </button>
                                                     </form>
@@ -155,7 +155,7 @@
                                             </c:choose>
                                         </c:when>
                                         <c:otherwise>
-                                            <form method="post" action="confirmarCadastro.jsp">
+                                            <form method="post" action="confirmarCadastro.jsp" accept-charset="iso-8859-1,utf-8">
 
                                                 <button type="submit" class="btn btn-primary">Finalizar Compra <i class="fa fa-chevron-right"></i>
                                                 </button>

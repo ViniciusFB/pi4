@@ -54,14 +54,19 @@ CREATE TABLE Endereco (
    FOREIGN KEY (idUsuario) REFERENCES Usuario(id)
 );
  create table Venda (
-    idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+    idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, 
+--     idEndereco INT NOT NULL, 
     protocolo VARCHAR (10) NOT NULL UNIQUE,
     idUsuario INT NOT NULL,
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
     status INT NOT NULL,
     ultimaAtt TIMESTAMP NOT NULL,
+--     pagamento INT,
+    numeroCartao BIGINT,
+    numeroParcelas INT,
     FOREIGN KEY (idUsuario) REFERENCES Usuario(id)
+--     FOREIGN KEY (idEndereco) REFERENCES Endereco(idEndereco)
 );
 
 create table VendaProd (
@@ -179,5 +184,5 @@ INSERT INTO LOJA.USUARIO(NOME, SOBRENOME, DATANASC, CPF, EMAIL, TELEFONE, SENHA)
 	VALUES ('Vinicius', 'Ferreira', '1998-11-01', '360.000.000-00', 'cliente@gmail.com', '(11) 90000-0000', '4297f44b13955235245b2497399d7a93');
 
 INSERT INTO LOJA.ENDERECO (IDUSUARIO, CEP, RUA, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, UF) 
-	VALUES (1, '04686-000', 'Avenida Nossa Senhora do SabarÃ¡', 121, 'aa', 'Jardim BÃ©lgica', 'SÃ£o Paulo', 'SP');
+	VALUES (1, '04686-000', 'Avenida Nossa Senhora do Sabará', 121, 'aa', 'Jardim Bélgica', 'São Paulo', 'SP');
 

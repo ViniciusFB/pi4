@@ -130,7 +130,7 @@
 
                             <h3>Novo Endereço</h3>
 
-                            <form action="adicionarEndereco" method="post" id="formCadastro">
+                            <form action="adicionarEndereco" accept-charset="iso-8859-1,utf-8" method="post" id="formCadastro">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">

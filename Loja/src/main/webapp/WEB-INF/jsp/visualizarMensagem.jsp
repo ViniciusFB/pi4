@@ -139,7 +139,7 @@
 
                             <hr>
 
-                            <form action="visualizarMensagem" method="post" id="formResposta">
+                            <form action="visualizarMensagem" accept-charset="iso-8859-1,utf-8" method="post" id="formResposta">
                                 <div class="col-md-12">
 
                                     <div class="row">

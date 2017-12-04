@@ -76,8 +76,9 @@ public class VendaServlet extends HttpServlet {
             double valorTotal = valorCompra + valorFrete;
             long protocolo = (long) (1000000000 + Math.random() * 999999999);
             Timestamp ultimaAtt = new Timestamp(System.currentTimeMillis());
-
-            Venda venda = new Venda(idUsuario, protocolo, dataVenda, valorTotal, 0, ultimaAtt);
+            long numeroCartao = Long.parseLong(request.getParameter("numeroCartao"));
+            int numeroParcelas = Integer.parseInt(request.getParameter("numeroParcelas"));
+            Venda venda = new Venda(idUsuario, protocolo, dataVenda, valorTotal, 0, ultimaAtt, numeroCartao, numeroParcelas);
             vDao.incluirComTransacao(venda);
             int idVenda = venda.getId();
             System.out.println("idVenda = " + idVenda);
@@ -115,9 +116,9 @@ public class VendaServlet extends HttpServlet {
             sessao.removeAttribute("idEndereco");
             sessao.removeAttribute("cepDestino");
             sessao.removeAttribute("frete");
-            request.setAttribute("sucesso", 1);
+//            request.setAttribute("sucesso", 1);
             request.setAttribute("msg", "Compra finalizada com sucesso. Verifique o protocolo e acompanhe seu pedido!");
-            request.setAttribute("protocolo", venda.getProtocolo());
+            request.setAttribute("protocolo", "Protocolo: " +venda.getProtocolo());
 //            response.sendRedirect(request.getContextPath() + "/pedidos");
             getServletContext().getRequestDispatcher("/pedidos").forward(request, response);
 

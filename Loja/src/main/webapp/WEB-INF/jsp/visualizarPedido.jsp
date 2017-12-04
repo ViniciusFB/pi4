@@ -147,6 +147,21 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
+                                        <h4>Pagamento: Cartão de Crédito</h4>
+                                        <h5>Número do Cartão: ${numeroCartao}</h5>
+                                        <h5>Número de Parcelas: ${numeroParcelas}x de ${valorCompra/numeroParcelas} sem juros</h5>
+                                    </div>
+                                    <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
+                                        <h4>Endereço de Entrega</h4>
+                                        <h5>CEP: </h5>
+                                        <h5>Rua: </h5>
+                                    </div>
+                                </div>
+
+                                <br>
+
                             </div>
                             <a href="pedidos" class="btn btn-default"><i class="fa fa-chevron-left"></i> Meus pedidos</a>
 

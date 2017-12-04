@@ -93,9 +93,10 @@
                                     $("#saveEnd").prop({
                                         disabled: true
                                     });
+                                    sessionStorage.setItem("rua", $("#rua").val());
+                                    sessionStorage.setItem("numero", $("#numero").val());
                                 }
                             });
-
                             return false;
                         });
 

@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="panel-body">
-                                <form action="filtrar" id="filtroCategoria" method="post">
+                                <form action="filtrar" id="filtroCategoria" accept-charset="iso-8859-1,utf-8" method="post">
                                     <ul class="nav nav-pills nav-stacked category-menu">
                                         <li>
                                             <a>Acessórios</a>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="box">
-                                    <form action="carrinho" method="post">
+                                    <form action="carrinho" accept-charset="iso-8859-1,utf-8" method="post">
                                         <h1 class="text-center">${nomeProduto}</h1>
                                         <p class="goToDescription"><a href="#details" class="scroll-to">Ver os detalhes do produto</a>
                                         </p>

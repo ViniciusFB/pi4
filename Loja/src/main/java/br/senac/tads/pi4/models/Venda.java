@@ -5,7 +5,6 @@
  */
 package br.senac.tads.pi4.models;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -24,6 +23,8 @@ public class Venda {
     private Double valorFinal;
     private int status;
     private Timestamp ultimaAtt;
+    private long numeroCartao;
+    private int numeroParcelas;
 
 //    Status:
 // 0 - Aguardando pagamento
@@ -42,10 +43,13 @@ public class Venda {
         this.valorFinal = venda.valorFinal;
         this.status = venda.status;
         this.ultimaAtt = venda.ultimaAtt;
+        this.numeroCartao = venda.numeroCartao;
+        this.numeroParcelas = venda.numeroParcelas;
 
     }
 
-    public Venda(int id, long protocolo, int idUsuario, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt) {
+    public Venda(int id, long protocolo, int idUsuario, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt,
+            long numeroCartao, int numeroParcelas) {
         this.id = id;
         this.protocolo = protocolo;
         this.idUsuario = idUsuario;
@@ -53,9 +57,12 @@ public class Venda {
         this.valorFinal = valorFinal;
         this.status = status;
         this.ultimaAtt = ultimaAtt;
+        this.numeroCartao = numeroCartao;
+        this.numeroParcelas = numeroParcelas;
     }
 
-    public Venda(int id, long protocolo, int idUsuario, String dataFormatada, Double valorFinal, int status, String dataFormatada2) {
+    public Venda(int id, long protocolo, int idUsuario, String dataFormatada, Double valorFinal, int status,
+            String dataFormatada2, long numeroCartao, int numeroParcelas) {
         this.id = id;
         this.protocolo = protocolo;
         this.idUsuario = idUsuario;
@@ -63,15 +70,20 @@ public class Venda {
         this.valorFinal = valorFinal;
         this.status = status;
         this.dataFormatada2 = dataFormatada2;
+        this.numeroCartao = numeroCartao;
+        this.numeroParcelas = numeroParcelas;
     }
 
-    public Venda(int idUsuario, long protocolo, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt) {
+    public Venda(int idUsuario, long protocolo, Timestamp dataVenda, Double valorFinal, int status, Timestamp ultimaAtt,
+            long numeroCartao, int numeroParcelas) {
         this.idUsuario = idUsuario;
         this.protocolo = protocolo;
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
         this.status = status;
         this.ultimaAtt = ultimaAtt;
+        this.numeroCartao = numeroCartao;
+        this.numeroParcelas = numeroParcelas;
     }
 
     public Venda(Long protocolo, Double valorFinal, int status, Timestamp ultimaAtt, int id) {
@@ -154,5 +166,22 @@ public class Venda {
     public void setUltimaAtt(Timestamp ultimaAtt) {
         this.ultimaAtt = ultimaAtt;
     }
+
+    public long getNumeroCartao() {
+        return numeroCartao;
+    }
+
+    public void setNumeroCartao(long numeroCartao) {
+        this.numeroCartao = numeroCartao;
+    }
+
+    public int getNumeroParcelas() {
+        return numeroParcelas;
+    }
+
+    public void setNumeroParcelas(int numeroParcelas) {
+        this.numeroParcelas = numeroParcelas;
+    }
+    
 
 }

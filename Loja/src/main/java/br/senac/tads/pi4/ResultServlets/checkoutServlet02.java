@@ -35,6 +35,8 @@ public class checkoutServlet02 extends HttpServlet {
         request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
         request.setAttribute("cepDestino", sessao.getAttribute("cepDestino"));
+        request.setAttribute("frete", sessao.getAttribute("valorFrete"));
+
         request.getRequestDispatcher("WEB-INF/jsp/checkout2.jsp").forward(request, response);
     }
 
@@ -55,6 +57,7 @@ public class checkoutServlet02 extends HttpServlet {
         request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         request.setAttribute("idEndereco", sessao.getAttribute("idEndereco"));
         request.setAttribute("cepDestino", sessao.getAttribute("cepDestino"));
+        request.setAttribute("frete", sessao.getAttribute("valorFrete"));
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout2.jsp").forward(request, response);
 

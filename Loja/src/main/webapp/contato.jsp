@@ -121,7 +121,7 @@
                         <hr>
                         <h2>Formulário de Contato</h2>
 
-                        <form action="contato" method="post">
+                        <form action="contato" method="post" accept-charset="iso-8859-1,utf-8">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
