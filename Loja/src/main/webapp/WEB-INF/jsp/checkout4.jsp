@@ -30,58 +30,104 @@
                 </ul>
 
                 <div class="content">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Produto</th>
-                                    <th>Qtde</th>
-                                    <th>Preço Unitário</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
+                    <div>
+                        <div class="row">
+                            <div class="col-xs-0 col-md-1">
+                            </div>
+                            <div class="col-xs-6 col-md-5">
+                                <label> <strong>Produto </strong></label>
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                                <label> <strong>Qtde</strong> </label>
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                                <label><strong> Valor Uni.</strong> </label>
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                                <label><strong> Valor Total</strong></label>
+                            </div>
 
-                            <c:forEach items="${carrinho.itens}" var="item">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="detalhes?c=${item.codigo}">
-                                                <img src="${item.imagem}" alt="Imagem Produto">
-                                            </a>
-                                        </td>
-                                        <td><a href="detalhes?c=${item.codigo}">${item.nome}</a>
-                                        </td>
-                                        <td id="iQtd" style="width: 5px">
-                                            <input type="hidden" id="qtd" value="${item.quantidade}" min="1" max="${item.quantidadeEstoque}" style="width: 70px" name="quantidade" class="qtd form-control">
-                                            ${item.quantidade}
-                                        </td>
-                                        <td>R$ ${item.valor}</td> 
-                                        <td class="vTotal" id="vTotal">R$ ${item.total}</td>
-                                </tbody>
 
-                            </c:forEach>
+                        </div>
 
-                            <tfoot>
-                                <tr>
-                                    <th colspan="4">Valor da Compra</th>
-                                    <th colspan="2">R$ ${valorTotal}</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Frete</th>
-                                    <th colspan="2">R$ ${frete}</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Total</th>
-                                    <th colspan="2">R$ ${frete+valorTotal}</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <strong><span>Endereço de Entrega: </span></strong>
-                        <span id="rua"></span>, <span id="numero"></span>
-                        <br>
-                        <strong><span>Número de Parcelas: </span></strong>
-                        <span id="parcelas"></span><br>
-                        <strong>Número do Cartão: </strong><span id="ccNumero"></span>
+                        <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                            border-top: 1px solid #eeeeee;">
+
+                        <c:forEach items="${carrinho.itens}" var="item">
+                            <div class="row">
+                                <div class="col-xs-3 col-md-1">
+                                    <a href="detalhes?c=${item.codigo}">
+                                        <img src="${item.imagem}" height="50" width="50" alt="Imagem Produto">
+                                    </a>
+                                </div>
+                                <div class="col-xs-3 col-md-5">
+                                    <br>
+                                    <a href="detalhes?c=${item.codigo}">${item.nome}</a>
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <br>
+                                    ${item.quantidade}
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <br>
+                                    ${item.valor}
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <br>
+                                    ${item.total}
+                                </div>
+
+                            </div>
+                            <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                                border-top: 1px solid #eeeeee;">
+
+                        </c:forEach>
+
+                        <div class="row">
+                            <div class="col-xs-9 col-md-10">
+                                <p><strong> Valor da Compra </strong></p>
+                            </div>
+                            <div class="col-xs-3 col-md-2">
+                                <p><strong> R$${valorTotal}</strong></p>
+                            </div>
+                        </div>
+                        <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                            border-top: 1px solid #eeeeee;">
+                        <div class="row">
+                            <div class="col-xs-9 col-md-10">
+                                <p><strong> Frete </strong></p>
+                            </div>
+                            <div class="col-xs-3 col-md-2">
+                                <p><strong> R$${frete}</strong></p>
+                            </div>
+                        </div>
+                        <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                            border-top: 1px solid #eeeeee;">
+                        <div class="row">
+                            <div class="col-xs-9 col-md-10">
+                                <p><strong> Total </strong></p>
+                            </div>
+                            <div class="col-xs-3 col-md-2">
+                                <p><strong> R$${valorTotal+frete}</strong></p>
+                            </div>
+                        </div>
+                        <!--                        <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                                                    border-top: 1px solid #eeeeee;">-->
+                        <div class="row">
+                            <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
+                                <h4>Pagamento: Cartão de Crédito</h4>
+                                <strong><span>Número de Parcelas: </span></strong>
+                                <span id="parcelas"></span><br>
+                                <strong>Número do Cartão: </strong><span id="ccNumero"></span>
+                            </div>
+                            <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
+                                <h4>Endereço de Entrega</h4>
+                                <span id="rua"></span>, <span id="numero"></span>
+                                <br>
+                                <span> Entrega em ${diasUteis} dias uteis</span>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- /.table-responsive -->
                 </div>

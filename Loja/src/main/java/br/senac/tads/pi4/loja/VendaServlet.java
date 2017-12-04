@@ -116,6 +116,7 @@ public class VendaServlet extends HttpServlet {
             sessao.removeAttribute("idEndereco");
             sessao.removeAttribute("cepDestino");
             sessao.removeAttribute("frete");
+            sessao.removeAttribute("diasUteis");
 //            request.setAttribute("sucesso", 1);
             request.setAttribute("msg", "Compra finalizada com sucesso. Verifique o protocolo e acompanhe seu pedido!");
             request.setAttribute("protocolo", "Protocolo: " +venda.getProtocolo());

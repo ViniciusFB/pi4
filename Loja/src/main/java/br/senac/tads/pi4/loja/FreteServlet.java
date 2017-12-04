@@ -192,7 +192,7 @@ public class FreteServlet extends HttpServlet {
                 line = (Element) erro.item(0);
                 HttpSession sessao = request.getSession();
                 request.setAttribute("valorFrete", valorFrete);
-                request.setAttribute("diasUteis", diasUteis);
+                sessao.setAttribute("diasUteis", diasUteis);
                 double frete = Double.parseDouble(valorFrete);
 //                sessao.setAttribute("frete", request.getAttribute("valorFrete"));
                 sessao.setAttribute("frete", frete);

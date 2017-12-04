@@ -108,15 +108,16 @@
                     <!--<div class="col-md-9" id="customer-orders">-->
                     <div class="col-md-9">
                         <div class="box">
-                            <h1>Meus pedidos</h1>
+                            <!--<h1>Meus pedidos</h1>-->
+                            <h1>Pedido ${protocolo}</h1>
 
                             <hr>
 
                             <div>
                                 <div class="row">
-                                    <div class="col-xs-0 col-md-1">
-                                    </div>
-                                    <div class="col-xs-6 col-md-5">
+<!--                                    <div class="col-xs-0 col-md-1">
+                                    </div>-->
+                                    <div class="col-xs-6 col-md-6">
                                         <label> <strong>Produto </strong></label>
                                     </div>
                                     <div class="col-xs-2 col-md-2">

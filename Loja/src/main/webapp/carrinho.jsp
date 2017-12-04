@@ -60,7 +60,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-9" id="basket">
+                    <div class="col-md-9">
 
                         <div class="box">
 
@@ -71,55 +71,78 @@
                                 <c:when test="${not empty carrinho.itens}">
                                     <span style="color: red"> ${erro} </span>
                                     <p class="text-muted">Você possui atualmente <span>${numItens}</span> itens no seu carrrinho</p>
-                                    <div class="table-responsive">
+                                    <div>
                                         <form method="post" action="carrinho" accept-charset="iso-8859-1,utf-8">
+                                            <div class="row">
+                                                <!--<div class="col-xs-0 col-md-1">-->
+                                                <!--</div>-->
+                                                <div class="col-xs-4 col-md-6">
+                                                    <label> <strong>Produto </strong></label>
+                                                </div>
+                                                <div class="col-xs-2 col-md-2">
+                                                    <label> <strong>Qtde</strong> </label>
+                                                </div>
+                                                <div class="col-xs-2 col-md-2">
+                                                    <label><strong> Valor Uni.</strong> </label>
+                                                </div>
+                                                <div class="col-xs-2 col-md-2">
+                                                    <label><strong> Total</strong></label>
+                                                </div>
+                                                <div class="col-xs-2 col-md-0">
+                                                </div>
 
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th colspan="2">Produto</th>
-                                                        <th colspan="2">Quantidade</th>
-                                                        <th>Preço Unitário</th>
-                                                        <!--<th>Desconto</th>-->
-                                                        <th colspan="2">Total</th>
-                                                    </tr>
-                                                </thead>
 
-                                                <c:forEach items="${carrinho.itens}" var="item">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="detalhes?c=${item.codigo}">
-                                                                    <img src="${item.imagem}" alt="Imagem Produto">
-                                                                </a>
-                                                            </td>
-                                                            <td><a href="detalhes?c=${item.codigo}">${item.nome}</a>
-                                                            </td>
-                                                            <td id="iQtd" style="width: 5px">
-                                                                <input type="hidden" id="qtd" value="${item.quantidade}" min="1" max="${item.quantidadeEstoque}" style="width: 70px" name="quantidade" class="qtd form-control">
-                                                                ${item.quantidade}
-                                                            </td>
-                                                            <td>
-                                                                <a class="btnAdd" href="carrinho?acao=addProduto&idProduto=${item.id}"><i class="fa fa-plus"></i></a>
-                                                                <a class="btnRem" href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
-                                                            </td>
-                                                            <td>R$ ${item.valor}</td> <input type="hidden" name="valorUni" id="valorUni" class="valorUni" value="${item.valor}">
-                                                    <input type="hidden" name="idProduto" value="${item.id}">
-                                                    <td class="vTotal" id="vTotal">R$ ${item.total}</td> <input type="hidden" name="valorTotal" id="valorTotal">
-                                                    <td><a href="carrinho?acao=removeProduto&idProduto=${item.id}" id="refreshA" onclick="return onclickFunction(${item.id})"><i class="fa fa-trash-o"></i></a>
-                                                        <!--<td><button type="submit" name="acao" id="addEnd" value="removeProduto"><i class="fa fa-trash-o"></i></button>-->
-                                                    </td>
-                                                    </tr>
-                                                    </tbody>
+                                            </div>
+                                            <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                                                border-top: 1px solid #eeeeee;">
+                                            <c:forEach items="${carrinho.itens}" var="item">
 
-                                                </c:forEach>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th colspan="5">Total</th>
-                                                        <th colspan="2">R$ ${valorTotal}</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>            
+                                                <div class="row">
+                                                    <div class="col-xs-2 col-md-1">
+                                                        <a href="detalhes?c=${item.codigo}">
+                                                            <img src="${item.imagem}" height="50" width="50" alt="Imagem Produto">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-xs-2 col-md-5">
+                                                        <br>
+                                                        <a href="detalhes?c=${item.codigo}">${item.nome}</a>
+                                                    </div>
+                                                    <div class="col-xs-2 col-md-2">
+                                                        <br>
+                                                        <a class="btnRem" href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
+                                                        ${item.quantidade}
+                                                        <input type="hidden" id="qtd" value="${item.quantidade}" min="1" max="${item.quantidadeEstoque}" style="width: 70px" name="quantidade" class="qtd form-control">
+                                                        <a class="btnAdd" href="carrinho?acao=addProduto&idProduto=${item.id}"><i class="fa fa-plus"></i></a>
+                                                    </div>
+                                                    <div class="col-xs-2 col-md-2">
+                                                        <br>
+                                                        ${item.valor}
+                                                        <input type="hidden" name="valorUni" id="valorUni" class="valorUni" value="${item.valor}">
+                                                        <input type="hidden" name="idProduto" value="${item.id}">
+                                                    </div>
+                                                    <div class="col-xs-2 col-md-1">
+                                                        <br>
+                                                        ${item.total}
+                                                        <input type="hidden" name="valorTotal" id="valorTotal">
+                                                    </div>
+                                                    <div class="col-xs-2 col-md-1">
+                                                        <br>
+                                                        <a href="carrinho?acao=removeProduto&idProduto=${item.id}" id="refreshA" onclick="return onclickFunction(${item.id})"><i class="fa fa-trash-o"></i></a>
+                                                    </div>
+
+                                                </div>
+                                                <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
+                                                    border-top: 1px solid #eeeeee;">
+                                            </c:forEach>
+                                            <div class="row">
+                                                <div class="col-xs-9 col-md-10">
+                                                    <p><strong> Total </strong></p>
+                                                </div>
+                                                <div class="col-xs-3 col-md-2">
+                                                    <p><strong> R$${valorTotal} </strong></p>
+                                                </div>
+
+                                            </div>
                                         </form>
 
 
@@ -246,23 +269,23 @@
             </script>-->
 
         <script>
-                                                        $("[type='number']").keypress(function (evt) {
-                                                            evt.preventDefault();
-                                                        });
+                                                            $("[type='number']").keypress(function (evt) {
+                                                                evt.preventDefault();
+                                                            });
 
-                                                        $(document).ready(function () {
-                                                            var qtd = $(".qtd");
-                                                            var btnAdd = $(".btnAdd");
-                                                            var btnRem = $(".btnRem");
+                                                            $(document).ready(function () {
+                                                                var qtd = $(".qtd");
+                                                                var btnAdd = $(".btnAdd");
+                                                                var btnRem = $(".btnRem");
 
-                                                            if (qtd.val() == qtd.attr("max")) {
-                                                                btnAdd.css("display", "none")
-                                                            }
-                                                            if (qtd.val() == qtd.attr("min")) {
-                                                                btnRem.css("display", "none")
-                                                            }
+                                                                if (qtd.val() == qtd.attr("max")) {
+                                                                    btnAdd.css("display", "none")
+                                                                }
+                                                                if (qtd.val() == qtd.attr("min")) {
+                                                                    btnRem.css("display", "none")
+                                                                }
 
-                                                        })
+                                                            })
 
 
 

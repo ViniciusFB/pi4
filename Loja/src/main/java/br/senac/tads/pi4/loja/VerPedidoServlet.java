@@ -61,6 +61,7 @@ public class VerPedidoServlet extends HttpServlet {
             request.setAttribute("valorCompra", dao2.obterValorFinal(idVenda));
             request.setAttribute("numeroCartao", venda.getNumeroCartao());
             request.setAttribute("numeroParcelas", venda.getNumeroParcelas());
+            request.setAttribute("protocolo", venda.getProtocolo());
             request.setAttribute("valorCompra", dao2.obterValorFinal(idVenda));
 
             request.getRequestDispatcher("/WEB-INF/jsp/visualizarPedido.jsp").forward(request, response);
