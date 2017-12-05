@@ -632,17 +632,29 @@ public class UsuarioDAO extends ConexaoBD {
         boolean existe = false;
         try {
             Connection conn = obterConexao();
-//            PreparedStatement ps = conn.prepareStatement("SELECT  * FROM Usuario WHERE "
-//                    + "email = ?");
             Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
             ResultSet res = st.executeQuery("SELECT * FROM Usuario WHERE email = '" + email + "'");
-//            existe = res.first();
             existe = res.first();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
         System.out.println("Email " + email + " existe = " + existe);
+        return existe;
+    }
+
+    public boolean verificaCpf(String cpf) throws Exception {
+        boolean existe = false;
+        try {
+            Connection conn = obterConexao();
+            Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet res = st.executeQuery("SELECT * FROM Usuario WHERE cpf = '" + cpf + "'");
+            existe = res.first();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e);
+        }
+        System.out.println("CPF: " + cpf + " existe = " + existe);
         return existe;
     }
 }

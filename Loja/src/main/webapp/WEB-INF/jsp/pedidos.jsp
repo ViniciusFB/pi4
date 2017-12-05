@@ -186,8 +186,8 @@
                     <div class="col-md-9" id="customer-orders">
                         <div class="box">
                             <h1>Meus pedidos</h1>
-                            <h3 style="color: green">${msg}</h3>
-                            <h3 style="color: orangered" class="text-muted">${protocolo}</h3>
+                            <h4 style="color: green">${msg}</h4>
+                            <h4 style="color: orangered" class="text-muted">${protocolo}</h4>
 
                             <form action="pedidos" accept-charset="iso-8859-1,utf-8" method="post">
                                 <div style="float:left;margin-right:20px; margin-top: 5px">

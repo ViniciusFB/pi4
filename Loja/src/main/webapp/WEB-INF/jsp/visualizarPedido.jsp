@@ -109,14 +109,84 @@
                     <div class="col-md-9">
                         <div class="box">
                             <!--<h1>Meus pedidos</h1>-->
-                            <h1>Pedido ${protocolo}</h1>
+                            <h3>Pedido ${protocolo}</h3>
+                            <!--<div class="row zeroMarginPadding paddingB25 hidden-xs row-eq-height">-->
+                            <div class="row zeroMarginPadding paddingB25 hidden-xs row-eq-height">
+                                <div class="col-xs-12 col-md-4 boxOption zeroBoxOptionR paddingB15" style="background-color: hsl(0, 0%, 95%)">
+                                    <div class="row zeroMarginPadding paddingBT15">
+                                        <div class="col-md-12 h5 zeroMarginPadding titles titlesSize"> Forma de pagamento </div>
 
-                            <hr>
+                                    </div>
+                                    <div class="row zeroMarginPadding paddingT15">
+                                        <div class="col-md-4 zeroMarginPadding">
+                                            <img src="img/cartaoCredito.png" width="70" height="70" alt=""/>
+                                            <!--<img src="img/cartaoCredito2.png" width="70" height="70" alt=""/>-->
+                                        </div>
+                                        <div class="col-md-8 zeroMarginPadding paddingR15">
+                                            <strong>Cartão de Crédito</strong>
+                                            <br>
+                                            <span class="text-capitalize">${numeroCartao}</span>
+                                            <span style="color: #40cd28">
+                                                Aprovado
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4 boxOption zeroBoxOptionR paddingBT15" style="background-color: hsl(0, 0%, 95%)">
+                                    <div class="row zeroMarginPadding">
+                                        <div class="col-md-12 zeroMarginPadding">
+                                            <div class="h5 zeroMarginPadding titles titlesSize paddingB15">Total pago</div>
+                                            <div class="priceOrder"> 
+                                                <div class="row zeroMarginPadding">
+                                                    <div class="col-md-6 zeroMarginPadding">
+                                                        <p class="pStyle">Subtotal</p>
+                                                        <p class="pStyle">Desconto</p>
+                                                        Frete 
+                                                    </div>
+                                                    <div class="col-md-6 text-right zeroMarginPadding">
+                                                        <p class="pStyle">R$ 0,00</p>
+                                                        <p class="pStyle">R$ 0,00</p>
+                                                        R$ 0,00 
+                                                    </div>
+                                                </div> <div class="row zeroMarginPadding">
+                                                    <div class="col-md-12 zeroMarginPadding">
+                                                        <p class="paddingT10"></p>
+                                                        <hr class="zeroMarginPadding">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row zeroMarginPadding total featured"> 
+                                                    <div class="col-md-6 zeroMarginPadding"> Total </div>
+                                                    <div class="col-md-6 text-right zeroMarginPadding"> R$ ${valorCompra} </div>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <!--                                    <p>Pagamento: Cartão de Crédito</p>
+                                                                        <p>Número do Cartão: ${numeroCartao}</p>
+                                                                        <p>Número de Parcelas: ${numeroParcelas}x de ${valorCompra/numeroParcelas} sem juros</p>-->
+                                </div>
+                                <div class="col-xs-12 col-md-4 boxOption paddingBT15" style="background-color: hsl(0, 0%, 95%)">
+                                    <div class="row zeroMarginPadding">
+                                        <div class="col-md-12 zeroMarginPadding"> 
+                                            <div class="h5 zeroMarginPadding titles titlesSize paddingB15">Endereço de entrega</div>
+                                            <div>
+                                                <p> <span class="featured">Nome e Sobrenome</span>
+                                                    <br> Endereço </p>
+                                                Rua, numero,  (Complemento) - CEP XXXX, BAIRRO - CIDADE, UF
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <!--<hr>-->
 
                             <div>
                                 <div class="row">
-<!--                                    <div class="col-xs-0 col-md-1">
-                                    </div>-->
+                                    <!--                                    <div class="col-xs-0 col-md-1">
+                                                                        </div>-->
                                     <div class="col-xs-6 col-md-6">
                                         <label> <strong>Produto </strong></label>
                                     </div>
@@ -173,18 +243,6 @@
                                         <p><strong> R$${valorCompra} </strong></p>
                                     </div>
 
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
-                                        <h4>Pagamento: Cartão de Crédito</h4>
-                                        <h5>Número do Cartão: ${numeroCartao}</h5>
-                                        <h5>Número de Parcelas: ${numeroParcelas}x de ${valorCompra/numeroParcelas} sem juros</h5>
-                                    </div>
-                                    <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
-                                        <h4>Endereço de Entrega</h4>
-                                        <h5>CEP: </h5>
-                                        <h5>Rua: </h5>
-                                    </div>
                                 </div>
 
                                 <br>

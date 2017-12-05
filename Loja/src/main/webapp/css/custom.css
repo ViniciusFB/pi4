@@ -104,3 +104,53 @@
     /*width: 50%;*/
     /*float: left;*/
 }
+
+.featured {
+    color: #333;
+}
+.boxOption {
+    border: 1px solid #e5e5e5;
+}
+.zeroBoxOptionR {
+    border-right: 0!important;
+}
+.zeroMarginPadding {
+    margin: 0!important;
+}
+.zeroMarginPadding {
+    padding: 0!important;
+}
+.paddingT10 {
+    /*padding-top: 10px!important;*/
+    padding-top: 0px!important;
+}
+.paddingT15 {
+    /*padding-top: 10px!important;*/
+    padding-top: 15px!important;
+}
+.paddingB15 {
+    padding-bottom: 15px!important;
+}
+.paddingBT15 {
+    padding-bottom: 15px!important;
+    padding-top: 15px!important;
+}
+.paddingB25 {
+    padding-bottom: 25px!important;
+}
+.paddingR15 {
+    padding-right: 15px!important;
+}
+.pStyle {
+    margin: 0 0 10.5px;
+}
+.titles {
+    text-transform: none!important;
+}
+.titlesSize {
+    font-size: none!important;
+}
+.text-capitalize, .text-capitalize:first-letter {
+    text-transform: capitalize!important;
+}
+.row-eq-height{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}@media (max-width:480px){.row-eq-height{display:block}}@media (max-width:768px){.row-eq-height{display:block}.row-eq-height .last{width:100%}}.row.equalheights{overflow:hidden}.row.equalheights [class*=col-]{margin-bottom:-99999px;padding-bottom:99999px}

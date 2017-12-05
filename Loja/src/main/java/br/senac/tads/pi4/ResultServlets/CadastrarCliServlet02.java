@@ -87,32 +87,36 @@ public class CadastrarCliServlet02 extends HttpServlet {
         String bairro = request.getParameter("bairro");
         String cidade = request.getParameter("cidade");
         String uf = request.getParameter("uf");
-        boolean existe = true;
+        boolean emailExiste = true;
+        boolean cpfExiste = true;
         try {
-            existe = dao.verificaEmail(email);
+            emailExiste = dao.verificaEmail(email);
+            cpfExiste = dao.verificaCpf(cpf);
         } catch (Exception ex) {
             Logger.getLogger(CadastrarCliServlet02.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (existe == true) {
+
+        if (emailExiste == true || cpfExiste == true) {
             erro = true;
-            request.setAttribute("valido", "O E-mail já está sendo usado");
-            request.setAttribute("nome", nome);
-            request.setAttribute("sobrenome", sobrenome);
-            request.setAttribute("dataNasc", dataNasc);
-            request.setAttribute("cpf", cpf);
-            request.setAttribute("telefone", telefone);
-            request.setAttribute("email", email);
-            request.setAttribute("cep", cep);
-            request.setAttribute("rua", rua);
-            request.setAttribute("bairro", bairro);
-            request.setAttribute("cidade", cidade);
-            request.setAttribute("uf", uf);
-            request.setAttribute("numero", numero);
-            request.setAttribute("complemento", complemento);
+            if (emailExiste) {
+                request.setAttribute("emailInvalido", "O E-mail digitado já está sendo usado");
+            }
+            if (cpfExiste) {
+                request.setAttribute("cpfInvalido", "O CPF digitado já está sendo usado");
+            }
+            setFields(request, nome, sobrenome, dataNasc, cpf, telefone, email, cep, rua, bairro, cidade, uf, numero, complemento);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("registro.jsp");
+            dispatcher.forward(request, response);
+        }
+        if (cpfExiste == true && emailExiste == true) {
+            erro = true;
+            request.setAttribute("cpfInvalido", "O CPF digitado já está sendo usado");
+            request.setAttribute("emailInvalido", "O E-mail digitado já está sendo usado");
+            setFields(request, nome, sobrenome, dataNasc, cpf, telefone, email, cep, rua, bairro, cidade, uf, numero, complemento);
             RequestDispatcher dispatcher = request.getRequestDispatcher("registro.jsp");
             dispatcher.forward(request, response);
         } else {
-            System.out.println("EMAIL OK!");
+            System.out.println("CPF e EMAIL válidos!");
         }
 
         if (!erro) {
@@ -152,6 +156,24 @@ public class CadastrarCliServlet02 extends HttpServlet {
         BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
         sen = hash.toString(16);
         return sen;
+    }
+
+    public void setFields(HttpServletRequest request, String nome, String sobrenome, Date dataNasc, String cpf,
+            String telefone, String email, String cep, String rua, String bairro, String cidade, String uf, int numero, String complemento) {
+
+        request.setAttribute("nome", nome);
+        request.setAttribute("sobrenome", sobrenome);
+        request.setAttribute("dataNasc", dataNasc);
+        request.setAttribute("cpf", cpf);
+        request.setAttribute("telefone", telefone);
+        request.setAttribute("email", email);
+        request.setAttribute("cep", cep);
+        request.setAttribute("rua", rua);
+        request.setAttribute("bairro", bairro);
+        request.setAttribute("cidade", cidade);
+        request.setAttribute("uf", uf);
+        request.setAttribute("numero", numero);
+        request.setAttribute("complemento", complemento);
     }
 
     @Override

@@ -103,8 +103,9 @@
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="name">CPF/CNPJ</label>-->
-                                    <label for="cpf">CPF/CNPJ</label>
+                                    <label for="cpf">CPF</label>
                                     <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)" placeholder="000.000.000-00" value="${cpf}">
+                                    <span id="validCpf" style="color: orangered;"> ${cpfInvalido}</span>
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone">Telefone</label>
@@ -113,7 +114,7 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="exemplo@email.com" value="${email}">
-                                    <span id="valid" style="color: orangered;"> ${valido}</span>
+                                    <span id="validEmail" style="color: orangered;"> ${emailInvalido}</span>
 
                                 </div>
                                 <div class="form-group">
@@ -202,40 +203,23 @@
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/validar.js" type="text/javascript"></script>
         <script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
-        <!--        <script>
-        
-                                                $(document).ready(function () {
-                                                    var campo = $('#email');
-                                                    campo.change(function () {
-                                                        var url = 'verifyEmail?email=' + campo.val();
-        
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: 'verifyEmail',
-        //                                                    data: campo.val(),
-                                                            data: {
-                                                                email: campo.val()
-                                                            },
-                                                            contentType: "application/json; charset=utf-8",
-                                                            dataType: 'json',
-                                                            success: function (response)
-                                                            {
-        //                                                        $("#valid").html(response.valido2s);
-        //                                                        var test = $.parseJSON(response);
-                                                                response = $.parseJSON(response);
-        //                                                        response = JSON.parse(response);
-                                                                alert(response);
-                                                            },
-                                                            error: function (jqXHR, textStatus, errorThrown) {
-                                                                alert('erro: status: ' + textStatus + " thrown: " + errorThrown);
-                                                            }
-                                                        });
-        
-        //                return false;
-                                                    })
-                                                })
-        
-        
-                </script>-->
+        <script>
+
+            $(document).ready(function () {
+                var campoEmail = $('#email');
+                var campoCpf = $('#cpf');
+                campoEmail.change(function () {
+                    var spanEmail = $("#validEmail");
+                    spanEmail.css("display", 'none');
+                })
+                campoCpf.change(function () {
+                    var spanCpf = $("#validCpf");
+                    spanCpf.css("display", 'none');
+                })
+
+            })
+
+
+        </script>
     </body>
 </html>

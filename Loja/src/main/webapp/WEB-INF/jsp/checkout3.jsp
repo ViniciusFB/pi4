@@ -200,7 +200,7 @@
             if ($(this).css('border-color') === 'rgb(43, 84, 44)') {
                 cont++;
             }
-            if (cont === 5) {
+            if (cont === 4) {
                 $("#btnNext").removeAttr("disabled");
             }
         });
@@ -209,7 +209,7 @@
             if ($(this).val() !== 0) {
                 cont++;
             }
-            if (cont === 5) {
+            if (cont === 4) {
                 $("#btnNext").removeAttr("disabled");
             }
         });
