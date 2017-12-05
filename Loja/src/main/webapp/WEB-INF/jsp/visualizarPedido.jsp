@@ -40,6 +40,8 @@
 
         <!-- your stylesheet with modifications -->
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/pTracker.css" rel="stylesheet">
+
 
         <script src="js/respond.min.js"></script>
         <script src="js/cpf.js" type="text/javascript"></script>
@@ -49,7 +51,6 @@
 
         <!-- Adicionando JQuery -->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-
 
     </head>
 
@@ -109,10 +110,10 @@
                     <div class="col-md-9">
                         <div class="box">
                             <!--<h1>Meus pedidos</h1>-->
-                            <h3>Pedido ${protocolo}</h3>
+                            <h3>Pedido ${venda.protocolo}</h3>
                             <!--<div class="row zeroMarginPadding paddingB25 hidden-xs row-eq-height">-->
                             <div class="row zeroMarginPadding paddingB25 hidden-xs row-eq-height">
-                                <div class="col-xs-12 col-md-4 boxOption zeroBoxOptionR paddingB15" style="background-color: hsl(0, 0%, 95%)">
+                                <div class="col-xs-12 col-md-4 boxOption zeroBoxOptionR paddingB15" style="background-color: hsl(0, 0%, 98%)">
                                     <div class="row zeroMarginPadding paddingBT15">
                                         <div class="col-md-12 h5 zeroMarginPadding titles titlesSize"> Forma de pagamento </div>
 
@@ -125,14 +126,15 @@
                                         <div class="col-md-8 zeroMarginPadding paddingR15">
                                             <strong>Cartão de Crédito</strong>
                                             <br>
-                                            <span class="text-capitalize">${numeroCartao}</span>
+                                            <span class="text-capitalize">${venda.numeroCartao}</span>
                                             <span style="color: #40cd28">
                                                 Aprovado
                                             </span>
                                         </div>
+                                            <div class="col-md-10 zeroMarginPadding text-right paddingT15 paddingR15"> <strong>${venda.numeroParcelas}x de ${venda.valorFinal/venda.numeroParcelas} sem juros </strong></div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-md-4 boxOption zeroBoxOptionR paddingBT15" style="background-color: hsl(0, 0%, 95%)">
+                                <div class="col-xs-12 col-md-4 boxOption zeroBoxOptionR paddingBT15" style="background-color: hsl(0, 0%, 98%)">
                                     <div class="row zeroMarginPadding">
                                         <div class="col-md-12 zeroMarginPadding">
                                             <div class="h5 zeroMarginPadding titles titlesSize paddingB15">Total pago</div>
@@ -157,7 +159,7 @@
                                                 </div>
                                                 <div class="row zeroMarginPadding total featured"> 
                                                     <div class="col-md-6 zeroMarginPadding"> Total </div>
-                                                    <div class="col-md-6 text-right zeroMarginPadding"> R$ ${valorCompra} </div>
+                                                    <div class="col-md-6 text-right zeroMarginPadding"> R$ ${venda.valorFinal} </div>
                                                 </div>
                                             </div> 
                                         </div>
@@ -166,12 +168,12 @@
                                                                         <p>Número do Cartão: ${numeroCartao}</p>
                                                                         <p>Número de Parcelas: ${numeroParcelas}x de ${valorCompra/numeroParcelas} sem juros</p>-->
                                 </div>
-                                <div class="col-xs-12 col-md-4 boxOption paddingBT15" style="background-color: hsl(0, 0%, 95%)">
+                                <div class="col-xs-12 col-md-4 boxOption paddingBT15" style="background-color: hsl(0, 0%, 98%)">
                                     <div class="row zeroMarginPadding">
                                         <div class="col-md-12 zeroMarginPadding"> 
                                             <div class="h5 zeroMarginPadding titles titlesSize paddingB15">Endereço de entrega</div>
                                             <div>
-                                                <p> <span class="featured">Nome e Sobrenome</span>
+                                                <p> <span class="featured">${usuarioCompra.nome} ${usuarioCompra.sobrenome}</span>
                                                     <br> Endereço </p>
                                                 Rua, numero,  (Complemento) - CEP XXXX, BAIRRO - CIDADE, UF
                                             </div>
@@ -182,7 +184,39 @@
                             </div>
                             <br>
                             <!--<hr>-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>Previsão de Entrega:</span>
+                                    <strong> DATA VENDA + DIAS UTEIS </strong>
+                                </div>
+                            </div>
+                            <br>
 
+                            <div class="row">
+                                <ol class="progress-meter">
+                                    <!--Don't add spaces or newlines between the li elements!-->
+                                    <c:choose>
+                                        <c:when test="${venda.status == 0}">
+                                            <li class="progress-point todo">Pedido</li><li class="progress-point todo">Pagamento</li><li class="progress-point todo">Transporte</li><li class="progress-point todo">Entregue</li>
+                                            </c:when>
+                                            <c:when test="${venda.status == 1}">
+                                            <li class="progress-point done active">Pedido</li><li class="progress-point todo">Pagamento</li><li class="progress-point todo">Transporte</li><li class="progress-point todo">Entregue</li>
+                                            </c:when>
+                                            <c:when test="${venda.status == 2}">
+                                            <li class="progress-point done">Pedido</li><li class="progress-point done active">Pagamento</li><li class="progress-point todo">Transporte</li><li class="progress-point todo">Entregue</li>
+                                            </c:when>
+                                            <c:when test="${venda.status == 3}">
+                                            <li class="progress-point done">Pedido</li><li class="progress-point done">Pagamento</li><li class="progress-point done active">Transporte</li><li class="progress-point todo">Entregue</li>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <li class="progress-point done final">Pedido</li><li class="progress-point done final">Pagamento</li><li class="progress-point done final">Transporte</li><li class="progress-point done active final">Entregue</li>
+                                            </c:otherwise>
+
+                                    </c:choose>
+                                </ol>
+                            </div>
+
+                            <br>
                             <div>
                                 <div class="row">
                                     <!--                                    <div class="col-xs-0 col-md-1">
@@ -223,11 +257,11 @@
                                         </div>
                                         <div class="col-xs-2 col-md-2">
                                             <br>
-                                            ${item.valorUni}
+                                            R$ ${item.valorUni}
                                         </div>
                                         <div class="col-xs-2 col-md-2">
                                             <br>
-                                            ${item.valorTotal}
+                                            R$ ${item.valorTotal}
                                         </div>
 
                                     </div>
@@ -240,7 +274,7 @@
                                         <p><strong>    Total + Frete</strong></p>
                                     </div>
                                     <div class="col-xs-3 col-md-2">
-                                        <p><strong> R$${valorCompra} </strong></p>
+                                        <p><strong> R$${venda.valorFinal} </strong></p>
                                     </div>
 
                                 </div>

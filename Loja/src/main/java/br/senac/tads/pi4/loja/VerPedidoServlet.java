@@ -6,9 +6,11 @@
 package br.senac.tads.pi4.loja;
 
 import br.senac.tads.pi4.dao.ProdutoDAO;
+import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.dao.VendaDAO;
 import br.senac.tads.pi4.dao.VendaProdDAO;
 import br.senac.tads.pi4.models.Produto;
+import br.senac.tads.pi4.models.Usuario;
 import br.senac.tads.pi4.models.Venda;
 import br.senac.tads.pi4.models.VendaProd;
 import java.io.IOException;
@@ -56,13 +58,11 @@ public class VerPedidoServlet extends HttpServlet {
             VendaDAO dao2 = new VendaDAO();
             List<VendaProd> vp = dao.listar(idVenda);
             Venda venda = dao2.obterInfoVenda(idVenda);
-            
+            UsuarioDAO uDao = new UsuarioDAO();
+            Usuario usuario = uDao.obterUsuario(venda.getIdCliente());
             request.setAttribute("listaProdutos", vp);
-            request.setAttribute("valorCompra", dao2.obterValorFinal(idVenda));
-            request.setAttribute("numeroCartao", venda.getNumeroCartao());
-            request.setAttribute("numeroParcelas", venda.getNumeroParcelas());
-            request.setAttribute("protocolo", venda.getProtocolo());
-            request.setAttribute("valorCompra", dao2.obterValorFinal(idVenda));
+            request.setAttribute("venda", venda);
+            request.setAttribute("usuarioCompra", usuario);
 
             request.getRequestDispatcher("/WEB-INF/jsp/visualizarPedido.jsp").forward(request, response);
 

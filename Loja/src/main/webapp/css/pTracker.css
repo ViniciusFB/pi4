@@ -1,0 +1,104 @@
+.progress-meter {
+    padding: 0;
+}
+
+ol.progress-meter {
+    padding-bottom: 9.5px;
+    list-style-type: none;
+}
+ol.progress-meter li {
+    display: inline-block;
+    text-align: center;
+    /*text-align: left;*/
+    text-indent: -19px;
+    height: 36px;
+    width: 24.99%;
+    font-size: 12px;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+}
+ol.progress-meter li:before {
+    position: relative;
+    float: left;
+    text-indent: 0;
+    left: -webkit-calc(50% - 9.5px);
+    left: -moz-calc(50% - 9.5px);
+    left: -ms-calc(50% - 9.5px);
+    left: -o-calc(50% - 9.5px);
+    left: calc(50% - 9.5px);
+}
+ol.progress-meter li.done {
+    font-size: 12px;
+}
+ol.progress-meter li.done:before {
+    content: "\2713";
+    height: 26px;
+    width: 27px;
+    line-height: 28.85px;
+    bottom: -20px;
+    border: none;
+    border-radius: 20px;
+    /*left: -4px;*/
+}
+ol.progress-meter li.done.active:before {
+    content: "\2713";
+    height: 26px;
+    width: 27px;
+    line-height: 28.85px;
+    bottom: -20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #56ADF5;
+    /*left: -4px;*/
+}
+ol.progress-meter li.done.final:before {
+    content: "\2713";
+    height: 26px;
+    width: 27px;
+    line-height: 28.85px;
+    bottom: -20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0ed80e;
+    /*left: -4px;*/
+}
+ol.progress-meter li.done.active.final:before {
+    content: "\2713";
+    height: 26px;
+    width: 27px;
+    line-height: 28.85px;
+    bottom: -20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0ed80e;
+    /*left: -4px;*/
+}
+ol.progress-meter li.todo {
+    font-size: 12px;
+}
+ol.progress-meter li.todo:before {
+    content: "\2B24";
+    font-size: 29.1px;
+    bottom: -24px;
+    line-height: 18.05px;
+    /*left: -4px;*/
+}
+ol.progress-meter li.done {
+    color: black;
+    border-bottom-color: #1976D2;
+}
+ol.progress-meter li.done.final {
+    color: black;
+    border-bottom-color: #5cb85c;
+}
+ol.progress-meter li.done:before {
+    color: white;
+    background-color: #1976D2;
+}
+ol.progress-meter li.todo {
+    color: silver;
+    border-bottom-color: silver;
+}
+ol.progress-meter li.todo:before {
+    color: silver;
+}

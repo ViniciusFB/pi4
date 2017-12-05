@@ -228,8 +228,29 @@
                                                 <th>${compra.protocolo}</th>
                                                 <td>${compra.dataFormatada}</td>
                                                 <td>R$ ${compra.valorFinal}</td>
-                                                <td><span class="label label-info">Aguardando Pagamento</span>
-                                                </td>
+                                                <c:choose>
+                                                    <c:when test="${compra.status == 0}">
+                                                        <td><span class="label label-danger">Aguardando pagamento</span>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:when test="${compra.status == 1}">
+                                                        <td><span class="label label-warning">Pedido em Processamento</span>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:when test="${compra.status == 2}">
+                                                        <td><span class="label label-default">Faturamento</span>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:when test="${compra.status == 3}">
+                                                        <td><span class="label label-primary">Em transporte</span>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td><span class="label label-success">Entregue</span>
+                                                        </td>
+                                                    </c:otherwise>
+
+                                                </c:choose>
                                                 <td><a href="visualizarPedido?idVenda=${compra.id}" class="btn btn-primary btn-sm">Visualizar</a>
                                                 </td>
                                             </tr>                                        
