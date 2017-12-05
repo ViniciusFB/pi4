@@ -116,13 +116,13 @@
                                                     </div>
                                                     <div class="col-xs-2 col-md-2">
                                                         <br>
-                                                        ${item.valor}
+                                                       R$${item.valor}
                                                         <input type="hidden" name="valorUni" id="valorUni" class="valorUni" value="${item.valor}">
                                                         <input type="hidden" name="idProduto" value="${item.id}">
                                                     </div>
                                                     <div class="col-xs-2 col-md-1">
                                                         <br>
-                                                        ${item.total}
+                                                       R$${item.total}
                                                         <input type="hidden" name="valorTotal" id="valorTotal">
                                                     </div>
                                                     <div class="col-xs-2 col-md-1">

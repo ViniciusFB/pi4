@@ -5,10 +5,12 @@
  */
 package br.senac.tads.pi4.loja;
 
+import br.senac.tads.pi4.dao.EnderecoDAO;
 import br.senac.tads.pi4.dao.ProdutoDAO;
 import br.senac.tads.pi4.dao.UsuarioDAO;
 import br.senac.tads.pi4.dao.VendaDAO;
 import br.senac.tads.pi4.dao.VendaProdDAO;
+import br.senac.tads.pi4.models.Endereco;
 import br.senac.tads.pi4.models.Produto;
 import br.senac.tads.pi4.models.Usuario;
 import br.senac.tads.pi4.models.Venda;
@@ -60,14 +62,17 @@ public class VerPedidoServlet extends HttpServlet {
             Venda venda = dao2.obterInfoVenda(idVenda);
             UsuarioDAO uDao = new UsuarioDAO();
             Usuario usuario = uDao.obterUsuario(venda.getIdCliente());
+            EnderecoDAO eDao = new EnderecoDAO();
+            Endereco endereco = eDao.obterEndereco(venda.getIdEndereco());
             request.setAttribute("listaProdutos", vp);
             request.setAttribute("venda", venda);
+            request.setAttribute("endereco", endereco);
             request.setAttribute("usuarioCompra", usuario);
 
             request.getRequestDispatcher("/WEB-INF/jsp/visualizarPedido.jsp").forward(request, response);
 
         } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.out.println("ERRO: " + e);
             request.getRequestDispatcher("/404.jsp").forward(request, response);
         }
 

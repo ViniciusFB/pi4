@@ -70,6 +70,7 @@ public class VendaServlet extends HttpServlet {
             request.getRequestDispatcher("/404.jsp").forward(request, response);
         } else {
             int idUsuario = (int) sessao.getAttribute("idUsuario");
+            int idEndereco = (int) sessao.getAttribute("idEndereco"); //Somente quando é escolhido um endereço já existente
             Timestamp dataVenda = new Timestamp(System.currentTimeMillis());
             double valorCompra = carrinho.calculaTotal();
             double valorFrete = Double.parseDouble(sessao.getAttribute("frete").toString());
@@ -78,7 +79,11 @@ public class VendaServlet extends HttpServlet {
             Timestamp ultimaAtt = new Timestamp(System.currentTimeMillis());
             long numeroCartao = Long.parseLong(request.getParameter("numeroCartao"));
             int numeroParcelas = Integer.parseInt(request.getParameter("numeroParcelas"));
-            Venda venda = new Venda(idUsuario, protocolo, dataVenda, valorTotal, 0, ultimaAtt, numeroCartao, numeroParcelas);
+            double calculoParcelas = (valorTotal / numeroParcelas);
+            double valorParcelas = round(calculoParcelas, 2);
+
+            Venda venda = new Venda(protocolo, idUsuario, idEndereco, dataVenda, valorTotal, valorFrete, 0, ultimaAtt,
+                    numeroCartao, numeroParcelas, valorParcelas);
             vDao.incluirComTransacao(venda);
             int idVenda = venda.getId();
             System.out.println("idVenda = " + idVenda);
@@ -119,11 +124,22 @@ public class VendaServlet extends HttpServlet {
             sessao.removeAttribute("diasUteis");
 //            request.setAttribute("sucesso", 1);
             request.setAttribute("msg", "Compra finalizada com sucesso. Verifique o protocolo e acompanhe seu pedido!");
-            request.setAttribute("protocolo", "Protocolo: " +venda.getProtocolo());
+            request.setAttribute("protocolo", "Protocolo: " + venda.getProtocolo());
 //            response.sendRedirect(request.getContextPath() + "/pedidos");
             getServletContext().getRequestDispatcher("/pedidos").forward(request, response);
 
         }
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     @Override

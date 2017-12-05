@@ -55,18 +55,22 @@ CREATE TABLE Endereco (
 );
  create table Venda (
     idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, 
---     idEndereco INT NOT NULL, 
     protocolo VARCHAR (10) NOT NULL UNIQUE,
     idUsuario INT NOT NULL,
+    idEndereco INT NOT NULL, 
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
+    valorFrete DOUBLE NOT NULL,
+--     valorSubtotal DOUBLE NOT NULL, -- Atualmente está sendo feito ValorFinal - ValorFrete
+--     diasUteis INT NOT NULL, -- Para calcular a previsão de entrega
     status INT NOT NULL,
     ultimaAtt TIMESTAMP NOT NULL,
---     pagamento INT,
+--     pagamento INT, -- Formas de Pagamento
     numeroCartao BIGINT,
     numeroParcelas INT,
-    FOREIGN KEY (idUsuario) REFERENCES Usuario(id)
---     FOREIGN KEY (idEndereco) REFERENCES Endereco(idEndereco)
+    valorParcelas DOUBLE NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(id),
+    FOREIGN KEY (idEndereco) REFERENCES Endereco(idEndereco)
 );
 
 create table VendaProd (

@@ -70,11 +70,11 @@
                                 </div>
                                 <div class="col-xs-2 col-md-2">
                                     <br>
-                                    ${item.valor}
+                                    R$${item.valor}
                                 </div>
                                 <div class="col-xs-2 col-md-2">
                                     <br>
-                                    ${item.total}
+                                    R$${item.total}
                                 </div>
 
                             </div>

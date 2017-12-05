@@ -131,7 +131,7 @@
                                                 Aprovado
                                             </span>
                                         </div>
-                                            <div class="col-md-10 zeroMarginPadding text-right paddingT15 paddingR15"> <strong>${venda.numeroParcelas}x de ${venda.valorFinal/venda.numeroParcelas} sem juros </strong></div>
+                                            <div class="col-md-10 zeroMarginPadding text-right paddingT15 paddingR15"> <strong>${venda.numeroParcelas}x de ${venda.valorParcelas} sem juros </strong></div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-4 boxOption zeroBoxOptionR paddingBT15" style="background-color: hsl(0, 0%, 98%)">
@@ -146,9 +146,9 @@
                                                         Frete 
                                                     </div>
                                                     <div class="col-md-6 text-right zeroMarginPadding">
+                                                        <p class="pStyle">R$ ${venda.valorFinal-venda.valorFrete}</p>
                                                         <p class="pStyle">R$ 0,00</p>
-                                                        <p class="pStyle">R$ 0,00</p>
-                                                        R$ 0,00 
+                                                        R$ ${venda.valorFrete} 
                                                     </div>
                                                 </div> <div class="row zeroMarginPadding">
                                                     <div class="col-md-12 zeroMarginPadding">
@@ -175,7 +175,7 @@
                                             <div>
                                                 <p> <span class="featured">${usuarioCompra.nome} ${usuarioCompra.sobrenome}</span>
                                                     <br> Endereço </p>
-                                                Rua, numero,  (Complemento) - CEP XXXX, BAIRRO - CIDADE, UF
+                                                ${endereco.rua}, ${endereco.numeroCasa},  (${endereco.complemento}) - CEP ${endereco.cep}, ${endereco.bairro} - ${endereco.cidade}, ${endereco.uf}
                                             </div>
 
                                         </div>
