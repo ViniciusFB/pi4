@@ -216,6 +216,7 @@
                                             <th>Protocolo</th>
                                             <th>Data</th>
                                             <th>Total</th>
+                                            <th>Previsão de Entrega</th>
                                             <th>Status</th>
                                             <th>Ação</th>
                                         </tr>
@@ -228,6 +229,7 @@
                                                 <th>${compra.protocolo}</th>
                                                 <td>${compra.dataFormatada}</td>
                                                 <td>R$ ${compra.valorFinal}</td>
+                                                <td>${compra.previsaoEntregaFormatada}</td>
                                                 <c:choose>
                                                     <c:when test="${compra.status == 0}">
                                                         <td><span class="label label-danger">Aguardando pagamento</span>

@@ -30,8 +30,8 @@ public class VendaDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(idUsuario, idEndereco, protocolo, dataVenda, valorFinal, valorFrete, status, ultimaAtt, numeroCartao, numeroParcelas, valorParcelas) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "(idUsuario, idEndereco, protocolo, dataVenda, valorFinal, valorFrete, diasUteis, status, ultimaAtt, numeroCartao, numeroParcelas, valorParcelas) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = obterConexao();
@@ -44,11 +44,12 @@ public class VendaDAO extends ConexaoBD {
             stmt.setTimestamp(4, venda.getDataVenda());
             stmt.setDouble(5, venda.getValorFinal());
             stmt.setDouble(6, venda.getValorFrete());
-            stmt.setInt(7, venda.getStatus());
-            stmt.setTimestamp(8, venda.getUltimaAtt());
-            stmt.setLong(9, venda.getNumeroCartao());
-            stmt.setInt(10, venda.getNumeroParcelas());
-            stmt.setDouble(11, venda.getValorParcelas());
+            stmt.setInt(7, venda.getDiasUteis());
+            stmt.setInt(8, venda.getStatus());
+            stmt.setTimestamp(9, venda.getUltimaAtt());
+            stmt.setLong(10, venda.getNumeroCartao());
+            stmt.setInt(11, venda.getNumeroParcelas());
+            stmt.setDouble(12, venda.getValorParcelas());
 
             stmt.executeUpdate();
 
@@ -124,6 +125,7 @@ public class VendaDAO extends ConexaoBD {
                 String dataFormatada = formatBR.format(dataVenda);
                 double valorFinal = resultados.getDouble("valorFinal");
                 double valorFrete = resultados.getDouble("valorFrete");
+                int diasUteis = resultados.getInt("diasUteis");
                 int status = resultados.getInt("status");
                 Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
                 SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -132,7 +134,7 @@ public class VendaDAO extends ConexaoBD {
                 int numeroParcelas = resultados.getInt("numeroParcelas");
                 double valorParcelas = resultados.getDouble("valorParcelas");
 
-                Venda venda = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, status,
+                Venda venda = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, diasUteis, status,
                         dataFormatada2, numeroCartao, numeroParcelas, valorParcelas);
 
                 lista.add(venda);
@@ -187,6 +189,7 @@ public class VendaDAO extends ConexaoBD {
                 String dataFormatada = formatBR.format(dataVenda);
                 double valorFinal = resultados.getDouble("valorFinal");
                 double valorFrete = resultados.getDouble("valorFrete");
+                int diasUteis = resultados.getInt("diasUteis");
                 int status = resultados.getInt("status");
                 Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
                 SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -195,7 +198,7 @@ public class VendaDAO extends ConexaoBD {
                 int numeroParcelas = resultados.getInt("numeroParcelas");
                 double valorParcelas = resultados.getDouble("valorParcelas");
 
-                Venda venda = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, status,
+                Venda venda = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, diasUteis, status,
                         dataFormatada2, numeroCartao, numeroParcelas, valorParcelas);
 
                 lista.add(venda);
@@ -257,6 +260,7 @@ public class VendaDAO extends ConexaoBD {
                 String dataFormatada = formatBR.format(dataVenda);
                 double valorFinal = resultados.getDouble("valorFinal");
                 double valorFrete = resultados.getDouble("valorFrete");
+                int diasUteis = resultados.getInt("diasUteis");
                 int status = resultados.getInt("status");
                 Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
                 SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -265,7 +269,7 @@ public class VendaDAO extends ConexaoBD {
                 int numeroParcelas = resultados.getInt("numeroParcelas");
                 double valorParcelas = resultados.getDouble("valorParcelas");
 
-                Venda venda = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, status,
+                Venda venda = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, diasUteis, status,
                         dataFormatada2, numeroCartao, numeroParcelas, valorParcelas);
 
                 lista.add(venda);
@@ -403,6 +407,7 @@ public class VendaDAO extends ConexaoBD {
                 String dataFormatada = formatBR.format(dataVenda);
                 double valorFinal = resultados.getDouble("valorFinal");
                 double valorFrete = resultados.getDouble("valorFrete");
+                int diasUteis = resultados.getInt("diasUteis");
                 int status = resultados.getInt("status");
                 Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
                 SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -411,7 +416,7 @@ public class VendaDAO extends ConexaoBD {
                 int numeroParcelas = resultados.getInt("numeroParcelas");
                 double valorParcelas = resultados.getDouble("valorParcelas");
 
-                v = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, status,
+                v = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, diasUteis, status,
                         dataFormatada2, numeroCartao, numeroParcelas, valorParcelas);
                 break;
             }

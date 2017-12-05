@@ -81,12 +81,14 @@ public class VendaServlet extends HttpServlet {
             int numeroParcelas = Integer.parseInt(request.getParameter("numeroParcelas"));
             double calculoParcelas = (valorTotal / numeroParcelas);
             double valorParcelas = round(calculoParcelas, 2);
+            int diasUteis = Integer.parseInt(sessao.getAttribute("diasUteis").toString());
 
-            Venda venda = new Venda(protocolo, idUsuario, idEndereco, dataVenda, valorTotal, valorFrete, 0, ultimaAtt,
+            Venda venda = new Venda(protocolo, idUsuario, idEndereco, dataVenda, valorTotal, valorFrete, diasUteis, 0, ultimaAtt,
                     numeroCartao, numeroParcelas, valorParcelas);
             vDao.incluirComTransacao(venda);
             int idVenda = venda.getId();
             System.out.println("idVenda = " + idVenda);
+            System.out.println("Previsão de entrega " +venda.getPrevisaoEntregaFormatada());
 
             for (ItemDeCompra item : carrinho.getItens()) {
                 int idProduto = item.getId();

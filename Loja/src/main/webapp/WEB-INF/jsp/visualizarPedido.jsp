@@ -187,7 +187,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <span>Previsão de Entrega:</span>
-                                    <strong> DATA VENDA + DIAS UTEIS </strong>
+                                    <strong> ${venda.previsaoEntregaFormatada} </strong>
                                 </div>
                             </div>
                             <br>

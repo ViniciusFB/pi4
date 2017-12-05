@@ -62,7 +62,7 @@ CREATE TABLE Endereco (
     valorFinal DOUBLE NOT NULL,
     valorFrete DOUBLE NOT NULL,
 --     valorSubtotal DOUBLE NOT NULL, -- Atualmente está sendo feito ValorFinal - ValorFrete
---     diasUteis INT NOT NULL, -- Para calcular a previsão de entrega
+    diasUteis INT NOT NULL, -- Para calcular a previsão de entrega
     status INT NOT NULL,
     ultimaAtt TIMESTAMP NOT NULL,
 --     pagamento INT, -- Formas de Pagamento
@@ -143,7 +143,7 @@ create table VendaProd (
 
 -- Comando para inserir produtos
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 
-	VALUES ('Bolsa', 440, 'Bolsa', 1, 'sasda', 1321.0, 'http://static1.netshoes.net/Produtos/bolsa-petite-jolie-bau-bloom-feminina/03/E41-0616-203/E41-0616-203_detalhe1.jpg', 1, true);
+	VALUES ('Bolsa Petite Jolie', 440, 'Bolsa', 3, 'sasda', 149.90, 'http://static1.netshoes.net/Produtos/bolsa-petite-jolie-bau-bloom-feminina/03/E41-0616-203/E41-0616-203_detalhe1.jpg', 1, true);
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 
 	VALUES ('Pulseira Verde Amarela', 949592, 'Pulseira', 22, '', 19.0, 'https://t-static.dafiti.com.br/9QwG7yFa89p_Iz2HN6IyrFX6k5I=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fdecovian-pulseira-decovian-ajust%25c3%25a1vel-preto-6352-8300522-1-product.jpg', 0, true);
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 
@@ -155,11 +155,11 @@ INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 
 	VALUES ('Brinco Turpin', 22429, 'Brinco', 2, '', 15.0, 'https://t-static.dafiti.com.br/70YDHxfj9K2pSfR5HUR5fL2nwh0=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fturpin-brinco-turpin-boho-helga-ouro-velho-2040-6194142-1-product.jpg', 1, true);
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 
-	VALUES ('Relogio Curren', 4006, 'Relogio', 5, '', 150.0, 'http://static1.netshoes.net/Produtos/relogio-curren-analogico/38/DTD-0022-138/DTD-0022-138_detalhe1.jpg?resize=254:*', 1, true);
+	VALUES ('Relogio Curren', 4006, 'Relogio', 3, '', 48.29, 'http://static1.netshoes.net/Produtos/relogio-curren-analogico/38/DTD-0022-138/DTD-0022-138_detalhe1.jpg?resize=254:*', 1, true);
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 
 	VALUES ('Mochila Nike Preta', 885566, 'Mochila', 2, '', 99.0, 'http://static1.netshoes.net/Produtos/mochila-nike-brasilia-masculina/26/D12-5868-026/D12-5868-026_detalhe1.jpg?resize=254:*', 1, true);
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 
-	VALUES ('Relogio Fossil', 928394, 'Relogio', 3, '', 22.0, 'http://static1.netshoes.net/Produtos/relogio-fossil-pulseira-couro/14/F57-0128-414/F57-0128-414_detalhe1.jpg?resize=254:*', 1, true);
+	VALUES ('Relogio Fossil', 928394, 'Relogio', 5, '', 439.90, 'http://static1.netshoes.net/Produtos/relogio-fossil-pulseira-couro/14/F57-0128-414/F57-0128-414_detalhe1.jpg?resize=254:*', 1, true);
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 
 	VALUES ('Bolsa Nike Auralux', 29202, 'Bolsa', 4, '', 100.0, 'http://static1.netshoes.net/Produtos/bolsa-nike-auralux-club-feminina/26/D12-3257-026/D12-3257-026_detalhe1.jpg?resize=254:*', 1, true);
 INSERT INTO LOJA.PRODUTO (NOMEPRODUTO, CODIGO, CATEGORIAS, QUANTIDADE, DESCRICAO, VALORPRODUTO, IMAGEM, STATUSPRODUTO, DISPONIVEL) 

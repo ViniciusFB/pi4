@@ -75,7 +75,8 @@ public class ControleCarrinho extends HttpServlet {
                     carrinho.addNovoItem(novoItem);
                 }
                 //carrega a pagina do carrinho de compras
-                sessao.setAttribute("valorTotal", carrinho.calculaTotal());
+                double vaTotal = round(carrinho.calculaTotal(), 2);
+                sessao.setAttribute("valorTotal", vaTotal);
                 sessao.setAttribute("numItens", carrinho.getItens().size());
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
             }//fim addProduto
@@ -121,7 +122,8 @@ public class ControleCarrinho extends HttpServlet {
                 prodRemove.setId(idProduto);
                 itemRemove.setProduto(prodRemove);
                 carrinho.removerItem(itemRemove);
-                sessao.setAttribute("valorTotal", carrinho.calculaTotal());
+                double vaTotal = round(carrinho.calculaTotal(), 2);
+                sessao.setAttribute("valorTotal", vaTotal);
                 sessao.setAttribute("numItens", carrinho.getItens().size());
 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
@@ -169,7 +171,8 @@ public class ControleCarrinho extends HttpServlet {
             prodRemove.setId(idProduto);
             itemRemove.setProduto(prodRemove);
             carrinho.removerItem(itemRemove);
-            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
+            double vaTotal = round(carrinho.calculaTotal(), 2);
+            sessao.setAttribute("valorTotal", vaTotal);
             sessao.setAttribute("numItens", carrinho.getItens().size());
 //carrega a pagina do carrinho de compras
             request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
@@ -256,11 +259,23 @@ public class ControleCarrinho extends HttpServlet {
                 carrinho.addNovoItem(novoItem);
             }
             //carrega a pagina do carrinho de compras
-            sessao.setAttribute("valorTotal", carrinho.calculaTotal());
+            double vaTotal = round(carrinho.calculaTotal(), 2);
+            sessao.setAttribute("valorTotal", vaTotal);
             sessao.setAttribute("numItens", carrinho.getItens().size());
             request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
         }//fim addProduto
 
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     @Override

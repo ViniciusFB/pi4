@@ -5,8 +5,10 @@
  */
 package br.senac.tads.pi4.models;
 
+import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -19,10 +21,13 @@ public class Venda {
     private int idUsuario;
     private int idEndereco;
     private Timestamp dataVenda;
+    private Date previsaoEntrega;
     private String dataFormatada;
     private String dataFormatada2;
+    private String previsaoEntregaFormatada;
     private Double valorFinal;
     private Double valorFrete;
+    private int diasUteis;
     private int status;
     private Timestamp ultimaAtt;
     private long numeroCartao;
@@ -45,6 +50,7 @@ public class Venda {
         this.dataVenda = venda.dataVenda;
         this.valorFinal = venda.valorFinal;
         this.valorFrete = venda.valorFrete;
+        this.diasUteis = venda.diasUteis;
         this.status = venda.status;
         this.ultimaAtt = venda.ultimaAtt;
         this.numeroCartao = venda.numeroCartao;
@@ -54,7 +60,7 @@ public class Venda {
     }
 
     public Venda(int id, long protocolo, int idUsuario, int idEndereco, Timestamp dataVenda, Double valorFinal, Double valorFrete,
-            int status, Timestamp ultimaAtt, long numeroCartao, int numeroParcelas, Double valorParcelas) {
+            int diasUteis, int status, Timestamp ultimaAtt, long numeroCartao, int numeroParcelas, Double valorParcelas) {
         this.id = id;
         this.protocolo = protocolo;
         this.idUsuario = idUsuario;
@@ -62,6 +68,7 @@ public class Venda {
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
         this.valorFrete = valorFrete;
+        this.diasUteis = diasUteis;
         this.status = status;
         this.ultimaAtt = ultimaAtt;
         this.numeroCartao = numeroCartao;
@@ -70,7 +77,7 @@ public class Venda {
     }
 
     public Venda(int id, long protocolo, int idUsuario, int idEndereco, String dataFormatada, Double valorFinal, Double valorFrete,
-            int status, String dataFormatada2, long numeroCartao, int numeroParcelas, Double valorParcelas) {
+            int diasUteis, int status, String dataFormatada2, long numeroCartao, int numeroParcelas, Double valorParcelas) {
         this.id = id;
         this.protocolo = protocolo;
         this.idUsuario = idUsuario;
@@ -78,6 +85,7 @@ public class Venda {
         this.dataFormatada = dataFormatada;
         this.valorFinal = valorFinal;
         this.valorFrete = valorFrete;
+        this.diasUteis = diasUteis;
         this.status = status;
         this.dataFormatada2 = dataFormatada2;
         this.numeroCartao = numeroCartao;
@@ -86,13 +94,14 @@ public class Venda {
     }
 
     public Venda(long protocolo, int idUsuario, int idEndereco, Timestamp dataVenda, Double valorFinal, Double valorFrete,
-            int status, Timestamp ultimaAtt, long numeroCartao, int numeroParcelas, Double valorParcelas) {
+            int diasUteis, int status, Timestamp ultimaAtt, long numeroCartao, int numeroParcelas, Double valorParcelas) {
         this.protocolo = protocolo;
         this.idUsuario = idUsuario;
         this.idEndereco = idEndereco;
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
         this.valorFrete = valorFrete;
+        this.diasUteis = diasUteis;
         this.status = status;
         this.ultimaAtt = ultimaAtt;
         this.numeroCartao = numeroCartao;
@@ -227,6 +236,33 @@ public class Venda {
 
     public void setValorParcelas(Double valorParcelas) {
         this.valorParcelas = valorParcelas;
+    }
+
+    public int getDiasUteis() {
+        return diasUteis;
+    }
+
+    public void setDiasUteis(int diasUteis) {
+        this.diasUteis = diasUteis;
+    }
+
+    public Date getPrevisaoEntrega() {
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, getDiasUteis());
+        dt = c.getTime();
+        return dt;
+    }
+    public String getPrevisaoEntregaFormatada() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "dd/MM/yyyy" );
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, getDiasUteis());
+        dt = c.getTime();
+        String entregaFormatada = dateFormat.format(dt);
+        return entregaFormatada;
     }
 
 }
