@@ -255,13 +255,14 @@ public class Venda {
         return dt;
     }
     public String getPrevisaoEntregaFormatada() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "dd/MM/yyyy" );
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "dd/MMM");
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(dt);
         c.add(Calendar.DATE, getDiasUteis());
         dt = c.getTime();
-        String entregaFormatada = dateFormat.format(dt);
+        String entrega = dateFormat.format(dt);
+        String entregaFormatada = entrega.substring(0, 4).toUpperCase() + entrega.substring(4);
         return entregaFormatada;
     }
 

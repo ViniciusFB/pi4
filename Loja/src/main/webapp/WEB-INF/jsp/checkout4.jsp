@@ -108,7 +108,7 @@
                                 <p><strong> Total </strong></p>
                             </div>
                             <div class="col-xs-3 col-md-2">
-                                <p><strong> R$${valorTotal+frete}</strong></p>
+                                <p><strong> R$${valorTotalFrete}</strong></p>
                             </div>
                         </div>
                         <!--                        <hr style="margin-top: 5px; margin-bottom: 4px; border: 0;
@@ -180,7 +180,7 @@
 
                         <tr class="total">
                             <td>Total</td>
-                            <th>R$${valorTotal + frete}</th>
+                            <th>R$${valorTotalFrete}</th>
                         </tr>
                     </tbody>
                 </table>

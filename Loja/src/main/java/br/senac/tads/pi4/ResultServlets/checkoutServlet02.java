@@ -5,8 +5,7 @@
  */
 package br.senac.tads.pi4.ResultServlets;
 
-import br.senac.tads.pi4.dao.EnderecoDAO;
-import br.senac.tads.pi4.models.Endereco;
+import br.senac.tads.pi4.models.CarrinhoDeCompra;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,6 +36,12 @@ public class checkoutServlet02 extends HttpServlet {
         request.setAttribute("cepDestino", sessao.getAttribute("cepDestino"));
         request.setAttribute("frete", sessao.getAttribute("valorFrete"));
 
+        CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
+//        sessao.setAttribute("carrinho", carrinho);
+
+        double vaTotal = round(carrinho.calculaTotal(), 2);
+        sessao.setAttribute("valorTotalFrete", vaTotal);
+
         request.getRequestDispatcher("WEB-INF/jsp/checkout2.jsp").forward(request, response);
     }
 
@@ -61,6 +66,17 @@ public class checkoutServlet02 extends HttpServlet {
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout2.jsp").forward(request, response);
 
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     @Override

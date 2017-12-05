@@ -164,7 +164,7 @@
 
                         <tr class="total">
                             <td>Total</td>
-                            <th>R$${valorTotal + frete}</th>
+                            <th>R$${valorTotalFrete}</th>
                         </tr>
                     </tbody>
                 </table>

@@ -39,7 +39,8 @@ public class checkoutServlet04 extends HttpServlet {
         CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
 //        sessao.setAttribute("carrinho", carrinho);
 
-        sessao.setAttribute("valorTotal", carrinho.calculaTotal());
+        double vaTotal = round(carrinho.calculaTotal(), 2);
+        sessao.setAttribute("valorTotal", vaTotal);
 
         request.getRequestDispatcher("WEB-INF/jsp/checkout4.jsp").forward(request, response);
     }
@@ -63,6 +64,17 @@ public class checkoutServlet04 extends HttpServlet {
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/checkout4.jsp").forward(request, response);
 
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     @Override

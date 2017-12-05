@@ -41,6 +41,7 @@ public class checkoutServlet01 extends HttpServlet {
         request.setAttribute("usuario", sessao.getAttribute("usuario"));
         request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
         CarrinhoDeCompra carrinho = (CarrinhoDeCompra) sessao.getAttribute("carrinho");
+//        sessao.setAttribute("carrinho", carrinho);
 
         String idEnd = "" + sessao.getAttribute("idEndereco");
         if (idEnd == null) {
@@ -97,7 +98,8 @@ public class checkoutServlet01 extends HttpServlet {
         URI uri;
         String pagina = "";
         String urlPage = (String) sessao.getAttribute("urlPage");
-
+        double vaTotal = round(carrinho.calculaTotal(), 2);
+        sessao.setAttribute("valorTotalFrete", vaTotal);
         try {
             uri = new URI(urlPage);
             pagina = new File(uri.getPath()).getName();
@@ -126,6 +128,17 @@ public class checkoutServlet01 extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/carrinho.jsp").forward(request, response);
         }
 
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     @Override

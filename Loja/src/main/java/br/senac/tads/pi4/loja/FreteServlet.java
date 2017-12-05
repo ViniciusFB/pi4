@@ -96,9 +96,9 @@ public class FreteServlet extends HttpServlet {
         calcular = quantidade * pesoPorUnidadeAux;
         String nVlPeso = calcular.toString();
         String nCdFormato = "1";
-        String nVlComprimento = "30";
-        String nVlAltura = "30";
-        String nVlLargura = "30";
+        String nVlComprimento = "16";
+        String nVlAltura = "5";
+        String nVlLargura = "11";
         String nVlDiametro = "0";
         String sCdMaoPropria = "n";
         String nVlValorDeclarado = "0";
@@ -196,6 +196,9 @@ public class FreteServlet extends HttpServlet {
                 double frete = Double.parseDouble(valorFrete);
 //                sessao.setAttribute("frete", request.getAttribute("valorFrete"));
                 sessao.setAttribute("frete", frete);
+                double valorTotal = (double) sessao.getAttribute("valorTotal");
+                double somaTotal = valorTotal+frete;
+                sessao.setAttribute("valorTotalFrete", round(somaTotal, 2));
 
                 System.out
                         .println("Erro: " + getCharacterDataFromElement(line));
@@ -205,6 +208,17 @@ public class FreteServlet extends HttpServlet {
         }
         request.getRequestDispatcher("/WEB-INF/jsp/checkout2.jsp").forward(request, response);
 
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     public static String getCharacterDataFromElement(Element e) {

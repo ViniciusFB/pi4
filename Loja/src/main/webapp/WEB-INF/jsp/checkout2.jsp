@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="cepOrigem" value="04696000">
+                        <input type="hidden" name="cepOrigem" value="22041080">
                         <input type="hidden" name="cepDestino" value="${cepDestino}">
 <!--                        <div class="col-sm-4">
 #e6e6e6
@@ -136,7 +136,7 @@
 
                         <tr class="total">
                             <td>Total</td>
-                            <th>R$${valorTotal + frete}</th>
+                            <th>R$${valorTotalFrete}</th>
                         </tr>
                     </tbody>
                 </table>
