@@ -50,70 +50,8 @@
         <!-- Adicionando JQuery -->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
-
     </head>
 
-
-    <style>
-
-        @media only screen and (max-width: 360px) and (min-width: 300px) {
-            hr {
-                margin-top: 150px;
-            }
-            #dataFinal {
-                margin-bottom: 10px;
-            }
-            #dataInicial, #dataFinal {
-                margin-left: 50px;
-            }
-            label {
-                text-align: center;
-                margin-left: 80px;
-            }
-            #filtrar {
-                margin-left: 50px;
-                width: 150px;
-            }
-        }
-        @media only screen and (max-width: 430px) and (min-width: 361px) {
-            hr {
-                margin-top: 150px;
-            }
-            #dataFinal {
-                margin-bottom: 10px;
-            }
-            #dataInicial, #dataFinal {
-                margin-left: 80px;
-            }
-            label {
-                text-align: center;
-                margin-left: 80px;
-            }
-            #filtrar {
-                margin-left: 80px;
-                width: 150px;
-            }
-        }
-        @media only screen and (max-width: 499px) and (min-width: 431px) {
-            hr {
-                margin-top: 80px;
-            }
-            #filtrar {
-                margin-left: 20px;
-                width: 250px;
-            }
-        }
-        @media only screen and (max-width: 700px) and (min-width: 500px) {
-            #filtrar {
-                margin-left: -15px;
-            }
-        }
-        @media only screen and (max-width: 900px) and (min-width: 700px) {
-            #filtrar {
-                width: 200px;
-            }
-        }
-    </style>
     <body>
 
         <jsp:include page="cabecalho.jsp" />
@@ -190,23 +128,28 @@
                             <h4 style="color: orangered" class="text-muted">${protocolo}</h4>
 
                             <form action="pedidos" accept-charset="iso-8859-1,utf-8" method="post">
-                                <div style="float:left;margin-right:20px; margin-top: 5px">
-                                    <label for="dataInicial">Data Inicial</label>
-                                    <input id="dataInicial" type="date" value="" name="dataInicial" class="form-inline" required style="display: block">
-                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label for="nProtocolo">N° Protocolo</label>
+                                        <input id="nProtocolo" type="text" value="" name="nProtocolo" class="form-control">
+                                    </div>
 
-                                <div style="float:left;margin-right:20px; margin-top: 5px;">
-                                    <label for="dataFinal">Data Final</label>
-                                    <input id="dataFinal" type="date" value="" name="dataFinal" class="form-inline" required style="display: block">
-                                </div>
+                                    <div class="col-xs-12 col-md-3">
+                                        <label for="dataInicial">Data Inicial</label>
+                                        <input id="dataInicial" type="date" value="" name="dataInicial" class="form-control">
+                                    </div>
 
-                                <br>
-                                <div style="float:left;margin-right:20px;">
-                                    <input type="submit" value="Filtrar" name="Filtrar" class="btn btn-primary" id="filtrar" style="margin-top: 15px">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label for="dataFinal">Data Final</label>
+                                        <input id="dataFinal" type="date" value="" name="dataFinal" class="form-control">
+                                    </div>
+                                    <div class="col-xs-12 col-md-3">
+                                        <label for="filtrar"></label>
+                                        <input type="submit" value="Filtrar" name="Filtrar" class="btn btn-primary form-control" id="filtrar">
+                                    </div>
                                 </div>
                             </form>
 
-                            <br><br>
                             <hr>
 
                             <div>
@@ -219,26 +162,10 @@
 
                                                 <div class="row">
                                                     <div class="col-md-4 card-photos">
-                                                        <p>Realizado em ${compra.dataFormatada}</p>
-                                                        <div><div class="hidden-xs carrosel-photos">
-                                                                <div class="wrapper" style="left:0">
-                                                                    <ul>
-                                                                        <li> 
-                                                                            <img id="129692001" alt="" height="80" width="80" src="http://static1.netshoes.net/Produtos/oculos-de-sol-ray-ban-justin/06/N97-0023-006/N97-0023-006_detalhe1.jpg">  
-                                                                            <!--<img id="129692001" alt="" width="80" height="80" src="${compra.imagem}">-->  
-                                                                        </li> 
-                                                                    </ul> 
-                                                                </div>
-                                                            </div> 
-                                                            <div class="hidden-sm hidden-md hidden-lg carrosel-photos"> 
-                                                                <div class="wrapper"> 
-                                                                    <ul> 
-                                                                        <li>
-                                                                            <img id="129692001" alt="" height="80" width="80" src="http://static1.netshoes.net/Produtos/oculos-de-sol-ray-ban-justin/06/N97-0023-006/N97-0023-006_detalhe1.jpg">  
-                                                                        </li> 
-                                                                    </ul>
-                                                                </div> 
-                                                            </div>
+                                                        <p id="dataFormatada">Realizado em ${compra.dataFormatada}</p>
+                                                        <div>
+                                                            <h3>Protocolo</h3>
+                                                            <h3>${compra.protocolo}</h3>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8 card-info">
@@ -247,7 +174,7 @@
                                                                 <span> Previsão Entrega </span>
 
                                                                 <div>
-                                                                    <p class="ng-binding"> ${compra.diaPrevisao} <span class="ng-binding"> ${compra.mesAnoPrevisao} </span> </p>
+                                                                    <p> ${compra.diaPrevisao} <span class="ng-binding"> ${compra.mesAnoPrevisao} </span> </p>
                                                                 </div>
                                                             </div>
                                                             <div class="status col-xs-7 col-md-7 st-${compra.status}"> 
@@ -274,8 +201,8 @@
                                                         </div>
                                                         <div class="col-xs-12 col-md-5 payment stP-${compra.status}">
                                                             <div class="info col-md-12 col-xs-7">
-                                                                <span>Protocolo</span>
-                                                                <p>${compra.protocolo}</p>
+                                                                <span>Forma de Pagamento</span>
+                                                                <p>Cartão de Crédito</p>
                                                             </div>
                                                             <div class="info col-md-12 col-xs-5 ng-binding">
                                                                 Valor total

@@ -109,20 +109,20 @@
                                                     </div>
                                                     <div class="col-xs-2 col-md-2">
                                                         <br>
-                                                        <a class="btnRem" href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
-                                                        ${item.quantidade}
+                                                        <a class="btnRem-${item.quantidade}" href="carrinho?acao=delUnidade&idProduto=${item.id}"><i class="fa fa-minus"></i></a>
+                                                            ${item.quantidade}
                                                         <input type="hidden" id="qtd" value="${item.quantidade}" min="1" max="${item.quantidadeEstoque}" style="width: 70px" name="quantidade" class="qtd form-control">
                                                         <a class="btnAdd" href="carrinho?acao=addProduto&idProduto=${item.id}"><i class="fa fa-plus"></i></a>
                                                     </div>
                                                     <div class="col-xs-2 col-md-2">
                                                         <br>
-                                                       R$${item.valor}
+                                                        R$${item.valor}
                                                         <input type="hidden" name="valorUni" id="valorUni" class="valorUni" value="${item.valor}">
                                                         <input type="hidden" name="idProduto" value="${item.id}">
                                                     </div>
                                                     <div class="col-xs-2 col-md-1">
                                                         <br>
-                                                       R$${item.total}
+                                                        R$${item.total}
                                                         <input type="hidden" name="valorTotal" id="valorTotal">
                                                     </div>
                                                     <div class="col-xs-2 col-md-1">
@@ -257,40 +257,6 @@
         <script src="js/bootstrap-hover-dropdown.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/front.js"></script>
-
-        <!--    <script>
-                function maxLengthCheck(object) {
-                    if (object.value.length > object.maxLength)
-                        object.value = object.value.slice(0, object.maxLength)
-                }
-        
-         
-        
-            </script>-->
-
-        <script>
-                                                            $("[type='number']").keypress(function (evt) {
-                                                                evt.preventDefault();
-                                                            });
-
-                                                            $(document).ready(function () {
-                                                                var qtd = $(".qtd");
-                                                                var btnAdd = $(".btnAdd");
-                                                                var btnRem = $(".btnRem");
-
-                                                                if (qtd.val() == qtd.attr("max")) {
-                                                                    btnAdd.css("display", "none")
-                                                                }
-                                                                if (qtd.val() == qtd.attr("min")) {
-                                                                    btnRem.css("display", "none")
-                                                                }
-
-                                                            })
-
-
-
-
-        </script>
 
     </body>
 

@@ -247,10 +247,16 @@
 }
 .card-order .card-photos p {
     font-size: 12px;
-    color: #999;
+    color: #737373;
     text-align: center;
     margin-bottom: 0;
     margin-top: 15px;
+}
+.card-order .card-photos h3 {
+    font-size: 20px;
+    /*color: #999;*/
+    text-align: center;
+    margin: 10px 0 5px 0;
 }
 
 .card-photos p {
@@ -399,4 +405,9 @@
 }
 .stP-4 {
     background: #005c00!important;
+}
+
+
+.btnRem-1 {
+    display: none;
 }
