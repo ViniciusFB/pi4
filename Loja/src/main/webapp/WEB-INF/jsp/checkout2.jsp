@@ -72,27 +72,27 @@
                         </div>
                         <input type="hidden" name="cepOrigem" value="22041080">
                         <input type="hidden" name="cepDestino" value="${cepDestino}">
-<!--                        <div class="col-sm-4">
-#e6e6e6
-                        </div>-->
+                        <!--                        <div class="col-sm-4">
+                        #e6e6e6
+                                                </div>-->
                         <div class="col-sm-12">
                             <div id="inform" class="box shipping-method" style="display: none; text-align: center;
                                  background-color: #F7F7F7">
 
-                                <h4> Valor: R$${valorFrete} </h4>
+                                <h4> Valor: R$ ${valorFrete}</h4>
                                 <h4> Prazo: ${diasUteis} dias úteis</h4>
                             </div>
                         </div>
 
                         <!--<input id="calcFrete" style="margin-left: 20px" type="submit" value="Calcular Frete">-->
                         <input type="hidden" id="sel" value="">
+
                     </div>
                     <!-- /.row -->
 
                 </div>
+                <!-- /.content -->
             </form>
-
-            <!-- /.content -->
 
             <div class="box-footer">
                 <div class="pull-left">
@@ -154,6 +154,7 @@
 <script>
     $(document).ready(function () {
         var selected = sessionStorage.getItem("frete");
+
         $(".entrega").click(function () {
             var selecionado = $('input[class=entrega]:checked', '#formFrete').val();
             sessionStorage.setItem("frete", selecionado);

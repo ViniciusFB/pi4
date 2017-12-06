@@ -6,7 +6,9 @@
 package br.senac.tads.pi4.loja;
 
 import br.senac.tads.pi4.dao.VendaDAO;
+import br.senac.tads.pi4.dao.VendaProdDAO;
 import br.senac.tads.pi4.models.Venda;
+import br.senac.tads.pi4.models.VendaProd;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
@@ -48,12 +50,16 @@ public class PedidoServlet extends HttpServlet {
             VendaDAO dao = new VendaDAO();
             int idUsuario = (int) sessao.getAttribute("idUsuario");
             List<Venda> vendas = dao.listar(idUsuario);
+//            VendaProdDAO vpDao = new VendaProdDAO();
+//            VendaProd vp = vpDao.obterInfoVendaProd(Integer.parseInt(request.getParameter("idVenda")));
             request.setAttribute("listaCompras", vendas);
+//            request.setAttribute("imagem", vp);
+            
 
             request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);
 
         } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.out.println("ERRO: " + e);
             request.getRequestDispatcher("/404.jsp").forward(request, response);
         }
 

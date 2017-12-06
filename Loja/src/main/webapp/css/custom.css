@@ -120,6 +120,9 @@
 .zeroMarginPadding {
     padding: 0!important;
 }
+.marginB25 {
+    margin-bottom: 25px!important;
+}
 .paddingT10 {
     /*padding-top: 10px!important;*/
     padding-top: 0px!important;
@@ -154,3 +157,246 @@
     text-transform: capitalize!important;
 }
 .row-eq-height{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}@media (max-width:480px){.row-eq-height{display:block}}@media (max-width:768px){.row-eq-height{display:block}.row-eq-height .last{width:100%}}.row.equalheights{overflow:hidden}.row.equalheights [class*=col-]{margin-bottom:-99999px;padding-bottom:99999px}
+
+
+.gallery .carousel-overflow .gallery-container .gallery-item img {
+    width: 53px;
+    height: 77px;
+    margin: auto;
+    display: block;
+}
+.gallery .products-quantity {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 7px;
+}
+.expected-date {
+    display: block;
+    padding: 0 28px;
+}
+.expected-date div.expected-date-container {
+    display: block;
+    vertical-align: middle;
+    height: 60px;
+    text-align: center;
+    padding: 25px 0;
+}
+.expected-date div.expected-date-container .shipment-date.show-date {
+    margin-top: -1px;
+}
+.expected-date div.expected-date-container .shipment-date {
+    font-size: 12px;
+    font-weight: bold;
+}
+.expected-date div.expected-date-container strong {
+    font-size: 12px;
+    font-weight: normal;
+}
+.expected-date div.expected-date-container .shipment-date strong {
+    font-size: 35px;
+}
+.order-column {
+    height: 108px;
+    border-right: 1px solid #CCC;
+}
+.order-column:last-child {
+    border-right: 0px;
+}
+.order-detail {
+    height: 108px;
+    padding: 0 26px;
+}
+.order-detail .list-detail {
+    font-size: 12px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.order-detail .list-detail .item-detail {
+    padding: 5px 0;
+}
+.order-detail .list-detail .item-detail:first-child {
+    padding-top: 0px;
+}
+.itens {
+    margin: 15px 0;
+    border: 1px solid #CCC;
+    height: 108px;
+    padding: 25px 10px;
+    box-sizing: content-box;
+}
+
+.card-panel {
+    box-shadow: 0 0 6px 0 rgba(0,0,0,.15);
+    margin: 10px 0 15px;
+}
+.card-order {
+    -webkit-transition: .75s ease-in-out all;
+    -moz-transition: .75s ease-in-out all;
+    -o-transition: .75s ease-in-out all;
+    transition: .75s ease-in-out all;
+}
+.card-panel {
+    box-shadow: 0 0 6px 0 rgba(0,0,0,.1);
+    background-color: #fff;
+    margin: 10px 0;
+}
+
+.card-order .card-info, .card-order .card-photos {
+    padding-left: 0;
+    padding-right: 0;
+}
+.card-order .card-photos p {
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 15px;
+}
+
+.card-photos p {
+    margin: 0 0 10.5px;
+}
+.card-order .card-info {
+    color: #fff;
+}
+.card-order .card-info, .card-order .card-photos {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card-order.paid .date-status {
+    background: #018cc1;
+}
+.card-order .card-info .date-status {
+    min-height: 120px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.card-order.paid .date-status .date {
+    border-color: #00adef;
+}
+.card-order .card-info .date-status .date {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    border-right: 1px solid;
+    min-height: 88px;
+}
+.card-order .card-info div>span {
+    display: block;
+    font-size: 12px;
+}
+.card-order .card-info .date-status .date p {
+    font-size: 55px;
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.card-order .card-info .date-status .date p span {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+}
+.card-order .card-info .date-status .date p {
+    font-size: 55px;
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.card-order .card-info .date-status .status {
+    position: relative;
+    padding-left: 20px;
+    /*    border-right: 1px solid;
+        min-height: 88px;*/
+}
+.card-order .card-info .date-status .status h3 {
+    font-size: 20px;
+}
+.card-order .card-info h3 {
+    color: #fff;
+    margin: 0;
+}
+.card-order.paid .payment {
+    background-color: #00adef;
+}
+.card-order .card-info .payment {
+    /*min-height: 120px;*/
+    min-height: 90px;
+    background-repeat: no-repeat;
+    padding-top: 14px;
+    padding-bottom: 15px;
+    position: relative;
+}
+.card-order .card-info div p {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+.card-order .card-menu {
+    border-top: 1px solid #f2f2f2;
+}
+.card-panel-footer {
+    padding: 18px 20px;
+}
+.card-panel-footer div:first-child {
+    padding-left: 4px;
+}
+.carrosel-photos .wrapper {
+    width: 155px;
+    margin: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+.carrosel-photos .wrapper ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 5px;
+}
+.carrosel-photos .wrapper ul li {
+    width: 70px;
+    height: 70px;
+    box-sizing: content-box;
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+}
+.carrosel-photos .wrapper {
+    width: 155px;
+    margin: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.st-0 {
+    background: crimson!important;
+}
+.st-1 {
+    background: orange!important;
+}
+.st-2 {
+    background: #a6a6a6!important;
+}
+.st-3 {
+    background: #20abb2!important;
+}
+.st-4 {
+    background: green!important;
+}
+
+.stP-0 {
+    background: #bb1133!important;
+}
+.stP-1 {
+    background: #db8f00!important;
+}
+.stP-2 {
+    background: #949494!important;
+}
+.stP-3 {
+    background: #1a8d93!important;
+}
+.stP-4 {
+    background: #005c00!important;
+}

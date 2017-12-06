@@ -157,4 +157,50 @@ public class VendaProdDAO extends ConexaoBD {
         }
         return lista;
     }
+    public VendaProd obterInfoVendaProd(int idVenda) {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        VendaProd vp = null;
+
+        String sql = "SELECT imagem FROM VendaProd WHERE idvenda = ? FETCH FIRST 1 ROW ONLY";
+//        String sql = "SELECT v.*, vp.IMAGEM FROM Venda v, VendaProd vp WHERE vp.IDVENDA = ? ORDER BY dataVenda DESC";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idVenda);
+            ResultSet resultados = stmt.executeQuery();
+
+            while (resultados.next()) {
+                String imagem = resultados.getString("imagem");
+
+                vp = new VendaProd(imagem);
+                break;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return vp;
+
+    }
 }

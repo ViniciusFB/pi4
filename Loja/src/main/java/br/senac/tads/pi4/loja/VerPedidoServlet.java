@@ -68,6 +68,9 @@ public class VerPedidoServlet extends HttpServlet {
             request.setAttribute("venda", venda);
             request.setAttribute("endereco", endereco);
             request.setAttribute("usuarioCompra", usuario);
+            double vSub = venda.getValorFinal() - venda.getValorFrete();
+            double subtotal = round(vSub, 2);
+            request.setAttribute("subtotal", subtotal);
 
             request.getRequestDispatcher("/WEB-INF/jsp/visualizarPedido.jsp").forward(request, response);
 
@@ -127,6 +130,17 @@ public class VerPedidoServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(VerPedidoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     @Override

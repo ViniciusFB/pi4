@@ -689,7 +689,7 @@ public class ProdutoDAO extends ConexaoBD {
                 + "    SELECT ROW_NUMBER() OVER() AS rownum, Produto.* "
                 + "    FROM Produto "
                 + ") AS tmp "
-                + "WHERE rownum > " + from + " AND rownum <= " + totalProdutosPagina + from;
+                + "WHERE rownum > " + from + " AND rownum <= " + (totalProdutosPagina + from) + " ORDER BY disponivel DESC";
 
         conn = obterConexao();
         stmt = conn.prepareStatement(sql);

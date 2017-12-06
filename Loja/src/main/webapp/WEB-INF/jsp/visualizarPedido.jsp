@@ -146,7 +146,7 @@
                                                         Frete 
                                                     </div>
                                                     <div class="col-md-6 text-right zeroMarginPadding">
-                                                        <p class="pStyle">R$ ${venda.valorFinal-venda.valorFrete}</p>
+                                                        <p class="pStyle">R$ ${subtotal}</p>
                                                         <p class="pStyle">R$ 0,00</p>
                                                         R$ ${venda.valorFrete} 
                                                     </div>

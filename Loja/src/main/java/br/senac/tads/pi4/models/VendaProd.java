@@ -7,7 +7,6 @@ package br.senac.tads.pi4.models;
 
 import java.sql.Date;
 
-
 /**
  *
  * @author vinicius.fbatista1
@@ -56,6 +55,10 @@ public class VendaProd {
         this.quantidade = quantidade;
         this.valorUni = valorUni;
         this.valorTotal = valorTotal;
+        this.imagem = imagem;
+    }
+
+    public VendaProd(String imagem) {
         this.imagem = imagem;
     }
 

@@ -209,56 +209,104 @@
                             <br><br>
                             <hr>
 
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Protocolo</th>
-                                            <th>Data</th>
-                                            <th>Total</th>
-                                            <th>Previsão de Entrega</th>
-                                            <th>Status</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
+                            <div>
 
-                                    <c:forEach items="${listaCompras}" var="compra">
-                                        <tbody>
-                                            <tr>
-                                                <!--<input type="hidden" name="idVenda" value="${compra.id}">-->
-                                                <th>${compra.protocolo}</th>
-                                                <td>${compra.dataFormatada}</td>
-                                                <td>R$ ${compra.valorFinal}</td>
-                                                <td>${compra.previsaoEntregaFormatada}</td>
-                                                <c:choose>
-                                                    <c:when test="${compra.status == 0}">
-                                                        <td><span class="label label-danger">Aguardando pagamento</span>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:when test="${compra.status == 1}">
-                                                        <td><span class="label label-warning">Pedido em Processamento</span>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:when test="${compra.status == 2}">
-                                                        <td><span class="label label-default">Faturamento</span>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:when test="${compra.status == 3}">
-                                                        <td><span class="label label-primary">Em transporte</span>
-                                                        </td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <td><span class="label label-success">Entregue</span>
-                                                        </td>
-                                                    </c:otherwise>
+                                <c:forEach items="${listaCompras}" var="compra">
+                                    <input type="hidden" name="idVenda" value="${compra.id}">
+                                    <div class="row">
+                                        <div class="col-xs-12 marginB25">
+                                            <div class="col-md-12 card-order card-panel paid">
 
-                                                </c:choose>
-                                                <td><a href="visualizarPedido?idVenda=${compra.id}" class="btn btn-primary btn-sm">Visualizar</a>
-                                                </td>
-                                            </tr>                                        
-                                        </tbody>
-                                    </c:forEach>
-                                </table>
+                                                <div class="row">
+                                                    <div class="col-md-4 card-photos">
+                                                        <p>Realizado em ${compra.dataFormatada}</p>
+                                                        <div><div class="hidden-xs carrosel-photos">
+                                                                <div class="wrapper" style="left:0">
+                                                                    <ul>
+                                                                        <li> 
+                                                                            <img id="129692001" alt="" height="80" width="80" src="http://static1.netshoes.net/Produtos/oculos-de-sol-ray-ban-justin/06/N97-0023-006/N97-0023-006_detalhe1.jpg">  
+                                                                            <!--<img id="129692001" alt="" width="80" height="80" src="${compra.imagem}">-->  
+                                                                        </li> 
+                                                                    </ul> 
+                                                                </div>
+                                                            </div> 
+                                                            <div class="hidden-sm hidden-md hidden-lg carrosel-photos"> 
+                                                                <div class="wrapper"> 
+                                                                    <ul> 
+                                                                        <li>
+                                                                            <img id="129692001" alt="" height="80" width="80" src="http://static1.netshoes.net/Produtos/oculos-de-sol-ray-ban-justin/06/N97-0023-006/N97-0023-006_detalhe1.jpg">  
+                                                                        </li> 
+                                                                    </ul>
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8 card-info">
+                                                        <div class="col-xs-12 col-md-7 date-status st-${compra.status}">
+                                                            <div class="date col-xs-5 col-md-5">
+                                                                <span> Previsão Entrega </span>
+
+                                                                <div>
+                                                                    <p class="ng-binding"> ${compra.diaPrevisao} <span class="ng-binding"> ${compra.mesAnoPrevisao} </span> </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status col-xs-7 col-md-7 st-${compra.status}"> 
+                                                                <span>Status do Pedido</span>
+                                                                <c:choose>
+                                                                    <c:when test="${compra.status == 0}">
+                                                                        <h3 class="titles">Aguardando Pagamento</h3>
+                                                                    </c:when>
+                                                                    <c:when test="${compra.status == 1}">
+                                                                        <h3 class="titles">Pedido em Processamento</h3>
+                                                                    </c:when>
+                                                                    <c:when test="${compra.status == 2}">
+                                                                        <h3 class="titles">Faturamento</h3>
+                                                                    </c:when>
+                                                                    <c:when test="${compra.status == 3}">
+                                                                        <h3 class="titles">Em Transporte</h3>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <h3 class="titles">Entregue</h3>
+                                                                    </c:otherwise>
+
+                                                                </c:choose>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-5 payment stP-${compra.status}">
+                                                            <div class="info col-md-12 col-xs-7">
+                                                                <span>Protocolo</span>
+                                                                <p>${compra.protocolo}</p>
+                                                            </div>
+                                                            <div class="info col-md-12 col-xs-5 ng-binding">
+                                                                Valor total
+                                                                <p class="toUppercase ng-binding">R$ ${compra.valorFinal}</p> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="card-menu card-panel-footer col-xs-12">
+                                                        <div class="zeroMarginPadding">
+                                                            <div class="col-xs-4 col-md-8 zeroMarginPadding">
+                                                                <a class="btn btn-default btn-xs hidden-xs hidden-sm" href="visualizarPedido?idVenda=${compra.id}">
+                                                                    Ver Detalhes
+                                                                </a>
+                                                                <a class="btn-link hidden-md hidden-lg" href="visualizarPedido?idVenda=${compra.id}">Ver detalhes</a>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </c:forEach>
                             </div>
                         </div>
                     </div>

@@ -25,6 +25,8 @@ public class Venda {
     private String dataFormatada;
     private String dataFormatada2;
     private String previsaoEntregaFormatada;
+    private String diaPrevisao;
+    private String mesAnoPrevisao;
     private Double valorFinal;
     private Double valorFrete;
     private int diasUteis;
@@ -33,6 +35,7 @@ public class Venda {
     private long numeroCartao;
     private int numeroParcelas;
     private Double valorParcelas;
+    private String imagem;
 
 //    Status:
 // 0 - Aguardando pagamento
@@ -116,6 +119,25 @@ public class Venda {
         this.ultimaAtt = ultimaAtt;
         this.id = id;
 
+    }
+
+    public Venda(int id, long protocolo, int idUsuario, int idEndereco, String dataFormatada, Double valorFinal, Double valorFrete,
+            int diasUteis, int status, String dataFormatada2, long numeroCartao, int numeroParcelas, Double valorParcelas,
+            String imagem) {
+        this.id = id;
+        this.protocolo = protocolo;
+        this.idUsuario = idUsuario;
+        this.idEndereco = idEndereco;
+        this.dataFormatada = dataFormatada;
+        this.valorFinal = valorFinal;
+        this.valorFrete = valorFrete;
+        this.diasUteis = diasUteis;
+        this.status = status;
+        this.dataFormatada2 = dataFormatada2;
+        this.numeroCartao = numeroCartao;
+        this.numeroParcelas = numeroParcelas;
+        this.valorParcelas = valorParcelas;
+        this.imagem = imagem;
     }
 
     public int getId() {
@@ -254,16 +276,46 @@ public class Venda {
         dt = c.getTime();
         return dt;
     }
+
     public String getPrevisaoEntregaFormatada() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "dd/MMM");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(dt);
         c.add(Calendar.DATE, getDiasUteis());
         dt = c.getTime();
         String entrega = dateFormat.format(dt);
-        String entregaFormatada = entrega.substring(0, 4).toUpperCase() + entrega.substring(4);
-        return entregaFormatada;
+        return entrega;
+    }
+
+    public String getMesAnoPrevisao() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM/yyyy");
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, getDiasUteis());
+        dt = c.getTime();
+        String entrega = dateFormat.format(dt);
+        return entrega;
+    }
+
+    public String getDiaPrevisao() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, getDiasUteis());
+        dt = c.getTime();
+        String entrega = dateFormat.format(dt);
+        return entrega;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
 }

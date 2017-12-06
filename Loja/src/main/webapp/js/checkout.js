@@ -107,6 +107,7 @@ $(document).ready(function () {
 
         return false;
     });
+
     $(".pagamento").click(function () {
         var form = $(this).closest("form");
         var selecionado = $('input[class=pagamento]:checked', '#formPagamento').val();
