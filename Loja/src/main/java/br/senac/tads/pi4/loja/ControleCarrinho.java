@@ -41,6 +41,7 @@ public class ControleCarrinho extends HttpServlet {
 
                     carrinho = new CarrinhoDeCompra();
                     sessao.setAttribute("carrinho", carrinho);
+                    sessao.setAttribute("numItens", 0);
                 }
                 //verifica se o produto existe no carrinho
                 if (carrinho.getItens() != null) {
@@ -55,7 +56,7 @@ public class ControleCarrinho extends HttpServlet {
                             if (qtd != qtdeEstoque) {
 
                                 item.setQuantidade(qtd + 1);
-
+                                addProduto(request, sessao);
                             } else {
 //                                sessao.setAttribute("mensagem", "O estoque para esse produto está esgotado");
                             }
@@ -73,11 +74,11 @@ public class ControleCarrinho extends HttpServlet {
                     novoItem.setQuantidade(1);
                     //adiciona novo item
                     carrinho.addNovoItem(novoItem);
+                    addProduto(request, sessao);
                 }
                 //carrega a pagina do carrinho de compras
                 double vaTotal = round(carrinho.calculaTotal(), 2);
                 sessao.setAttribute("valorTotal", vaTotal);
-                sessao.setAttribute("numItens", carrinho.getItens().size());
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
             }//fim addProduto
             if (acao.equals("delUnidade")) {
@@ -99,6 +100,8 @@ public class ControleCarrinho extends HttpServlet {
                         if (item.getProduto().getId() == idProduto) {
                             //incrementa a quantidade
                             item.setQuantidade(item.getQuantidade() - 1);
+                            delUnidade(request, sessao);
+
                             existe = true;
                         }
                     }
@@ -121,10 +124,12 @@ public class ControleCarrinho extends HttpServlet {
                 Produto prodRemove = new Produto();
                 prodRemove.setId(idProduto);
                 itemRemove.setProduto(prodRemove);
+                int qtdRemove = itemRemove.getQuantidade();
+                System.out.println("QTD Remove = " + qtdRemove);
                 carrinho.removerItem(itemRemove);
                 double vaTotal = round(carrinho.calculaTotal(), 2);
                 sessao.setAttribute("valorTotal", vaTotal);
-                sessao.setAttribute("numItens", carrinho.getItens().size());
+                removeProduto(request, sessao, qtdRemove);
 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
             } else if (acao.equals("cancelaCompra")) {
@@ -170,10 +175,17 @@ public class ControleCarrinho extends HttpServlet {
             Produto prodRemove = new Produto();
             prodRemove.setId(idProduto);
             itemRemove.setProduto(prodRemove);
+            if (carrinho.getItens() != null) {
+                for (ItemDeCompra item : carrinho.getItens()) {
+                    if (item.getProduto().getId() == idProduto) {
+                        int qtdRemove = item.getQuantidade();
+                        removeProduto(request, sessao, qtdRemove);
+                    }
+                }
+            }
             carrinho.removerItem(itemRemove);
             double vaTotal = round(carrinho.calculaTotal(), 2);
             sessao.setAttribute("valorTotal", vaTotal);
-            sessao.setAttribute("numItens", carrinho.getItens().size());
 //carrega a pagina do carrinho de compras
             request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
         } else if (acao.equals("delUnidade")) {
@@ -195,6 +207,7 @@ public class ControleCarrinho extends HttpServlet {
                     if (item.getProduto().getId() == idProduto) {
                         //incrementa a quantidade
                         item.setQuantidade(item.getQuantidade() - 1);
+                        delUnidade(request, sessao);
                         existe = true;
                     }
                 }
@@ -239,6 +252,7 @@ public class ControleCarrinho extends HttpServlet {
                         if (qtd != qtdeEstoque) {
 
                             item.setQuantidade(qtd + 1);
+                            addProduto(request, sessao);
 
                         } else {
 //                                sessao.setAttribute("mensagem", "O estoque para esse produto está esgotado");
@@ -257,11 +271,11 @@ public class ControleCarrinho extends HttpServlet {
                 novoItem.setQuantidade(1);
                 //adiciona novo item
                 carrinho.addNovoItem(novoItem);
+                addProduto(request, sessao);
             }
             //carrega a pagina do carrinho de compras
             double vaTotal = round(carrinho.calculaTotal(), 2);
             sessao.setAttribute("valorTotal", vaTotal);
-            sessao.setAttribute("numItens", carrinho.getItens().size());
             request.getRequestDispatcher("/carrinho.jsp").forward(request, response);
         }//fim addProduto
 
@@ -276,6 +290,24 @@ public class ControleCarrinho extends HttpServlet {
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+
+    public void addProduto(HttpServletRequest request, HttpSession sessao) {
+        int atual = (int) sessao.getAttribute("numItens");
+        int novo = atual + 1;
+        sessao.setAttribute("numItens", novo);
+    }
+
+    public void delUnidade(HttpServletRequest request, HttpSession sessao) {
+        int atual = (int) sessao.getAttribute("numItens");
+        int novo = atual - 1;
+        sessao.setAttribute("numItens", novo);
+    }
+
+    public void removeProduto(HttpServletRequest request, HttpSession sessao, int qtdRemove) {
+        int atual = (int) sessao.getAttribute("numItens");
+        int novo = atual - qtdRemove;
+        sessao.setAttribute("numItens", novo);
     }
 
     @Override

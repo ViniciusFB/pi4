@@ -89,11 +89,11 @@
                                     <div class="col-sm-9">
                                         <select class="parcelas form-control" name="parcelas" id="parcelas">
                                             <option value="" selected disabled>Escolha o número de parcelas</option>
-                                            <option value="5">5x de ${(valorTotal+frete)/5} sem juros</option>
-                                            <option value="4">4x de ${(valorTotal+frete)/4} sem juros</option>
-                                            <option value="3">3x de ${(valorTotal+frete)/3} sem juros</option>
-                                            <option value="2">2x de ${(valorTotal+frete)/2} sem juros</option>
-                                            <option value="1">1x de ${(valorTotal+frete)/1} sem juros</option>
+                                            <option value="5">5x de ${numParcelas5} sem juros</option>
+                                            <option value="4">4x de ${numParcelas4} sem juros</option>
+                                            <option value="3">3x de ${numParcelas3} sem juros</option>
+                                            <option value="2">2x de ${numParcelas2} sem juros</option>
+                                            <option value="1">1x de ${numParcelas1} sem juros</option>
 
                                         </select>
                                     </div>
