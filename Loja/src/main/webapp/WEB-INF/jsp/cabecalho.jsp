@@ -104,7 +104,7 @@ _________________________________________________________ -->
                     <i class="fa fa-align-justify"></i>
                 </button>
                 <a class="btn btn-default navbar-toggle" id="btnCarrinho" href="carrinho">
-                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">${numItens} itens no carrinho</span>
+                    <i class="fa fa-shopping-cart"></i>  <span id="carrin1" class="hidden-xs">${numItens} itens no carrinho</span>
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
                     <span class="sr-only">Toggle Buscar</span>
@@ -135,7 +135,7 @@ _________________________________________________________ -->
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="carrinho" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">${numItens} itens no carrinho</span></a>
+                <a href="carrinho" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span id="carrin2" class="hidden-sm">${numItens} itens no carrinho</span></a>
             </div>
             <!--/.nav-collapse -->
             <form class="navbar-form" role="search" accept-charset="iso-8859-1,utf-8" action="pesquisar" method="post" id="formBusca">

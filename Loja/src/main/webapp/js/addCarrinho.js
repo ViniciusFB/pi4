@@ -12,10 +12,12 @@ $(document).ready(function () {
             type: "POST",
             url: url,
             data: $(".addCarrinho").serialize(),
-            success: function ()
+            success: function (response)
             {
 //                mensagem.fadeIn(500).fadeOut(8000);
             $("#myModal").modal({backdrop: true});
+            $("#carrin1").html($(response).find("#carrin1"));
+            $("#carrin2").html($(response).find("#carrin2"));
             }
         });
 
