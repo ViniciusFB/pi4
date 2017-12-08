@@ -49,13 +49,11 @@
 
         <!-- Adicionando JQuery -->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-
-
     </head>
 
     <body>
 
-        <jsp:include page="WEB-INF/jsp/cabecalho.jsp" />
+        <jsp:include page="cabecalho.jsp" />
 
         <div id="all">
 
@@ -78,7 +76,7 @@
                         <div class="panel panel-default sidebar-menu">
 
                             <div class="panel-heading">
-                                <h3 class="panel-title">Menu do Funcionário</h3>
+                                <h3 class="panel-title">Sessão do Usuário</h3>
                             </div>
 
                             <div class="panel-body">
@@ -99,7 +97,7 @@
                                     <li>
                                         <a href="mensagens"><i class="fa fa-envelope"></i> Mensagens de Clientes</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="relatorios"><i class="fa fa-book"></i> Relatórios</a>
                                     </li>
                                     <li>
@@ -117,80 +115,57 @@
                         <!-- *** CUSTOMER MENU END *** -->
                     </div>
 
-                    <div class="col-md-9" id="customer-orders">
+                    <!--<div class="col-md-9" id="customer-orders">-->
+                    <div class="col-md-9" id="basket">
                         <div class="box">
-                            <h1>Relatório</h1>
-                            <form action="pedidosBackoffice" method="post" accept-charset="iso-8859-1,utf-8">
-                                <div style="float:left;margin-right:20px; margin-top: 5px">
-                                    <label for="dataInicial">Data Inicial</label>
-                                    <input id="dataInicial" type="date" value="" name="dataInicial" class="form-inline" required style="display: block">
-                                </div>
-
-                                <div style="float:left;margin-right:20px; margin-top: 5px;">
-                                    <label for="dataFinal">Data Final</label>
-                                    <input id="dataFinal" type="date" value="" name="dataFinal" class="form-inline" required style="display: block">
-                                </div>
-
-                                <br>
-                                <div style="float:left;margin-right:20px;">
-                                    <input type="submit" value="Filtrar" name="Filtrar" class="btn btn-primary" id="filtrar" style="margin-top: 15px">
-                                </div>
-                            </form>
-
-                            <br><br>
+                            <h1>Editar Produto</h1>
 
                             <hr>
 
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Pedido</th>
-                                            <th>Data</th>
-                                            <th>Última Atualização</th>
-                                            <th>Total</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
+                            <form action="editarProduto" accept-charset="iso-8859-1,utf-8" method="post" id="formResposta">
+                                <div class="col-md-12">
 
-                                    <c:forEach items="${listaVendas}" var="compra">
-                                        <tbody>
-                                            <tr>
-                                        <input type="hidden" name="idVenda2" value="${compra.id}">
-                                        <th>${compra.protocolo}</th>
-                                        <td>${compra.dataFormatada}</td>
-                                        <td>${compra.dataFormatada2}</td>
-                                        <td>R$ ${compra.valorFinal}</td>
+                                    <div class="row">
 
-                                        <c:choose>
-                                            <c:when test="${compra.status == 0}">
-                                                <td><span class="label label-danger">Aguardando pagamento</span>
-                                                </td>
-                                            </c:when>
-                                            <c:when test="${compra.status == 1}">
-                                                <td><span class="label label-warning">Pedido em Processamento</span>
-                                                </td>
-                                            </c:when>
-                                            <c:when test="${compra.status == 2}">
-                                                <td><span class="label label-default">Faturamento</span>
-                                                </td>
-                                            </c:when>
-                                            <c:when test="${compra.status == 3}">
-                                                <td><span class="label label-primary">Em transporte</span>
-                                                </td>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <td><span class="label label-success">Entregue</span>
-                                                </td>
-                                            </c:otherwise>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="nome">Nome:</label>
+                                                <input type="hidden" name="idProduto" value="${idProduto}">
+                                                <input type="text" class="form-control" name="nomeProduto" value="${nomeProduto}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="codigo">Codigo:</label>
+                                                <input class="form-control" type="text" name="codigo" readonly value="${codigo}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="quantidade">Quantidade: </label>
+                                                <input class="form-control" type="number" name="quantidade" value="${quantidade}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="valorProduto">Valor Produto: </label>
+                                                <input class="form-control" name="valorProduto" type="text" value="${valorProduto}">
+                                            </div>
+                                        </div>
+                                        <br><hr>
+                                        <hr>
 
-                                        </c:choose>
+                                    </div>
+                                    <br>
 
-                                        </tr>                                        
-                                        </tbody>
-                                    </c:forEach>
-                                </table>
-                            </div>
+
+                                </div>
+
+
+                                <a href="estoque" class="btn btn-default"><i class="fa fa-chevron-left"></i> Voltar</a>
+                                <input type="submit" id="btnEnviar" value="Confirmar" class="btn-success pull-right">
+                            </form>
+
                         </div>
                     </div>
 
@@ -201,7 +176,7 @@
 
             <!-- *** COPYRIGHT ***
      _________________________________________________________ -->
-            <%--<jsp:include page="WEB-INF/jsp/rodape.jsp" />--%>
+            <jsp:include page="rodape.jsp" />
 
         </div>
         <!-- /#all -->
@@ -219,7 +194,5 @@
 
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/validar.js" type="text/javascript"></script>
-
-
     </body>
 </html>

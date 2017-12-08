@@ -434,22 +434,16 @@ public class ProdutoDAO extends ConexaoBD {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE Produto SET nomeProduto=?, codigo=?, categorias=?, quantidade=?, descricao=?,"
-                + " valorProduto=?, imagem=?, statusProduto=?, disponivel=? WHERE (idProduto=?)";
+        String sql = "UPDATE Produto SET nomeProduto=?, codigo=?, quantidade=?, valorProduto=? WHERE (idProduto=?)";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
             stmt.setInt(2, produto.getCodigo());
-            stmt.setString(3, produto.getCategorias());
-            stmt.setInt(4, produto.getQuantidade());
-            stmt.setString(5, produto.getDescricao());
-            stmt.setDouble(6, produto.getValor());
-            stmt.setString(7, produto.getImagem());
-            stmt.setInt(8, produto.getStatusProduto());
-            stmt.setBoolean(9, produto.isDisponivel());
-            stmt.setInt(10, produto.getId());
+            stmt.setInt(3, produto.getQuantidade());
+            stmt.setDouble(4, produto.getValor());
+            stmt.setInt(5, produto.getId());
 
             stmt.execute();
 

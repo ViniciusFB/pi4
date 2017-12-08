@@ -70,6 +70,15 @@ public class Produto {
         this.statusProduto = statusProduto;
         this.disponivel = disponivel;
     }
+
+    public Produto(String nome, int codigo, int quantidade, double valor, int id) {
+        this.nome = nome;
+        this.codigo = codigo;
+        this.quantidade = quantidade;
+        this.valor = valor;
+        this.id = id;
+    }
+    
     
     public Produto(int statusProduto, int id) { // Construtor para atualizar status
         this.statusProduto = statusProduto;

@@ -99,10 +99,10 @@
                                     <li>
                                         <a href="mensagens"><i class="fa fa-envelope"></i> Mensagens de Clientes</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="relatorios"><i class="fa fa-book"></i> Relatórios</a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="estoque"><i class="fa fa-dropbox"></i>Estoque</a>
                                     </li>
                                     <li>
@@ -117,76 +117,53 @@
                         <!-- *** CUSTOMER MENU END *** -->
                     </div>
 
-                    <div class="col-md-9" id="customer-orders">
+                    <div class="col-md-9" id="basket">
                         <div class="box">
-                            <h1>Relatório</h1>
-                            <form action="pedidosBackoffice" method="post" accept-charset="iso-8859-1,utf-8">
-                                <div style="float:left;margin-right:20px; margin-top: 5px">
-                                    <label for="dataInicial">Data Inicial</label>
-                                    <input id="dataInicial" type="date" value="" name="dataInicial" class="form-inline" required style="display: block">
-                                </div>
 
-                                <div style="float:left;margin-right:20px; margin-top: 5px;">
-                                    <label for="dataFinal">Data Final</label>
-                                    <input id="dataFinal" type="date" value="" name="dataFinal" class="form-inline" required style="display: block">
-                                </div>
-
-                                <br>
-                                <div style="float:left;margin-right:20px;">
-                                    <input type="submit" value="Filtrar" name="Filtrar" class="btn btn-primary" id="filtrar" style="margin-top: 15px">
-                                </div>
-                            </form>
-
-                            <br><br>
-
+                            <h1> Estoque </h1>
                             <hr>
 
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Pedido</th>
-                                            <th>Data</th>
-                                            <th>Última Atualização</th>
-                                            <th>Total</th>
+                                            <th colspan="2">Produto</th>
+                                            <th>Codigo</th>
+                                            <th>Quantidade</th>
                                             <th>Status</th>
+                                            <th>Ação</th>
                                         </tr>
                                     </thead>
 
-                                    <c:forEach items="${listaVendas}" var="compra">
+                                    <c:forEach items="${listaProdutos}" var="produto">
                                         <tbody>
                                             <tr>
-                                        <input type="hidden" name="idVenda2" value="${compra.id}">
-                                        <th>${compra.protocolo}</th>
-                                        <td>${compra.dataFormatada}</td>
-                                        <td>${compra.dataFormatada2}</td>
-                                        <td>R$ ${compra.valorFinal}</td>
+                                                <td>
+                                                    <a href="detalhes?c=${produto.codigo}">
+                                                        <img src="${produto.imagem}" alt="Imagem Produto">
+                                                    </a>
+                                                </td>
+                                                <td><a href="detalhes?c=${produto.codigo}">${produto.nome}</a></td>
+                                                <td>${produto.codigo}</td>
+                                                <td>${produto.quantidade}</td>
+                                                <c:choose>
+                                                    <c:when test="${produto.statusProduto == 0}">
+                                                        <td><span class="label label-success">Disponível</span>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:when test="${produto.statusProduto == 2}">
+                                                        <td><span class="label label-danger">Esgotado</span>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td><span class="label label-success">Disponível</span>
+                                                        </td>
+                                                    </c:otherwise>
 
-                                        <c:choose>
-                                            <c:when test="${compra.status == 0}">
-                                                <td><span class="label label-danger">Aguardando pagamento</span>
+                                                </c:choose>
+                                                <td><a href="editarProduto?codigo=${produto.codigo}" class="btn btn-primary btn-sm">Editar</a>
                                                 </td>
-                                            </c:when>
-                                            <c:when test="${compra.status == 1}">
-                                                <td><span class="label label-warning">Pedido em Processamento</span>
-                                                </td>
-                                            </c:when>
-                                            <c:when test="${compra.status == 2}">
-                                                <td><span class="label label-default">Faturamento</span>
-                                                </td>
-                                            </c:when>
-                                            <c:when test="${compra.status == 3}">
-                                                <td><span class="label label-primary">Em transporte</span>
-                                                </td>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <td><span class="label label-success">Entregue</span>
-                                                </td>
-                                            </c:otherwise>
-
-                                        </c:choose>
-
-                                        </tr>                                        
+                                            </tr>                                        
                                         </tbody>
                                     </c:forEach>
                                 </table>

@@ -163,7 +163,7 @@
 
                                 <ul class="nav nav-pills nav-stacked">
                                     <li>
-                                        <a href=""><i class="fa fa-user"></i> Minha conta</a>
+                                        <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
                                     <li>
                                         <a href="cadastroProduto.jsp"><i class="fa fa-plus"></i> Cadastrar Produto</a>
@@ -179,6 +179,9 @@
                                     </li>
                                     <li>
                                         <a href="relatorios"><i class="fa fa-book"></i> Relatórios</a>
+                                    </li>
+                                    <li>
+                                        <a href="estoque"><i class="fa fa-dropbox"></i>Estoque</a>
                                     </li>
                                     <li>
                                         <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>

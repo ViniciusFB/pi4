@@ -87,12 +87,20 @@
                                     <li class="active">
                                         <a href="usuario"><i class="fa fa-user"></i> Minha conta</a>
                                     </li>
-                                    <li>
-                                        <a href="EnderecoServlet01"><i class="fa fa-home"></i> Meus enderecos</a>
-                                    </li>
-                                    <li>
-                                        <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
-                                    </li>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.usuario.nivel == 0}">
+                                            <li>
+                                                <a href="EnderecoServlet01"><i class="fa fa-home"></i> Meus enderecos</a>
+                                            </li>
+                                            <li>
+                                                <a href="pedidos"><i class="fa fa-shopping-cart"></i> Meus pedidos</a>
+                                            </li>
+                                        </c:when>
+                                        <c:otherwise>
+
+                                        </c:otherwise>
+                                    </c:choose>
+
                                     <c:choose>
                                         <c:when test="${sessionScope.usuario.nivel != 0}">
                                             <li>
@@ -110,9 +118,12 @@
                                             <li>
                                                 <a href="relatorios"><i class="fa fa-book"></i> Relatórios</a>
                                             </li>
+                                            <li>
+                                                <a href="estoque"><i class="fa fa-dropbox"></i> Estoque </a>
+                                            </li>
                                         </c:when>
                                         <c:otherwise>
-                                            
+
                                         </c:otherwise>
                                     </c:choose>
 

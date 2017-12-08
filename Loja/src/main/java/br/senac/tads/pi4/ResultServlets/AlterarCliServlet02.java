@@ -81,9 +81,7 @@ public class AlterarCliServlet02 extends HttpServlet {
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("telefone", usuario.getTelefone());
 
-        RequestDispatcher dispatcher
-                = request.getRequestDispatcher("/WEB-INF/jsp/usuario.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/usuario");
 
     }
 }

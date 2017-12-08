@@ -5,9 +5,9 @@
  */
 package br.senac.tads.pi4.servlets;
 
+import br.senac.tads.pi4.dao.ProdutoDAO;
 import br.senac.tads.pi4.dao.VendaDAO;
-import br.senac.tads.pi4.dao.VendaDAO;
-import br.senac.tads.pi4.models.Venda;
+import br.senac.tads.pi4.models.Produto;
 import br.senac.tads.pi4.models.Venda;
 import java.io.IOException;
 import java.sql.Date;
@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ProjetoX
  */
-@WebServlet(name = "RelatorioServlet", urlPatterns = {"/relatorios"})
-public class RelatorioServlet extends HttpServlet {
+@WebServlet(name = "EstoqueServlet", urlPatterns = {"/estoque"})
+public class EstoqueServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,11 +47,11 @@ public class RelatorioServlet extends HttpServlet {
         request.setAttribute("idUsuario", sessao.getAttribute("idUsuario"));
 
         try {
-            VendaDAO dao = new VendaDAO();
-            List<Venda> venda = dao.listarPedidosBackoffice();
-            request.setAttribute("listaVendas", venda);
+            ProdutoDAO dao = new ProdutoDAO();
+            List<Produto> produtos = dao.listar();
+            request.setAttribute("listaProdutos", produtos);
 
-            request.getRequestDispatcher("/relatorios.jsp").forward(request, response);
+            request.getRequestDispatcher("/estoque.jsp").forward(request, response);
 
         } catch (Exception e) {
             System.out.println("ERRO: " + e.getMessage());
