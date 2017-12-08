@@ -64,24 +64,24 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Número</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="ccNumber" />
+                                        <input type="text" class="form-control" id="ccNumber" maxlength="16"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Validade</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" id="mes" placeholder="Mês" data-stripe="exp-month" />
+                                        <input type="text" class="form-control" id="mes" placeholder="Mês" maxlength="2" data-stripe="exp-month" />
                                     </div>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="ano" placeholder="Ano" data-stripe="exp-year" />
+                                        <input type="text" class="form-control" id="ano" placeholder="Ano" maxlength="4" data-stripe="exp-year" />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">CVC</label>
                                     <div class="col-sm-4">
-                                        <input type="text" id="cvc" class="form-control cvvNumber" />
+                                        <input type="text" id="cvc" class="form-control cvvNumber" maxlength="4"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -212,6 +212,7 @@
             if (cont === 4) {
                 $("#btnNext").removeAttr("disabled");
             }
+            sessionStorage.setItem("parcelasValor", $('.parcelas option:selected').text());
         });
 
 

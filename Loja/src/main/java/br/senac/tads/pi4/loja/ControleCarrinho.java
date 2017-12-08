@@ -207,6 +207,8 @@ public class ControleCarrinho extends HttpServlet {
                     if (item.getProduto().getId() == idProduto) {
                         //incrementa a quantidade
                         item.setQuantidade(item.getQuantidade() - 1);
+                        double vaTotal = round(carrinho.calculaTotal(), 2);
+                        sessao.setAttribute("valorTotal", vaTotal);
                         delUnidade(request, sessao);
                         existe = true;
                     }

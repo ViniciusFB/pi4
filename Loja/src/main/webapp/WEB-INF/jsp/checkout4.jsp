@@ -117,7 +117,8 @@
                             <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
                                 <h4>Pagamento: Cartão de Crédito</h4>
                                 <strong><span>Número de Parcelas: </span></strong>
-                                <span id="parcelas"></span><br>
+                                <span id="parcelas2"></span><br>
+                                <span id="parcelas" style="display: none"></span>
                                 <strong>Número do Cartão: </strong><span id="ccNumero"></span>
                             </div>
                             <div class="col-sm-6" style="background-color: hsl(0, 0%, 95%)">
@@ -202,7 +203,9 @@
         var numero = $("#numero");
         numero.text(sessionStorage.getItem("numero"));
         var parcelas = $("#parcelas");
+        var parcelas2 = $("#parcelas2");
         parcelas.text(sessionStorage.getItem("parcelas"));
+        parcelas2.text(sessionStorage.getItem("parcelasValor"));
         var ccNumero = $("#ccNumero");
         ccNumero.text(sessionStorage.getItem("ccNumero"));
 
