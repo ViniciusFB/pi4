@@ -165,71 +165,6 @@ public class VendaDAO extends ConexaoBD {
         }
         return lista;
     }
-//    public List<Venda> listarComImagem(int idUsuario) {
-//        Statement stmt = null;
-//        Connection conn = null;
-//
-//        String sql = "SELECT v.*, vp.IMAGEM FROM Venda v, VendaProd vp WHERE v.IDUSUARIO = "+ idUsuario+ " ORDER BY dataVenda DESC";
-//
-//        List<Venda> lista = new ArrayList<>();
-//        try {
-//            conn = obterConexao();
-//            stmt = conn.createStatement();
-//
-//            ResultSet resultados = stmt.executeQuery(sql);
-//
-//            while (resultados.next()) {
-//                int id = resultados.getInt("idVenda");
-//                long protocolo = Long.parseLong(resultados.getString("protocolo"));
-//                int idCli = resultados.getInt("idUsuario");
-//                int idEndereco = resultados.getInt("idEndereco");
-//                Timestamp dataVenda = resultados.getTimestamp("dataVenda");
-//                SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//                String dataFormatada = formatBR.format(dataVenda);
-//                double valorFinal = resultados.getDouble("valorFinal");
-//                double valorFrete = resultados.getDouble("valorFrete");
-//                int diasUteis = resultados.getInt("diasUteis");
-//                int status = resultados.getInt("status");
-//                Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
-//                SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//                String dataFormatada2 = formatBR2.format(ultimaAtt);
-//                long numeroCartao = resultados.getLong("numeroCartao");
-//                int numeroParcelas = resultados.getInt("numeroParcelas");
-//                double valorParcelas = resultados.getDouble("valorParcelas");
-//                String imagem = resultados.getString("imagem");
-//
-//                Venda venda = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, diasUteis, status,
-//                        dataFormatada2, numeroCartao, numeroParcelas, valorParcelas, imagem);
-//
-//                lista.add(venda);
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            // Código colocado aqui para garantir que a conexão com o banco
-//            // seja sempre fechada, independentemente se executado com sucesso
-//            // ou erro.
-//            if (stmt != null) {
-//                try {
-//                    stmt.close();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            if (conn != null) {
-//                try {
-//                    conn.close();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        }
-//        return lista;
-//    }
-
     public List<Venda> listarPedidosBackoffice() {
         Statement stmt = null;
         Connection conn = null;
@@ -304,7 +239,7 @@ public class VendaDAO extends ConexaoBD {
                     + dataFinal + " 23:59:59.9'";
         } else {
             sql = "SELECT * FROM Venda WHERE idUsuario = " + idUsuario + " AND dataVenda BETWEEN '" + dataInicial + " 00:00:00.0' AND '"
-                    + dataFinal + " 23:59:59.9'";
+                    + dataFinal + " 23:59:59.9' ORDER BY dataVenda DESC";
         }
 
         List<Venda> lista = new ArrayList<>();
@@ -334,6 +269,77 @@ public class VendaDAO extends ConexaoBD {
                 double valorParcelas = resultados.getDouble("valorParcelas");
 
                 Venda venda = new Venda(id, protocolo, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, diasUteis, status,
+                        dataFormatada2, numeroCartao, numeroParcelas, valorParcelas);
+
+                lista.add(venda);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return lista;
+    }
+
+    public List<Venda> filtrarProtocolo(int idUsuario, String protocolo) {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "";
+        if (idUsuario == 0) {
+            sql = "SELECT * FROM Venda WHERE UPPER(Protocolo) LIKE UPPER(?) ORDER BY dataVenda DESC";
+
+        } else {
+            sql = "SELECT * FROM Venda WHERE idUsuario = " + idUsuario + " AND UPPER(Protocolo) LIKE UPPER(?) ORDER BY dataVenda DESC";
+        }
+
+        List<Venda> lista = new ArrayList<>();
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + protocolo + "%");
+
+            ResultSet resultados = stmt.executeQuery();
+
+            while (resultados.next()) {
+                int id = resultados.getInt("idVenda");
+                long protocol = Long.parseLong(resultados.getString("protocolo"));
+                int idCli = resultados.getInt("idUsuario");
+                int idEndereco = resultados.getInt("idEndereco");
+                Timestamp dataVenda = resultados.getTimestamp("dataVenda");
+                SimpleDateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String dataFormatada = formatBR.format(dataVenda);
+                double valorFinal = resultados.getDouble("valorFinal");
+                double valorFrete = resultados.getDouble("valorFrete");
+                int diasUteis = resultados.getInt("diasUteis");
+                int status = resultados.getInt("status");
+                Timestamp ultimaAtt = resultados.getTimestamp("ultimaAtt");
+                SimpleDateFormat formatBR2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String dataFormatada2 = formatBR2.format(ultimaAtt);
+                long numeroCartao = resultados.getLong("numeroCartao");
+                int numeroParcelas = resultados.getInt("numeroParcelas");
+                double valorParcelas = resultados.getDouble("valorParcelas");
+
+                Venda venda = new Venda(id, protocol, idCli, idEndereco, dataFormatada, valorFinal, valorFrete, diasUteis, status,
                         dataFormatada2, numeroCartao, numeroParcelas, valorParcelas);
 
                 lista.add(venda);

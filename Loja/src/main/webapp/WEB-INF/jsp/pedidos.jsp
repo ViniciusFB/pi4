@@ -131,7 +131,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-3">
                                         <label for="nProtocolo">N° Protocolo</label>
-                                        <input id="nProtocolo" type="text" value="" name="nProtocolo" class="form-control">
+                                        <input id="nProtocolo" type="text" value="" class="form-control">
                                     </div>
 
                                     <div class="col-xs-12 col-md-3">
@@ -152,88 +152,91 @@
 
                             <hr>
 
-                            <div>
+                            <div id="listaDePedidos">
+                                <c:choose>
+                                    <c:when test="${not empty listaCompras}">
+                                        <c:forEach items="${listaCompras}" var="compra">
+                                            <input type="hidden" name="idVenda" value="${compra.id}">
+                                            <div class="row">
+                                                <div class="col-xs-12 marginB25">
+                                                    <div class="col-md-12 card-order card-panel paid">
 
-                                <c:forEach items="${listaCompras}" var="compra">
-                                    <input type="hidden" name="idVenda" value="${compra.id}">
-                                    <div class="row">
-                                        <div class="col-xs-12 marginB25">
-                                            <div class="col-md-12 card-order card-panel paid">
-
-                                                <div class="row">
-                                                    <div class="col-md-4 card-photos">
-                                                        <p id="dataFormatada">Realizado em ${compra.dataFormatada}</p>
-                                                        <div>
-                                                            <h3>Protocolo</h3>
-                                                            <h3>${compra.protocolo}</h3>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-8 card-info">
-                                                        <div class="col-xs-12 col-md-7 date-status st-${compra.status}">
-                                                            <div class="date col-xs-5 col-md-5">
-                                                                <span> Previsão Entrega </span>
-
+                                                        <div class="row">
+                                                            <div class="col-md-4 card-photos">
+                                                                <p id="dataFormatada">Realizado em ${compra.dataFormatada}</p>
                                                                 <div>
-                                                                    <p> ${compra.diaPrevisao} <span class="ng-binding"> ${compra.mesAnoPrevisao} </span> </p>
+                                                                    <h3>Protocolo</h3>
+                                                                    <h3>${compra.protocolo}</h3>
                                                                 </div>
                                                             </div>
-                                                            <div class="status col-xs-7 col-md-7 st-${compra.status}"> 
-                                                                <span>Status do Pedido</span>
-                                                                <c:choose>
-                                                                    <c:when test="${compra.status == 0}">
-                                                                        <h3 class="titles">Aguardando Pagamento</h3>
-                                                                    </c:when>
-                                                                    <c:when test="${compra.status == 1}">
-                                                                        <h3 class="titles">Pedido em Processamento</h3>
-                                                                    </c:when>
-                                                                    <c:when test="${compra.status == 2}">
-                                                                        <h3 class="titles">Faturamento</h3>
-                                                                    </c:when>
-                                                                    <c:when test="${compra.status == 3}">
-                                                                        <h3 class="titles">Em Transporte</h3>
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        <h3 class="titles">Entregue</h3>
-                                                                    </c:otherwise>
+                                                            <div class="col-md-8 card-info">
+                                                                <div class="col-xs-12 col-md-7 date-status st-${compra.status}">
+                                                                    <div class="date col-xs-5 col-md-5">
+                                                                        <span> Previsão Entrega </span>
 
-                                                                </c:choose>
+                                                                        <div>
+                                                                            <p> ${compra.diaPrevisao} <span class="ng-binding"> ${compra.mesAnoPrevisao} </span> </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="status col-xs-7 col-md-7 st-${compra.status}"> 
+                                                                        <span>Status do Pedido</span>
+                                                                        <c:choose>
+                                                                            <c:when test="${compra.status == 0}">
+                                                                                <h3 class="titles">Aguardando Pagamento</h3>
+                                                                            </c:when>
+                                                                            <c:when test="${compra.status == 1}">
+                                                                                <h3 class="titles">Pedido em Processamento</h3>
+                                                                            </c:when>
+                                                                            <c:when test="${compra.status == 2}">
+                                                                                <h3 class="titles">Faturamento</h3>
+                                                                            </c:when>
+                                                                            <c:when test="${compra.status == 3}">
+                                                                                <h3 class="titles">Em Transporte</h3>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <h3 class="titles">Entregue</h3>
+                                                                            </c:otherwise>
+
+                                                                        </c:choose>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 col-md-5 payment stP-${compra.status}">
+                                                                    <div class="info col-md-12 col-xs-7">
+                                                                        <span>Forma de Pagamento</span>
+                                                                        <p>Cartão de Crédito</p>
+                                                                    </div>
+                                                                    <div class="info col-md-12 col-xs-5 ng-binding">
+                                                                        Valor total
+                                                                        <p class="toUppercase ng-binding">R$ ${compra.valorFinal}</p> 
+                                                                    </div>
+                                                                </div>
                                                             </div>
+
                                                         </div>
-                                                        <div class="col-xs-12 col-md-5 payment stP-${compra.status}">
-                                                            <div class="info col-md-12 col-xs-7">
-                                                                <span>Forma de Pagamento</span>
-                                                                <p>Cartão de Crédito</p>
-                                                            </div>
-                                                            <div class="info col-md-12 col-xs-5 ng-binding">
-                                                                Valor total
-                                                                <p class="toUppercase ng-binding">R$ ${compra.valorFinal}</p> 
+                                                        <div class="row">
+                                                            <div class="card-menu card-panel-footer col-xs-12">
+                                                                <div class="zeroMarginPadding">
+                                                                    <div class="col-xs-4 col-md-8 zeroMarginPadding">
+                                                                        <a class="btn btn-default btn-xs hidden-xs hidden-sm" href="visualizarPedido?idVenda=${compra.id}">
+                                                                            Ver Detalhes
+                                                                        </a>
+                                                                        <a class="btn-link hidden-md hidden-lg" href="visualizarPedido?idVenda=${compra.id}">Ver detalhes</a>
+
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                </div>
-                                                <div class="row">
-                                                    <div class="card-menu card-panel-footer col-xs-12">
-                                                        <div class="zeroMarginPadding">
-                                                            <div class="col-xs-4 col-md-8 zeroMarginPadding">
-                                                                <a class="btn btn-default btn-xs hidden-xs hidden-sm" href="visualizarPedido?idVenda=${compra.id}">
-                                                                    Ver Detalhes
-                                                                </a>
-                                                                <a class="btn-link hidden-md hidden-lg" href="visualizarPedido?idVenda=${compra.id}">Ver detalhes</a>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                    </div>
-
-
-
-                                </c:forEach>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="text-large text-center"> Não há pedidos${msg}!</p>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>
@@ -264,16 +267,36 @@
         <script src="js/bootstrapValidator.js" type="text/javascript"></script>
         <script src="js/validar.js" type="text/javascript"></script>
         <script type="text/javascript">
-            $(window).on('load', function () {
-                var verify = $("#sucesso").val();
-                if (verify === '') {
+            $(document).ready(function () {
 
-                } else {
-                    $('#myModal').modal('show');
-                }
+                var campoProtocolo = $("#nProtocolo");
 
+                campoProtocolo.keyup(function () {
+                    delay(function () {
+                        $.ajax({
+                            type: "POST",
+                            url: 'pedidos',
+                            data: {acao: 'procuraProtocolo', nProtocolo: $("#nProtocolo").val()},
+                            success: function (response)
+                            {
+                                $("#listaDePedidos").hide().html($(response).find("#listaDePedidos")).hide().fadeIn();
+                            }
+                        });
 
-            });
+                        return false;
+                    }, 500);
+
+                });
+
+                var delay = (function () {
+                    var timer = 0;
+                    return function (callback, ms) {
+                        clearTimeout(timer);
+                        timer = setTimeout(callback, ms);
+                    };
+                })();
+            })
+
         </script>
 
     </body>

@@ -81,7 +81,7 @@
                                 <form action="filtrar" method="post" accept-charset="iso-8859-1,utf-8">
                                     <ul class="nav nav-pills nav-stacked category-menu">
                                         <li>
-                                            <a>Acessórios</a>
+                                            <a href="produtos?numeroPagina=1">Acessórios</a>
                                             <ul>
                                                 <li><a class="categorias" name="categoria" href="#">Bolsa</a>
                                                 </li>

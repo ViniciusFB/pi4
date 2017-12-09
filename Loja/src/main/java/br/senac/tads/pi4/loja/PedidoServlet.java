@@ -54,7 +54,6 @@ public class PedidoServlet extends HttpServlet {
 //            VendaProd vp = vpDao.obterInfoVendaProd(Integer.parseInt(request.getParameter("idVenda")));
             request.setAttribute("listaCompras", vendas);
 //            request.setAttribute("imagem", vp);
-            
 
             request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);
 
@@ -74,20 +73,39 @@ public class PedidoServlet extends HttpServlet {
 
         VendaDAO dao = new VendaDAO();
         int idUsuario = (int) sessao.getAttribute("idUsuario");
-        String dataI = request.getParameter("dataInicial");
-        String dataF = request.getParameter("dataFinal");
+        String acao = request.getParameter("acao");
 
-        if (dataI == null || dataF == null || dataI.equals("") || dataF.equals("")) {
-            List<Venda> vendas = dao.listar(idUsuario);
-            request.setAttribute("listaCompras", vendas);
-        } else {
-            Date dataInicial = Date.valueOf(dataI);
-            Date dataFinal = Date.valueOf(dataF);
-            List<Venda> vendas = dao.filtrar(idUsuario, dataInicial, dataFinal);
-            request.setAttribute("listaCompras", vendas);
+        if (acao == null) {
+            String dataI = request.getParameter("dataInicial");
+            String dataF = request.getParameter("dataFinal");
+
+            if (dataI == null || dataF == null || dataI.equals("") || dataF.equals("")) {
+                List<Venda> vendas = dao.listar(idUsuario);
+                request.setAttribute("listaCompras", vendas);
+                request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);
+            } else {
+                Date dataInicial = Date.valueOf(dataI);
+                Date dataFinal = Date.valueOf(dataF);
+                List<Venda> vendas = dao.filtrar(idUsuario, dataInicial, dataFinal);
+                request.setAttribute("listaCompras", vendas);
+                request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);
+            }
+        } else if (acao.equals("procuraProtocolo")) {
+            String nProtocolo = request.getParameter("nProtocolo");
+            nProtocolo = nProtocolo.trim();
+            if (nProtocolo != null || !nProtocolo.equals("")) {
+                List<Venda> vendas = dao.filtrarProtocolo(idUsuario, nProtocolo);
+
+                if (vendas.isEmpty()) {
+                    request.setAttribute("listaCompras", vendas);
+                    request.setAttribute("msg", " com o protocolo " + nProtocolo);
+                } else {
+                    request.setAttribute("listaCompras", vendas);
+                }
+                request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);;
+            }
         }
 
-        request.getRequestDispatcher("/WEB-INF/jsp/pedidos.jsp").forward(request, response);
     }
 
     @Override
